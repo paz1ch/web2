@@ -1,0 +1,46 @@
+    	.container_swap{
+		
+		width: 400px;
+		
+		}
+		
+		.div_left{
+						
+			float: left;
+			text-align: left;
+			width: 20%;
+			border: 2px solid black;
+			height: 250px;
+			margin-top: 5%;
+			margin-bottom: 10%;
+			margin-left: 10%;
+			margin-right: 5%;
+		}
+	
+		.div_right{
+		
+			float: right;	
+			text-align: left;
+			width: 45%;
+			margin-top: 5%;
+			margin-left: 5%;
+			margin-right: 15%;
+			margin-bottom: 10%;
+			border: 2px solid black;
+		}
+		
+		.div_content_left{
+			margin-left: 20% ;
+		}
+		.red_dot{
+			color: red;
+		}
+
+        .edit_p_inf{
+            background-color: #28A745;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            font-size: 18px;   
+        }
