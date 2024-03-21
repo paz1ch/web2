@@ -1,0 +1,127 @@
+/* bảng */
+table{
+    margin-left: 5%;
+    width: 90%;
+    margin-bottom: 3%;
+}
+th, td, table{
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+th:not(.mavandon):not(th.name):not(th.address):not(th.sdt){
+    background-color: #343a40;
+    color: #dfdfdf;
+    border: solid 1px white;
+}
+th,td{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding: 5px;
+}
+
+/* ô vận đơn */
+.mavandon{
+    text-align: left;;
+}
+
+/* ô sản phẩm */
+th.sanpham {
+    width: 30%;
+}
+td.soluong{
+    text-align: right;
+    width: 10%;
+}
+td.sanpham{
+    width: 20%;
+}
+
+/* ô doanh thu đơn hàng */
+.doanhthu{
+    width: 10%;
+    text-align: center;
+}
+/* ô trạng thái */
+.trangthai{
+    width: 10%;
+    text-align: center;
+}
+/* ô đơn vị vận chuyển */
+.vanchuyen{
+    width: 10%;
+}
+td.vanchuyen{
+    text-align: center;
+}
+
+/* Thòi gian tạo đơn */
+.thoigian{
+    width: 20%;
+}
+.date{
+    width: 10%;
+    text-align: center;
+}
+.time{
+    width: 10%;
+    text-align: center;
+}
+
+/* ô thao tác */
+.duyet{
+    width: 10%;
+    text-align: center;
+}
+
+/* ô thông tin */
+td.thongtin{
+    text-align: center;
+}
+a[href="product-info.html"]
+{
+    color: black;
+}
+
+
+/* ô Thông tin */
+td.thongtin:hover{
+    font-weight: bold;
+}
+.background-section{
+    padding-bottom: 2.5%;
+}
+
+/* tìm kiếm đơn hàng */
+.form-search{
+    padding: 15px;
+    background-color: #343a40;
+}
+.h5-search{
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+.select{
+    padding: 5px 0 5px 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: white;
+}
+.button{
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    font-size: 16px ;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.button:hover{
+    cursor: pointer;
+}
+input.select{
+    margin-left: 5px;
+}
+.label{
+    color: white;
+    size: 18px;
+}

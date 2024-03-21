@@ -1,0 +1,41 @@
+table,th,td{
+    border: solid 1px black;
+}
+table{
+    width: 90%;
+    margin-left: 5%;
+    size: 16px;
+}
+th{
+    background-color: #343a40;
+    color: white;
+}
+td,th{
+    text-align: center;
+    padding: 10px;
+}
+
+/* mã sản phẩm */
+.masanpham{
+    width: 10%;
+    text-align: center;
+}
+/* số lượng */
+.soluong{
+    width: 10%;
+}
+
+/* chức năng */
+td.chucnang, td.xoa{
+    width: 10%;
+    color: blue;
+}
+.chucnang:hover, td.xoa:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.background-section{
+    padding-bottom: 6%;
+}
