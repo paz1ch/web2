@@ -30,29 +30,9 @@
 <body>
     <!-- header -->
     <section id="home">
-		<div class="topnav">
-            <div style="display: flex;" class="dangxuat">
-                <a href="login.html">Đăng nhập</a>
-                <a href="register.html" class="dangxuat">Đăng ký</a>
-            </div>
-			<a class="active" href="index.html">Trang chủ</a>
-			<a href="products.html">Sản phẩm</a>
-			<a href="#" id="giohang">Giỏ hàng</a>
-            <script>
-                button = document.getElementById("giohang");
-                button.onclick = function(){
-                    alert("Hãy đăng nhập trước để vào giỏ hàng");
-                    location.assign("login.html");
-                }
-            </script>
-			<a href="search.html" class="account">Tìm kiếm</a>
-			<div class="search-container">
-				<form action="search.html">
-				<input type="text" placeholder="Search.." name="search">
-				<button type="submit"><i class="fa fa-search"> </i></button>
-				</form>
-			</div>
-		</div>
+    <?php
+            include 'header.php';
+        ?>
 	</section>
     <!-- end header -->
 
