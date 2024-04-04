@@ -1,3 +1,32 @@
+<?php
+
+include_once("config/config.php");
+
+    if(isset($_POST['submit']) && $_POST['submit'] ){
+        $user_name = $_POST['username'];
+        $password = $_POST['password'];
+        
+        $sql = "SELECT * FROM tb_user WHERE user = '$user_name' and pass = '$password'";
+
+        $result = mysqli_query($mysqli,$sql);      
+        $row = mysqli_num_rows($result);      
+        $count = mysqli_num_rows($result);
+
+        if($count == 1) {
+	  
+            // session_register("myusername");
+            // $_SESSION['username'] = $user_name;
+            header("location: user.php");
+         } else {
+            $error = "Your Login Name or Password is invalid";
+         }
+    
+    } 
+    
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="vi" class="h-100">
 
@@ -76,9 +105,12 @@
                                     <div class="row">
                                         <div class="col-6">
                                            <!-- <button class="btn btn-primary px-4" onclick="window.location.href='../web_first_test/web1/index.html'">Đăng nhập</button> -->
-                                            <a href="user.html" class="button">
+                                            <!-- <a href="user.php" class="button">
                                                 <span>Đăng nhập</span>
-                                            </a>
+                                            </a> -->
+
+                                            <input type="submit" name="submit" value="Đăng nhập">    
+
                                         </div>
                                         <div class="col-6 text-right">
                                             <button class="btn btn-link px-0" type="button"><a href="">Quên mật khẩu?</a></button>

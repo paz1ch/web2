@@ -1,3 +1,35 @@
+<?php
+
+include_once("config/config.php");
+
+    if(isset($_POST['submit']) && $_POST['submit'] ){
+        $user_name = $_POST['kh_tendangnhap'];
+        $password = $_POST['kh_matkhau'];
+        $name = $_POST['kh_ten'];
+        $address = $_POST['kh_diachi'];
+        $phone = $_POST['kh_dienthoai'];
+        $email = $_POST['kh_email'];
+    
+        $insert = "INSERT INTO tb_user (name, address, email, user, pass, sodienthoai)
+        VALUES ('$name', '$address', '$email','$user_name' ,'$password', '$phone') ";
+
+        $query = mysqli_query($mysqli,$insert);
+    
+         if($query){
+         header('Location: login.php');
+         
+        }
+        else
+        {
+            echo "Lỗi!";
+        }
+
+    } 
+
+        
+?>
+
+
 <!DOCTYPE html>
 <html lang="vi" class="h-100">
 
@@ -49,7 +81,7 @@
     <div style="margin-bottom: 5%;"></div>
     <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <form name="frmdangky" id="frmdangky" method="post" action="#">
+        <form name="frmdangky" id="frmdangky" method="post">
             <div class="container mt-4">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
@@ -139,13 +171,17 @@
                                     <input class="form-control" type="text" placeholder="CMND" name="kh_cmnd">
                                 </div>
                                 <!-- <button class="btn btn-block btn-success" name="btnDangKy">Tạo tài khoản</button> -->
-                                <script>
+                                <!-- <script>
                                     function success()
                                     {
                                         alert("Đăng ký tài khoản thành công!")
                                     }
                                 </script>
-                                <a href="login.html" class="button" onclick="success()">Tạo tài khoản</a>
+                                <a href="login.html" class="button" onclick="success()">Tạo tài khoản</a> -->
+                            
+                                    <input type="submit" name="submit" value="Đăng ký">
+                            
+                            
                             </div>
                             <div class="card-footer p-4">
                                 <div class="row">
