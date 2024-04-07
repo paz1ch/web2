@@ -104,7 +104,7 @@ include_once("config/config.php");
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                           <!-- <button class="btn btn-primary px-4" onclick="window.location.href='../web_first_test/web1/index.html'">Đăng nhập</button> -->
+                                           <!-- <button class="btn btn-primary px-4" onclick="window.location.href='../web_first_test/web1/index.php'">Đăng nhập</button> -->
                                             <!-- <a href="user.php" class="button">
                                                 <span>Đăng nhập</span>
                                             </a> -->
@@ -124,7 +124,7 @@ include_once("config/config.php");
                                         <h2>Đăng ký</h2>
                                         <p>Đăng ký để làm thành viên của Trang web bán hàng. Bạn sẽ được một số quyền
                                             lợi nhất định khi làm thành viên của Chúng tôi.</p>
-                                        <a class="btn btn-primary active mt-3" href="register.html">Đăng ký ngay!</a>
+                                        <a class="btn btn-primary active mt-3" href="register.php">Đăng ký ngay!</a>
                                     </div>
                                 </div>
                             </div>

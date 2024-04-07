@@ -28,22 +28,22 @@
         <section id="home">
             <div class="topnav">
                 <div style="display: flex;" class="dangxuat">
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="register.html" class="dangxuat">Đăng ký</a>
+                    <a href="login.php">Đăng nhập</a>
+                    <a href="register.php" class="dangxuat">Đăng ký</a>
                 </div>
-                <a class="active" href="index.html">Trang chủ</a>
-                <a href="products.html">Sản phẩm</a>
+                <a class="active" href="index.php">Trang chủ</a>
+                <a href="products.php">Sản phẩm</a>
                 <a href="#" id="giohang">Giỏ hàng</a>
                 <script>
                     button = document.getElementById("giohang");
                     button.onclick = function(){
                         alert("Hãy đăng nhập trước để vào giỏ hàng");
-                        location.assign("login.html");
+                        location.assign("login.php");
                     }
                 </script>
-                <a href="search.html" class="account">Tìm kiếm</a>
+                <a href="search.php" class="account">Tìm kiếm</a>
                 <div class="search-container">
-                    <form action="search.html">
+                    <form action="search.php">
                     <input type="text" placeholder="Search.." name="search">
                     <button type="submit"><i class="fa fa-search"> </i></button>
                     </form>
@@ -196,7 +196,7 @@
                                     </header>
                                     <div class="filter-content">
                                         <div class="card-body">
-                                            <form action="/search.html">
+                                            <form action="/search.php">
                                                 <input type="checkbox" id="room1" name="room1" value="1">
                                                 <label for="room1">Phòng khách</label><br>
                                                 <input type="checkbox" id="room2" name="room2" value="2">
@@ -223,12 +223,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/bed1.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Giường 1</h5>
                                             </a>
                                             <h6>Giường</h6>
@@ -236,7 +236,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">30 &euro;</s><br>
@@ -249,12 +249,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/mirror1.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Gương-1</h5>
                                             </a>
                                             <h6>Gương</h6>
@@ -262,7 +262,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">20 &euro;</s><br>
@@ -277,12 +277,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/table2.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Bàn-1</h5>
                                             </a>
                                             <h6>Bàn</h6>
@@ -290,7 +290,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">15 &euro;</s>
@@ -303,12 +303,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/bed5.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Giường-5</h5>
                                             </a>
                                             <h6>Giường</h6>
@@ -316,7 +316,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">50 &euro;</s>
@@ -331,12 +331,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/sofa2.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Sofa-2</h5>
                                             </a>
                                             <h6>Sofa</h6>
@@ -344,7 +344,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">120 &euro;</s>
@@ -357,12 +357,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="_detail.html">
+                                        <a href="_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/table4.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Bàn-4</h5>
                                             </a>
                                             <h6>Bàn</h6>
@@ -370,7 +370,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">300 &euro;</s>
@@ -385,12 +385,12 @@
     
                                 <div class="col-md-6">
                                     <div class="card mb-4 shadow-sm">
-                                        <a href="product_detail.html">
+                                        <a href="product_detail.php">
                                             <img class="bd-placeholder-img card-img-top" width="100%" height="350"
                                                 src="images/sofa5.jpg">
                                         </a>
                                         <div class="card-body">
-                                            <a href="product_detail.html">
+                                            <a href="product_detail.php">
                                                 <h5>Sofa-5</h5>
                                             </a>
                                             <h6>Sofa</h6>
@@ -398,7 +398,7 @@
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="btn-group">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="product_detail.html">Xem chi tiết</a>
+                                                        href="product_detail.php">Xem chi tiết</a>
                                                 </div>
                                                 <small class="text-muted text-right">
                                                     <s style="font-size: medium;">79 &euro;</s>

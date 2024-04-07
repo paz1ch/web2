@@ -62,7 +62,7 @@
                 <script>
                     function addtoCart(){
                         alert("Cần phải đăng nhập");
-                        window.location.replace("login.html")
+                        window.location.replace("login.php")
                     }
                 </script>
                 <div class="row">
@@ -71,7 +71,7 @@
                         <img src="images/mirror3.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_guong_3.html">
+                                <a href="product_detail_guong_3.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -93,7 +93,7 @@
                     <div class="product-description" data-name="Mirror-3" data-price="12">
                         
                         <p class="product-price">&euro; 12</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                 <div>
                                     <label for="qty-2">Số lượng</label>
                                     <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -103,7 +103,7 @@
                                     button = document.getElementById("button");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                    window.location.replace("login.html");    
+                                    window.location.replace("login.php");    
                                     }
                                 </script>
                         </form>
@@ -119,7 +119,7 @@
                         <div class="overlay-right">
                             <div class="overlay-right">
                                 <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                    <a href="product_detail_sofa_3.html">
+                                    <a href="product_detail_sofa_3.php">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </button>
@@ -143,7 +143,7 @@
                     <div class="product-description" data-name="sofa-3" data-price="34">
                         
                         <p class="product-price">&euro; 34</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -153,7 +153,7 @@
                                         button = document.getElementById("button2");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");                                     
+                                        window.location.replace("login.php");                                     
                                     }
                                     </script>
                         </form>
@@ -169,7 +169,7 @@
                         <img src="images/table3.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_ban_3.html">
+                                <a href="product_detail_ban_3.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -191,7 +191,7 @@
                     <div class="product-description" data-name="Table-3" data-price="20">
                         
                         <p class="product-price">&euro; 20</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -201,7 +201,7 @@
                                         button = document.getElementById("button3");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");     
+                                        window.location.replace("login.php");     
                                     }
                                     </script>
                                 </form>
@@ -217,7 +217,7 @@
                         <img src="images/bed3.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_giuong_3.html">
+                                <a href="product_detail_giuong_3.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -239,7 +239,7 @@
                     <div class="product-description" data-name="Bed" data-price="60">
                         
                         <p class="product-price">&euro; 60</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -249,7 +249,7 @@
                                         button = document.getElementById("button4");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html"); ;    
+                                        window.location.replace("login.php"); ;    
                                     }
                                     </script>
                                 </form>
@@ -268,7 +268,7 @@
                         <img src="images/mirror4.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_guong_4.html">
+                                <a href="product_detail_guong_4.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -290,7 +290,7 @@
                     <div class="product-description" data-name="Mirror" data-price="17">
                         
                         <p class="product-price">&euro; 17</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -300,7 +300,7 @@
                                         button = document.getElementById("button5");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");                                     
+                                        window.location.replace("login.php");                                     
                                     }
                                     </script>
                                 </form>
@@ -315,7 +315,7 @@
                         <img src="images/sofa4.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_sofa_4.html">
+                                <a href="product_detail_sofa_4.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -337,7 +337,7 @@
                     <div class="product-description" data-name="Couch" data-price="28">
                         
                         <p class="product-price">&euro; 28</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -347,7 +347,7 @@
                                         button = document.getElementById("button6");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");                                     
+                                        window.location.replace("login.php");                                     
                                     }
                                     </script>
                                 </form>
@@ -363,7 +363,7 @@
                         <img src="images/table4.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_ban_4.html">
+                                <a href="product_detail_ban_4.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -385,7 +385,7 @@
                     <div class="product-description" data-name="Table" data-price="21">
                         
                         <p class="product-price">&euro; 21</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -395,7 +395,7 @@
                                         button = document.getElementById("button7");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");                                     
+                                        window.location.replace("login.php");                                     
                                     }
                                     </script>
                                 </form>
@@ -411,7 +411,7 @@
                         <img src="images/bed4.jpg">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="product_detail_giuong_4.html">
+                                <a href="product_detail_giuong_4.php">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
@@ -434,7 +434,7 @@
                     <div class="product-description" data-name="Bed" data-price="25">
                         
                         <p class="product-price">&euro; 25</p>
-                        <form class="add-to-cart" action="cart.html" method="post">
+                        <form class="add-to-cart" action="cart.php" method="post">
                                     <div>
                                         <label for="qty-2">Số lượng</label>
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
@@ -444,7 +444,7 @@
                                         button = document.getElementById("button8");
                                     button.onclick = function(){
                                         alert("Cần phải đăng nhập")
-                                        window.location.replace("login.html");                                    
+                                        window.location.replace("login.php");                                    
                                      }
                                     </script>
                                 </form>

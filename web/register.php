@@ -179,7 +179,7 @@ include_once("config/config.php");
                                         alert("Đăng ký tài khoản thành công!")
                                     }
                                 </script>
-                                <a href="login.html" class="button" onclick="success()">Tạo tài khoản</a> -->
+                                <a href="login.php" class="button" onclick="success()">Tạo tài khoản</a> -->
                             
                                     <input type="submit" name="submit" value="Đăng ký">
                             
@@ -190,7 +190,7 @@ include_once("config/config.php");
                                     <div class="col-12">
                                         <center>Nếu bạn đã có Tài khoản, xin mời Đăng nhập</center>
                                         <a class="btn btn-primary form-control"
-                                            href="login.html">Đăng nhập</a>
+                                            href="login.php">Đăng nhập</a>
                                     </div>
                                 </div>
                             </div>

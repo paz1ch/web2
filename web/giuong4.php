@@ -28,17 +28,17 @@
 	
     <div class="topnav">
         <div style="display: flex;" class="dangxuat">
-            <a href="personal_infomation.html">
+            <a href="personal_infomation.php">
                 <img src="images/phuccac.jpg" class="editphucadmin" >
             </a>
-            <a href="index.html" class="dangxuat">Đăng xuất</a>
+            <a href="index.php" class="dangxuat">Đăng xuất</a>
         </div>
-        <a class="active" href="trangchu.html" style="background-color: black;">Trang chủ</a>
-        <a href="sanpham_trangchu.html">Sản phẩm</a>
-        <a href="cart.html">Giỏ hàng</a>
-        <a  href="timkiem_trangchu.html" class="account">Tìm kiếm</a>
+        <a class="active" href="trangchu.php" style="background-color: black;">Trang chủ</a>
+        <a href="sanpham_trangchu.php">Sản phẩm</a>
+        <a href="cart.php">Giỏ hàng</a>
+        <a  href="timkiem_trangchu.php" class="account">Tìm kiếm</a>
         <div class="search-container">
-            <form action="timkiem_trangchu.html">
+            <form action="timkiem_trangchu.php">
             <input type="text" placeholder="Tìm kiếm.." name="search">
             <button type="submit"><i class="fa fa-search"> </i></button>
             </form>
@@ -132,7 +132,7 @@
                                     <a class="add-to-cart btn btn-default" id="muangay" onclick="addCart()" >Mua ngay</a>
                                     <script>
                                         function addCart(){
-                                            window.location.replace("thanhtoan.html");
+                                            window.location.replace("thanhtoan.php");
                                         }
                                     </script>
                                 </div>
