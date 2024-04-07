@@ -9,9 +9,11 @@ include_once("config/config.php");
         $address = $_POST['kh_diachi'];
         $phone = $_POST['kh_dienthoai'];
         $email = $_POST['kh_email'];
-    
-        $insert = "INSERT INTO tb_user (name, address, email, user, pass, sodienthoai)
-        VALUES ('$name', '$address', '$email','$user_name' ,'$password', '$phone') ";
+        $cmnd = $_POST['kh_cmnd'];
+
+
+        $insert = "INSERT INTO taikhoan (username, password, name, address, phone, email, cmnd)
+        VALUES ('$user_name', '$password', '$name','$address' ,'$phone', '$email', '$cmnd') ";
 
         $query = mysqli_query($mysqli,$insert);
     
@@ -24,7 +26,7 @@ include_once("config/config.php");
             echo "Lỗi!";
         }
 
-    } 
+    }
 
         
 ?>

@@ -6,7 +6,7 @@ include_once("config/config.php");
         $user_name = $_POST['username'];
         $password = $_POST['password'];
         
-        $sql = "SELECT * FROM tb_user WHERE user = '$user_name' and pass = '$password'";
+        $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
         $result = mysqli_query($mysqli,$sql);      
         $row = mysqli_num_rows($result);      
