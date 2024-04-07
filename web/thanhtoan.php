@@ -17,17 +17,17 @@
         <section id="home">
             <div class="topnav">
                 <div style="display: flex;" class="dangxuat">
-                    <a href="personal_infomation.html">
+                    <a href="personal_infomation.php">
                         <img src="images/phuccac.jpg" class="editphucadmin" >
                     </a>
-                    <a href="index.html" class="dangxuat">Đăng xuất</a>
+                    <a href="index.php" class="dangxuat">Đăng xuất</a>
                 </div>
-                <a class="active" href="trangchu.html" style="background-color: black;">Trang chủ</a>
-                <a href="sanpham_trangchu.html">Sản phẩm</a>
-                <a href="cart.html">Giỏ hàng</a>
-                <a  href="timkiem_trangchu.html" class="account">Tìm kiếm</a>
+                <a class="active" href="trangchu.php" style="background-color: black;">Trang chủ</a>
+                <a href="sanpham_trangchu.php">Sản phẩm</a>
+                <a href="cart.php">Giỏ hàng</a>
+                <a  href="timkiem_trangchu.php" class="account">Tìm kiếm</a>
                 <div class="search-container">
-                    <form action="timkiem_trangchu.html">
+                    <form action="timkiem_trangchu.php">
                     <input type="text" placeholder="Tìm kiếm.." name="search">
                     <button type="submit"><i class="fa fa-search"> </i></button>
                     </form>
@@ -43,22 +43,22 @@
                     <div class="navbar-collapse collapse" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="../index.html">Trang chủ <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="../index.php">Trang chủ <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="https://nentang.vn">Quản trị</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="products.html">Sản phẩm</a>
+                                <a class="nav-link" href="products.php">Sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">Giới thiệu</a>
+                                <a class="nav-link" href="about.php">Giới thiệu</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Liên hệ</a>
+                                <a class="nav-link" href="contact.php">Liên hệ</a>
                             </li>
                         </ul>
-                        <form class="form-inline mt-2 mt-md-0" method="get" action="search.html">
+                        <form class="form-inline mt-2 mt-md-0" method="get" action="search.php">
                             <input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm" aria-label="Search"
                                 name="keyword_tensanpham">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
@@ -66,11 +66,11 @@
                     </div>
                     <ul class="navbar-nav px-3">
                         <li class="nav-item text-nowrap">
-                            <a class="nav-link" href="cart.html">Giỏ hàng</a>
+                            <a class="nav-link" href="cart.php">Giỏ hàng</a>
                         </li>
                         <li class="nav-item text-nowrap">
                             <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
-                            <a class="nav-link" href="login.html">Đăng nhập</a>
+                            <a class="nav-link" href="login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 </div>
@@ -206,13 +206,13 @@
                                     </div>
                                 </div> -->
                                 <hr class="mb-4">
-                                <button href="index.html" class="btn btn-primary btn-lg btn-block" id="dathang" type="button" name="btnDatHang">Đặt hàng</button>
+                                <button href="index.php" class="btn btn-primary btn-lg btn-block" id="dathang" type="button" name="btnDatHang">Đặt hàng</button>
 
                                 <script>
                                     button1 = document.getElementById("dathang");
                                     button1.onclick = function(){
                                         alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                        location.assign("sanpham_trangchu.html");
+                                        location.assign("sanpham_trangchu.php");
                                     }
                                 </script>
 

@@ -111,7 +111,7 @@
                                     <script>
                                         function addCart(){
                                             alert("Vui lòng đăng nhập");
-                                            window.location.replace("login.html");
+                                            window.location.replace("login.php");
                                         }
                                     </script>
                                     <br><br>
