@@ -1,5 +1,4 @@
 <?php
-
 include_once("config/config.php");
 
     if(isset($_POST['submit']) && $_POST['submit'] ){
@@ -11,15 +10,13 @@ include_once("config/config.php");
         $email = $_POST['kh_email'];
         $cmnd = $_POST['kh_cmnd'];
 
-
-        $insert = "INSERT INTO taikhoan (username, password, name, address, phone, email, cmnd)
-        VALUES ('$user_name', '$password', '$name','$address' ,'$phone', '$email', '$cmnd') ";
+        $insert = "INSERT INTO taikhoan (username, password, name, address, phone, email, cmnd,status)
+        VALUES ('$user_name', '$password', '$name','$address' ,'$phone', '$email', '$cmnd', true) ";
 
         $query = mysqli_query($mysqli,$insert);
-    
+
          if($query){
          header('Location: login.php');
-         
         }
         else
         {
@@ -27,8 +24,6 @@ include_once("config/config.php");
         }
 
     }
-
-        
 ?>
 
 

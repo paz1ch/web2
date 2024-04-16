@@ -1,30 +1,36 @@
 <?php
-
 include_once("config/config.php");
+$mysqli = new mysqli("localhost","root","","web_php");
 
-    if(isset($_POST['submit']) && $_POST['submit'] ){
+    if(isset($_POST['submit'])){
         $user_name = $_POST['username'];
         $password = $_POST['password'];
-        
-        $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
-        $result = mysqli_query($mysqli,$sql);      
-        $row = mysqli_num_rows($result);      
-        $count = mysqli_num_rows($result);
+        $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name'";
+        $result_status = mysqli_query($mysqli,$checkStatus);
 
-        if($count == 1) {
-	  
-            // session_register("myusername");
-            // $_SESSION['username'] = $user_name;
-            header("location: user.php");
-         } else {
-            $error = "Your Login Name or Password is invalid";
-         }
-    
-    } 
-    
+//        check xem tai khoan co bi khoa hay ko;
+        if (mysqli_num_rows($result_status) > 0){
+            echo 'tai khoan bi khoa';
+            exit();
+        }
+        else {
 
-    
+            $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
+
+            $result = mysqli_query($mysqli,$sql);
+            $count = mysqli_num_rows($result);
+
+            if($count == 1) {
+                header("location: user.php");
+            } else {
+                $error = "Your Login Name or Password is invalid";
+            }
+        }
+    }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +68,7 @@ include_once("config/config.php");
         ?>
 	</section>
     <!-- end header -->
+
     <style>
         a.button{
             display: inline-block;
@@ -109,7 +116,7 @@ include_once("config/config.php");
                                                 <span>Đăng nhập</span>
                                             </a> -->
 
-                                            <input type="submit" name="submit" value="Đăng nhập">    
+                                            <input type="submit" name="submit" value="Đăng nhập">
 
                                         </div>
                                         <div class="col-6 text-right">
