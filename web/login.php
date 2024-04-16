@@ -6,31 +6,28 @@ $mysqli = new mysqli("localhost","root","","web_php");
         $user_name = $_POST['username'];
         $password = $_POST['password'];
 
-        $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name'";
-        $result_status = mysqli_query($mysqli,$checkStatus);
+        $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
-//        check xem tai khoan co bi khoa hay ko;
-        if (mysqli_num_rows($result_status) > 0){
-            echo 'tai khoan bi khoa';
-            exit();
-        }
-        else {
+        $result = mysqli_query($mysqli,$sql);
+        $count = mysqli_num_rows($result);
 
-            $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
-
-            $result = mysqli_query($mysqli,$sql);
-            $count = mysqli_num_rows($result);
-
-            if($count == 1) {
+        if($count == 1) {
+            // check xem tai khoan co bi khoa hay ko;
+            $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
+            $result_status = mysqli_query($mysqli,$checkStatus);
+            if (mysqli_num_rows($result_status) > 0){
+                echo 'tai khoan bi khoa';
+                exit();
+            }
+            else {
                 header("location: user.php");
-            } else {
-                $error = "Your Login Name or Password is invalid";
             }
         }
+        else {
+            echo 'loi tai khoan hoac mat khau';
+            exit();
+        }
     }
-
-
-
 ?>
 
 <!DOCTYPE html>

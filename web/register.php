@@ -1,5 +1,6 @@
 <?php
 include_once("config/config.php");
+$mysqli = new mysqli("localhost","root","","web_php");
 
     if(isset($_POST['submit']) && $_POST['submit'] ){
         $user_name = $_POST['kh_tendangnhap'];
