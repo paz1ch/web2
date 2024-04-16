@@ -28,6 +28,7 @@
 </head>
 
 <body>
+
     <section id="home">
 		<div class="topnav">
             <div style="display: flex;" class="dangxuat">
@@ -78,7 +79,8 @@
 
 	</section>
 	<!-- top nav -->
-	
+    <?php include('header_user.php'); ?>
+
 	<!------Featured Categories----->
 	<section class="featured-categories" id="products">
 		<div class="container">

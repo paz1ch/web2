@@ -37,8 +37,8 @@ body {
 }
 
 .topnav .search-container {
-  float: right;
-  margin-right: 20%;
+  float: left !important;
+  margin-left: 20%;
 }
 
 .topnav input[type=text] {
@@ -70,8 +70,9 @@ button[type=submit] {
 }
 
 /* đăng xuất */
-.dangxuat{
+.dangxuat, .dangnhap{
   float: right;
+  margin-right: 10px;
 }
 img[src="images/phuccac.jpg"]{
   width: 40px;
