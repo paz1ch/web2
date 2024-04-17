@@ -1,33 +1,40 @@
 <?php
 include_once("config/config.php");
-$mysqli = new mysqli("localhost","root","","web_php");
+$mysqli = new mysqli("localhost", "root", "", "web_php");
 
-    if(isset($_POST['submit'])){
-        $user_name = $_POST['username'];
-        $password = $_POST['password'];
+if (isset($_POST['submit'])) {
+    $user_name = $_POST['username'];
+    $password = $_POST['password'];
 
-        $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
+    $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
-        $result = mysqli_query($mysqli,$sql);
-        $count = mysqli_num_rows($result);
+    $result = mysqli_query($mysqli, $sql);
+    $count = mysqli_num_rows($result);
 
-        if($count == 1) {
-            // check xem tai khoan co bi khoa hay ko;
-            $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
-            $result_status = mysqli_query($mysqli,$checkStatus);
-            if (mysqli_num_rows($result_status) > 0){
-                echo 'tai khoan bi khoa';
-                exit();
-            }
-            else {
-                header("location: user.php");
-            }
-        }
-        else {
-            echo 'loi tai khoan hoac mat khau';
+    if ($count == 1) {
+        // check xem tai khoan co bi khoa hay ko;
+        $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
+        $result_status = mysqli_query($mysqli, $checkStatus);
+        if (mysqli_num_rows($result_status) > 0) {
+            echo 'tai khoan bi khoa';
             exit();
         }
+        else {
+            // Lấy thông tin người dùng từ cơ sở dữ liệu
+            $row = mysqli_fetch_assoc($result);
+
+            session_start();
+            $_SESSION['username'] = $row['username'];
+
+
+            // Chuyển hướng người dùng đến trang user.php
+            header("location: user.php");
+        }
+    } else {
+        echo 'loi tai khoan hoac mat khau';
+        exit();
     }
+}
 ?>
 
 <!DOCTYPE html>

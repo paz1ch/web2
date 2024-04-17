@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 
 <div class="topnav">
     <div style="display: inline-flex;" class="dangxuat">
@@ -11,7 +7,13 @@
     <div style="display: inline-flex;" class="dangnhap">
         <a href="personal_infomation.php">
             <img src="images/phuccac.jpg" class="editphucadmin">
-            <section style="display: inline-block">phucacac</section>
+            <section style="display: inline-block">
+                <?php
+                    session_start();
+                    $username = $_SESSION['username'];
+                    echo "$username";
+                ?>
+            </section>
         </a>
     </div>
 
