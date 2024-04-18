@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php 
+
+
+?>
+
+
+
+
+
 <html>
 <head>
 <title>Product details</title>
@@ -29,7 +37,6 @@
     <?php
             include 'header.php';
         ?>
-
     <!-- end header -->
 
     <div class="spacing"></div>
@@ -55,36 +62,36 @@
                             <div class="preview col-md-6">
                                 <div class="preview-pic tab-content">
                                     <div class="tab-pane" id="pic-1">
-                                        <img src="images/bed4.jpg">
+                                        <img src="images/table4.jpg">
                                     </div>
                                     <div class="tab-pane" id="pic-2">
-                                        <img src="images/bed4.jpg">
+                                        <img src="images/table4.jpg">
                                     </div>
                                     <div class="tab-pane active" id="pic-3">
-                                        <img src="images/bed4.jpg">
+                                        <img src="images/table4.jpg">
                                     </div>
                                 </div>
                                 <ul class="preview-thumbnail nav nav-tabs">
                                     <li class="active">
                                         <a data-target="#pic-1" data-toggle="tab" class="">
-                                            <img src="images/bed4.jpg">
+                                            <img src="images/table4.jpg">
                                         </a>
                                     </li>
                                     <li class="">
                                         <a data-target="#pic-2" data-toggle="tab" class="">
-                                            <img src="images/bed4.jpg">
+                                            <img src="images/table4.jpg">
                                         </a>
                                     </li>
                                     <li class="">
                                         <a data-target="#pic-3" data-toggle="tab" class="active">
-                                            <img src="images/bed4.jpg">
+                                            <img src="images/table4.jpg">
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="details col-md-6">
                                 <!-- Tên Snar phẩm được thêm ở đây-->
-                                <h3 class="product-title">Giường thông minh </h3>
+                                <h3 class="product-title">Bàn siêu cứng </h3>
                                 <div class="rating">
                                     <div class="stars">
                                         <span class="fa fa-star checked"></span>
@@ -93,12 +100,12 @@
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star"></span>
                                     </div>
-                                    <span class="review-no">79376 reviews</span>
+                                    <span class="review-no">47237 reviews</span>
                                 </div>
                                 <!--Mô tả sản phẩm ở đây-->
                                 <p class="product-description">Mô tả sản phẩm</p>
                                 <small class="text-muted">Giá cũ: <s><span>260€</span></s></small>
-                                <h4 class="price">Giá hiện tại: <span>25€</span></h4>
+                                <h4 class="price">Giá hiện tại: <span>21€</span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
                                     <label for="soluong">Số lượng đặt mua:</label>

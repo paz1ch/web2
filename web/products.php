@@ -1,3 +1,7 @@
+<?php
+    include_once("config/config.php");
+    
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -422,7 +426,7 @@
                         </div>
                     </div>
                     
-                    
+                     
                     <div class="product-bottom text-center">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
