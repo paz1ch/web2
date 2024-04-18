@@ -30,7 +30,8 @@ if (isset($_POST['submit'])) {
             // Chuyển hướng người dùng đến trang user.php
             header("location: user.php");
         }
-    } else {
+    }
+    else {
         echo 'loi tai khoan hoac mat khau';
         exit();
     }
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
     <section id="home">
     <?php
             include 'header.php';
-        ?>
+            ?>
 	</section>
     <!-- end header -->
 

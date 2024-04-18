@@ -6,7 +6,7 @@
 
     <div style="display: inline-flex;" class="dangnhap">
         <a href="personal_infomation.php">
-            <img src="images/phuccac.jpg" class="editphucadmin">
+            <img src="images/guest.png" class="editphucadmin" style="width: 22px">
             <section style="display: inline-block">
                 <?php
                     session_start();
