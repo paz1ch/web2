@@ -12,13 +12,15 @@ if (isset($_POST['submit'])) {
     $count = mysqli_num_rows($result);
 
     if ($count == 1) {
-        // check xem tai khoan co bi khoa hay ko;
         $checkAdmin = "SELECT * from taikhoan WHERE isadmin = 1 and username = '$user_name' and password = '$password'";
         $result_admin = mysqli_query($mysqli, $checkAdmin);
 
+        // check xem tai khoan co phải admin hay ko;
         if (mysqli_num_rows($result_admin) == 0){
             $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
             $result_status = mysqli_query($mysqli, $checkStatus);
+
+            // check xem tai khoan co bi khoa hay ko;
             if (mysqli_num_rows($result_status) > 0) {
                 echo 'tai khoan bi khoa';
                 exit();

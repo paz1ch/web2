@@ -2,7 +2,7 @@
 include_once("config/config.php");
 $mysqli = new mysqli("localhost","root","","web_php");
 
-    if(isset($_POST['submit']) && $_POST['submit'] ){
+    if(isset($_POST['submit'])){
         $user_name = $_POST['kh_tendangnhap'];
         $password = $_POST['kh_matkhau'];
         $ho = $_POST['kh_ho'];
@@ -10,19 +10,43 @@ $mysqli = new mysqli("localhost","root","","web_php");
         $phone = $_POST['kh_dienthoai'];
         $email = $_POST['kh_email'];
 
-        $insert = "INSERT INTO taikhoan (username, password, ho,ten, phone, email,status)
-        VALUES ('$user_name', '$password', '$ho','$ten' ,'$phone', '$email', true) ";
-
-        $query = mysqli_query($mysqli,$insert);
-
-         if($query){
-         header('Location: login.php');
+        $checkUsername = mysqli_query($mysqli, "SELECT * from taikhoan WHERE username = '$user_name'");
+        if (mysqli_num_rows($checkUsername) > 0) {
+            echo 'Username taken.';
+            exit();
         }
-        else
-        {
-            echo "Lỗi!";
-        }
+        else{
+            $queryEmail = "SELECT * from taikhoan WHERE email = '$email'";
+            $checkEmail = mysqli_query($mysqli,$queryEmail );
+            if (mysqli_num_rows($checkEmail) > 0) {
+                echo 'Email taken.';
+                exit();
+            }
+            else{
+                $checkPhone = mysqli_query($mysqli, "SELECT * from taikhoan WHERE phone = '$phone'");
+                if (mysqli_num_rows($checkPhone) > 0) {
+                    echo 'SDT taken.';
+                    exit();
+                }
+                else{
+                    $insert = "INSERT INTO taikhoan (username, password, ho,ten, phone, email,status)
+                    VALUES ('$user_name', '$password', '$ho','$ten' ,'$phone', '$email', true) ";
 
+                    $query = mysqli_query($mysqli,$insert);
+
+                    if($query){
+                        echo '<script type="text/JavaScript">  
+                                 alert("dang ki thanh cong"); 
+                                 window.location.replace("login.php");
+                              </script>';
+                    }
+                    else
+                    {
+                        echo "Lỗi!";
+                    }
+                }
+            }
+        }
     }
 ?>
 
@@ -125,17 +149,10 @@ $mysqli = new mysqli("localhost","root","","web_php");
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="email" placeholder="Email" name="kh_email">
+                                    <input class="form-control" type="email" placeholder="Email" name="kh_email" required>
                                 </div>
                             
-                                <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký" onclick="success()">
-                                <script>
-                                    function success()
-                                    {
-                                        alert("Đăng ký tài khoản thành công!")
-                                        window.location.replace('login.php');
-                                    }
-                                </script>
+                                <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký">
                             
                             </div>
                             <div class="card-footer p-4">

@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Thông tin cá nhân</title>
-<link rel="icon" type="image/jpg" href="images/profile.jpg">
+<link rel="icon" type="image/jpg" href="images/iconuser.png">
 <meta charset="utf-8" />
 <meta name="viewpoint" content="width=device-width,initial-scal=1.0">
 <meta http-equip="X-UA-compatible" content="ie=edge">
@@ -33,29 +33,22 @@
         <?php include ('header_user.php')?>
 	</section>
 	<!-- top nav -->
-    <br><br><br>
-	
+    <br><br>
 			<div>
 				<div style="display: flex;">
 					<div class="div_left">
 						<h2 style="text-align: center; background-color: #414141; color: #ffff ;">Tài khoản</h2><br>
 						<div class="div_content_left" style="text-align: left;">
 							<ul>
-								<li>
-								<a title="Thông tin tài khoản" href="">Thông tin tài khoản</a></li>
-								<br>
-
-								<li>
-								<a title="Đổi mật khẩu" href="">Đổi mật khẩu</a></li>
+								<li><a title="Thông tin tài khoản" href="">Thông tin tài khoản</a></li>
+                                <br>
+                                <li><a title="Đổi mật khẩu" href="">Đổi mật khẩu</a></li>
 								<br>
 							
-								<li>
-								<a title="Xem lại đơn hàng" href="lichsudonhang.php">Lịch sử đơn hàng</a></li>
-								</li>
+								<li><a title="Xem lại đơn hàng" href="lichsudonhang.php">Lịch sử đơn hàng</a></li></li>
 								<br>
 							
-								<li>
-								<a title="Đăng xuất" href="index.php">Đăng xuất</a></li>
+								<li><a title="Đăng xuất" href="index.php">Đăng xuất</a></li>
 							</ul>
 						</div>
 					</div>
@@ -63,37 +56,33 @@
 							<div style="margin-left: 5%; margin-right: 5%;">
 								<h2 style="text-align: center;">Cập nhật thông tin tài khoản</h2> 
 								<hr style="border: 1px solid black;">
-								<br>							
-								
-								<div>
-									<label style="width: 30%;">
-									<span class="red_dot">*</span>Email của bạn:</label>phucdepzai3110@gmail.com
-								</div>
 								<br>
 								
 								<div>
-									<label style="width: 30%;">
-									<span class="red_dot">*</span>Tên:</label> <input style="width: 50%;" type="text" value=" Hùng Phúc" maxlength="150">
+									<label style="width: 30%;"><span class="red_dot">*</span>Họ:</label>
+                                    <input style="width: 50%;" type="text" name="ho" required>
 								</div>
 								<br>
-								
-								<div>
-									<label style="width: 30%;">
-									<span class="red_dot">*</span>Họ:</label> <input style="width: 50%;" type="text" value="  Đặng" maxlength="150">
-								</div>
-								<br>								
-								
+
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>Tên:</label>
+                                    <input style="width: 50%;" type="text" maxlength="150" name="ten" required>
+                                </div>
+                                <br>
+
 								<div>
 									<label style="width: 30%;"><span class="red_dot">*</span>Điện thoại:</label>
-									<input style="width: 50%;" value="0932947292">
+									<input style="width: 50%;" name="phone">
 								</div>
 								<br>
-								
-								<div>
-									<label style="width: 30%;">Địa chỉ:</label>
-									<input style="width: 50%;" value="Kinh Dương Vương, Bình Tân, TP HCM">
-								</div>
-								<br>
+
+                                <div>
+                                    <label style="width: 30%;">
+                                        <span class="red_dot">*</span>Email:</label>
+                                    <input type="email" style="width: 50%;" name="email" required>
+
+                                </div>
+                                <br>
 								
 								<div>
 									<label style="width: 30%;">Quốc gia:</label>
@@ -327,7 +316,7 @@
 									<option value="227">Vanuatu</option>
 									<option value="228">Vatican City State (Holy See)</option>
 									<option value="229">Venezuela</option>
-									<option value="230">Việt Nam</option>
+									<option value="230" selected>Việt Nam</option>
 									<option value="231">Virgin Islands (British)</option>
 									<option value="232">Virgin Islands (U.S.)</option>
 									<option value="233">Wallis and Futuna Islands</option>
@@ -343,153 +332,31 @@
 								
 								<div>
 									<label style="width: 30%;">Tỉnh/Thành phố:</label>
-									<input type="text" name="" id="" value="Hồ Chí Minh" style="width: 50%;"> 
+									<input type="text" name="city" id="" style="width: 50%;">
 								</div>
 								<br>
 								
 								<div>
 									<label style="width: 30%;">Quận/Huyện:</label>
-									<input type="text" name="" id="" value="Bình Tân" style="width: 50%;"> 
+									<input type="text" name="district" id="" style="width: 50%;">
 								</div>
-								<br>
-								<br>
+                                <br>
+
+                                <div>
+                                    <label style="width: 30%;">Địa chỉ chi tiết:</label>
+                                    <input style="width: 50%;" name="addressdetail">
+                                </div>
+                                <br>
+
 								<div>
-									<button class="center edit_p_inf" onclick="alert('Cập nhật thành công!')">Cập nhật</button>
+                                    <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật" onclick="alert('Cập nhật thành công')">
 								</div>
-								<br><br>
-								
+								<br>
 							</div>
 					</div>
 				</div>
 			</div>
-		
 
-		<!------About Section------->	
-	<section id="aboutus">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-				<h2>Giới thiệu</h2>
-					<div class="about-content">
-						Chào mừng bạn đến với Smart Furniture, số một về mọi thứ. Chúng tôi tận tâm cung cấp cho bạn những dịch vụ 
-						tốt nhất, tập trung vào độ tin cậy, dịch vụ khách hàng và tính độc đáo. Được thành lập vào năm 2018 bởi Đặng 
-						Hùng Phúc, Sports Compass đã đi được một chặng đường dài kể từ khi bắt đầu hoạt động ở Việt Nam. Khi anh Phúc 
-						mới bắt đầu khởi nghiệp, với niềm đam mê nội thất cùng với nguồn tiềm lực phong phú đã thúc đẩy anh thực hiện 
-						nghiên cứu chuyên sâu, bỏ công việc hàng ngày và cho anh động lực để chuyển sang làm việc chăm chỉ và nguồn cảm 
-						hứng cho một cửa hàng trực tuyến đang bùng nổ. Hiện chúng tôi phục vụ khách hàng trên khắp Việt Nam và rất vui mừng
-						được trở thành một phần của nhóm thương mại công bằng, thân thiện với môi trường của ngành nội thất. Chúng tôi hy 
-						vọng bạn thích sản phẩm của chúng tôi nhiều như chúng tôi thích cung cấp chúng cho bạn. Nếu bạn có bất kỳ câu hỏi 
-						hoặc ý kiến, xin vui lòng liên hệ với chúng tôi.
-					</div>
-				<br>
-				</div>
-				<div class="col-md-6 skills-bar">
-				<br><br><br>
-				<p>Tỉ lệ giao hàng thành công</p>
-				<div class="progress">
-				<div class="progress-bar" style="width:97%;">97%</div>
-				</div>
-				
-				<p>Tăng trưởng khách hàng</p>
-				<div class="progress">
-				<div class="progress-bar" style="width:75%;">75%</div>
-				</div>
-				<p>Độ hài lòng của khách hàng</p>
-				<div class="progress">
-				<div class="progress-bar" style="width:98%;">98%</div>
-				</div>
-				</div>
-			</div>
-			
-		</div>	
-		<br>
-		
-	<!------Services Section------->		
-		<section id="services">
-		
-			<div class="container">
-				<h1>Dịch vụ</h1>
-				<div class="row services" >
-					<div class= "col-md-4 text-center">
-						<div class="icon">
-						<i class="fa fa-phone"></i>
-						</div>
-						<h3> Hỗ trợ 24/7</h3>
-						<p>về các vấn đề liên quan đến đơn hàng</p>
-					</div>
-				
-					<div class="col-md-4 text-center">
-						<div class="icon">
-						<i class="fa fa-shopping-cart"></i>
-						</div>
-						<h3> Gửi trả hàng trong 30 ngày</h3>
-						<p>nếu bạn không hài lòng về đơn hàng</p>
-					</div>
-				
-					<div class="col-md-4 text-center">
-						<div class="icon">
-						<i class="fa fa-truck"></i>
-						</div>
-						<h3>Vận chuyển miễn phí</h3>
-						<p>trên những đơn hàng 3 triệu đồng trở lên</p>
-					</div>
-				</div>
-			</div>
-		
-		</section>
-		
-	
-	<!------COntact------------>	
-	<section id="contact">	
-		
-		<div class="container">
-			<h1>Thông tin liên lạc</h1>
-			<div class="row">
-				<div class="col-md-6">
-					<form class="contact-form">
-					<div class="form-group">
-					<input type="text" class="form-control" placeholder="Họ tên đầy đủ của bạn">
-					</div>
-					<div class="form-group">
-					<input type="text" class="form-control" placeholder="Số điện thoại (+84)">
-					</div>
-					<div class="form-group">
-					<input type="email" class="form-control" placeholder="Email">
-					</div>
-					<div class="form-group">
-					<textarea class="form-control" rows="4" placeholder="Message"></textarea>
-					</div>
-					<button type="submit" id="btn" class="btn btn-primary">Gửi</button>
-					<script language="javascript">
-						var button = document.getElementById("btn");
-						button.onclick = function(){
-							alert("Thông tin liên lạc của bạn đã được gửi đến nhà bán hàng.");
-						}
-					</script>
-					</form>
-				</div>
-				<div class="col-md-6 contact-info">
-					<div class="follow"><b><i class="fa fa-map-marker"></i>  </b>2 Đ. Hải Triều, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh</div>
-					<div class="follow"><b><i class="fa fa-mobile"></i>  </b>(+84) 328246613</div>
-					<div class="follow"><b><i class="fa fa-envelope"></i>  </b>Khongquenef@gmail.com</div>
-					
-					
-					<div class="follow"><label><b>Mạng xã hội </b></label>
-					<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-					<a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
-					<a href="https://twitter.com/login"><i class="fa fa-twitter"></i></a>
-					<a href="https://myaccount.google.com/"><i class="fa fa-google-plus"></i></a>
-					
-					</div>
-				</div>
-				
-			</div>
-	
-		</div>
-	
-	</section>
-
-		
-		
+<?php include("footer.php");?>
 </body>
 </html>	
