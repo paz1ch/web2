@@ -13,22 +13,30 @@ if (isset($_POST['submit'])) {
 
     if ($count == 1) {
         // check xem tai khoan co bi khoa hay ko;
-        $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
-        $result_status = mysqli_query($mysqli, $checkStatus);
-        if (mysqli_num_rows($result_status) > 0) {
-            echo 'tai khoan bi khoa';
-            exit();
+        $checkAdmin = "SELECT * from taikhoan WHERE isadmin = 1 and username = '$user_name' and password = '$password'";
+        $result_admin = mysqli_query($mysqli, $checkAdmin);
+
+        if (mysqli_num_rows($result_admin) == 0){
+            $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
+            $result_status = mysqli_query($mysqli, $checkStatus);
+            if (mysqli_num_rows($result_status) > 0) {
+                echo 'tai khoan bi khoa';
+                exit();
+            }
+            else {
+                // Lấy thông tin người dùng từ cơ sở dữ liệu
+                $row = mysqli_fetch_assoc($result);
+
+                session_start();
+                $_SESSION['username'] = $row['username'];
+
+
+                // Chuyển hướng người dùng đến trang user.php
+                header("location: user.php");
+            }
         }
         else {
-            // Lấy thông tin người dùng từ cơ sở dữ liệu
-            $row = mysqli_fetch_assoc($result);
-
-            session_start();
-            $_SESSION['username'] = $row['username'];
-
-
-            // Chuyển hướng người dùng đến trang user.php
-            header("location: user.php");
+            header("location: ../admin/index.php");
         }
     }
     else {
@@ -73,17 +81,6 @@ if (isset($_POST['submit'])) {
             ?>
 	</section>
     <!-- end header -->
-
-    <style>
-        a.button{
-            display: inline-block;
-            padding: 6px 24px;
-            background-color: #007bff;
-            text-decoration: none;
-            color: #f5f5f5;
-            border-radius: 10px;
-        }
-    </style>
     <div style="margin-bottom: 10%;"></div>
     <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
@@ -116,13 +113,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                           <!-- <button class="btn btn-primary px-4" onclick="window.location.href='../web_first_test/web1/index.php'">Đăng nhập</button> -->
-                                            <!-- <a href="user.php" class="button">
-                                                <span>Đăng nhập</span>
-                                            </a> -->
-
-                                            <input type="submit" name="submit" value="Đăng nhập">
-
+                                            <input class="btn btn-primary px-4" type="submit" name="submit" value="Đăng nhập">
                                         </div>
                                         <div class="col-6 text-right">
                                             <button class="btn btn-link px-0" type="button"><a href="">Quên mật khẩu?</a></button>

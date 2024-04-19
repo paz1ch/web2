@@ -68,7 +68,7 @@
                     function logOut(){
                         if (confirm('Đăng xuất ?')) {
                             alert("Đăng xuất thành công");
-                            location.reload();
+                            window.location.replace("../web/login.php");
                         }
                     }
                 </script>

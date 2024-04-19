@@ -5,14 +5,13 @@ $mysqli = new mysqli("localhost","root","","web_php");
     if(isset($_POST['submit']) && $_POST['submit'] ){
         $user_name = $_POST['kh_tendangnhap'];
         $password = $_POST['kh_matkhau'];
-        $name = $_POST['kh_ten'];
-        $address = $_POST['kh_diachi'];
+        $ho = $_POST['kh_ho'];
+        $ten = $_POST['kh_ten'];
         $phone = $_POST['kh_dienthoai'];
         $email = $_POST['kh_email'];
-        $cmnd = $_POST['kh_cmnd'];
 
-        $insert = "INSERT INTO taikhoan (username, password, name, address, phone, email, cmnd,status)
-        VALUES ('$user_name', '$password', '$name','$address' ,'$phone', '$email', '$cmnd', true) ";
+        $insert = "INSERT INTO taikhoan (username, password, ho,ten, phone, email,status)
+        VALUES ('$user_name', '$password', '$ho','$ten' ,'$phone', '$email', true) ";
 
         $query = mysqli_query($mysqli,$insert);
 
@@ -66,16 +65,6 @@ $mysqli = new mysqli("localhost","root","","web_php");
 	</section>
     <!-- end header -->
 
-    <style>
-        a.button{
-            background-color: #28A745;
-            color: #ffffff;
-            padding: 2% 39.9%;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-    </style>
-
     <div style="margin-bottom: 5%;"></div>
     <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
@@ -86,7 +75,23 @@ $mysqli = new mysqli("localhost","root","","web_php");
                         <div class="card mx-4">
                             <div class="card-body p-4">
                                 <h1>Đăng ký</h1>
-                                <p class="text-muted">Tạo tài khoản</p>
+                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" placeholder="Họ" name="kh_ho" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" placeholder="Tên" name="kh_ten" required>
+                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -94,7 +99,7 @@ $mysqli = new mysqli("localhost","root","","web_php");
                                         </span>
                                     </div>
                                     <input class="form-control" type="text" placeholder="Tên tải khoản"
-                                        name="kh_tendangnhap">
+                                           name="kh_tendangnhap" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -103,34 +108,7 @@ $mysqli = new mysqli("localhost","root","","web_php");
                                         </span>
                                     </div>
                                     <input class="form-control" type="password" placeholder="Mật khẩu"
-                                        name="kh_matkhau">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control" type="text" placeholder="Họ tên" name="kh_ten">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <select name="kh_gioitinh" class="form-control">
-                                        <option value="0">Nam</option>
-                                        <option value="1">Nữ</option>
-                                    </select>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control" type="text" placeholder="Địa chỉ" name="kh_diachi">
+                                           name="kh_matkhau" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -139,7 +117,7 @@ $mysqli = new mysqli("localhost","root","","web_php");
                                         </span>
                                     </div>
                                     <input class="form-control" type="text" placeholder="Điện thoại"
-                                        name="kh_dienthoai">
+                                        name="kh_dienthoai" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -149,36 +127,15 @@ $mysqli = new mysqli("localhost","root","","web_php");
                                     </div>
                                     <input class="form-control" type="email" placeholder="Email" name="kh_email">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control" type="text" placeholder="Ngày sinh" name="kh_ngaysinh">
-                                    <input class="form-control" type="text" placeholder="Tháng sinh"
-                                        name="kh_thangsinh">
-                                    <input class="form-control" type="text" placeholder="Năm sinh" name="kh_namsinh">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-user"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control" type="text" placeholder="CMND" name="kh_cmnd">
-                                </div>
-                                <!-- <button class="btn btn-block btn-success" name="btnDangKy">Tạo tài khoản</button> -->
-                                <!-- <script>
+                            
+                                <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký" onclick="success()">
+                                <script>
                                     function success()
                                     {
                                         alert("Đăng ký tài khoản thành công!")
+                                        window.location.replace('login.php');
                                     }
                                 </script>
-                                <a href="login.php" class="button" onclick="success()">Tạo tài khoản</a> -->
-                            
-                                    <input type="submit" name="submit" value="Đăng ký">
-                            
                             
                             </div>
                             <div class="card-footer p-4">

@@ -134,7 +134,7 @@
         
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="kh_ten">Họ tên</label>
+                                        <label for="kh_ho">Họ tên</label>
                                         <input class="form-control" type="text" name="username" 
                                         placeholder="Vui lòng nhập họ tên đầy đủ" id = "hoten">
                                     </div>
