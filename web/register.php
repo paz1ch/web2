@@ -1,54 +1,72 @@
 <?php
 include_once("config/config.php");
-$mysqli = new mysqli("localhost","root","","web_php");
+global $mysqli;
 
-    if(isset($_POST['submit'])){
-        $user_name = $_POST['kh_tendangnhap'];
-        $password = $_POST['kh_matkhau'];
-        $ho = $_POST['kh_ho'];
-        $ten = $_POST['kh_ten'];
-        $phone = $_POST['kh_dienthoai'];
-        $email = $_POST['kh_email'];
+if (isset($_POST['submit'])) {
+    $user_name = $_POST['kh_tendangnhap'];
+    $password = $_POST['kh_matkhau'];
+    $ho = $_POST['kh_ho'];
+    $ten = $_POST['kh_ten'];
+    $phone = $_POST['kh_dienthoai'];
+    $email = $_POST['kh_email'];
+    $name = $ho . " " . $ten;
+    $country = "vietnam";
+    $city = " ";
+    $district = " ";
+    $detail = " ";
 
-        $checkUsername = mysqli_query($mysqli, "SELECT * from taikhoan WHERE username = '$user_name'");
-        if (mysqli_num_rows($checkUsername) > 0) {
-            echo 'Username taken.';
-            exit();
-        }
-        else{
-            $queryEmail = "SELECT * from taikhoan WHERE email = '$email'";
-            $checkEmail = mysqli_query($mysqli,$queryEmail );
-            if (mysqli_num_rows($checkEmail) > 0) {
-                echo 'Email taken.';
-                exit();
-            }
-            else{
-                $checkPhone = mysqli_query($mysqli, "SELECT * from taikhoan WHERE phone = '$phone'");
-                if (mysqli_num_rows($checkPhone) > 0) {
-                    echo 'SDT taken.';
-                    exit();
-                }
-                else{
-                    $insert = "INSERT INTO taikhoan (username, password, ho,ten, phone, email,status)
-                    VALUES ('$user_name', '$password', '$ho','$ten' ,'$phone', '$email', true) ";
-
-                    $query = mysqli_query($mysqli,$insert);
-
-                    if($query){
-                        echo '<script type="text/JavaScript">  
-                                 alert("dang ki thanh cong"); 
-                                 window.location.replace("login.php");
-                              </script>';
-                    }
-                    else
-                    {
-                        echo "Lỗi!";
-                    }
-                }
-            }
-        }
+    // Check if username exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username = ?");
+    $stmt->bind_param("s", $user_name);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) {
+        echo 'Username taken.';
+        exit();
     }
+
+    // Check if email exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) {
+        echo 'Email taken.';
+        exit();
+    }
+
+    // Check if phone number exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
+    $stmt->bind_param("s", $phone);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) {
+        echo 'Phone number taken.';
+        exit();
+    }
+
+    // If all checks pass, insert the data
+    $mysqli->begin_transaction();
+    try {
+        $stmt = $mysqli->prepare("INSERT INTO taikhoan (username, password, ho, ten, phone, email, status) VALUES (?, ?, ?, ?, ?, ?, true)");
+        $stmt->bind_param("ssssss", $user_name, $password, $ho, $ten, $phone, $email);
+        $stmt->execute();
+        $stmt->close();
+
+        $stmt = $mysqli->prepare("INSERT INTO address (username, name, phone, country, city, district, detail) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $user_name, $name, $phone, $country, $city, $district, $detail);
+        $stmt->execute();
+        $stmt->close();
+
+        $mysqli->commit();
+        echo '<script type="text/JavaScript">  
+                 alert("Registration successful"); 
+                 window.location.replace("login.php");
+              </script>';
+    } catch (Exception $e) {
+        $mysqli->rollback();
+        echo "Error: " . $e->getMessage();
+    }
+}
 ?>
+
 
 
 <!DOCTYPE html>

@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <div class="topnav">
     <div style="display: inline-flex;" class="dangxuat">
         <a href="index.php" class="dangxuat">Đăng xuất</a>
@@ -9,7 +9,6 @@
             <img src="images/iconuser.png" class="editphucadmin" style="width: 22px">
             <section style="display: inline-block">
                 <?php
-                    session_start();
                     $username = $_SESSION['username'];
                     echo "$username";
                 ?>
@@ -28,4 +27,3 @@
         </form>
     </div>
 </div>
-

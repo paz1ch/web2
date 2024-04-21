@@ -1,6 +1,6 @@
 <?php
 include_once("config/config.php");
-$mysqli = new mysqli("localhost", "root", "", "web_php");
+global $mysqli;
 
 if (isset($_POST['submit'])) {
     $user_name = $_POST['username'];
@@ -8,8 +8,8 @@ if (isset($_POST['submit'])) {
 
     $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
-    $result = mysqli_query($mysqli, $sql);
-    $count = mysqli_num_rows($result);
+    $result_getInfo = mysqli_query($mysqli, $sql);
+    $count = mysqli_num_rows($result_getInfo);
 
     if ($count == 1) {
         $checkAdmin = "SELECT * from taikhoan WHERE isadmin = 1 and username = '$user_name' and password = '$password'";
@@ -26,11 +26,9 @@ if (isset($_POST['submit'])) {
                 exit();
             }
             else {
-                // Lấy thông tin người dùng từ cơ sở dữ liệu
-                $row = mysqli_fetch_assoc($result);
+                // lay gia tri tu database
+                include('session_start.php');
 
-                session_start();
-                $_SESSION['username'] = $row['username'];
 
 
                 // Chuyển hướng người dùng đến trang user.php
@@ -47,7 +45,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="vi" class="h-100">
 

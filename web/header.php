@@ -20,7 +20,7 @@
 			<div class="search-container">
 				<form action="search.php">
 				<input type="text" placeholder="Search.." name="search">
-				<button type="submit"><i class="fa fa-search"> </i></button>
+				<button type="submit" class="buttonsubmit"><i class="fa fa-search"> </i></button>
 				</form>
 			</div>
 </div>
