@@ -2,7 +2,7 @@
 include('config/config.php');
 session_start();
 $mysqli = new mysqli('localhost','root','','web_php');
-$sql = "SELECT taikhoan.*, address.* FROM taikhoan INNER JOIN address ON taikhoan.username = address.username";
+$sql = "SELECT * from taikhoan where username = '$_SESSION[username]'";
 $result = $mysqli->query($sql);
 // Check connection
 if ($mysqli->connect_error) {
@@ -238,8 +238,12 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
+
+<br>
+<br>
+<br>
+<br>
+<br>
 <?php include("footer.php");?>
-
-
 </body>
 </html>

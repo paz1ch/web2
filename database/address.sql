@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2024 lúc 01:45 PM
+-- Thời gian đã tạo: Th4 25, 2024 lúc 08:04 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
@@ -42,12 +43,13 @@ CREATE TABLE `address` (
 -- Đang đổ dữ liệu cho bảng `address`
 --
 
-INSERT INTO `address` (`username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
-('1', 'nhat truong', '0123', 'viejet nam', 'hồ chí minh', 'abc', 'linh trung', 'Ví điện tử'),
-('user', 'nhat nguyen', '0345295121', 'trung quốc', ' a', ' b', ' c', 'Thanh toán khi nhận hàng'),
-('test', 'nhat truong', '000', 'vietnam', ' a', ' b', ' c', 'Ví điện tử'),
-('test2', 'nhat truong', '.0.0.0.', 'vietnam', 'trung', ' a', ' b', 'Thanh toán khi nhận hàng'),
-('abc', 'nhat abc', '03131313213', 'vietnam', ' ', ' ', ' ', '');
+INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
+(1, '1', 'nhat truong', '0123', 'viejet nam', 'hồ chí minh', 'abc', 'linh trung', 'Ví điện tử'),
+(3, 'test', 'nhat truong', '000', 'vietnam', ' a', ' b', ' c', 'Ví điện tử'),
+(4, 'test2', 'nhat truong', '.0.0.0.', 'vietnam', 'trung', ' a', ' b', 'Thanh toán khi nhận hàng'),
+(5, 'abc', 'nhat abc', '03131313213', 'vietnam', ' ', ' ', ' ', ''),
+(12, 'user', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'thủ đức', 'linh trung', 'Ví điện tử'),
+(13, 'user', 'Truong nhat', '0', 'Vietnam', 'ho chi minh', 'bình tân', 'linh trung', 'Thanh toán khi nhận hàng');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -57,7 +59,18 @@ INSERT INTO `address` (`username`, `name`, `phone`, `country`, `city`, `district
 -- Chỉ mục cho bảng `address`
 --
 ALTER TABLE `address`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `address`
+--
+ALTER TABLE `address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -1,4 +1,28 @@
-<?php session_start(); ?>
+<?php session_start();
+include('config/config.php');
+global $mysqli;
+$sql = "SELECT * FROM address";
+$result = $mysqli->query($sql);
+
+if(isset($_POST['submit_update'])){
+    $_SESSION['id'] = $_POST['id'] ;
+    echo '<script type="text/JavaScript">
+                window.location.replace("address_detail.php");
+              </script>';
+}
+
+if (isset($_GET['id'])){
+    $id=$_GET['id'];
+    $sql_delete = "DELETE FROM address WHERE id='$id'";
+    $query = $mysqli->query($sql_delete);
+    if($query){
+        echo '<script type="text/JavaScript">
+                alert("Update successful");
+                window.location.replace("address.php");
+              </script>';
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,40 +62,70 @@
         <div style="display: flex;">
             <?php include ('link_personalinfo.php')?>
             <div class="div_right">
-                <div class="UUD4No SXp5o_">
-                    <div class="_RPpod">
-                        <div role="heading" class="X57SfF V4So7f">
-                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_header" class="QyRpwQ lWXnp3">
-                                <span class="Fi1zsg OwAhWT">
-                                    <div class="mjiDsj">Nhajat truong</div>
-                                </span>
-                                <div class="YJU6OK"></div>
-                                <div role="row" class="N_WJUf lw_xYb E24UKj">0345295121</div>
-                            </div>
-
-                            <div class="YziUfM">
-                                <button class="T_oZqJ">Cap nhat</button>
-                                <button class="T_oZqJ">Xoa</button>
-                            </div>
-                        </div>
-                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_content"
-                                 role="heading" class="X57SfF V4So7f">
-                                <div class="QyRpwQ lWXnp3">
-                                    <div class="We6XvC">
-                                        <div role="row" class="E24UKj">kinh duong vuong</div>
-                                        <div role="row" class="E24UKj">binh tan, hcm</div>
-                                    </div>
-                                </div>
-
-                                <div class="KFu3R3 YziUfM">
-                                    <button class="k8tV5Y zvyzwn zDPndA">thiet lap mac dinh</button>
-                                </div>
-                            </div>
-                        <div class="address-card_4153ddf3-8212-453b-a076-21b3978fa10f_badge" role="row" class="vy2yND E24UKj"> </div>
+                <div class="nav">
+                    <div class="nav_address">
+                        <h4>Địa chỉ</h4>
+                    </div>
+                    <div class="nav_add_address">
+                        <a class="box" href="add_address.php" >Thêm địa chỉ</a>
                     </div>
                 </div>
+                <?php
+                if ($result->num_rows > 0) {
+
+                // output data of each row
+                while ($row = $result->fetch_assoc() ) {
+                    $username = $_SESSION['username'];
+                    if ($row['username'] == $username){
+                ?>
+                <div class="UUD4No SXp5o_" style="margin-left: 2%; margin-right: 5%">
+                    <div class="_RPpod">
+                        <div role="heading" class="X57SfF V4So7f" >
+                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_header" class="QyRpwQ lWXnp3">
+                                <span class="Fi1zsg OwAhWT">
+                                    <div class="mjiDsj"><?php echo ($row['name']) ?>
+                                    </div>
+                                </span>
+                                <div class="YJU6OK"></div>
+                                <span class="Fi1zsg OwAhWT">
+                                    <div class="mjiDsj"><?php echo ($row['phone'])?></div>
+                                </span>
+                            </div>
+
+                            <form method="POST">
+                                <div class="YziUfM">
+                                    <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+                                    <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
+                                    <div class="YJU6OK"></div>
+                                    <a class="T_oZqJ" href="address.php?id=<?php echo $row['id']; ?>">Xóa</a>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_content"
+                             role="heading" class="X57SfF V4So7f">
+                            <div class="QyRpwQ lWXnp3">
+                                <div class="We6XvC">
+                                    <div role="row" class="E24UKj"><?php echo ($row['detail'])?></div>
+                                    <div role="row" class="E24UKj">
+                                        <?php echo ($row['district'].", ".$row['city'].", ".$row['country'])?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    }
+                }
+                }
+                ?>
             </div>
     </div>
+<br>
+<br>
+<br><br>
+<br>
 
 <?php include("footer.php");?>
 </body>

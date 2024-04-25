@@ -1,4 +1,4 @@
-<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
+span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
   <html lang="en">
   <head>
     <title>WEB ADMIN</title>

@@ -2,7 +2,7 @@
 include ('config/config.php');
 session_start();
 $mysqli = new mysqli('localhost','root','','web_php');
-$sql = "SELECT taikhoan.*, address.* FROM taikhoan INNER JOIN address ON taikhoan.username = address.username";
+$sql = "SELECT * FROM address";
 $result = $mysqli->query($sql);
 
 if (isset($_POST['submit'])){
@@ -28,25 +28,16 @@ if (isset($_POST['submit'])){
         $_SESSION['payment'] = $payment;
     }
 
-    $stmt1 = $mysqli->prepare("UPDATE address SET name=?, phone=?, country=?, city=?, 
-    district=?, detail=? , payment=? WHERE username=? limit 1");
-    $stmt1->bind_param('ssssssss',$name,$phone,$country,$city,
-        $district,$addressdetail,$payment,$username);
-
-    $stmt2 =$mysqli->prepare("UPDATE taikhoan SET phone=? WHERE username=? limit 1");
-    $stmt2->bind_param('ss',$phone,$username);
-    $stmt1->execute();
-    $stmt2->execute();
-
-    if ($stmt1->affected_rows >0 || $stmt2->affected_rows >0){
+    $stmt= $mysqli->prepare("INSERT INTO address (name, phone, country, city, district, detail, payment, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param('ssssssss', $name, $phone, $country, $city, $district, $addressdetail, $payment, $username);
+    $stmt->execute();
+    if ($stmt->affected_rows >0){
         echo '<script type="text/JavaScript">
                 alert("Update successful");
                 window.location.replace("address.php");
               </script>';
     }
-
-    $stmt1->close();
-    $stmt2->close();
+    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -90,19 +81,21 @@ if (isset($_POST['submit'])){
         <?php include ('link_personalinfo.php')?>
         <form method="POST" action="" style="display: contents" >
             <div class="div_right">
-                <div style="margin-left: 5%; margin-right: 5%;">
-                    <h2 style="text-align: left; ">Địa chỉ</h2>
-                    <hr style="border: 1px solid black;">
+                <div class="nav">
+                    <div class="nav_address">
+                        <h4>Địa chỉ</h4>
+                    </div>
+                </div>
+                <div style="margin-left: 2%; margin-right: 5%;">
+                    <hr style="border: 1px solid rgba(0,0,0,.9);">
                     <br>
                     <?php
                     if ($result->num_rows > 0) {
-                        $x=1;
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
-
                             $username = $_SESSION['username'];
-
-                            if ($row['isadmin']==0 && $row['username']==$username) {
+                            $id=$_SESSION['id'];
+                            if ( $row['username']==$username && $row['id']==$id) {
                                 ?>
                                 <div>
                                     <label style="width: 30%;"><span class="red_dot">*</span>Tên:</label>
@@ -199,7 +192,10 @@ if (isset($_POST['submit'])){
                         }
                     }
                     ?>
-                    <div>
+                    <div style="display: inline-flex; margin-left: 20%; padding-bottom: 20px">
+                        <input class="center edit_p_inf" type="button"
+                            onclick="window.location.replace('address.php')" value="Quay lại"" >
+
                         <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>
                     <br>
@@ -209,6 +205,10 @@ if (isset($_POST['submit'])){
     </div>
 </div>
 
+<br>
+<br>
+<br>
+<br>
 <?php include("footer.php");?>
 </body>
 </html>
