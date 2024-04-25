@@ -69,12 +69,16 @@
                     
                     
                     <div class="product-bottom text-center">
+                    <?php 
+                    $sao = $row['star'];
+                    $count = 0;
+                    while($count++ < $sao){
+                    ?>
                     <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    <?php  
+                    } ?>
                     <i class="fa fa-star-half-o"></i>
-                    <h3><?php echo $row['tensp']?></h3>
+                    <h4><?php echo $row['tensp']?></h4>
                     <div class="product-description" data-name="Mirror-3" data-price="12">
                         
                         <p class="product-price"><?php echo $row["gia"] ?></p>
