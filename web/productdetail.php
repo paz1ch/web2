@@ -1,10 +1,12 @@
-<?php 
-
-
+<?php
+    include_once("config/config.php");
 ?>
-
-
-
+<?php
+    $id = $_GET['id'];
+    $ctsp="SELECT * FROM sanpham WHERE id_sp ='$id'";
+    $sql_sanpham = mysqli_query($mysqli,$ctsp);
+    $row = mysqli_fetch_array($sql_sanpham);
+?>
 
 
 <html>
@@ -53,59 +55,58 @@
                 <div class="container-fliud">
                     <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
                         action="">
-                        <input type="hidden" name="sp_ma" id="sp_ma" value="5">
-                        <input type="hidden" name="sp_ten" id="sp_ten" value="Samsung Galaxy Tab 10.1 3G 16G">
-                        <input type="hidden" name="sp_gia" id="sp_gia" value="10990000.00">
-                        <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
-
+               
                         <div class="wrapper row">
                             <div class="preview col-md-6">
                                 <div class="preview-pic tab-content">
                                     <div class="tab-pane" id="pic-1">
-                                        <img src="images/table4.jpg">
+                                        <img src="images/<?php echo $row['image_sp'] ?>">
                                     </div>
                                     <div class="tab-pane" id="pic-2">
-                                        <img src="images/table4.jpg">
+                                        <img src="images/<?php echo $row['image_sp'] ?>">
                                     </div>
                                     <div class="tab-pane active" id="pic-3">
-                                        <img src="images/table4.jpg">
+                                        <img src="images/<?php echo $row['image_sp'] ?>">
                                     </div>
                                 </div>
                                 <ul class="preview-thumbnail nav nav-tabs">
                                     <li class="active">
                                         <a data-target="#pic-1" data-toggle="tab" class="">
-                                            <img src="images/table4.jpg">
+                                            <img src="images/<?php echo $row['image_sp'] ?>">
                                         </a>
                                     </li>
                                     <li class="">
                                         <a data-target="#pic-2" data-toggle="tab" class="">
-                                            <img src="images/table4.jpg">
+                                            <img src="images/<?php echo $row['image_sp'] ?>">
                                         </a>
                                     </li>
                                     <li class="">
                                         <a data-target="#pic-3" data-toggle="tab" class="active">
-                                            <img src="images/table4.jpg">
+                                            <img src="images/<?php echo $row['image_sp'] ?>">
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="details col-md-6">
                                 <!-- Tên Snar phẩm được thêm ở đây-->
-                                <h3 class="product-title">Bàn siêu cứng </h3>
+                                <h3 class="product-title"><?php echo $row['tensp'] ?></h3>
                                 <div class="rating">
                                     <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
+                                        <?php 
+                                            $sao = $row['star'];
+                                            $count = 0;
+                                            while($count++ < $sao){
+                                        ?>
+                                        <i class="fa fa-star"></i>
+                                        <?php  
+                                            } ?>
+                                        <i class="fa fa-star-half-o"></i>
                                     </div>
-                                    <span class="review-no">47237 reviews</span>
                                 </div>
                                 <!--Mô tả sản phẩm ở đây-->
-                                <p class="product-description">Mô tả sản phẩm</p>
-                                <small class="text-muted">Giá cũ: <s><span>260€</span></s></small>
-                                <h4 class="price">Giá hiện tại: <span>21€</span></h4>
+                                <p class="product-description"><?php echo $row['motangan']?></p>
+                                <small class="text-muted">Giá cũ: <s><span><?php echo $row['gia'] ?></span></s></small>
+                                <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
                                     <label for="soluong">Số lượng đặt mua:</label>
@@ -140,7 +141,9 @@
                     <h3>Thông tin chi tiết về Sản phẩm</h3>
                     <div class="row">
                         <div class="col">
-                            Đồ nội thất rất tồi không nên mua!
+                            <?php 
+                                echo $row['motachitiet'];
+                            ?>
                         </div>
                     </div>
                 </div>

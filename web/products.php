@@ -68,7 +68,7 @@
                         <img src="images/<?php echo $row['image_sp']?>" alt="">
                         <div class="overlay-right">
                             <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                <a href="products.php">
+                                <a href="productdetail.php?id=<?php echo $row['id_sp']?>">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </button>
