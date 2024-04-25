@@ -30,7 +30,19 @@
 	</section>
 	<!-- top nav -->	
     <?php 
-        $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC";
+
+        if(isset($_GET['page'])){
+            $get_page = $_GET['page'];
+        }else{
+            $get_page='';
+        }
+        if($get_page == '' || $get_page == 1){
+            $page1 = 0;
+        }else{
+            $page1 = ($get_page*8) - 8;
+        }
+
+        $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
         $sql_sanpham = mysqli_query($mysqli,$sql);
     ?>
 	<section class="on-sale">
@@ -113,6 +125,20 @@
             </div>
         </div>
     </section>
-  <br><br><br>
+  <br>
+  <div style="text-align: center;">
+  <p style="font-size: 20px;" >Trang :
+  <?php 
+        $sql_trang = mysqli_query($mysqli,"SELECT * FROM sanpham"); 
+        $count = mysqli_num_rows($sql_trang);
+        $a = ceil($count/8);
+        
+        for($b = 1 ; $b <= $a; $b ++){
+            echo '<a href="products.php?page='.$b.'" style="text-decoration:none;">'.' '.$b.' '.'</a>'; 
+        } 
+
+  ?>
+  </p>
+  </div>
 </body>
 </html>	
