@@ -1,7 +1,5 @@
 .container_swap{
-
 width: 400px;
-
 }
 
 .div_left{
@@ -23,7 +21,7 @@ width: 400px;
 	margin-top: 5%;
 	margin-left: 5%;
 	margin-right: 15%;
-	margin-bottom: 10%;
+	margin-bottom: auto;
 	border: 2px solid black;
 }
 
@@ -46,25 +44,42 @@ input{
 	padding-left: 5px;
 }
 
+/*phan dia chi va them dia chi*/
 .nav_address{
-	margin-right: 370px;
+	margin-right: 68%;
 	margin-top: 15px;
 }
+.nav{
+	display: flex;
+	margin:0 5% 0 2%;
+	padding-bottom: 20px;
+}
 .nav_add_address{
-	margin-top: 23px;
-	/*margin-bottom: 0px;*/
+	margin-top: 20px;
 }
 a[href="add_address.php"]{
 	font-size: 16px;
 }
+a:hover[href="add_address.php"]{
+	text-decoration:none;
+	color: red;
+}
+.box{
+	border: 1px solid rgba(0,0,0,.26);
+	padding: 8px 20px;
+	color: red;
+}
+
 
 /*dong khung dia chi*/
 .SXp5o_{
 	padding:18px 0 20px 0;
 }
 .UUD4No{
-	border-bottom: 1px solid rgba(0,0,0,.09) ;
+	border-bottom: 1px solid rgba(0,0,0,.09);
 	display: flex;
+	border-top: 1px solid rgba(0,0,0,.9);
+
 }
 ._RPpod{
 	min-width:0;
@@ -84,8 +99,32 @@ a[href="add_address.php"]{
 }
 .lWXnp3{
 	flex-grow: 1;
-	overflow-x: hidden;
 }
+.Fi1zsg{
+	color: rgba(0,0,0,.87);
+	font-size: 16px;
+	line-height: 1.5rem
+}
+.mjiDsj{
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+.YJU6OK{
+	border-left: 0.5px solid rgba(0,0,0,.26);
+	margin: 0 8px
+}
+.EYwlqO, .lw_xYb{
+	font-size: 16px;
+	line-height: 1.25rem
+}
+.lw_xYb{
+	color: rgba(0,0,0,.54)
+}
+.N_WJUf{
+	white-space: nowrap;
+}
+
 .YziUfM{
 	flex-basis: 40px;
 	justify-content: flex-end;
@@ -98,20 +137,45 @@ a[href="add_address.php"]{
 	padding: 4px;
 	white-space: nowrap
 }
+
 button{
 	cursor: pointer;
+	outline: none !important;
+	box-shadow: none !important;
 }
 .We6XvC, .va0awL{
 	color: rgba(0, 0, 0, .54);
 }
 .We6XvC{
-	font-size: .875rem;
+	font-size: 14px;
 	line-height: 1.25rem;
+}
+.OwAhWT{
+	font-weight: 500;
 }
 .E24UKj, .OwAhWT{
 	align-items: center;
+	font-size: 16px;
 }
 .KFu3R3{
 	padding-top:4px;
+}
+.k8tV5Y{
+	border: 1px solid rgba(0,0,0,.26);
+	box-shadow: 0 1px 1px rgba(0,0,0,.03);
+	color: red;
+	font-size: 1rem;
+	height: 28px;
+	line-height: 1.25rem;
+	min-width: 0;
+	padding: 4px 14px;
+	white-space: nowrap
+}
+.vy2yND{
+	margin-top: 3px;
+	flex-wrap: wrap;
+}
+.u6bhpf, .zDPndA{
+	background-color: #fff;
 }
 

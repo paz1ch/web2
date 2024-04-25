@@ -1,5 +1,6 @@
 <?php
-    include_once("config/config.php");
+global $mysqli;
+include_once("config/config.php");
 ?>
 <?php
     $id = $_GET['id'];

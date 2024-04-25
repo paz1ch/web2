@@ -16,7 +16,7 @@
         </a>
     </div>
 
-    <a class="active" href="trangchu.php" style="background-color: black;">Trang chủ</a>
+    <a class="active" href="user.php" style="background-color: black;">Trang chủ</a>
     <a href="sanpham_trangchu.php">Sản phẩm</a>
     <a href="cart.php">Giỏ hàng</a>
     <a  href="timkiem_trangchu.php" class="account">Tìm kiếm</a>
