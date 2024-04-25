@@ -20,7 +20,10 @@ if (isset($_POST['submit'])) {
     $stmt->bind_param("s", $user_name);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
-        echo 'Username taken.';
+        echo '<script type="text/JavaScript">
+                alert("username đã tồn tại, vui lòng thử lại");
+              </script>';
+        echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
 
@@ -29,7 +32,10 @@ if (isset($_POST['submit'])) {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
-        echo 'Email taken.';
+        echo '<script type="text/JavaScript">
+                alert("email đã tồn tại, vui lòng thử lại");
+              </script>';
+        echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
 
@@ -38,7 +44,10 @@ if (isset($_POST['submit'])) {
     $stmt->bind_param("s", $phone);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
-        echo 'Phone number taken.';
+        echo '<script type="text/JavaScript">
+                alert("phone đã tồn tại, vui lòng thử lại");
+              </script>';
+        echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
 

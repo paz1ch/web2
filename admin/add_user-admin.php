@@ -2,6 +2,63 @@
     include('../web/config/config.php');
     $mysqli = new mysqli("localhost","root","","web_php");
     if(isset($_POST['submit'])){
+        $ho = $_POST['ho'];
+        $ten = $_POST['ten'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $sex = $_POST['sex'];
+        $date = date( 'Y-m-d', strtotime($_POST['date']));
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+
+        // check if username exists
+        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username = ?");
+        $stmt->bind_param("s", $user_name);
+        $stmt->execute();
+
+        if ($stmt->get_result()->num_rows > 0) {
+            echo '<script type="text/JavaScript">
+                alert("username đã tồn tại, vui lòng thử lại");
+              </script>';
+            echo '<script type="text/javascript">history.back();</script>';
+            exit();
+        }
+
+        // Check if email exists
+        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        if ($stmt->get_result()->num_rows > 0) {
+            echo '<script type="text/JavaScript">
+                alert("email đã tồn tại, vui lòng thử lại");
+              </script>';
+            echo '<script type="text/javascript">history.back();</script>';
+            exit();
+        }
+
+        // Check if phone number exists
+        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
+        $stmt->bind_param("s", $phone);
+        $stmt->execute();
+        if ($stmt->get_result()->num_rows > 0) {
+            echo '<script type="text/JavaScript">
+                alert("Số điện thoại đã tồn tại, vui lòng thử lại");
+              </script>';
+            echo '<script type="text/javascript">history.back();</script>';
+            exit();
+        }
+
+        // insert value into database table
+        $stmt = $mysqli->prepare("INSERT INTO taikhoan (ho, ten, phone, email, sex, date, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param('ssssssss', $ho, $ten, $phone, $email, $sex, $date, $username, $hashed_password);
+        $stmt->execute();
+        if ($stmt->execute()) {
+            echo '<script type="text/JavaScript">
+             alert("Thêm thành công"); 
+             window.location.replace("edit_user-admin.php");
+          </script>';
+        }
     }
 ?>
 
@@ -29,103 +86,65 @@
           <div class="main-body">
               <h1>THÊM NGƯỜI DÙNG</h1>
           </div>
-              <form method="POST" action = "#">
-                  <div class="main-body">
-                    <img src="image/none-image.png" alt="add image">
-                      <input type="file" name="uploadfile" id="img" style="display: none;">
-                      <br>
-                      <label for="img" class="img" >
-                        <span class="add-image">Thêm hình ảnh</span>
-                      </label>
-                  </div>
-                  <br>
+              <form method="POST" action = "" autocomplete="on">
                   <table>
                     <tr>
-                      <th>Họ và tên</th>
-                      <th>Giới tính</th>
+                      <th>Họ</th>
+                      <th>Tên</th>
                       <th>Ngày sinh</th>
                     </tr>
                     <tr>
                       <td>
-                          <input name="name" type="text" placeholder="Nhập họ tên" required>
+                          <input name="ho" id="ho" type="text" placeholder="Nhập họ" autocomplete="ho" required>
                       </td>
                       <td>
-                          <select name="sex" id="" class='form-control'>
-                            <option value="">Nam</option>
-                            <option value="">Nữ</option>
-                          </select>
+                          <input name="ten" type="text" placeholder="Nhập tên" required>
                       </td>
                       <td>
                           <input name="date" type="date" placeholder="Nhập ngày sinh">
                       </td>
                     </tr>
                     <tr>
-                      <th>Tên đăng nhập</th>
-                      <th>Mật khẩu</th>
-                      <th>Xác nhận lại mật khẩu</th>
+                      <th>Giới tính</th>
+                      <th>Số điện thoại</th>
+                      <th>Địa chỉ Email</th>
                     </tr>
                     <tr>
                       <td>
-                          <input name="username" type="text" placeholder="Nhập tên đăng nhập" >
+                          <select name="sex" class='form-control'>
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                          </select>
                       </td>
                       <td>
-                          <input name="password" type="password" placeholder="Nhập mật khẩu" >
+                          <input type="text" name="phone"  placeholder="Nhập số điện thoại" required>
                       </td>
                       <td>
-                          <input placeholder="Nhập lại mật khẩu" >
+                          <input type="email" placeholder="Nhập địa chỉ Email" name="email" required>
                       </td>
 
                       <tr>
-                        <th>Số điện thoại</th>
-                        <th>Địa chỉ Email</th>
-                        <th>Địa chỉ giao hàng</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Mật khẩu</th>
                       </tr>
 
                       <tr>
                         <td>
-                            <input name="phone" type="text" placeholder="Nhập số điện thoại" >
+                            <input name="username" type="text" placeholder="Nhập tên đăng nhập" required >
                         </td>
                         <td>
-                            <input name="email" type="email" placeholder="Nhập địa chỉ email" >
-                        </td>
-                        <td>
-                          <input name="address" type="text" placeholder="Nhập địa chỉ giao hàng">
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>Phương thức thanh toán</th>
-                      </tr>
-                      <tr>
-                        <td>
-                          <form action="">
-                            <select name="" id="">
-                              <option value="">Ví điện tử</option>
-                              <option value="">Khi nhận hàng</option>
-                            </select>
-                          </form>
+                            <input name="password" type="password" placeholder="Nhập mật khẩu" >
                         </td>
                       </tr>
                       </tr>
                   </table>
                   <div class="reset-form">
-                    <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
-                    <label class="buttonReset" for="buttonreset">Reset</label>
-                    <script>
-                      function clickReset(){
-                          location.reload();
-                          alert("Reset thành công!!");
-                      }
-                    </script>
+                      <label class="buttonReset" for="buttonreset" onclick="window.location.replace('add_user-admin.php')">Reset</label>
                   </div>
+
                   <div class="submit-form">
-                    <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
-                    <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
-                    <script>
-                      function clickSubmit(){
-                          location.reload();
-                          alert("Thêm người dùng thành công!!");
-                      }
-                    </script>
+                      <input type="submit" id="buttonsubmit" name="submit" style="display: none;">
+                      <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
                   </div>
               </form>
         </div>

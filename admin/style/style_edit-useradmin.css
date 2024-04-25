@@ -73,7 +73,7 @@ img.avatar{
     color: white;
 }
 .reset-form, .submit-form{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 /* background của trang */
@@ -83,11 +83,20 @@ img.avatar{
 
 /* phần quay lại */
 .button-back{
-    position: block;
     text-align: left;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 20px;
     z-index: 0;    
+}
+#textarea{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-top: 5px;
+    margin-top: 100px;
+    margin-top: 5px;
+    padding-left: 5px;
+    font-size: 16px;
 }
 
 

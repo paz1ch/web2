@@ -1,40 +1,4 @@
-<?php
-include ('config/config.php');
-session_start();
-$mysqli = new mysqli('localhost','root','','web_php');
-if (isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $country = $_POST['country'];
-    $city = $_POST['city'];
-    $district = $_POST['district'];
-    $addressdetail = $_POST['addressdetail'];
-    $username=$_SESSION['username'];
-
-
-    $sql = "UPDATE address SET name='$name', phone='$phone', country='$country', city='$city', district='$district', detail='$addressdetail'
-    WHERE username='$username' limit 1";
-
-    $query = mysqli_query($mysqli,$sql);
-
-    $_SESSION['username'] = $username;
-    $_SESSION['name'] = $name;
-    $_SESSION['phone'] = $phone;
-    $_SESSION['country'] = $country;
-    $_SESSION['city'] = $city;
-    $_SESSION['district'] = $district;
-    $_SESSION['addressdetail'] = $addressdetail;
-    if ($query){
-        echo '<script type="text/JavaScript">
-                alert("Registration successful");
-                window.location.replace("address.php");
-              </script>';
-    }
-    else{
-        echo'failed';
-    }
-}
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +26,6 @@ if (isset($_POST['submit'])){
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="script/jquery.store.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -72,99 +35,43 @@ if (isset($_POST['submit'])){
 <!-- top nav -->
 
     <div>
-    <div style="display: flex;">
-        <?php include ('link_personalinfo.php')?>
-        <form method="POST" action="" style="display: contents" >
+        <div style="display: flex;">
+            <?php include ('link_personalinfo.php')?>
             <div class="div_right">
-                <div style="margin-left: 5%; margin-right: 5%;">
-                        <h2 style="text-align: center;">Địa chỉ</h2>
-                        <hr style="border: 1px solid black;">
-                        <br>
+                <div class="UUD4No SXp5o_">
+                    <div class="_RPpod">
+                        <div role="heading" class="X57SfF V4So7f">
+                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_header" class="QyRpwQ lWXnp3">
+                                <span class="Fi1zsg OwAhWT">
+                                    <div class="mjiDsj">Nhajat truong</div>
+                                </span>
+                                <div class="YJU6OK"></div>
+                                <div role="row" class="N_WJUf lw_xYb E24UKj">0345295121</div>
+                            </div>
 
-                        <div>
-                            <label style="width: 30%;"><span class="red_dot">*</span>Tên:</label>
-                            <input style="width: 50%;" type="text" maxlength="150"
-                                   name="name" required placeholder="Tên"
-                                   value="<?php
-                                   $name = $_SESSION['name'];
-                                   echo "$name";
-                                   ?>"
-                            >
+                            <div class="YziUfM">
+                                <button class="T_oZqJ">Cap nhat</button>
+                                <button class="T_oZqJ">Xoa</button>
+                            </div>
                         </div>
-                        <br>
+                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_content"
+                                 role="heading" class="X57SfF V4So7f">
+                                <div class="QyRpwQ lWXnp3">
+                                    <div class="We6XvC">
+                                        <div role="row" class="E24UKj">kinh duong vuong</div>
+                                        <div role="row" class="E24UKj">binh tan, hcm</div>
+                                    </div>
+                                </div>
 
-                        <div>
-                            <label style="width: 30%;"><span class="red_dot">*</span>Điện thoại:</label>
-                            <input style="width: 50%;" name="phone" required
-                                   placeholder="Số điện thoại"
-                                   value="<?php
-                                   $phone=$_SESSION['phone'];
-                                   echo "$phone";
-                                   ?>"
-                            >
-                        </div>
-                        <br>
-
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Quốc gia:</label>
-                        <input type="text" name="country" id="" style="width: 50%;"
-                               placeholder="Quốc gia" required
-                               value="<?php
-                               $country=$_SESSION['country'];
-                               echo "$country";
-                               ?>"
-                        >
+                                <div class="KFu3R3 YziUfM">
+                                    <button class="k8tV5Y zvyzwn zDPndA">thiet lap mac dinh</button>
+                                </div>
+                            </div>
+                        <div class="address-card_4153ddf3-8212-453b-a076-21b3978fa10f_badge" role="row" class="vy2yND E24UKj"> </div>
                     </div>
-                    <br>
-
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Tỉnh/Thành phố:</label>
-                        <input type="text" name="city" id="" style="width: 50%;"
-                               placeholder="Tỉnh/Thành phố" required
-                               value="<?php
-                               $city=$_SESSION['city'];
-                               echo "$city";
-                               ?>"
-                        >
-                    </div>
-                    <br>
-
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Quận/Huyện:</label>
-                        <input type="text" name="district" id="" style="width: 50%;"
-                               placeholder="Quận/Huyện" required
-                               value="<?php
-                               $district=$_SESSION['district'];
-                               echo "$district";
-                               ?>"
-                        >
-                    </div>
-                    <br>
-
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Địa chỉ chi tiết:</label>
-                        <input style="width: 50%;" name="addressdetail"
-                               placeholder="Địa chỉ chi tiết" required
-                               value="<?php
-                               $addressdetail=$_SESSION['addressdetail'];
-                               echo "$addressdetail";
-                               ?>">
-                    </div>
-                    <br>
-
-                    <div>
-                        <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
-                    </div>
-                    <br>
                 </div>
             </div>
-        </form>
     </div>
-</div>
 
 <?php include("footer.php");?>
 </body>

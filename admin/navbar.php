@@ -17,7 +17,7 @@
                         <span class="nav-item">Quản lý người dùng </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="user-admin.php" class="font-bold">Quản lý</a>
+                        <a href="index.php" class="font-bold">Quản lý</a>
                         <a href="add_user-admin.php" class="font-bold">Thêm người dùng</a>
                     </div>
                     <button class="dropdown-btn">

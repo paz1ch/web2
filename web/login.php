@@ -6,10 +6,14 @@ if (isset($_POST['submit'])) {
     $user_name = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
 
-    $result_getInfo = mysqli_query($mysqli, $sql);
-    $count = mysqli_num_rows($result_getInfo);
+    $sql_taikhoan = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
+    $sql_address = "SELECT * FROM address WHERE username = '$user_name'";
+
+    $result_getTaikhoan = mysqli_query($mysqli, $sql_taikhoan);
+    $result_getAddress = mysqli_query($mysqli, $sql_address);
+
+    $count = mysqli_num_rows($result_getTaikhoan);
 
     if ($count == 1) {
         $checkAdmin = "SELECT * from taikhoan WHERE isadmin = 1 and username = '$user_name' and password = '$password'";
@@ -22,14 +26,15 @@ if (isset($_POST['submit'])) {
 
             // check xem tai khoan co bi khoa hay ko;
             if (mysqli_num_rows($result_status) > 0) {
-                echo 'tai khoan bi khoa';
-                exit();
+                echo '<script type="text/JavaScript">
+                alert("Tài khoản bị khóa vui lòng thử lại");
+                window.location.replace("login.php");
+                </script>';
             }
             else {
+
                 // lay gia tri tu database
                 include('session_start.php');
-
-
 
                 // Chuyển hướng người dùng đến trang user.php
                 header("location: user.php");

@@ -1,4 +1,44 @@
-<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
+<?php
+include('config/config.php');
+$conn = new mysqli('localhost', 'root', '', 'web_php');
+$sql = "SELECT * FROM taikhoan";
+$result = $conn->query($sql);
+
+if (isset($_POST['submitFix'])) {
+    $username = $_POST['username'];
+    session_start();
+    $_SESSION['username'] = $username;
+    echo '<script type="text/javascript">
+                window.location.replace("edit_user-admin.php");
+              </script>';
+}
+
+if (isset($_POST['submit'])) {
+    $username = $_POST['username']; // Get the username from the hidden input field
+    $status = isset($_POST['lock']) ? 1 : 0; // Check if the checkbox is checked
+
+    // Update the status for the specified username
+    $stmt = $conn->prepare("UPDATE taikhoan SET status = ? WHERE username = ? LIMIT 1");
+    $stmt->bind_param("is", $status, $username);
+    $stmt->execute();
+
+    session_start();
+
+    if ($stmt->affected_rows > 0) {
+
+        echo '<script type="text/javascript">
+                alert("Đã khóa tài khoản thành công. Vui lòng mở khóa lại nếu bạn có nhu cầu");
+                window.location.replace("index.php");
+              </script>';
+    }
+
+    $stmt->close();
+}
+?>
+
+
+<span style="font-family: verdana, geneva, sans-serif;">
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <title>WEB ADMIN</title>
@@ -27,35 +67,49 @@
               <th>Họ và tên</th>
               <th>Tên đăng nhập</th>
               <th>Mật khẩu</th>
-              <th>Tình trạng</th>
+              <th style="width: 12%;">Tình trạng tài khoản</th>
               <th>Khóa</th>
-              <th colspan="2" class="thongtin">Thông tin</th>
+              <th class="thongtin">Thông tin</th>
             </tr>
             <tr>
-              <td class="stt">1</td>
-              <td class="stt">Phúc Đặng</td>
-              <td>khongquenef@gmail.com</td>
-              <td>094321351</td>
-              <td class="stt">Đã khóa</td>
-              <td class="status stt" >
-                <i class="fa-solid fa-lock fa-xl" onclick="lock_1()"></i>
-                <i class="fa-solid fa-lock-open fa-xl" onclick="open_lock_1()"></i>
-                <script>
-                  function lock_1(){
-                    alert("Tài khoản đã bị khóa trước đó! Vui lòng mở khóa!!");
-                  }
-                  function open_lock_1(){
-                    alert("Mở Khóa thành công");
-                  }
-                </script>
-              </td>
-              <td class="chitiet">
-                <a href="user-info.php" class="chitiet">Chi tiết</a>
-              </td>
-              <td class="sua">
-                <a href="edit_user-admin.php" class="sua">Sửa</a>
-              </td>
-            </tr>
+                <?php
+                if ($result->num_rows > 0) {
+                    $x=1;
+                    // output data of each row
+                    while ($row = $result->fetch_assoc() ) {
+                        if ($row['isadmin']==0){
+                ?>
+                        <td class="stt">  <?php echo ($x++) ?> </td>
+                        <td class="stt">  <?php echo ($row['ho']." ".$row['ten']) ?> </td>
+                        <td class="stt">  <?php echo ($row['username']) ?> </td>
+                        <td class="stt">  <?php echo $row['password'] ?> </td>
+
+                        <!--chuc nang-->
+                        <form method="POST">
+
+                            <td class="status stt">
+                                <input type="hidden" name="username"
+                                       value="<?php echo $row['username']; ?>">
+                                <input type="checkbox" name="lock"
+                                       value="1"<?php if ($row['status'] == 1) echo "checked"; ?>>
+                            </td>
+
+                            <td class="khoa">
+                                <input type="submit" name="submit" value="Thao tác">
+                            </td>
+
+                            <td class="sua">
+                                <input type="submit" name="submitFix" class="sua" value="Sửa">
+                            </td>
+
+                        </form>
+                </tr>
+
+                <?php
+                        }
+                    }
+                }
+                ?>
           </table>
         </div>
     </section>

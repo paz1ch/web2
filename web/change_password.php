@@ -12,7 +12,6 @@ if (isset($_POST['submit'])){
         exit();
     }
 
-    // Assuming there is a session or cookie to retrieve the current user's username
     $current_username = $_SESSION['username'];
 
     $checkOldPassword = "SELECT * FROM taikhoan WHERE username = '$current_username' AND password = '$old_password'";
@@ -31,7 +30,8 @@ if (isset($_POST['submit'])){
         echo '<script type="text/javascript">
                 alert("Update successful");
                 window.location.replace("change_password.php");
-              </script>';    }
+              </script>';
+        }
     }
 ?>
 <!DOCTYPE html>

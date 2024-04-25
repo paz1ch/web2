@@ -1,3 +1,9 @@
+<?php
+    include('config/config.php');
+    $mysqli = new mysqli('localhost','root','','web_php');
+    $sql = "select * from taikhoan";
+    $result=$mysqli->query($sql)
+?>
 <span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
     <html lang="en">
     <head>
@@ -53,7 +59,7 @@
                     </tr>
                 </table>
                 <div class="button-back" title="Quay về trang trước">
-                  <a href="user-admin.php" >
+                  <a href="index.php" >
                     <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
                   </a>
                 </div>
