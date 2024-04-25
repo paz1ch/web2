@@ -64,7 +64,7 @@
 				</p>
 				<ul id="shopping-cart-actions">
 					<li>
-						<a href="thanhtoan.php" id="thanhtoan" class="btn">Thanh toán</a>
+						<a href="select_address.php" id="thanhtoan" class="btn">Thanh toán</a>
 					</li>
 					<li>
 						<a href="sanpham_trangchu.php" class="btn">Tiếp tục mua sắm</a>

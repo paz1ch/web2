@@ -29,15 +29,13 @@ if (isset($_POST['submit'])){
         $_SESSION['payment'] = $payment;
     }
 
-
     $stmt = $mysqli->prepare("UPDATE address SET name=?, phone=?, country=?, city=?, district=?, detail=?, payment=? WHERE username=? and id=? ");
     $stmt->bind_param('sssssssss', $name, $phone, $country, $city, $district, $addressdetail, $payment, $username,$id);
     $stmt->execute();
-
     if ($stmt->affected_rows >0){
         echo '<script type="text/JavaScript">
                 alert("Update successful");
-                window.location.replace("address.php");
+                window.location.replace("select_address.php");
               </script>';
     }
     $stmt->close();
@@ -81,12 +79,11 @@ if (isset($_POST['submit'])){
 
 <div>
     <div style="display: flex;">
-        <?php include ('link_personalinfo.php')?>
         <form method="POST" action="" style="display: contents" >
-            <div class="div_right">
+            <div class="div_center">
                 <div class="nav">
                     <div class="nav_address">
-                        <h4>Cập nhật địa chỉ</h4>
+                        <h4> Cập nhật địa chỉ</h4>
                     </div>
                 </div>
                 <div style="margin-left: 2%; margin-right: 5%;">
@@ -197,7 +194,7 @@ if (isset($_POST['submit'])){
                     ?>
                     <div style="display: inline-flex; margin-left: 20%; padding-bottom: 20px">
                         <input class="center edit_p_inf" type="button"
-                            onclick="window.location.replace('address.php')" value="Quay lại"" >
+                               onclick="window.location.replace('select_address.php')" value="Quay lại"" >
 
                         <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>
@@ -208,10 +205,5 @@ if (isset($_POST['submit'])){
     </div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<?php include("footer.php");?>
 </body>
 </html>
