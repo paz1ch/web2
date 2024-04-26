@@ -109,6 +109,6 @@
 	left: 0;
 	bottom: 0;
 }
-h1, thead, input[type="number"]{
+h1, tr{
 	text-align: center;
 }

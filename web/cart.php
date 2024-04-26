@@ -30,34 +30,18 @@
 			<h1>Giỏ hàng của bạn</h1>
 			<form id="shopping-cart" action="cart.php" method="post">
 				<table class="shopping-cart">
-				<thead>
-					<tr class="item">
-						<th scope="col">Sản phẩm</th>
-						<th scope="col">Số lượng</th>
-						<th scope="col">Thành tiền</th>
-						<th scope="col">Lựa chọn</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Gương-3</td>
-						<td><input type="text" value="3" style="outline: none; border: none; text-align: center;"></td>
-						<td>36€</td>
-						<td><span onclick="xoasp()" style="background-color: red;border: 1px solid; padding: 1px 1px 1px 1px; color: antiquewhite;">Xóa sản phẩm</span></td>
-					</tr>
-					<tr>
-						<td>sofa-3</td>
-						<td><input type="text" value="1" style="outline: none; border: none; text-align: center;"></td>
-						<td>34€</td>
-						<td><span onclick="xoasp()" style="background-color: red;border: 1px solid; padding: 1px 1px 1px 1px; color: antiquewhite;">Xóa sản phẩm</span></td>
-					</tr>
-					<tr>
-						<td>Bàn-3</td>
-						<td><input type="text" value="3" style="outline: none; border: none; text-align: center;"></td>
-						<td>60€</td>
-						<td><span onclick="xoasp()" style="background-color: red;border: 1px solid; padding: 1px 1px 1px 1px; color: antiquewhite;">Xóa sản phẩm</span></td>
-					</tr>
-				</tbody>
+                    <tr class="item">
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                        <th scope="col">Lựa chọn</th>
+                    </tr>
+                    <tr>
+                        <td>Gương-3</td>
+                        <td><input type="text" value="3" style="outline: none; border: none; text-align: center;"></td>
+                        <td>36€</td>
+                        <td><span onclick="xoasp()">Xóa</span></td>
+                    </tr>
 				</table>
 				<p id="sub-total">
 					<strong>Tổng cộng</strong>: 130€<span id="stotal"></span>

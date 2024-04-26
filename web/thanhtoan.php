@@ -129,6 +129,12 @@ $result = $mysqli->query($sql);
                             }
                         </script>
 
+                        <hr class="mb-4">
+                        <button class="btn btn-primary btn-lg btn-block"
+                                type="button" name="btnDatHang" onclick="window.location.replace('select_address.php')"
+                                style="background-color:green;border: none"
+                        >Quay lại</button>
+
                     </div>
                 </div>
             </form>
