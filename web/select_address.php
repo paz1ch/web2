@@ -5,12 +5,12 @@ $username=$_GET['username'];
 
 if(isset($_POST['submit_update'])){
     $id = $_POST['id'] ;
-    header("location: update_selection_address_detail.php?username=" .$username ."&id=".$id);
+    header("location: update_selection_address_detail.php?admin=" .$username ."&id=".$id);
 }
 
 if(isset($_POST['submit_select'])){
     $id = $_POST['id'];
-    header("location: thanhtoan.php?username=" .$username ."&id=".$id);
+    header("location: thanhtoan.php?admin=" .$username ."&id=".$id);
 }
 
 if (isset($_GET['id'])){
@@ -20,7 +20,7 @@ if (isset($_GET['id'])){
     if($query){
         echo '<script type="text/JavaScript">
                 alert("Delete successful");
-                window.location.href = "select_address.php?username=' . ($username) . '";
+                window.location.href = "select_address.php?admin=' . ($username) . '";
               </script>';
     }
 }
@@ -74,7 +74,7 @@ if (isset($_GET['id'])){
                     <h4>Địa chỉ</h4>
                 </div>
                 <div class="nav_add_address">
-                    <a class="box" href="add_selection_address.php?username=<?php echo urldecode($username)?>">Thêm địa chỉ</a>
+                    <a class="box" href="add_selection_address.php?admin=<?php echo urldecode($username)?>">Thêm địa chỉ</a>
                 </div>
             </div>
             <?php
@@ -103,7 +103,7 @@ if (isset($_GET['id'])){
                                             <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
                                             <div class="YJU6OK"></div>
                                             <a class="T_oZqJ"
-                                               href="address.php?username=<?php echo ($row['username']); ?>
+                                               href="address.php?admin=<?php echo ($row['username']); ?>
                                                 &id=<?php echo ($row['id']); ?>">Xóa
                                             </a>
                                         </div>

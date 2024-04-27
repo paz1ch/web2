@@ -48,7 +48,7 @@
 				</p>
 				<ul id="shopping-cart-actions">
 					<li>
-						<a href="select_address.php?username=<?php echo $_GET['username']?>" id="thanhtoan" class="btn">Thanh toán</a>
+						<a href="select_address.php?admin=<?php echo $_GET['username']?>" id="thanhtoan" class="btn">Thanh toán</a>
 					</li>
 					<li>
 						<a href="sanpham_trangchu.php" class="btn">Tiếp tục mua sắm</a>

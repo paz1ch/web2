@@ -37,11 +37,11 @@ if (isset($_POST['submit'])) {
                 include('session_start.php');
 
                 // Chuyển hướng người dùng đến trang user.php
-                header("location: user.php?username=". $user_name);
+                header("location: user.php?admin=". $user_name);
             }
         }
         else {
-            header("location: ../admin/index.php?username=".$user_name);
+            header("location: ../admin/index.php?admin=".$user_name);
         }
     }
     else {

@@ -1,65 +1,68 @@
 <?php
-    include('../web/config/config.php');
-    $mysqli = new mysqli("localhost","root","","web_php");
-    if(isset($_POST['submit'])){
-        $ho = $_POST['ho'];
-        $ten = $_POST['ten'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
-        $sex = $_POST['sex'];
-        $date = date( 'Y-m-d', strtotime($_POST['date']));
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+include('../web/config/config.php');
+$conn = new mysqli("localhost","root","","web_php");
+$username_admin = $_GET["admin"];
 
+if(isset($_POST['submit'])){
+    $ho = $_POST['ho'];
+    $ten = $_POST['ten'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $sex = $_POST['sex'];
+    $date = date( 'Y-m-d', strtotime($_POST['date']));
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        // check if username exists
-        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username = ?");
-        $stmt->bind_param("s", $user_name);
-        $stmt->execute();
+    // check if username exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
 
-        if ($stmt->get_result()->num_rows > 0) {
-            echo '<script type="text/JavaScript">
-                alert("username đã tồn tại, vui lòng thử lại");
-              </script>';
-            echo '<script type="text/javascript">history.back();</script>';
-            exit();
-        }
-
-        // Check if email exists
-        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        if ($stmt->get_result()->num_rows > 0) {
-            echo '<script type="text/JavaScript">
-                alert("email đã tồn tại, vui lòng thử lại");
-              </script>';
-            echo '<script type="text/javascript">history.back();</script>';
-            exit();
-        }
-
-        // Check if phone number exists
-        $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
-        $stmt->bind_param("s", $phone);
-        $stmt->execute();
-        if ($stmt->get_result()->num_rows > 0) {
-            echo '<script type="text/JavaScript">
-                alert("Số điện thoại đã tồn tại, vui lòng thử lại");
-              </script>';
-            echo '<script type="text/javascript">history.back();</script>';
-            exit();
-        }
-
-        // insert value into database table
-        $stmt = $mysqli->prepare("INSERT INTO taikhoan (ho, ten, phone, email, sex, date, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('ssssssss', $ho, $ten, $phone, $email, $sex, $date, $username, $hashed_password);
-        $stmt->execute();
-        if ($stmt->execute()) {
-            echo '<script type="text/JavaScript">
-             alert("Thêm thành công"); 
-             window.location.replace("edit_user-admin.php");
+    if ($stmt->get_result()->num_rows > 0) {
+        echo '<script type="text/JavaScript">
+            alert("username đã tồn tại, vui lòng thử lại");
           </script>';
-        }
+        echo '<script type="text/javascript">history.back();</script>';
+        exit();
     }
+
+    // Check if email exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) {
+        echo '<script type="text/JavaScript">
+            alert("email đã tồn tại, vui lòng thử lại");
+          </script>';
+        echo '<script type="text/javascript">history.back();</script>';
+        exit();
+    }
+
+    // Check if phone number exists
+    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
+    $stmt->bind_param("s", $phone);
+    $stmt->execute();
+    if ($stmt->get_result()->num_rows > 0) {
+        echo '<script type="text/JavaScript">
+            alert("Số điện thoại đã tồn tại, vui lòng thử lại");
+          </script>';
+        echo '<script type="text/javascript">history.back();</script>';
+        exit();
+    }
+
+    // insert value into database table
+    $query = "INSERT INTO taikhoan (ho, ten, phone, email, sex, date, username, password) 
+          VALUES ('$ho', '$ten', '$phone', '$email', '$sex', '$date', '$username', '$password')";
+
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        echo '<script type="text/JavaScript">
+         alert("Thêm thành công"); 
+         window.location.href = "index.php?admin=' .$username_admin.'";
+      </script>';
+    }
+}
 ?>
 
 <span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
@@ -101,7 +104,7 @@
                           <input name="ten" type="text" placeholder="Nhập tên" required>
                       </td>
                       <td>
-                          <input name="date" type="date" placeholder="Nhập ngày sinh">
+                          <input name="date" type="date" placeholder="dd-mm-yyyy">
                       </td>
                     </tr>
                     <tr>
@@ -139,7 +142,7 @@
                       </tr>
                   </table>
                   <div class="reset-form">
-                      <label class="buttonReset" for="buttonreset" onclick="window.location.replace('add_user-admin.php')">Reset</label>
+                      <label class="buttonReset" for="buttonreset" onclick="window.location.replace('add_user-admin.php?admin=<?php echo $username_admin ?>')">Reset</label>
                   </div>
 
                   <div class="submit-form">

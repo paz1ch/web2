@@ -1,4 +1,6 @@
-
+<?php
+$username =$_GET['admin'];
+?>
 <nav>
     <div class="navbar">
         <a href="index.php" style="color: black;">
@@ -17,23 +19,23 @@
                         <span class="nav-item">Quản lý người dùng </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="index.php" class="font-bold">Quản lý</a>
-                        <a href="add_user-admin.php" class="font-bold">Thêm người dùng</a>
+                        <a href="index.php?admin=<?php echo $username?>" class="font-bold">Quản lý</a>
+                        <a href="add_user-admin.php?admin=<?php echo $username?>" class="font-bold">Thêm người dùng</a>
                     </div>
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-cart-shopping fa-xl"></i>
                         <span class="nav-item">Quản lý đơn hàng </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="cart-admin.php" class="font-bold">Danh sách đơn</a>
+                        <a href="cart-admin.php?admin=<?php echo $username?>" class="font-bold">Danh sách đơn</a>
                     </div>
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-list fa-xl"></i>
                         <span class="nav-item">Quản lý sản phẩm </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="products-admin.php" class="font-bold">Chi tiết sản phẩm</a>
-                        <a href="add_products-admin.php" class="font-bold">Thêm sản phẩm</a>
+                        <a href="products-admin.php?admin=<?php echo $username?>" class="font-bold">Chi tiết sản phẩm</a>
+                        <a href="add_products-admin.php?admin=<?php echo $username?>" class="font-bold">Thêm sản phẩm</a>
                     </div>
                     <script>
                         var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -54,7 +56,7 @@
                 </div>
             </li>
             <li >
-                <a href="statistic-admin.php" class="font-bold">
+                <a href="statistic-admin.php?admin=<?php echo $username?>" class="font-bold">
                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                     <span class="nav-item">Thống kê</span>
                 </a>

@@ -1,69 +1,77 @@
 <?php
-    session_start();
-    include('config/config.php');
-    global $conn;
-    $sql = "SELECT taikhoan.*, address.* FROM taikhoan INNER JOIN address ON taikhoan.username = address.username";
-    $result = $conn->query($sql);
-    if(isset($_POST['submit'])){
-        $username = $_SESSION['username'];
-        $ho = $_POST['ho'];
-        $ten = $_POST['ten'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
+include('config/config.php');
 
-        $sex = $_POST['sex'];
-        $date = date( 'Y-m-d', strtotime($_POST['date']));
+$username_admin = $_GET['admin'];
+$username_user = $_GET['user'];
+session_start();
 
-        if($sex == 2){
-            $sex = 'Nữ';
-            $_SESSION['sex'] = $sex;
-        }
-        else if($sex==1){
-            $sex = 'Nam';
-            $_SESSION['sex'] = $sex;
-        }
-        else if($sex==0){
-            $sex = $_SESSION['sex'];
-            $_SESSION['sex'] = $sex;
-        }
+if(isset($_POST['submit'])){
+    $ho = $_POST['ho'];
+    $ten = $_POST['ten'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $sex = $_POST['sex'];
+    $date = date( 'Y-m-d', strtotime($_POST['date']));
+    $new_password = $_POST['new_password'];
 
-        // Check if email exists
+    if($sex == 2){
+        $sex = 'Nữ';
+        $_SESSION['sex'] = $sex;
+    }
+    else if($sex==1){
+        $sex = 'Nam';
+        $_SESSION['sex'] = $sex;
+    }
+    else if($sex==0){
+        $sex = $_SESSION['sex'];
+        $_SESSION['sex'] = $sex;
+    }
+
+    $query = "select * from taikhoan where username = $username_user";
+    $run = mysqli_query($conn, $query);
+    $row = $run->fetch_assoc();
+
+    // Check if email exists
+    if ($email != $row['email']){
         $stmt = $conn->prepare("SELECT * FROM taikhoan WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         if ($stmt->get_result()->num_rows > 0) {
             echo '<script type="text/JavaScript">
-                alert("email đã tồn tại, vui lòng thử lại");
-              </script>';
+            alert("email đã tồn tại, vui lòng thử lại");
+          </script>';
             echo '<script type="text/javascript">history.back();</script>';
             exit();
         }
+    }
 
-        // Check if phone number exists
+    // Check if phone number exists
+    if($phone != $row['phone']){
         $stmt = $conn->prepare("SELECT * FROM taikhoan WHERE phone = ?");
         $stmt->bind_param("s", $phone);
         $stmt->execute();
         if ($stmt->get_result()->num_rows > 0) {
             echo '<script type="text/JavaScript">
-                alert("Số điện thoại đã tồn tại, vui lòng thử lại");
-              </script>';
+            alert("Số điện thoại đã tồn tại, vui lòng thử lại");
+          </script>';
             echo '<script type="text/javascript">history.back();</script>';
             exit();
         }
-
-        $stmt = $conn->prepare("update taikhoan set ho=?,ten=?, phone=?,
-        email=?,sex=?, date=? where username=? limit 1");
-        $stmt->bind_param('sssssss',$ho,$ten,$phone,$email,$sex,$date,$username);
-        $stmt->execute();
-
-        if($stmt->affected_rows > 0){
-            echo '<script type="text/JavaScript">
-                 alert("Update successful"); 
-                 window.location.replace("edit_user-admin.php");
-              </script>';
-        }
-        $stmt->close();
     }
+
+    $stmt = $conn->prepare("update taikhoan set ho=?,ten=?, phone=?,
+    email=?,sex=?, date=?, password=? where username=? limit 1");
+    $stmt->bind_param('ssssssss',$ho,$ten,$phone,$email,$sex,$date,$username_user,$new_password);
+    $stmt->execute();
+
+    if($stmt->affected_rows > 0){
+        echo '<script type="text/JavaScript">
+             alert("Update successful"); 
+             window.location.href="edit_user-admin.php?admin=' .$username_admin.'";
+          </script>';
+    }
+    $stmt->close();
+}
 ?>
 
 <span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
@@ -104,13 +112,9 @@
             </tr>
             <tr>
                 <?php
-                if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-
-                $username = $_SESSION['username'];
-
-                if ($row['isadmin']==0 && $row['username']==$username) {
+                $sql = "SELECT * FROM taikhoan where username = '$username_user' and isadmin = 0";
+                $result = mysqli_query($conn, $sql);
+                $row = $result->fetch_assoc();
                 ?>
                  <td>
                      <input type="text" placeholder="Nhập họ" value="<?php echo ($row['ho']) ?>" name="ho" required>
@@ -124,6 +128,7 @@
                  </td>
 
             </tr>
+
             <tr>
                 <th>Địa chỉ Email</th>
                 <th>Giới tính</th>
@@ -165,21 +170,27 @@
                 </td>
                 <td>
                     <input type="date" name="date" required
-                           placeholder="Ngày sinh"
                            value="<?php echo ($row['date']) ?>"
                     >
                 </td>
             </tr>
 
-                <?php
-                }
-                }
-                }
-                ?>
+            <tr>
+                <th>Đổi mật khẩu</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="password" placeholder="Nhập mật khẩu mới"
+                           name="new_password">
+                </td>
+            </tr>
           </table>
 
           <div class="reset-form">
-              <label class="buttonReset" for="buttonreset" onclick="window.location.replace('edit_user-admin.php')">Reset</label>
+                <label class="buttonReset" for="buttonreset"
+                       onclick="window.location.href='edit_user-admin.php?admin=<?php echo $username_admin; ?>'">
+                    Reset</label>
           </div>
 
           <div class="submit-form">
@@ -189,7 +200,7 @@
           </form>
 
           <div class="button-back" title="Quay về trang trước">
-            <a href="index.php" >
+            <a href="index.php?admin=<?php echo $username_admin?>" >
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
             </a>
           </div>

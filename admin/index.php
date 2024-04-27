@@ -1,38 +1,30 @@
 <?php
 include('config/config.php');
 $conn = new mysqli('localhost', 'root', '', 'web_php');
-$sql = "SELECT * FROM taikhoan";
-$username = $_GET['username'];
-$result = $conn->query($sql);
+$username_admin = $_GET['admin'];
 
 if (isset($_POST['submitFix'])) {
-    $username = $_POST['username'];
-    session_start();
-    $_SESSION['username'] = $username;
-    echo '<script type="text/javascript">
-                window.location.replace("edit_user-admin.php?username=' . $_GET['username'] .'");
-              </script>';
+    $username_user = $_POST['username'];
+    header("Location: edit_user-admin.php?admin=" . ($username_admin) . "&user=" . ($username_user));
 }
 
 if (isset($_POST['submit'])) {
-    $username = $_POST['username']; // Get the username from the hidden input field
+    $username_user = $_POST['username']; // Get the username from the hidden input field
     $status = isset($_POST['lock']) ? 1 : 0; // Check if the checkbox is checked
 
     // Update the status for the specified username
     $stmt = $conn->prepare("UPDATE taikhoan SET status = ? WHERE username = ? LIMIT 1");
-    $stmt->bind_param("is", $status, $username);
+    $stmt->bind_param("is", $status, $username_user);
     $stmt->execute();
 
     session_start();
 
     if ($stmt->affected_rows > 0) {
-
         echo '<script type="text/javascript">
                 alert("Đã khóa tài khoản thành công. Vui lòng mở khóa lại nếu bạn có nhu cầu");
-                window.location.replace("index.php?username=' .$username .'");
+                window.location.replace("index.php?admin=' .$username_admin .'");
               </script>';
     }
-
     $stmt->close();
 }
 ?>
@@ -74,11 +66,12 @@ if (isset($_POST['submit'])) {
             </tr>
             <tr>
                 <?php
+                $sql = "SELECT * FROM taikhoan where isadmin = 0";
+                $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     $x=1;
                     // output data of each row
                     while ($row = $result->fetch_assoc() ) {
-                        if ($row['isadmin']==0){
                 ?>
                         <td class="stt">  <?php echo ($x++) ?> </td>
                         <td class="stt">  <?php echo ($row['ho']." ".$row['ten']) ?> </td>
@@ -87,10 +80,9 @@ if (isset($_POST['submit'])) {
 
                         <!--chuc nang-->
                         <form method="POST">
-
                             <td class="status stt">
                                 <input type="hidden" name="username"
-                                       value="<?php echo $row['username']; ?>">
+                                       value="<?php echo ($row['username']); ?>">
                                 <input type="checkbox" name="lock"
                                        value="1"<?php if ($row['status'] == 1) echo "checked"; ?>>
                             </td>
@@ -107,7 +99,6 @@ if (isset($_POST['submit'])) {
                 </tr>
 
                 <?php
-                        }
                     }
                 }
                 ?>

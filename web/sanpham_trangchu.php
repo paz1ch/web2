@@ -63,7 +63,7 @@ $sql_sanpham = mysqli_query($mysqli,$sql);
                             <img src="images/<?php echo $row['image_sp']?>" alt="">
                             <div class="overlay-right">
                                 <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                    <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
+                                    <a href="chitiet_sanpham.php?admin=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </button>
