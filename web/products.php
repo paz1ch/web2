@@ -1,7 +1,12 @@
 <?php
-    include_once("config/config.php");
+global $mysqli;
+include_once("config/config.php");
 ?>
-
+<?php
+$ctsp="SELECT * FROM sanpham";
+$sql_sanpham = mysqli_query($mysqli,$ctsp);
+$row = mysqli_fetch_array($sql_sanpham);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +34,7 @@
         ?>
 	</section>
 	<!-- top nav -->	
-    <?php 
-
+    <?php
         if(isset($_GET['page'])){
             $get_page = $_GET['page'];
         }else{
@@ -115,11 +119,6 @@
                     <?php 
                     }
                     ?>
-                    
-                    
-                    
-                     
-                    
                     </div>	
                 </div>
             </div>
@@ -135,7 +134,7 @@
         
         for($b = 1 ; $b <= $a; $b ++){
             echo '<a href="products.php?page='.$b.'" style="text-decoration:none;">'.' '.$b.' '.'</a>'; 
-        } 
+        }
 
   ?>
   </p>

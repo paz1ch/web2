@@ -22,15 +22,10 @@ include_once("config/config.php");
 <link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
 <link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
 <link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="style/style_product.css" media="screen" type="text/css" />
 <link rel="stylesheet" href="style/style_pagination.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style/product-detail.css" media="screen" type="text/css">
 <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
-<link rel="stylesheet" href="style/font-awesome.min.css" media="screen" type="text/css">
 </head>
 
 <body>
@@ -54,9 +49,7 @@ include_once("config/config.php");
 
             <div class="card">
                 <div class="container-fliud">
-                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
-                        action="">
-               
+                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post">
                         <div class="wrapper row">
                             <div class="preview col-md-6">
                                 <div class="preview-pic tab-content">
@@ -89,7 +82,7 @@ include_once("config/config.php");
                                 </ul>
                             </div>
                             <div class="details col-md-6">
-                                <!-- Tên Snar phẩm được thêm ở đây-->
+                                <!-- Tên san phẩm được thêm ở đây-->
                                 <h3 class="product-title"><?php echo $row['tensp'] ?></h3>
                                 <div class="rating">
                                     <div class="stars">
@@ -152,44 +145,10 @@ include_once("config/config.php");
         </div>
         <!-- End block content -->
     </main>
-
+<br>
 
 <!------Contact------------>
-  <section id="contact">	
-	<div class="container">
-		<h1>Thông tin liên lạc</h1>
-		<div class="row">
-			<div class="col-md-6">
-				<form class="contact-form">
-				<div class="form-group">
-				<input type="text" class="form-control" placeholder="Họ và tên..">
-				</div>
-				<div class="form-group">
-				<input type="number" class="form-control" placeholder="Số điệnt thoại">
-				</div>
-				<div class="form-group">
-				<input type="email" class="form-control" placeholder="Email">
-				</div>
-				<div class="form-group">
-				<textarea class="form-control" rows="4" placeholder="Lời nhắn"></textarea>
-				</div>		
-				<button type="submit" class="btn btn-primary">Gửi</button>
-				</form>
-			</div>
-			<div class="col-md-6 contact-info">
-				<div class="follow"><b><i class="fa fa-map-marker"></i>  </b>2 Đ. Hải Triều, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh</div>
-				<div class="follow"><b><i class="fa fa-mobile"></i>  </b>(+84) 328246613</div>
-				<div class="follow"><b><i class="fa fa-envelope"></i>  </b>Khongquenef@gmail.com</div>			
-				<div class="follow"><label><b>Liên kết</b></label>
-				<a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-				<a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
-				<a href="https://twitter.com/login"><i class="fa fa-twitter"></i></a>
-				<a href="https://myaccount.google.com/"><i class="fa fa-google-plus"></i></a>			
-				</div>
-			</div>		
-		</div>
-	</div>
-</section>
+    <?php include('footer.php'); ?>
 
     <!-- footer -->
     <footer class="footer mt-auto py-3">

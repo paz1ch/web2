@@ -2,12 +2,10 @@
 include('config/config.php');
 session_start();
 $mysqli = new mysqli('localhost','root','','web_php');
-$sql = "SELECT * from taikhoan where username = '$_SESSION[username]'";
-$result = $mysqli->query($sql);
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
-}
+$username_check = $_GET['username'];
+$sql = "SELECT * from taikhoan where username = '$username_check'";
+$result = mysqli_query($mysqli,$sql);
+$row = mysqli_fetch_array($result);
 
 if (isset($_POST['submit'])) {
     $ho = $_POST['ho'];
@@ -118,12 +116,7 @@ if (isset($_POST['submit'])) {
                         <hr style="border: 1px solid black;">
                         <?php
                         if ($result->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $result->fetch_assoc()) {
-
-                        $username = $_SESSION['username'];
-
-                        if ($row['isadmin']==0 && $row['username']==$username) {
+                        if ($row['isadmin'] == 0) {
                         ?>
                         <div>
                             <label style="width: 30%; display: none"><span class="red_dot">*</span>
@@ -223,7 +216,6 @@ if (isset($_POST['submit'])) {
                         <br>
                         <?php
                                 }
-                            }
                         }
                         ?>
                         <div>

@@ -1,8 +1,8 @@
 <?php session_start();
 include('config/config.php');
 global $mysqli;
-$sql = "SELECT * FROM address";
-$result = $mysqli->query($sql);
+$username = $_GET['username'];
+$id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,12 +80,9 @@ $result = $mysqli->query($sql);
                     <div class="col-md-8 order-md-1">
                         <h4 class="mb-3">Thông tin khách hàng</h4>
                         <?php
-                        if ($result->num_rows > 0) {
-                        // output data of each row
+                        $sql = "SELECT * FROM address where id = '$id' and username = '$username'";
+                        $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                        $username = $_SESSION['username'];
-                        $id=$_SESSION['id'];
-                        if ( $row['username']==$username && $row['id']==$id) {
                         ?>
                         <div class="row">
                             <div class="col-md-12">
@@ -113,8 +110,6 @@ $result = $mysqli->query($sql);
                             </div>
                             <?php
                             }
-                            }
-                            }
                             ?>
                         </div>
 
@@ -125,13 +120,13 @@ $result = $mysqli->query($sql);
                             button1 = document.getElementById("dathang");
                             button1.onclick = function(){
                                 alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                location.assign("sanpham_trangchu.php");
-                            }
+                                window.location.replace('sanpham_trangchu.php?username=<?php echo urlencode($username); ?>')                            }
                         </script>
 
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block"
-                                type="button" name="btnDatHang" onclick="window.location.replace('select_address.php')"
+                                type="button" name="btnDatHang" onclick="window.location.replace
+                                ('select_address.php?username=<?php echo urlencode($username); ?>')"
                                 style="background-color:green;border: none"
                         >Quay lại</button>
 

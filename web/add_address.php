@@ -4,6 +4,7 @@ session_start();
 $mysqli = new mysqli('localhost','root','','web_php');
 $sql = "SELECT taikhoan.*, address.* FROM taikhoan INNER JOIN address ON taikhoan.username = address.username";
 $result = $mysqli->query($sql);
+$username=$_GET['username'];
 
 if (isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -13,7 +14,6 @@ if (isset($_POST['submit'])){
     $district = $_POST['district'];
     $addressdetail = $_POST['addressdetail'];
     $payment = $_POST['payment'];
-    $username=$_SESSION['username'];
 
     if($payment == 2){
         $payment = 'Thanh toán khi nhận hàng';
@@ -31,11 +31,11 @@ if (isset($_POST['submit'])){
     $stmt= $mysqli->prepare("INSERT INTO address (name, phone, country, city, district, detail, payment, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param('ssssssss', $name, $phone, $country, $city, $district, $addressdetail, $payment, $username);
     $stmt->execute();
-    if ($stmt->affected_rows >0){
-        echo '<script type="text/JavaScript">
-                alert("Update successful");
-                window.location.replace("address.php");
-              </script>';
+    if ($stmt->affected_rows > 0) {
+        echo '<script type="text/javascript">
+            alert("Add successful");
+            window.location.href = "address.php?username=' . ($username) . '";
+          </script>';
     }
     $stmt->close();
 }
@@ -145,13 +145,11 @@ if (isset($_POST['submit'])){
                     </div>
                     <br>
                     <div style="display: inline-flex; margin-left: 20%; padding-bottom: 20px">
-                        <input class="center edit_p_inf" type="button" onclick="goBack()" value="Quay lại"" >
+                        <input class="center edit_p_inf" type="button"
+                               onclick="window.location.replace
+                               ('address.php?username=<?php echo urlencode($username); ?>')"
+                               value="Quay lại">
                         <input class="center edit_p_inf" type="submit" name="submit" value="Thêm"">
-                        <script>
-                            function goBack() {
-                                window.location.replace('address.php');
-                            }
-                        </script>
                     </div>
                     <br>
                 </div>

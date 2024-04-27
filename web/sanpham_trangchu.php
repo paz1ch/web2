@@ -1,5 +1,7 @@
 <?php
 include_once("config/config.php");
+global $mysqli;
+$username = $_GET['username']
 ?>
 
 <!DOCTYPE html>
@@ -51,24 +53,17 @@ $sql_sanpham = mysqli_query($mysqli,$sql);
             <div class="title-box">
                 <h2>ĐỒ NỘI THẤT</h2>
             </div>
-            <script>
-                function addtoCart(){
-                    alert("Cần phải đăng nhập");
-                    window.location.replace("login.php")
-                }
-            </script>
 
             <div class="row">
                 <?php
                 while($row = mysqli_fetch_array($sql_sanpham)){
-
                     ?>
                     <div class="col-md-3">
                         <div class="product-top">
                             <img src="images/<?php echo $row['image_sp']?>" alt="">
                             <div class="overlay-right">
                                 <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                    <a href="productdetail.php?id=<?php echo $row['id_sp']?>">
+                                    <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </button>
@@ -100,13 +95,6 @@ $sql_sanpham = mysqli_query($mysqli,$sql);
                                         <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
                                     </div>
                                     <p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
-                                    <script>
-                                        button = document.getElementById("button");
-                                        button.onclick = function(){
-                                            alert("Cần phải đăng nhập")
-                                            window.location.replace("login.php");
-                                        }
-                                    </script>
                                 </form>
 
                             </div>
@@ -115,11 +103,6 @@ $sql_sanpham = mysqli_query($mysqli,$sql);
                     <?php
                 }
                 ?>
-
-
-
-
-
             </div>
         </div>
     </div>

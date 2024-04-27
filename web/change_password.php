@@ -12,7 +12,7 @@ if (isset($_POST['submit'])){
         exit();
     }
 
-    $current_username = $_SESSION['username'];
+    $current_username = $_GET['username'];
 
     $checkOldPassword = "SELECT * FROM taikhoan WHERE username = '$current_username' AND password = '$old_password'";
     $query = mysqli_query($mysqli,$checkOldPassword);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
     if($query){
         echo '<script type="text/javascript">
                 alert("Update successful");
-                window.location.replace("change_password.php");
+                window.location.href = "change_password.php?username=' . ($current_username) . '";
               </script>';
         }
     }

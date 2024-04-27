@@ -1,21 +1,16 @@
 <?php session_start();
 include('config/config.php');
 global $mysqli;
-$sql = "SELECT * FROM address";
-$result = $mysqli->query($sql);
+$username=$_GET['username'];
 
 if(isset($_POST['submit_update'])){
-    $_SESSION['id'] = $_POST['id'] ;
-    echo '<script type="text/JavaScript">
-          window.location.replace("update_selection_address_detail.php");
-          </script>';
+    $id = $_POST['id'] ;
+    header("location: update_selection_address_detail.php?username=" .$username ."&id=".$id);
 }
 
 if(isset($_POST['submit_select'])){
-    $_SESSION['id'] = $_POST['id'] ;
-    echo '<script type="text/JavaScript">
-          window.location.replace("thanhtoan.php");
-          </script>';
+    $id = $_POST['id'];
+    header("location: thanhtoan.php?username=" .$username ."&id=".$id);
 }
 
 if (isset($_GET['id'])){
@@ -24,8 +19,8 @@ if (isset($_GET['id'])){
     $query = $mysqli->query($sql_delete);
     if($query){
         echo '<script type="text/JavaScript">
-                alert("Update successful");
-                window.location.replace("select_address.php");
+                alert("Delete successful");
+                window.location.href = "select_address.php?username=' . ($username) . '";
               </script>';
     }
 }
@@ -79,17 +74,15 @@ if (isset($_GET['id'])){
                     <h4>Địa chỉ</h4>
                 </div>
                 <div class="nav_add_address">
-                    <a class="box" href="add_selection_address.php" >Thêm địa chỉ</a>
+                    <a class="box" href="add_selection_address.php?username=<?php echo urldecode($username)?>">Thêm địa chỉ</a>
                 </div>
             </div>
             <?php
-            if ($result->num_rows > 0) {
-
+                $sql = "SELECT * FROM address where username ='$username'";
+                $result = $mysqli->query($sql);
                 // output data of each row
                 while ($row = $result->fetch_assoc() ) {
-                    $username = $_SESSION['username'];
-                    if ($row['username'] == $username){
-                        ?>
+                ?>
                         <div class="UUD4No SXp5o_" style="margin-left: 2%; margin-right: 5%">
                             <div class="_RPpod">
                                 <div role="heading" class="X57SfF V4So7f" >
@@ -109,7 +102,10 @@ if (isset($_GET['id'])){
                                             <input type="hidden" name="id" value="<?php echo $row['id'];?>">
                                             <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
                                             <div class="YJU6OK"></div>
-                                            <a class="T_oZqJ" href="address.php?id=<?php echo $row['id']; ?>">Xóa</a>
+                                            <a class="T_oZqJ"
+                                               href="address.php?username=<?php echo ($row['username']); ?>
+                                                &id=<?php echo ($row['id']); ?>">Xóa
+                                            </a>
                                         </div>
                                     </form>
 
@@ -138,8 +134,6 @@ if (isset($_GET['id'])){
                         </div>
                         <?php
                     }
-                }
-            }
             ?>
         </div>
     </div>

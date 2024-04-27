@@ -2,8 +2,8 @@
 include ('config/config.php');
 session_start();
 $mysqli = new mysqli('localhost','root','','web_php');
-$sql = "SELECT * FROM address";
-$result = $mysqli->query($sql);
+$username=$_GET['username'];
+$id = $_GET['id'];
 
 if (isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -12,9 +12,7 @@ if (isset($_POST['submit'])){
     $city = $_POST['city'];
     $district = $_POST['district'];
     $addressdetail = $_POST['addressdetail'];
-    $payment = $_POST['payment'];
-    $username=$_SESSION['username'];
-    $id=$_SESSION['id'];
+    $payment = $_POST['payment'];;
 
     if($payment == 2){
         $payment = 'Thanh toán khi nhận hàng';
@@ -37,7 +35,7 @@ if (isset($_POST['submit'])){
     if ($stmt->affected_rows >0){
         echo '<script type="text/JavaScript">
                 alert("Update successful");
-                window.location.replace("address.php");
+                window.location.href = "address.php?username=' . ($username) . '";
               </script>';
     }
     $stmt->close();
@@ -93,112 +91,107 @@ if (isset($_POST['submit'])){
                     <hr style="border: 1px solid rgba(0,0,0,.9);">
                     <br>
                     <?php
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while ($row = $result->fetch_assoc()) {
-                            $username = $_SESSION['username'];
-                            $id=$_SESSION['id'];
-                            if ( $row['username']==$username && $row['id']==$id) {
-                                ?>
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>Tên:</label>
-                                    <input style="width: 50%;" type="text" maxlength="150"
-                                           name="name" required placeholder="Tên"
-                                           value="<?php echo ($row['name']) ?>"
-                                    >
-                                </div>
-                                <br>
+                    $sql = "SELECT * FROM address where username = '$username' and id = '$id'";
+                    $result = $mysqli->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>Tên:</label>
+                            <input style="width: 50%;" type="text" maxlength="150"
+                                   name="name" required placeholder="Tên"
+                                   value="<?php echo ($row['name']) ?>"
+                            >
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>Điện thoại:</label>
-                                    <input style="width: 50%;" name="phone" required
-                                           placeholder="Số điện thoại"
-                                           value="<?php echo ($row['phone']) ?>"
-                                    >
-                                </div>
-                                <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>Điện thoại:</label>
+                            <input style="width: 50%;" name="phone" required
+                                   placeholder="Số điện thoại"
+                                   value="<?php echo ($row['phone']) ?>"
+                            >
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>
-                                        Quốc gia:</label>
-                                    <input type="text" name="country" id="" style="width: 50%;"
-                                           placeholder="Quốc gia" required
-                                           value="<?php echo ($row['country']) ?>"
-                                    >
-                                </div>
-                                <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Quốc gia:</label>
+                            <input type="text" name="country" id="" style="width: 50%;"
+                                   placeholder="Quốc gia" required
+                                   value="<?php echo ($row['country']) ?>"
+                            >
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>
-                                        Tỉnh/Thành phố:</label>
-                                    <input type="text" name="city" id="" style="width: 50%;"
-                                           placeholder="Tỉnh/Thành phố" required
-                                           value="<?php echo ($row['city']) ?>"
-                                    >
-                                </div>
-                                <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Tỉnh/Thành phố:</label>
+                            <input type="text" name="city" id="" style="width: 50%;"
+                                   placeholder="Tỉnh/Thành phố" required
+                                   value="<?php echo ($row['city']) ?>"
+                            >
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>
-                                        Quận/Huyện:</label>
-                                    <input type="text" name="district" id="" style="width: 50%;"
-                                           placeholder="Quận/Huyện" required
-                                           value="<?php echo ($row['district']) ?>"
-                                    >
-                                </div>
-                                <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Quận/Huyện:</label>
+                            <input type="text" name="district" id="" style="width: 50%;"
+                                   placeholder="Quận/Huyện" required
+                                   value="<?php echo ($row['district']) ?>"
+                            >
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>
-                                        Địa chỉ chi tiết:</label>
-                                    <input style="width: 50%;" name="addressdetail"
-                                           placeholder="Địa chỉ chi tiết" required
-                                           value="<?php echo ($row['detail']) ?>">
-                                </div>
-                                <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Địa chỉ chi tiết:</label>
+                            <input style="width: 50%;" name="addressdetail"
+                                   placeholder="Địa chỉ chi tiết" required
+                                   value="<?php echo ($row['detail']) ?>">
+                        </div>
+                        <br>
 
-                                <div>
-                                    <label style="width: 30%;"><span class="red_dot">*</span>
-                                        Phương thức thanh toán:</label>
-                                    <select name="payment" style="width: 50%" required>
-                                        <option value="0">
-                                            <?php
-                                            $payment = $row['payment'];
-                                            if ($payment != 'Ví điện tử' && $payment != ''){
-                                            echo ($payment);
-                                            ?>
-                                        </option>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Phương thức thanh toán:</label>
+                            <select name="payment" style="width: 50%" required>
+                                <option value="0">
+                                    <?php
+                                    $payment = $row['payment'];
+                                    if ($payment != 'Ví điện tử' && $payment != ''){
+                                    echo ($payment);
+                                    ?>
+                                </option>
 
-                                        <option value="1">Ví điện tử</option>
-                                        <?php
-                                        }
-                                        else if ($payment != 'Thanh toán khi nhận hàng' && $payment != ''){
-                                            echo ($payment);
-                                            ?>
-
-                                            <option value="2">Thanh toán khi nhận hàng</option>
-
-                                            <?php
-                                        }
-                                        else if($payment == ''){
-                                            ?>
-                                            <option value="1">Ví điện tử</option>
-                                            <option value="2">Thanh toán khi nhận hàng</option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <br>
+                                <option value="1">Ví điện tử</option>
                                 <?php
-                            }
-                        }
+                                }
+                                else if ($payment != 'Thanh toán khi nhận hàng' && $payment != ''){
+                                    echo ($payment);
+                                    ?>
+
+                                    <option value="2">Thanh toán khi nhận hàng</option>
+
+                                    <?php
+                                }
+                                else if($payment == ''){
+                                    ?>
+                                    <option value="1">Ví điện tử</option>
+                                    <option value="2">Thanh toán khi nhận hàng</option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <br>
+                    <?php
                     }
                     ?>
                     <div style="display: inline-flex; margin-left: 20%; padding-bottom: 20px">
                         <input class="center edit_p_inf" type="button"
-                            onclick="window.location.replace('address.php')" value="Quay lại"" >
-
+                               onclick="window.location.replace('address.php?username=<?php echo urlencode($username); ?>')"
+                               value="Quay lại">
                         <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>
                     <br>
