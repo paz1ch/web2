@@ -110,10 +110,10 @@ if (isset($_POST['submit'])) {
 <body>
     <!-- header -->
     <section id="home">
-    <?php
-            include 'header.php';
+        <?php
+        include 'header.php';
         ?>
-	</section>
+    </section>
     <!-- end header -->
 
     <div style="margin-bottom: 5%;"></div>
@@ -149,8 +149,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="text" placeholder="Tên tải khoản"
-                                           name="kh_tendangnhap" required>
+                                    <input class="form-control" type="text" placeholder="Tên tải khoản" name="kh_tendangnhap" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -158,8 +157,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="password" placeholder="Mật khẩu"
-                                           name="kh_matkhau" required>
+                                    <input class="form-control" type="password" placeholder="Mật khẩu" name="kh_matkhau" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -167,8 +165,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="text" placeholder="Điện thoại"
-                                        name="kh_dienthoai" required>
+                                    <input class="form-control" type="text" placeholder="Điện thoại" name="kh_dienthoai" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -178,16 +175,15 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <input class="form-control" type="email" placeholder="Email" name="kh_email" required>
                                 </div>
-                            
+
                                 <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký">
-                            
+
                             </div>
                             <div class="card-footer p-4">
                                 <div class="row">
                                     <div class="col-12">
                                         <center>Nếu bạn đã có Tài khoản, xin mời Đăng nhập</center>
-                                        <a class="btn btn-primary form-control"
-                                            href="login.php">Đăng nhập</a>
+                                        <a class="btn btn-primary form-control" href="login.php">Đăng nhập</a>
                                     </div>
                                 </div>
                             </div>

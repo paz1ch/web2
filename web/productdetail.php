@@ -3,38 +3,39 @@ global $mysqli;
 include_once("config/config.php");
 ?>
 <?php
-    $id = $_GET['id'];
-    $ctsp="SELECT * FROM sanpham WHERE id_sp ='$id'";
-    $sql_sanpham = mysqli_query($mysqli,$ctsp);
-    $row = mysqli_fetch_array($sql_sanpham);
+$id = $_GET['id'];
+$ctsp = "SELECT * FROM sanpham WHERE id_sp ='$id'";
+$sql_sanpham = mysqli_query($mysqli, $ctsp);
+$row = mysqli_fetch_array($sql_sanpham);
 ?>
 
 
 <html>
+
 <head>
-<title>Product details</title>
-<meta charset="utf-8" />
-<meta name="viewpoint" content="width=device-width,initial-scal=1.0">
-<meta http-equip="X-UA-compatible" content="ie=edge">
-<link rel="icon" type="image/png" href="images/Real-Madrid.jpg">
-<link rel="stylesheet" href="style/style.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="style/style_topnav.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
-<link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="style/style_pagination.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="style/product-detail.css" media="screen" type="text/css">
-<link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
+    <title>Product details</title>
+    <meta charset="utf-8" />
+    <meta name="viewpoint" content="width=device-width,initial-scal=1.0">
+    <meta http-equip="X-UA-compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="images/Real-Madrid.jpg">
+    <link rel="stylesheet" href="style/style.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="style/style_topnav.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="style/style_pagination.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/product-detail.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
 </head>
 
 <body>
 
-	<!-- top nav -->
-	
+    <!-- top nav -->
+
     <?php
-            include 'header.php';
-        ?>
+    include 'header.php';
+    ?>
     <!-- end header -->
 
     <div class="spacing"></div>
@@ -86,19 +87,19 @@ include_once("config/config.php");
                                 <h3 class="product-title"><?php echo $row['tensp'] ?></h3>
                                 <div class="rating">
                                     <div class="stars">
-                                        <?php 
-                                            $sao = $row['star'];
-                                            $count = 0;
-                                            while($count++ < $sao){
+                                        <?php
+                                        $sao = $row['star'];
+                                        $count = 0;
+                                        while ($count++ < $sao) {
                                         ?>
-                                        <i class="fa fa-star"></i>
-                                        <?php  
-                                            } ?>
+                                            <i class="fa fa-star"></i>
+                                        <?php
+                                        } ?>
                                         <i class="fa fa-star-half-o"></i>
                                     </div>
                                 </div>
                                 <!--Mô tả sản phẩm ở đây-->
-                                <p class="product-description"><?php echo $row['motangan']?></p>
+                                <p class="product-description"><?php echo $row['motangan'] ?></p>
                                 <small class="text-muted">Giá cũ: <s><span><?php echo $row['gia'] ?></span></s></small>
                                 <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
@@ -111,14 +112,14 @@ include_once("config/config.php");
                                         Thêm vào giỏ hàng
                                     </div>
                                     <script>
-                                        function addCart1(){
+                                        function addCart1() {
                                             alert("Hãy đăng nhập để thêm vào giỏ hàng");
                                         }
                                     </script>
                                     <br><br>
-                                    <a class="add-to-cart btn btn-default" id="muangay" onclick="addCart()" >Mua ngay</a>
+                                    <a class="add-to-cart btn btn-default" id="muangay" onclick="addCart()">Mua ngay</a>
                                     <script>
-                                        function addCart(){
+                                        function addCart() {
                                             alert("Hãy đăng nhập để mua hàng");
                                         }
                                     </script>
@@ -135,8 +136,8 @@ include_once("config/config.php");
                     <h3>Thông tin chi tiết về Sản phẩm</h3>
                     <div class="row">
                         <div class="col">
-                            <?php 
-                                echo $row['motachitiet'];
+                            <?php
+                            echo $row['motachitiet'];
                             ?>
                         </div>
                     </div>
@@ -145,22 +146,23 @@ include_once("config/config.php");
         </div>
         <!-- End block content -->
     </main>
-<br>
+    <br>
 
-<!------Contact------------>
+    <!------Contact------------>
     <?php include('footer.php'); ?>
 
     <!-- footer -->
     <footer class="footer mt-auto py-3">
-    <div class="container">
-        <p class="float-right">
-            <a href="#">Về đầu trang</a>
-        </p>
-    </div>
-    <div style="margin-bottom: 10px;"></div>
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Về đầu trang</a>
+            </p>
+        </div>
+        <div style="margin-bottom: 10px;"></div>
     </footer>
     <!-- end footer -->
-	
+
 
 </body>
-</html>	
+
+</html>

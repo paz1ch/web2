@@ -1,34 +1,37 @@
-<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
+<span style="font-family: verdana, geneva, sans-serif;">
+  <!DOCTYPE html>
   <html lang="en">
+
   <head>
     <title>WEB ADMIN</title>
-    <link rel="stylesheet" href="style/style_admin.css"/>
-    <link rel="stylesheet" href="style/style_edit-products.css"/>
+    <link rel="stylesheet" href="style/style_admin.css" />
+    <link rel="stylesheet" href="style/style_edit-products.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+
   </head>
+
   <body>
-    
+
     <div class="container">
       <?php include 'navbar.php'; ?>
 
-      
+
       <!-- top banner -->
       <div class="top-banner">
         <p>online store</p>
       </div>
 
       <section class="main">
-          <div class="main-top"></div>
-          <div class="background-section">
+        <div class="main-top"></div>
+        <div class="background-section">
           <div class="main-body">
-              <h1 style="text-transform: uppercase;">chỉnh sửa sản phẩm</h1>
+            <h1 style="text-transform: uppercase;">chỉnh sửa sản phẩm</h1>
           </div>
           <div class="main-body">
             <img src="image/bed1.jpg" alt="add image">
             <form action="" style="padding-bottom: 30px;">
               <input type="file" name="uploadfile" id="img" style="display: none;">
-              <label for="img" class="img" >
+              <label for="img" class="img">
                 <span class="add-image">Sửa hình ảnh</span>
               </label>
             </form>
@@ -67,7 +70,7 @@
               <th>Mô tả sản phẩm</th>
             </tr>
             <tr>
-              
+
               <td>
                 <form action="">
                   <input type="text" placeholder="Nhập giá sản phẩm" value="20.000.000">
@@ -84,7 +87,7 @@
             <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
             <label class="buttonReset" for="buttonreset">Reset</label>
             <script>
-              function clickReset(){
+              function clickReset() {
                 location.reload();
                 alert("Reset thành công!!");
               }
@@ -94,20 +97,21 @@
             <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
             <label class="buttonsubmit" for="buttonsubmit">Cập nhật</label>
             <script>
-              function clickSubmit(){
+              function clickSubmit() {
                 location.reload();
                 alert("Cập nhật sản phẩm thành công!!");
               }
             </script>
           </form>
           <div class="button-back" title="Quay về trang trước">
-            <a href="products-admin.php" >
+            <a href="products-admin.php">
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
             </a>
           </div>
         </div>
       </section>
     </div>
-  
+
   </body>
+
   </html>

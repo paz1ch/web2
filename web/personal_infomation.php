@@ -1,10 +1,10 @@
 <?php
 include('config/config.php');
 session_start();
-$mysqli = new mysqli('localhost','root','','web_php');
+$mysqli = new mysqli('localhost', 'root', '', 'web_php');
 $username_check = $_GET['username'];
 $sql = "SELECT * from taikhoan where username = '$username_check'";
-$result = mysqli_query($mysqli,$sql);
+$result = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($result);
 
 if (isset($_POST['submit'])) {
@@ -14,27 +14,25 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $sex = $_POST['sex'];
-    $date = date( 'Y-m-d', strtotime($_POST['date']));
+    $date = date('Y-m-d', strtotime($_POST['date']));
 
-    if($sex == 2){
+    if ($sex == 2) {
         $sex = 'Nữ';
         $_SESSION['sex'] = $sex;
-    }
-    else if($sex==1){
+    } else if ($sex == 1) {
         $sex = 'Nam';
         $_SESSION['sex'] = $sex;
-    }
-    else if($sex==0){
+    } else if ($sex == 0) {
         $sex = $_SESSION['sex'];
         $_SESSION['sex'] = $sex;
     }
 
     // Check if email exists
-    if ($email != $_SESSION['email']){
+    if ($email != $_SESSION['email']) {
         $stmt = $mysqli->prepare("SELECT * FROM taikhoan where email=?");
-        $stmt->bind_param("s",$email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
-        if ($stmt->get_result()->num_rows > 0 ) {
+        if ($stmt->get_result()->num_rows > 0) {
             echo '<script type="text/JavaScript">
                 alert("email đã tồn tại, vui lòng thử lại");
               </script>';
@@ -44,9 +42,9 @@ if (isset($_POST['submit'])) {
     }
 
     // Check if phone number exists
-    if ($phone != $_SESSION['phone']){
+    if ($phone != $_SESSION['phone']) {
         $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username=? and phone =?");
-        $stmt->bind_param("ss", $username,$phone);
+        $stmt->bind_param("ss", $username, $phone);
         $stmt->execute();
         if ($stmt->get_result()->num_rows == 0) {
             echo '<script type="text/JavaScript">
@@ -59,14 +57,14 @@ if (isset($_POST['submit'])) {
 
     // Prepare an update statement
     $stmt = $mysqli->prepare("UPDATE taikhoan SET ho = ?, ten = ?, phone = ?, email = ?, sex=?,date=? WHERE username = ? LIMIT 1");
-    $stmt->bind_param("sssssss", $ho, $ten, $phone, $email,$sex,$date, $username);
+    $stmt->bind_param("sssssss", $ho, $ten, $phone, $email, $sex, $date, $username);
     $stmt->execute();
 
     // Check if the update was successful
     if ($stmt->affected_rows > 0) {
         echo '<script type="text/javascript">
                 alert("Update successful");
-                window.location.href="personal_infomation.php?username='.$username .'";
+                window.location.href="personal_infomation.php?username=' . $username . '";
               </script>';
     }
     $stmt->close();
@@ -75,6 +73,7 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Thông tin cá nhân</title>
     <link rel="icon" type="image/jpg" href="images/iconuser.png">
@@ -101,125 +100,105 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-<section id="home">
-    <?php include ('header_user.php')?>
-</section>
-<!-- top nav -->
-<div>
-    <div style="display: flex;">
-        <?php include("link_personalinfo.php"); ?>
-        <form action="" method="POST" style="display: contents">
-            <div class="div_right">
-                <div style="margin-left: 5%; margin-right: 5%;">
-                    <h2 style="text-align: center;">Cập nhật thông tin tài khoản</h2>
-                    <hr style="border: 1px solid black;">
-                    <?php
-                    if ($result->num_rows > 0) {
-                        if ($row['isadmin'] == 0) {
-                            ?>
-                            <div>
-                                <label style="width: 30%; display: none"><span class="red_dot">*</span>
-                                    Tên đăng nhập
-                                </label>
-                                <input style="width: 50%;" type="hidden" name="username" readonly
-                                       value="<?php echo ($row['username']) ?>"
-                                >
-                            </div>
-                            <br>
+    <section id="home">
+        <?php include('header_user.php') ?>
+    </section>
+    <!-- top nav -->
+    <div>
+        <div style="display: flex;">
+            <?php include("link_personalinfo.php"); ?>
+            <form action="" method="POST" style="display: contents">
+                <div class="div_right">
+                    <div style="margin-left: 5%; margin-right: 5%;">
+                        <h2 style="text-align: center;">Cập nhật thông tin tài khoản</h2>
+                        <hr style="border: 1px solid black;">
+                        <?php
+                        if ($result->num_rows > 0) {
+                            if ($row['isadmin'] == 0) {
+                        ?>
+                                <div>
+                                    <label style="width: 30%; display: none"><span class="red_dot">*</span>
+                                        Tên đăng nhập
+                                    </label>
+                                    <input style="width: 50%;" type="hidden" name="username" readonly value="<?php echo ($row['username']) ?>">
+                                </div>
+                                <br>
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Họ
-                                </label>
-                                <input style="width: 50%;" type="text" name="ho" required
-                                       placeholder="Họ"
-                                       value="<?php echo ($row['ho']) ?>"
-                                >
-                            </div>
-                            <br>
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Họ
+                                    </label>
+                                    <input style="width: 50%;" type="text" name="ho" required placeholder="Họ" value="<?php echo ($row['ho']) ?>">
+                                </div>
+                                <br>
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Tên:</label>
-                                <input style="width: 50%;" type="text" maxlength="150" name="ten" required
-                                       placeholder="Tên"
-                                       value="<?php echo ($row['ten']) ?>"
-                                >
-                            </div>
-                            <br>
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Tên:</label>
+                                    <input style="width: 50%;" type="text" maxlength="150" name="ten" required placeholder="Tên" value="<?php echo ($row['ten']) ?>">
+                                </div>
+                                <br>
 
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Giới tính:</label>
-                                <select name="sex" style="width: 50%" required>
-                                    <option value="0">
-                                        <?php
-                                        $sex = $row['sex'];
-                                        if ($sex != 'Nam' && $sex != ''){
-                                        echo ($sex);
-                                        ?>
-                                    </option>
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Giới tính:</label>
+                                    <select name="sex" style="width: 50%" required>
+                                        <option value="0">
+                                            <?php
+                                            $sex = $row['sex'];
+                                            if ($sex != 'Nam' && $sex != '') {
+                                                echo ($sex);
+                                            ?>
+                                        </option>
 
-                                    <option value="1">Nam</option>
+                                        <option value="1">Nam</option>
                                     <?php
-                                    }
-                                    else if ($sex != 'Nữ' && $sex != ''){
-                                        echo ($sex);
-                                        ?>
+                                            } else if ($sex != 'Nữ' && $sex != '') {
+                                                echo ($sex);
+                                    ?>
                                         <option value="2">Nữ</option>
-                                        <?php
-                                    }
-                                    else if($sex == ''){
-                                        ?>
+                                    <?php
+                                            } else if ($sex == '') {
+                                    ?>
                                         <option value="1">Nam</option>
                                         <option value="2">Nữ</option>
-                                        <?php
-                                    }
+                                    <?php
+                                            }
                                     ?>
-                                </select>
+                                    </select>
 
-                            </div>
-                            <br>
+                                </div>
+                                <br>
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Ngày sinh:</label>
-                                <input type="date" style="width: 50%;" name="date" required
-                                       placeholder="Ngày sinh"
-                                       value="<?php echo ($row['date']) ?>"
-                                >
-                            </div>
-                            <br>
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Ngày sinh:</label>
+                                    <input type="date" style="width: 50%;" name="date" required placeholder="Ngày sinh" value="<?php echo ($row['date']) ?>">
+                                </div>
+                                <br>
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Số điện thại:</label>
-                                <input style="width: 50%;" type="text" maxlength="150" name="phone" required
-                                       placeholder="Số điện thoại"
-                                       value="<?php $_SESSION['phone']=$row['phone'];
-                                       echo ($row['phone']) ?>"
-                                >
-                            </div>
-                            <br>
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Số điện thại:</label>
+                                    <input style="width: 50%;" type="text" maxlength="150" name="phone" required placeholder="Số điện thoại" value="<?php $_SESSION['phone'] = $row['phone'];
+                                                                                                                                                    echo ($row['phone']) ?>">
+                                </div>
+                                <br>
 
-                            <div>
-                                <label style="width: 30%;"><span class="red_dot">*</span>
-                                    Email:</label>
-                                <input type="email" style="width: 50%;" name="email" required
-                                       placeholder="Địa chỉ mail"
-                                       value="<?php $_SESSION['email']=$row['email'];
-                                       echo ($row['email']) ?>"
-                                >
-                            </div>
-                            <br>
-                            <?php
+                                <div>
+                                    <label style="width: 30%;"><span class="red_dot">*</span>
+                                        Email:</label>
+                                    <input type="email" style="width: 50%;" name="email" required placeholder="Địa chỉ mail" value="<?php $_SESSION['email'] = $row['email'];
+                                                                                                                                    echo ($row['email']) ?>">
+                                </div>
+                                <br>
+                        <?php
+                            }
                         }
-                    }
-                    ?>
-                    <div>
-                        <input class="center edit_p_inf" type="submit"
-                               name="submit" value="cập nhật"">
+                        ?>
+                        <div>
+                            <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>
                     <br>
                 </div>
@@ -235,6 +214,6 @@ if (isset($_POST['submit'])) {
 <br>
 <br>
 <br>
-<?php include("footer.php");?>
+<?php include("footer.php"); ?>
 </body>
 </html>

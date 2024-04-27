@@ -6,6 +6,7 @@ $username = $_GET['username']
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Sản phẩm</title>
     <meta charset="utf-8" />
@@ -25,103 +26,104 @@ $username = $_GET['username']
 </head>
 
 <body>
-<section id="home">
-    <?php
+    <section id="home">
+        <?php
         include 'header_user.php';
+        ?>
+    </section>
+    <!-- top nav -->
+    <?php
+
+    if (isset($_GET['page'])) {
+        $get_page = $_GET['page'];
+    } else {
+        $get_page = '';
+    }
+    if ($get_page == '' || $get_page == 1) {
+        $page1 = 0;
+    } else {
+        $page1 = ($get_page * 8) - 8;
+    }
+
+    $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
+    $sql_sanpham = mysqli_query($mysqli, $sql);
     ?>
-</section>
-<!-- top nav -->
-<?php
+    <section class="on-sale">
+        <div id="site">
+            <div class="container">
+                <div class="title-box">
+                    <h2>ĐỒ NỘI THẤT</h2>
+                </div>
 
-if(isset($_GET['page'])){
-    $get_page = $_GET['page'];
-}else{
-    $get_page='';
-}
-if($get_page == '' || $get_page == 1){
-    $page1 = 0;
-}else{
-    $page1 = ($get_page*8) - 8;
-}
-
-$sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
-$sql_sanpham = mysqli_query($mysqli,$sql);
-?>
-<section class="on-sale">
-    <div id="site">
-        <div class="container">
-            <div class="title-box">
-                <h2>ĐỒ NỘI THẤT</h2>
-            </div>
-
-            <div class="row">
-                <?php
-                while($row = mysqli_fetch_array($sql_sanpham)){
-                    ?>
-                    <div class="col-md-3">
-                        <div class="product-top">
-                            <img src="images/<?php echo $row['image_sp']?>" alt="">
-                            <div class="overlay-right">
-                                <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                    <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                </button>
-
-                                <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" onclick="addtoCart()">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div class="product-bottom text-center">
-                            <?php
-                            $sao = $row['star'];
-                            $count = 0;
-                            while($count++ < $sao){
-                                ?>
-                                <i class="fa fa-star"></i>
-                                <?php
-                            } ?>
-                            <i class="fa fa-star-half-o"></i>
-                            <h4><?php echo $row['tensp']?></h4>
-                            <div class="product-description" data-name="Mirror-3" data-price="12">
-
-                                <p class="product-price"><?php echo $row["gia"] ?></p>
-                                <form class="add-to-cart" action="cart.php" method="post">
-                                    <div>
-                                        <label for="qty-2">Số lượng</label>
-                                        <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
-                                    </div>
-                                    <p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
                     <?php
-                }
-                ?>
+                    while ($row = mysqli_fetch_array($sql_sanpham)) {
+                    ?>
+                        <div class="col-md-3">
+                            <div class="product-top">
+                                <img src="images/<?php echo $row['image_sp'] ?>" alt="">
+                                <div class="overlay-right">
+                                    <button type="button" class="btn btn-secondary" title="Xem chi tiết">
+                                        <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </button>
+
+                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" onclick="addtoCart()">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class="product-bottom text-center">
+                                <?php
+                                $sao = $row['star'];
+                                $count = 0;
+                                while ($count++ < $sao) {
+                                ?>
+                                    <i class="fa fa-star"></i>
+                                <?php
+                                } ?>
+                                <i class="fa fa-star-half-o"></i>
+                                <h4><?php echo $row['tensp'] ?></h4>
+                                <div class="product-description" data-name="Mirror-3" data-price="12">
+
+                                    <p class="product-price"><?php echo $row["gia"] ?></p>
+                                    <form class="add-to-cart" action="cart.php" method="post">
+                                        <div>
+                                            <label for="qty-2">Số lượng</label>
+                                            <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
+                                        </div>
+                                        <p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-</section>
-<br>
-<div style="text-align: center;">
-    <p style="font-size: 20px;" >Trang :
-        <?php
-        $sql_trang = mysqli_query($mysqli,"SELECT * FROM sanpham");
-        $count = mysqli_num_rows($sql_trang);
-        $a = ceil($count/8);
+        </div>
+    </section>
+    <br>
+    <div style="text-align: center;">
+        <p style="font-size: 20px;">Trang :
+            <?php
+            $sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham");
+            $count = mysqli_num_rows($sql_trang);
+            $a = ceil($count / 8);
 
-        for($b = 1 ; $b <= $a; $b ++){
-            echo '<a href="products.php?page='.$b.'" style="text-decoration:none;">'.' '.$b.' '.'</a>';
-        }
+            for ($b = 1; $b <= $a; $b++) {
+                echo '<a href="products.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+            }
 
-        ?>
-    </p>
-</div>
+            ?>
+        </p>
+    </div>
 </body>
-</html>	
+
+</html>

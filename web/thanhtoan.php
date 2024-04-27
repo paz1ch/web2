@@ -6,6 +6,7 @@ $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Giỏ hàng</title>
     <meta charset="utf-8" />
@@ -17,8 +18,8 @@ $id = $_GET['id'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    
+</head>
+
 <body>
     <section id="home">
         <?php include('header_user.php'); ?>
@@ -84,51 +85,45 @@ $id = $_GET['id'];
                         $result = $mysqli->query($sql);
                         while ($row = $result->fetch_assoc()) {
                         ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Họ tên</label>
-                                <input class="form-control" type="text" name="name" readonly
-                                value="<?php echo ($row['name'])?>">
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                                <label >Địa chỉ</label>
-                                <input class="form-control" type="text" name="address" readonly
-                                value="<?php echo ($row['district'].", ".$row['city'].", ".$row['country'])?>">
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                                <label >Số điện thoại</label>
-                                <input class="form-control" type="text" name="phone" readonly
-                                value="<?php echo ($row['phone'])?>">
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                                <label >Phuong thuc thanh toan</label>
-                                <input class="form-control" type="text" name="payment" readonly
-                                       value="<?php echo ($row['payment'])?>">
-                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Họ tên</label>
+                                    <input class="form-control" type="text" name="name" readonly value="<?php echo ($row['name']) ?>">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Địa chỉ</label>
+                                    <input class="form-control" type="text" name="address" readonly value="<?php echo ($row['district'] . ", " . $row['city'] . ", " . $row['country']) ?>">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Số điện thoại</label>
+                                    <input class="form-control" type="text" name="phone" readonly value="<?php echo ($row['phone']) ?>">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Phuong thuc thanh toan</label>
+                                    <input class="form-control" type="text" name="payment" readonly value="<?php echo ($row['payment']) ?>">
+                                </div>
                             <?php
-                            }
+                        }
                             ?>
-                        </div>
+                            </div>
 
-                        <hr class="mb-4">
-                        <button href="index.php" class="btn btn-primary btn-lg btn-block" id="dathang" type="button" name="btnDatHang">Đặt hàng</button>
+                            <hr class="mb-4">
+                            <button href="index.php" class="btn btn-primary btn-lg btn-block" id="dathang" type="button" name="btnDatHang">Đặt hàng</button>
 
-                        <script>
-                            button1 = document.getElementById("dathang");
-                            button1.onclick = function(){
-                                alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                window.location.replace('sanpham_trangchu.php?username=<?php echo urlencode($username); ?>')                            }
-                        </script>
+                            <script>
+                                button1 = document.getElementById("dathang");
+                                button1.onclick = function() {
+                                    alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
+                                    window.location.replace('sanpham_trangchu.php?username=<?php echo urlencode($username); ?>')
+                                }
+                            </script>
 
-                        <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block"
-                                type="button" name="btnDatHang" onclick="window.location.replace
-                                ('select_address.php?username=<?php echo urlencode($username); ?>')"
-                                style="background-color:green;border: none"
-                        >Quay lại</button>
+                            <hr class="mb-4">
+                            <button class="btn btn-primary btn-lg btn-block" type="button" name="btnDatHang" onclick="window.location.replace
+                                ('select_address.php?username=<?php echo urlencode($username); ?>')" style="background-color:green;border: none">Quay lại</button>
 
                     </div>
                 </div>
@@ -137,6 +132,7 @@ $id = $_GET['id'];
         </div>
         <!-- End block content -->
     </main>
-<br><br><br>
+    <br><br><br>
 </body>
+
 </html>

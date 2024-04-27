@@ -3,15 +3,15 @@ include('config/config.php');
 global $mysqli;
 $username = $_GET['username'];
 
-if(isset($_POST['submit_update'])){
+if (isset($_POST['submit_update'])) {
     $id = $_POST['id'];
-    header("location: address_detail.php?username=" .$username ."&id=".$id);
+    header("location: address_detail.php?username=" . $username . "&id=" . $id);
 }
-if (isset($_GET['id'])){
-    $id=$_GET['id'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
     $sql_delete = "DELETE FROM address WHERE id='$id'";
     $query = $mysqli->query($sql_delete);
-    if($query){
+    if ($query) {
         echo '<script type="text/JavaScript">
                 alert("Delete successful");
                 window.location.href = "address.php?username=' . ($username) . '";
@@ -21,6 +21,7 @@ if (isset($_GET['id'])){
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Thông tin cá nhân</title>
     <link rel="icon" type="image/jpg" href="images/iconuser.png">
@@ -50,13 +51,13 @@ if (isset($_GET['id'])){
 
 <body>
     <section id="home">
-        <?php include ('header_user.php')?>
+        <?php include('header_user.php') ?>
     </section>
-<!-- top nav -->
+    <!-- top nav -->
 
     <div>
         <div style="display: flex;">
-            <?php include ('link_personalinfo.php')?>
+            <?php include('link_personalinfo.php') ?>
             <div class="div_right">
                 <div class="nav">
                     <div class="nav_address">
@@ -64,65 +65,61 @@ if (isset($_GET['id'])){
                     </div>
 
                     <div class="nav_add_address">
-                        <a class="box" href="add_address.php?username=<?php echo $username?>">Thêm địa chỉ</a>
+                        <a class="box" href="add_address.php?username=<?php echo $username ?>">Thêm địa chỉ</a>
                     </div>
                 </div>
 
                 <?php
                 $sql = "SELECT * FROM address where username ='$username'";
                 $result = $mysqli->query($sql);
-                while ($row = $result->fetch_assoc()){
+                while ($row = $result->fetch_assoc()) {
                 ?>
 
-                <div class="UUD4No SXp5o_" style="margin-left: 2%; margin-right: 5%">
-                    <div class="_RPpod">
+                    <div class="UUD4No SXp5o_" style="margin-left: 2%; margin-right: 5%">
+                        <div class="_RPpod">
 
-                        <div role="heading" class="X57SfF V4So7f" >
-                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_header" class="QyRpwQ lWXnp3">
-                                <span class="Fi1zsg OwAhWT">
-                                    <div class="mjiDsj"><?php echo ($row['name']) ?>
-                                    </div>
-                                </span>
-                                <div class="YJU6OK"></div>
-                                <span class="Fi1zsg OwAhWT">
-                                    <div class="mjiDsj"><?php echo ($row['phone'])?></div>
-                                </span>
-                            </div>
-
-                            <form method="POST">
-                                <div class="YziUfM">
-                                    <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-                                    <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
+                            <div role="heading" class="X57SfF V4So7f">
+                                <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_header" class="QyRpwQ lWXnp3">
+                                    <span class="Fi1zsg OwAhWT">
+                                        <div class="mjiDsj"><?php echo ($row['name']) ?>
+                                        </div>
+                                    </span>
                                     <div class="YJU6OK"></div>
-                                    <a class="T_oZqJ"
-                                       href="address.php?username=<?php echo ($row['username']); ?>
-                                       &id=<?php echo ($row['id']); ?>">Xóa
-                                    </a>
+                                    <span class="Fi1zsg OwAhWT">
+                                        <div class="mjiDsj"><?php echo ($row['phone']) ?></div>
+                                    </span>
                                 </div>
-                            </form>
 
-                        </div>
-                        <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_content"
-                             role="heading" class="X57SfF V4So7f">
-                            <div class="QyRpwQ lWXnp3">
-                                <div class="We6XvC">
-                                    <div role="row" class="E24UKj"><?php echo ($row['detail'])?></div>
-                                    <div role="row" class="E24UKj">
-                                        <?php echo ($row['district'].", ".$row['city'].", ".$row['country'])?>
+                                <form method="POST">
+                                    <div class="YziUfM">
+                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                        <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
+                                        <div class="YJU6OK"></div>
+                                        <a class="T_oZqJ" href="address.php?username=<?php echo ($row['username']); ?>
+                                       &id=<?php echo ($row['id']); ?>">Xóa
+                                        </a>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div id="address-card_ece04d21-3363-470d-872a-0515990bdad5_content" role="heading" class="X57SfF V4So7f">
+                                <div class="QyRpwQ lWXnp3">
+                                    <div class="We6XvC">
+                                        <div role="row" class="E24UKj"><?php echo ($row['detail']) ?></div>
+                                        <div role="row" class="E24UKj">
+                                            <?php echo ($row['district'] . ", " . $row['city'] . ", " . $row['country']) ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
             </div>
-    </div>
-<br>
-<br>
-<br><br>
-<br>
+        </div>
+        <br><br><br><br><br>
 
-<?php include("footer.php");?>
+        <?php include("footer.php"); ?>
 </body>
+
 </html>

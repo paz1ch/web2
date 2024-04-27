@@ -1,9 +1,9 @@
 <?php
-$username =$_GET['admin'];
+$username = $_GET['admin'];
 ?>
 <nav>
     <div class="navbar">
-        <a href="index.php?admin=<?php echo $username?>" style="color: black;">
+        <a href="index.php?admin=<?php echo $username ?>" style="color: black;">
             <div class="logo">
                 <img src="image/phuccac.jpg" alt="">
                 <h1>Phúc</h1>
@@ -13,29 +13,29 @@ $username =$_GET['admin'];
         <ul>
             <li>
                 <!-- drop down sidebar -->
-                <div class ="sidenav">
+                <div class="sidenav">
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-user fa-xl"></i>
                         <span class="nav-item">Quản lý người dùng </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="index.php?admin=<?php echo $username?>" class="font-bold">Quản lý</a>
-                        <a href="add_user-admin.php?admin=<?php echo $username?>" class="font-bold">Thêm người dùng</a>
+                        <a href="index.php?admin=<?php echo $username ?>" class="font-bold">Quản lý</a>
+                        <a href="add_user-admin.php?admin=<?php echo $username ?>" class="font-bold">Thêm người dùng</a>
                     </div>
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-cart-shopping fa-xl"></i>
                         <span class="nav-item">Quản lý đơn hàng </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="cart-admin.php?admin=<?php echo $username?>" class="font-bold">Danh sách đơn</a>
+                        <a href="cart-admin.php?admin=<?php echo $username ?>" class="font-bold">Danh sách đơn</a>
                     </div>
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-list fa-xl"></i>
                         <span class="nav-item">Quản lý sản phẩm </span>
                     </button>
                     <div class="dropdown-container">
-                        <a href="products-admin.php?admin=<?php echo $username?>" class="font-bold">Chi tiết sản phẩm</a>
-                        <a href="add_products-admin.php?admin=<?php echo $username?>" class="font-bold">Thêm sản phẩm</a>
+                        <a href="products-admin.php?admin=<?php echo $username ?>" class="font-bold">Chi tiết sản phẩm</a>
+                        <a href="add_products-admin.php?admin=<?php echo $username ?>" class="font-bold">Thêm sản phẩm</a>
                     </div>
                     <script>
                         var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -55,8 +55,8 @@ $username =$_GET['admin'];
                     </script>
                 </div>
             </li>
-            <li >
-                <a href="statistic-admin.php?admin=<?php echo $username?>" class="font-bold">
+            <li>
+                <a href="statistic-admin.php?admin=<?php echo $username ?>" class="font-bold">
                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                     <span class="nav-item">Thống kê</span>
                 </a>
@@ -67,7 +67,7 @@ $username =$_GET['admin'];
                     <span class="nav-item">Đăng xuất</span>
                 </a>
                 <script>
-                    function logOut(){
+                    function logOut() {
                         if (confirm('Đăng xuất ?')) {
                             alert("Đăng xuất thành công");
                             window.location.replace("../web/login.php");

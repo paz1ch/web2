@@ -4,51 +4,54 @@ $conn = new mysqli('localhost', 'root', '', 'web_php');
 $username_admin = $_GET['admin'];
 
 if (isset($_POST['submitFix'])) {
-    $username_user = $_POST['username'];
-    header("Location: edit_user-admin.php?admin=" . ($username_admin) . "&user=" . ($username_user));
+  $username_user = $_POST['username'];
+  header("Location: edit_user-admin.php?admin=" . ($username_admin) . "&user=" . ($username_user));
 }
 
 if (isset($_POST['submit'])) {
-    $username_user = $_POST['username']; // Get the username from the hidden input field
-    $status = isset($_POST['lock']) ? 1 : 0; // Check if the checkbox is checked
+  $username_user = $_POST['username']; // Get the username from the hidden input field
+  $status = isset($_POST['lock']) ? 1 : 0; // Check if the checkbox is checked
 
-    // Update the status for the specified username
-    $stmt = $conn->prepare("UPDATE taikhoan SET status = ? WHERE username = ? LIMIT 1");
-    $stmt->bind_param("is", $status, $username_user);
-    $stmt->execute();
+  // Update the status for the specified username
+  $stmt = $conn->prepare("UPDATE taikhoan SET status = ? WHERE username = ? LIMIT 1");
+  $stmt->bind_param("is", $status, $username_user);
+  $stmt->execute();
 
-    session_start();
+  session_start();
 
-    if ($stmt->affected_rows > 0) {
-        echo '<script type="text/javascript">
+  if ($stmt->affected_rows > 0) {
+    echo '<script type="text/javascript">
                 alert("Đã khóa tài khoản thành công. Vui lòng mở khóa lại nếu bạn có nhu cầu");
-                window.location.replace("index.php?admin=' .$username_admin .'");
+                window.location.replace("index.php?admin=' . $username_admin . '");
               </script>';
-    }
-    $stmt->close();
+  }
+  $stmt->close();
 }
 ?>
 
 
 <span style="font-family: verdana, geneva, sans-serif;">
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="en">
+
   <head>
     <title>WEB ADMIN</title>
     <link rel="stylesheet" href="style/style_admin.css" />
     <link rel="stylesheet" href="style/style_useradmin.css">
     <!-- Font Awesome Cdn Link -->
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
   <body>
     <div class="container">
-    <?php include 'navbar.php' ?>;
-    <!-- top banner -->
-    <div class="top-banner">
-      <p>online store</p>
-    </div>
+      <?php include 'navbar.php' ?>;
+      <!-- top banner -->
+      <div class="top-banner">
+        <p>online store</p>
+      </div>
 
-    <section class="main">
+      <section class="main">
         <div class="main-top"></div>
         <div class="background-section">
           <div class="main-body">
@@ -65,47 +68,46 @@ if (isset($_POST['submit'])) {
               <th class="thongtin">Thông tin</th>
             </tr>
             <tr>
-                <?php
-                $sql = "SELECT * FROM taikhoan where isadmin = 0";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $x=1;
-                    // output data of each row
-                    while ($row = $result->fetch_assoc() ) {
-                ?>
-                        <td class="stt">  <?php echo ($x++) ?> </td>
-                        <td class="stt">  <?php echo ($row['ho']." ".$row['ten']) ?> </td>
-                        <td class="stt">  <?php echo ($row['username']) ?> </td>
-                        <td class="stt">  <?php echo $row['password'] ?> </td>
+              <?php
+              $sql = "SELECT * FROM taikhoan where isadmin = 0";
+              $result = $conn->query($sql);
+              if ($result->num_rows > 0) {
+                $x = 1;
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+              ?>
+                  <td class="stt"> <?php echo ($x++) ?> </td>
+                  <td class="stt"> <?php echo ($row['ho'] . " " . $row['ten']) ?> </td>
+                  <td class="stt"> <?php echo ($row['username']) ?> </td>
+                  <td class="stt"> <?php echo $row['password'] ?> </td>
 
-                        <!--chuc nang-->
-                        <form method="POST">
-                            <td class="status stt">
-                                <input type="hidden" name="username"
-                                       value="<?php echo ($row['username']); ?>">
-                                <input type="checkbox" name="lock"
-                                       value="1"<?php if ($row['status'] == 1) echo "checked"; ?>>
-                            </td>
+                  <!--chuc nang-->
+                  <form method="POST">
+                    <td class="status stt">
+                      <input type="hidden" name="username" value="<?php echo ($row['username']); ?>">
+                      <input type="checkbox" name="lock" value="1" <?php if ($row['status'] == 1) echo "checked"; ?>>
+                    </td>
 
-                            <td class="khoa">
-                                <input type="submit" name="submit" value="Thao tác">
-                            </td>
+                    <td class="khoa">
+                      <input type="submit" name="submit" value="Thao tác">
+                    </td>
 
-                            <td class="sua">
-                                <input type="submit" name="submitFix" class="sua" value="Sửa">
-                            </td>
+                    <td class="sua">
+                      <input type="submit" name="submitFix" class="sua" value="Sửa">
+                    </td>
 
-                        </form>
-                </tr>
+                  </form>
+            </tr>
 
-                <?php
-                    }
+        <?php
                 }
-                ?>
+              }
+        ?>
           </table>
         </div>
-    </section>
-  </div>
-  
+      </section>
+    </div>
+
   </body>
+
   </html>

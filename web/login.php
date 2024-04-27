@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $result_admin = mysqli_query($mysqli, $checkAdmin);
 
         // check xem tai khoan co phải admin hay ko;
-        if (mysqli_num_rows($result_admin) == 0){
+        if (mysqli_num_rows($result_admin) == 0) {
             $checkStatus = "Select * from taikhoan where status = 0 and username = '$user_name' and password = '$password'";
             $result_status = mysqli_query($mysqli, $checkStatus);
 
@@ -29,21 +29,18 @@ if (isset($_POST['submit'])) {
                 alert("Tài khoản bị khóa vui lòng thử lại");
                 window.location.replace("login.php");
                 </script>';
-            }
-            else {
+            } else {
 
                 // lay gia tri tu database
                 include('session_start.php');
 
                 // Chuyển hướng người dùng đến trang user.php
-                header("location: user.php?username=". $user_name);
+                header("location: user.php?username=" . $user_name);
             }
+        } else {
+            header("location: ../admin/index.php?admin=" . $user_name);
         }
-        else {
-            header("location: ../admin/index.php?admin=".$user_name);
-        }
-    }
-    else {
+    } else {
         echo 'loi tai khoan hoac mat khau';
         exit();
     }
@@ -79,10 +76,10 @@ if (isset($_POST['submit'])) {
 <body>
     <!-- header -->
     <section id="home">
-    <?php
-            include 'header.php';
-            ?>
-	</section>
+        <?php
+        include 'header.php';
+        ?>
+    </section>
     <!-- end header -->
     <div style="margin-bottom: 10%;"></div>
     <main role="main">
@@ -102,8 +99,7 @@ if (isset($_POST['submit'])) {
                                                 <i class="icon-user"></i>
                                             </span>
                                         </div>
-                                        <input class="form-control" type="text" name="username"
-                                            placeholder="Tên đăng nhập">
+                                        <input class="form-control" type="text" name="username" placeholder="Tên đăng nhập">
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
@@ -111,8 +107,7 @@ if (isset($_POST['submit'])) {
                                                 <i class="icon-lock"></i>
                                             </span>
                                         </div>
-                                        <input class="form-control" type="password" name="password"
-                                            placeholder="Mật khẩu">
+                                        <input class="form-control" type="password" name="password" placeholder="Mật khẩu">
                                     </div>
                                     <div class="row">
                                         <div class="col-6">

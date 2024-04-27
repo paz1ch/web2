@@ -17,14 +17,14 @@ if (session_status() == PHP_SESSION_NONE) {
     $_SESSION['phone'] = $row_taikhoan['phone'];
     $_SESSION['email'] = $row_taikhoan['email'];
     $_SESSION['name'] = $row_taikhoan['ho']  . $row_taikhoan['ten'];
-    $_SESSION['sex']= $row_taikhoan['sex'];
+    $_SESSION['sex'] = $row_taikhoan['sex'];
 
     // get data from table address
     $_SESSION['country'] = $row_address['country'];
     $_SESSION['city'] = $row_address['city'];
     $_SESSION['district'] = $row_address['district'];
     $_SESSION['addressdetail'] = $row_address['detail'];
-    $_SESSION['payment']= $row_address['payment'];
+    $_SESSION['payment'] = $row_address['payment'];
 
     // set password to current user
     $_SESSION['old_password'] = '';

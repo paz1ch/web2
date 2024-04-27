@@ -1,8 +1,8 @@
 <?php
-include ('config/config.php');
+include('config/config.php');
 session_start();
-$mysqli = new mysqli('localhost','root','','web_php');
-if (isset($_POST['submit'])){
+$mysqli = new mysqli('localhost', 'root', '', 'web_php');
+if (isset($_POST['submit'])) {
     $old_password = $_POST['old_password'];
     $new_password = $_POST['new_password'];
     $new_password_confirmation = $_POST['confirm'];
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])){
     $current_username = $_GET['username'];
 
     $checkOldPassword = "SELECT * FROM taikhoan WHERE username = '$current_username' AND password = '$old_password'";
-    $query = mysqli_query($mysqli,$checkOldPassword);
+    $query = mysqli_query($mysqli, $checkOldPassword);
 
     if (!$query) {
         echo 'The old password is incorrect.';
@@ -24,18 +24,19 @@ if (isset($_POST['submit'])){
 
     // If the old password is correct, update to the new password
     $checkNewPassword = "UPDATE taikhoan SET password = '$new_password' WHERE username = '$current_username'";
-    $query = mysqli_query($mysqli,$checkNewPassword);
+    $query = mysqli_query($mysqli, $checkNewPassword);
 
-    if($query){
+    if ($query) {
         echo '<script type="text/javascript">
                 alert("Update successful");
                 window.location.href = "change_password.php?username=' . ($current_username) . '";
               </script>';
-        }
     }
+}
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Thông tin cá nhân</title>
     <link rel="icon" type="image/jpg" href="images/iconuser.png">
@@ -62,50 +63,46 @@ if (isset($_POST['submit'])){
 </head>
 
 <body>
-<section id="home">
-    <?php include ('header_user.php')?>
-</section>
-<!-- top nav -->
-<div>
-    <div style="display: flex;">
-        <?php include("link_personalinfo.php"); ?>
-        <form action="" method="POST" style="display: contents">
-            <div class="div_right">
-                <div style="margin-left: 5%; margin-right: 5%;">
-                    <h2 style="text-align: center;">Đổi mật khẩu</h2>
-                    <hr style="border: 1px solid black;">
-                    <br>
+    <section id="home">
+        <?php include('header_user.php') ?>
+    </section>
+    <!-- top nav -->
+    <div>
+        <div style="display: flex;">
+            <?php include("link_personalinfo.php"); ?>
+            <form action="" method="POST" style="display: contents">
+                <div class="div_right">
+                    <div style="margin-left: 5%; margin-right: 5%;">
+                        <h2 style="text-align: center;">Đổi mật khẩu</h2>
+                        <hr style="border: 1px solid black;">
+                        <br>
 
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Mật khẩu cũ
-                        </label>
-                        <input style="width: 50%;" type="password" name="old_password"
-                               placeholder="Nhập mật khẩu cũ">
-                    </div>
-                    <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Mật khẩu cũ
+                            </label>
+                            <input style="width: 50%;" type="password" name="old_password" placeholder="Nhập mật khẩu cũ">
+                        </div>
+                        <br>
 
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Mật khẩu mới
-                        </label>
-                        <input style="width: 50%;" type="password" name="new_password"
-                               placeholder="Nhập mật khẩu mới">
-                    </div>
-                    <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Mật khẩu mới
+                            </label>
+                            <input style="width: 50%;" type="password" name="new_password" placeholder="Nhập mật khẩu mới">
+                        </div>
+                        <br>
 
-                    <div>
-                        <label style="width: 30%;"><span class="red_dot">*</span>
-                            Nhập lại mật khẩu mới
-                        </label>
-                        <input style="width: 50%;" type="password" maxlength="150" name="confirm"
-                               placeholder="Nhập lại mật khẩu mới">
-                    </div>
-                    <br>
+                        <div>
+                            <label style="width: 30%;"><span class="red_dot">*</span>
+                                Nhập lại mật khẩu mới
+                            </label>
+                            <input style="width: 50%;" type="password" maxlength="150" name="confirm" placeholder="Nhập lại mật khẩu mới">
+                        </div>
+                        <br>
 
-                    <div>
-                        <input class="center edit_p_inf" type="submit"
-                               name="submit" value="cập nhật"">
+                        <div>
+                            <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>
                     <br>
                 </div>
@@ -115,7 +112,7 @@ if (isset($_POST['submit'])){
     </div>
 </div>
 
-<?php include("footer.php");?>
+<?php include("footer.php"); ?>
 
 
 </body>
