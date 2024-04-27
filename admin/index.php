@@ -2,6 +2,7 @@
 include('config/config.php');
 $conn = new mysqli('localhost', 'root', '', 'web_php');
 $sql = "SELECT * FROM taikhoan";
+$username = $_GET['username'];
 $result = $conn->query($sql);
 
 if (isset($_POST['submitFix'])) {
@@ -9,7 +10,7 @@ if (isset($_POST['submitFix'])) {
     session_start();
     $_SESSION['username'] = $username;
     echo '<script type="text/javascript">
-                window.location.replace("edit_user-admin.php");
+                window.location.replace("edit_user-admin.php?username=' . $_GET['username'] .'");
               </script>';
 }
 
@@ -28,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         echo '<script type="text/javascript">
                 alert("Đã khóa tài khoản thành công. Vui lòng mở khóa lại nếu bạn có nhu cầu");
-                window.location.replace("index.php");
+                window.location.replace("index.php?username=' .$username .'");
               </script>';
     }
 

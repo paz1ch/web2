@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
             }
         }
         else {
-            header("location: ../admin/index.php?username".$user_name);
+            header("location: ../admin/index.php?username=".$user_name);
         }
     }
     else {
