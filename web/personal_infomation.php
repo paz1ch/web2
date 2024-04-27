@@ -69,7 +69,6 @@ if (isset($_POST['submit'])) {
                 window.location.replace("personal_infomation.php");
               </script>';
     }
-
     $stmt->close();
 }
 ?>

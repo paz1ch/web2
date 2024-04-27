@@ -120,13 +120,13 @@ $id = $_GET['id'];
                             button1 = document.getElementById("dathang");
                             button1.onclick = function(){
                                 alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                window.location.replace('sanpham_trangchu.php?admin=<?php echo urlencode($username); ?>')                            }
+                                window.location.replace('sanpham_trangchu.php?username=<?php echo urlencode($username); ?>')                            }
                         </script>
 
                         <hr class="mb-4">
                         <button class="btn btn-primary btn-lg btn-block"
                                 type="button" name="btnDatHang" onclick="window.location.replace
-                                ('select_address.php?admin=<?php echo urlencode($username); ?>')"
+                                ('select_address.php?username=<?php echo urlencode($username); ?>')"
                                 style="background-color:green;border: none"
                         >Quay lại</button>
 

@@ -6,7 +6,6 @@ if (isset($_POST['submit'])) {
     $user_name = $_POST['username'];
     $password = $_POST['password'];
 
-
     $sql_taikhoan = "SELECT * FROM taikhoan WHERE username = '$user_name' and password = '$password'";
     $sql_address = "SELECT * FROM address WHERE username = '$user_name'";
 
@@ -37,7 +36,7 @@ if (isset($_POST['submit'])) {
                 include('session_start.php');
 
                 // Chuyển hướng người dùng đến trang user.php
-                header("location: user.php?admin=". $user_name);
+                header("location: user.php?username=". $user_name);
             }
         }
         else {

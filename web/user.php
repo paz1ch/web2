@@ -238,9 +238,7 @@
                     </div>
                     </div>
                     </div>
-        
-        
-        
+
                     <div class="col-md-3">
                     <div class="product-top">
                         <img src="images/bed3.jpg">

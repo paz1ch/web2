@@ -35,7 +35,7 @@ if (isset($_POST['submit'])){
     if ($stmt->affected_rows >0){
         echo '<script type="text/JavaScript">
                 alert("Update successful");
-                window.location.href = "address.php?admin=' . ($username) . '";
+                window.location.href = "address.php?username=' . ($username) . '";
               </script>';
     }
     $stmt->close();
@@ -190,7 +190,7 @@ if (isset($_POST['submit'])){
                     ?>
                     <div style="display: inline-flex; margin-left: 20%; padding-bottom: 20px">
                         <input class="center edit_p_inf" type="button"
-                               onclick="window.location.replace('address.php?admin=<?php echo urlencode($username); ?>')"
+                               onclick="window.location.replace('address.php?username=<?php echo urlencode($username); ?>')"
                                value="Quay lại">
                         <input class="center edit_p_inf" type="submit" name="submit" value="cập nhật"">
                     </div>

@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
     if($query){
         echo '<script type="text/javascript">
                 alert("Update successful");
-                window.location.href = "change_password.php?admin=' . ($current_username) . '";
+                window.location.href = "change_password.php?username=' . ($current_username) . '";
               </script>';
         }
     }
