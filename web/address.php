@@ -14,7 +14,7 @@ if (isset($_GET['id'])){
     if($query){
         echo '<script type="text/JavaScript">
                 alert("Delete successful");
-                window.location.href = "select_address.php?username=' . ($username) . '";
+                window.location.href = "address.php?username=' . ($username) . '";
               </script>';
     }
 }

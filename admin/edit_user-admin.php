@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
         $_SESSION['sex'] = $sex;
     }
 
-    $query = "select * from taikhoan where username = $username_user";
+    $query = "select * from taikhoan where username = '$username_user'";
     $run = mysqli_query($conn, $query);
     $row = $run->fetch_assoc();
 
@@ -59,18 +59,20 @@ if(isset($_POST['submit'])){
         }
     }
 
-    $stmt = $conn->prepare("update taikhoan set ho=?,ten=?, phone=?,
-    email=?,sex=?, date=?, password=? where username=? limit 1");
-    $stmt->bind_param('ssssssss',$ho,$ten,$phone,$email,$sex,$date,$username_user,$new_password);
+    $stmt = $conn->prepare("UPDATE taikhoan SET ho = ?, ten = ?, phone = ?, email = ?, sex=?,date=?, password=? WHERE username = ? LIMIT 1");
+    $stmt->bind_param("ssssssss", $ho,$ten, $phone, $email,$sex,$date, $new_password,$username_user,);
     $stmt->execute();
 
     if($stmt->affected_rows > 0){
         echo '<script type="text/JavaScript">
              alert("Update successful"); 
-             window.location.href="edit_user-admin.php?admin=' .$username_admin.'";
+             window.location.href="edit_user-admin.php?admin='.$username_admin.
+            ' &user='.$username_user.'";
           </script>';
+        exit();
     }
     $stmt->close();
+
 }
 ?>
 
@@ -182,14 +184,16 @@ if(isset($_POST['submit'])){
             <tr>
                 <td>
                     <input type="password" placeholder="Nhập mật khẩu mới"
-                           name="new_password">
+                           name="new_password" value="<?php echo $row['password']?>">
                 </td>
             </tr>
           </table>
 
           <div class="reset-form">
                 <label class="buttonReset" for="buttonreset"
-                       onclick="window.location.href='edit_user-admin.php?admin=<?php echo $username_admin; ?>'">
+                       onclick="window.location.href='edit_user-admin.php?' +
+                               'admin=<?php echo $username_admin;?>'
+                               + '&user=' + <?php echo $username_user?>">
                     Reset</label>
           </div>
 

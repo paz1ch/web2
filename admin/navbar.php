@@ -3,7 +3,7 @@ $username =$_GET['admin'];
 ?>
 <nav>
     <div class="navbar">
-        <a href="index.php" style="color: black;">
+        <a href="index.php?admin=<?php echo $username?>" style="color: black;">
             <div class="logo">
                 <img src="image/phuccac.jpg" alt="">
                 <h1>Phúc</h1>
