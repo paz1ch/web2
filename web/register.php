@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
         echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
+    $stmt->store_result();
 
     // Check if email exists
     $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
@@ -38,6 +39,8 @@ if (isset($_POST['submit'])) {
         echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
+    $stmt->store_result();
+
 
     // Check if phone number exists
     $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
@@ -50,6 +53,8 @@ if (isset($_POST['submit'])) {
         echo '<script type="text/javascript">history.back();</script>';
         exit();
     }
+    $stmt->store_result();
+
 
     // If all checks pass, insert the data
     $mysqli->begin_transaction();
@@ -57,11 +62,13 @@ if (isset($_POST['submit'])) {
         $stmt = $mysqli->prepare("INSERT INTO taikhoan (username, password, ho, ten, phone, email, status) VALUES (?, ?, ?, ?, ?, ?, true)");
         $stmt->bind_param("ssssss", $user_name, $password, $ho, $ten, $phone, $email);
         $stmt->execute();
+        $stmt->store_result();
         $stmt->close();
 
         $stmt = $mysqli->prepare("INSERT INTO address (username, name, phone, country, city, district, detail) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssss", $user_name, $name, $phone, $country, $city, $district, $detail);
         $stmt->execute();
+        $stmt->store_result();
         $stmt->close();
 
         $mysqli->commit();
