@@ -1,9 +1,8 @@
 <?php
 include_once("config/config.php");
-global $mysqli;
-
+$conn = new mysqli("localhost","root","","web_php");
 if (isset($_POST['submit'])) {
-    $user_name = $_POST['kh_tendangnhap'];
+    $username = $_POST['kh_tendangnhap'];
     $password = $_POST['kh_matkhau'];
     $ho = $_POST['kh_ho'];
     $ten = $_POST['kh_ten'];
@@ -11,13 +10,11 @@ if (isset($_POST['submit'])) {
     $email = $_POST['kh_email'];
     $name = $ho . " " . $ten;
     $country = "vietnam";
-    $city = " ";
-    $district = " ";
-    $detail = " ";
+
 
     // Check if username exists
-    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE username = ?");
-    $stmt->bind_param("s", $user_name);
+    $stmt = $conn->prepare("SELECT * FROM taikhoan WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
         echo '<script type="text/JavaScript">
@@ -28,7 +25,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Check if email exists
-    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE email = ?");
+    $stmt = $conn->prepare("SELECT * FROM taikhoan WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
@@ -40,7 +37,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Check if phone number exists
-    $stmt = $mysqli->prepare("SELECT * FROM taikhoan WHERE phone = ?");
+    $stmt = $conn->prepare("SELECT * FROM taikhoan WHERE phone = ?");
     $stmt->bind_param("s", $phone);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
@@ -51,28 +48,24 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
+    $query_taikhoan = "INSERT INTO taikhoan (username, password, ho, ten, phone, email, status) 
+    VALUES ('$username', '$password', '$ho', '$ten', '$phone', '$email', 1)";
+    $query_address = "INSERT INTO address (username, name, phone, country, city, district, detail) 
+    VALUES ('$username', '$name', '$phone', '$country', '', '', '')";
 
-    // If all checks pass, insert the data
-    $mysqli->begin_transaction();
-    try {
-        $stmt = $mysqli->prepare("INSERT INTO taikhoan (username, password, ho, ten, phone, email, status) VALUES (?, ?, ?, ?, ?, ?, true)");
-        $stmt->bind_param("ssssss", $user_name, $password, $ho, $ten, $phone, $email);
-        $stmt->execute();
-        $stmt->close();
+    $result_Taikhoan = mysqli_query($conn, $query_taikhoan);
+    $result_Address = mysqli_query($conn, $query_address);
 
-        $stmt = $mysqli->prepare("INSERT INTO address (username, name, phone, country, city, district, detail) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $user_name, $name, $phone, $country, $city, $district, $detail);
-        $stmt->execute();
-        $stmt->close();
 
-        $mysqli->commit();
+    if($result_Address&&$result_Taikhoan){
         echo '<script type="text/JavaScript">  
                  alert("Registration successful"); 
                  window.location.replace("login.php");
               </script>';
-    } catch (Exception $e) {
-        $mysqli->rollback();
-        echo "Error: " . $e->getMessage();
+    }
+    else{
+        echo 'fault';
+        exit();
     }
 }
 ?>
