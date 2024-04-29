@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2024 lúc 08:01 AM
+-- Thời gian đã tạo: Th4 29, 2024 lúc 03:32 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -31,8 +31,8 @@ CREATE TABLE `sanpham` (
   `id_sp` int(11) NOT NULL,
   `id_danhmuc` int(11) NOT NULL,
   `tensp` varchar(255) NOT NULL,
-  `gia` varchar(255) NOT NULL,
-  `giakhuyenmai` varchar(255) NOT NULL,
+  `gia` varchar(100) NOT NULL,
+  `giakhuyenmai` varchar(100) NOT NULL,
   `sp_active` int(11) NOT NULL,
   `image_sp` varchar(50) NOT NULL,
   `star` int(11) NOT NULL,
@@ -45,8 +45,26 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `giakhuyenmai`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`) VALUES
-(1, 3, 'ban 3', '40', '20', 1, 'table3.jpg', 4, 'mo ta ngan', 'mo ta dai'),
-(2, 4, 'Guong luxury fake', '300', '199', 1, 'mirror5.jpg', 3, 'mo ta ngan', 'mo ta dai');
+(1, 3, 'BÀN NHỎ LOẠI 3', '40€', '20€', 1, 'table3.jpg', 4, '', ''),
+(2, 4, 'GƯƠNG LUXURY FAKE', '300€', '199€', 1, 'mirror5.jpg', 3, '', ''),
+(3, 4, 'GƯƠNG LOẠI 3', '50€', '12€', 1, 'mirror3.jpg', 5, '', ''),
+(4, 3, 'SOFA LOẠI 3', '100€', '34€', 1, 'sofa3.jpg', 4, '', ''),
+(5, 1, 'GIƯỜNG ĐÔI', '120€', '60€', 1, 'bed3.jpg', 5, '', ''),
+(6, 4, 'GƯƠNG SIÊU BỰ', '90€', '70€', 1, 'mirror4.jpg', 3, '', ''),
+(7, 2, 'SOFA LOẠI CỰC ÊM', '260€', '199€', 1, 'sofa4.jpg', 4, '', ''),
+(8, 3, 'BÀN SIÊU CỨNG', '75€', '50€', 1, 'table4.jpg', 5, '', ''),
+(9, 1, 'GIƯỜNG THÔNG MINH', '500€', '399€', 1, 'bed4.jpg', 3, '', ''),
+(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300€', '199€', 1, 'bed1.jpg', 2, '', ''),
+(11, 1, 'GIƯỜNG TIỆN LỢI', '290€', '189€', 1, 'bed2.jpg', 5, '', ''),
+(12, 2, 'SOFA LUXURY', '250€', '199€', 1, 'sofa1.jpg', 3, '', ''),
+(13, 2, 'SOFA TRẮNG TINH TẾ', '300€', '155€', 1, 'sofa2.jpg', 4, '', ''),
+(14, 3, 'BÀN KÍNH', '200€', '149€', 1, 'table1.jpg', 4, '', ''),
+(15, 3, 'BÀN VĂN PHÒNG', '230€', '175€', 1, 'table2.jpg', 5, '', ''),
+(16, 4, 'GƯƠNG TRANG ĐIỂM', '130€', '89€', 1, 'mirror1.jpg', 5, '', ''),
+(17, 4, 'GƯƠNG MẶT TRỜI', '100€', '75€', 1, 'mirror2.jpg', 4, '', ''),
+(18, 1, 'GƯỜNG LUXURY', '1000€', '800€', 1, 'bed5.jpg', 5, '', ''),
+(19, 2, 'SOFA LOẠI TỐT', '200€', '159€', 1, 'sofa5.jpg', 5, '', ''),
+(20, 3, 'BÀN GỖ SỒI', '90€', '89€', 1, 'table5.jpg', 4, '', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -57,8 +75,7 @@ INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `giakhuyenmai`, `s
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_sp`),
-  ADD KEY `id_danhmuc` (`id_danhmuc`),
-  ADD KEY `id_danhmuc_2` (`id_danhmuc`);
+  ADD KEY `id_danhmuc` (`id_danhmuc`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -68,7 +85,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
