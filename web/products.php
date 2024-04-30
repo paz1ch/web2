@@ -2,11 +2,6 @@
 global $mysqli;
 include_once("config/config.php");
 ?>
-<?php
-$ctsp = "SELECT * FROM sanpham";
-$sql_sanpham = mysqli_query($mysqli, $ctsp);
-$row = mysqli_fetch_array($sql_sanpham);
-?>
 <!DOCTYPE html>
 <html>
 
