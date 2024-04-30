@@ -16,9 +16,9 @@
                     location.assign("login.php");
                 }
             </script>
-			<a href="search.php" class="account">Tìm kiếm</a>
+			<a href="product_search.php" class="account">Tìm kiếm</a>
 			<div class="search-container">
-				<form action="search.php" method="post">
+				<form action="product_search.php" method="post">
 				<input type="text" placeholder="Search.." name="searchtext">
 				<button type="submit" class="buttonsubmit"><i class="fa fa-search" name="search"> </i></button>
 				</form>

@@ -3,8 +3,20 @@ include_once("config/config.php");
 
 if (isset($_POST['search'])) {
 	$search = $_POST['searchtext'];
-	$sql_search = "SELECT * FROM sanpham WHERE tensp LIKE '%$search%'";
-	$query_search = mysqli_query($sqli, $sql_search);
+	
+	if (isset($_GET['page'])) {
+		$get_page = $_GET['page'];
+	} else {
+		$get_page = '';
+	}
+	if ($get_page == '' || $get_page == 1) {
+		$page1 = 0;
+	} else {
+		$page1 = ($get_page * 8) - 8;
+	}
+
+	$sql = "SELECT * FROM sanpham sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
+	$sql_sanpham = mysqli_query($mysqli, $sql);
 }
 
 ?>
@@ -47,9 +59,6 @@ if (isset($_POST['search'])) {
 				<section class="on-sale">
 					<div id="site">
 						<div class="container">
-							<div class="title-box">
-								<h2>ĐỒ NỘI THẤT</h2>
-							</div>
 							<script>
 								function addtoCart() {
 									alert("Cần phải đăng nhập");
@@ -58,6 +67,13 @@ if (isset($_POST['search'])) {
 							</script>
 
 							<div class="row">
+
+								<?php
+									if($tmp = mysqli_fetch_array($sql_sanpham) ==  0){
+								?>
+								<?php
+									}else{
+								?>
 								<?php
 								while ($row = mysqli_fetch_array($sql_sanpham)) {
 
@@ -112,7 +128,8 @@ if (isset($_POST['search'])) {
 										</div>
 									</div>
 								<?php
-								}
+										}
+									}
 								?>
 							</div>
 						</div>
@@ -133,6 +150,21 @@ if (isset($_POST['search'])) {
 
 
 	</section>
+
+	<div style="text-align: center;">
+		<p style="font-size: 20px;">Trang :
+			<?php
+			$sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham WHERE tensp LIKE '%$search%'");
+			$count = mysqli_num_rows($sql_trang);
+			$a = ceil($count / 8);
+
+			for ($b = 1; $b <= $a; $b++) {
+				echo '<a href="product_search.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+			}
+
+			?>
+		</p>
+	</div>
 
 </body>
 
