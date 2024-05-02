@@ -1,24 +1,5 @@
 <?php
 include_once("config/config.php");
-
-if (isset($_POST['search'])) {
-	$search = $_POST['searchtext'];
-	
-	if (isset($_GET['page'])) {
-		$get_page = $_GET['page'];
-	} else {
-		$get_page = '';
-	}
-	if ($get_page == '' || $get_page == 1) {
-		$page1 = 0;
-	} else {
-		$page1 = ($get_page * 8) - 8;
-	}
-
-	$sql = "SELECT * FROM sanpham sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
-	$sql_sanpham = mysqli_query($mysqli, $sql);
-}
-
 ?>
 
 <html lang="vi" class="h-100">
@@ -71,6 +52,7 @@ if (isset($_POST['search'])) {
 								<?php
 									if($tmp = mysqli_fetch_array($sql_sanpham) ==  0){
 								?>
+								<p>Không có sản phẩm được tìm thấy</p>
 								<?php
 									}else{
 								?>
@@ -149,9 +131,8 @@ if (isset($_POST['search'])) {
 
 
 
-	</section>
-
-	<div style="text-align: center;">
+	</section>					
+	<div style="text-align: center;" >
 		<p style="font-size: 20px;">Trang :
 			<?php
 			$sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham WHERE tensp LIKE '%$search%'");
@@ -161,11 +142,9 @@ if (isset($_POST['search'])) {
 			for ($b = 1; $b <= $a; $b++) {
 				echo '<a href="product_search.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
 			}
-
 			?>
 		</p>
 	</div>
-
 </body>
 
 <!-- footer -->
