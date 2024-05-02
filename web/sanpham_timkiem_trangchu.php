@@ -29,7 +29,7 @@ include_once("config/config.php");
 <body>
 	<!-- header -->
 	<?php
-	include_once("header.php");
+	include_once("header_user.php");
 	?>
 	<!--end header-->
 	<br><br><br>
@@ -40,13 +40,6 @@ include_once("config/config.php");
 				<section class="on-sale">
 					<div id="site">
 						<div class="container">
-							<script>
-								function addtoCart() {
-									alert("Cần phải đăng nhập");
-									window.location.replace("login.php")
-								}
-							</script>
-
 							<div class="row">
 
 								<?php
@@ -98,13 +91,6 @@ include_once("config/config.php");
 															<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
 														</div>
 														<p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
-														<script>
-															button = document.getElementById("button");
-															button.onclick = function() {
-																alert("Cần phải đăng nhập")
-																window.location.replace("login.php");
-															}
-														</script>
 													</form>
 
 												</div>
@@ -144,7 +130,7 @@ include_once("config/config.php");
 				$a = ceil($count / 8);
 
 				for ($b = 1; $b <= $a; $b++) {
-					echo '<a href="?search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+					echo '<a href="?username=1&search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
 				}
 				?>
 			</p>

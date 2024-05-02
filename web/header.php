@@ -17,9 +17,6 @@ if (isset($_GET['search'])) {
     
     $sql_sanpham = mysqli_query($mysqli, $sql);
 }
-else{
-    echo "asdfafasdf";
-}
 ?>
 <div class="topnav">
     <div style="display: flex;" class="dangxuat">

@@ -6,6 +6,29 @@ $query = "SELECT * FROM taikhoan where username ='$username'";
 $result = mysqli_query($mysqli, $query);
 $row = mysqli_fetch_array($result);
 ?>
+
+<?php
+if (isset($_GET['search'])) {
+    $search = $_GET['searchtext'];
+
+    if (isset($_GET['page'])) {
+        $get_page = $_GET['page'];
+    } else {
+        $get_page = '';
+    }
+    if ($get_page == '' || $get_page == 1) {
+        $page1 = 0;
+    } else {
+        $page1 = ($get_page * 8) - 8;
+    }
+
+    $sql = "SELECT * FROM sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
+    
+    $sql_sanpham = mysqli_query($mysqli, $sql);
+}
+?>
+
+
 <div class="topnav">
     <div style="display: inline-flex;" class="dangxuat">
         <a href="index.php" class="dangxuat">Đăng xuất</a>
@@ -25,9 +48,9 @@ $row = mysqli_fetch_array($result);
     <a href="cart.php?username=<?php echo $row['username'] ?>">Giỏ hàng</a>
     <a href="timkiem_trangchu.php?username=<?php echo $row['username'] ?>" class="account">Tìm kiếm</a>
     <div class="search-container">
-        <form action="timkiem_trangchu.php?username=<?php echo $row['username'] ?>">
+        <form action="sanpham_timkiem_trangchu.php?username=<?php echo $row['username'] ?>" method="get">
             <input type="text" placeholder="Tìm kiếm.." name="search">
-            <button type="submit"><i class="fa fa-search"> </i></button>
+            <input type="submit" class="fa fa-search" name="search" value='Search'>
         </form>
     </div>
 </div>
