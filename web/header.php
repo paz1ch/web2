@@ -1,6 +1,6 @@
 <?php
-if (isset($_POST['search'])) {
-    $search = $_POST['searchtext'];
+if (isset($_GET['search'])) {
+    $search = $_GET['searchtext'];
 
     if (isset($_GET['page'])) {
         $get_page = $_GET['page'];
@@ -13,8 +13,12 @@ if (isset($_POST['search'])) {
         $page1 = ($get_page * 8) - 8;
     }
 
-    $sql = "SELECT * FROM sanpham sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
+    $sql = "SELECT * FROM sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
+    
     $sql_sanpham = mysqli_query($mysqli, $sql);
+}
+else{
+    echo "asdfafasdf";
 }
 ?>
 <div class="topnav">
@@ -37,9 +41,9 @@ if (isset($_POST['search'])) {
     </script>
     <a href="product_search.php" class="account">Tìm kiếm</a>
     <div class="search-container">
-        <form action="product_search.php" method="post">
+        <form action="product_search.php" method="get">
             <input type="text" placeholder="Search.." name="searchtext">
-            <input type="submit" class="timkiem" name="search" value=''>
+            <input type="submit" class="timkiem" name="search" value='Search'>
         </form>
     </div>
 </div>
