@@ -84,7 +84,7 @@ $id = $_GET['id'];
                                 </ul>
                             </div>
                             <div class="details col-md-6">
-                                <!-- Tên Snar phẩm được thêm ở đây-->
+                                <!-- Tên Sản phẩm được thêm ở đây-->
                                 <h3 class="product-title"><?php echo $row['tensp'] ?></h3>
                                 <div class="rating">
                                     <div class="stars">

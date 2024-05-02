@@ -69,7 +69,7 @@ $username = $_GET['username']
                                         </a>
                                     </button>
 
-                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" onclick="addtoCart()">
+                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -87,15 +87,15 @@ $username = $_GET['username']
                                 } ?>
                                 <i class="fa fa-star-half-o"></i>
                                 <h4><?php echo $row['tensp'] ?></h4>
-                                <div class="product-description" data-name="Mirror-3" data-price="12">
+                                <div>
 
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
                                     <form class="add-to-cart" action="cart.php" method="post">
                                         <div>
                                             <label for="qty-2">Số lượng</label>
-                                            <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
+                                            <input type="text" name="qty-2" id="qty-2" class="qty" />
                                         </div>
-                                        <p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
+                                            <p><input name="dathang" type="submit" value="Mua ngay" class="btn" id="button" /></p>
                                     </form>
 
                                 </div>

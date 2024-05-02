@@ -29,19 +29,24 @@
 		</header>
 		<div id="content">
 			<h1>Giỏ hàng của bạn</h1>
-			<form id="shopping-cart" action="cart.php" method="post">
+			<form id="shopping-cart" action="add_to_cart.php" method="post">
 				<table class="shopping-cart">
 					<tr class="item">
-						<th scope="col">Sản phẩm</th>
-						<th scope="col">Số lượng</th>
-						<th scope="col">Thành tiền</th>
-						<th scope="col">Lựa chọn</th>
+                        <th>Stt</th>
+						<th>Sản phẩm</th>
+						<th>Số lượng</th>
+						<th>Thành tiền</th>
+						<th>Lựa chọn</th>
 					</tr>
 					<tr>
+                        <td>1</td>
 						<td>Gương-3</td>
-						<td><input type="text" value="3" style="outline: none; border: none; text-align: center;"></td>
+						<td>3</td>
 						<td>36€</td>
-						<td><span onclick="xoasp()">Xóa</span></td>
+						<td>
+                            <a>Xóa |</a>
+                            <a>Thêm</a>
+                        </td>
 					</tr>
 				</table>
 				<p id="sub-total">
@@ -49,10 +54,10 @@
 				</p>
 				<ul id="shopping-cart-actions">
 					<li>
-						<a href="select_address.php?username=<?php echo $_GET['username'] ?>" id="thanhtoan" class="btn">Thanh toán</a>
+						<a href="select_address.php?username=" id="thanhtoan" class="btn">Thanh toán</a>
 					</li>
 					<li>
-						<a href="sanpham_trangchu.php?username=<?php echo $_GET['username'] ?>" class="btn">Tiếp tục mua sắm</a>
+						<a href="sanpham_trangchu.php?username=" class="btn">Tiếp tục mua sắm</a>
 					</li>
 				</ul>
 			</form>
