@@ -69,7 +69,7 @@ $username = $_GET['username']
                                         </a>
                                     </button>
 
-                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                    <button type="button" class="btn btn-se`condary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                 </div>

@@ -1,6 +1,5 @@
 <?php
 include_once("config/config.php");
-$username = $_GET["username"];
 ?>
 
 <html lang="vi" class="h-100">

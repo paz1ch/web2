@@ -48,9 +48,10 @@ if (isset($_GET['search'])) {
     <a href="cart.php?username=<?php echo $row['username'] ?>">Giỏ hàng</a>
     <a href="timkiem_trangchu.php?username=<?php echo $row['username'] ?>" class="account">Tìm kiếm</a>
     <div class="search-container">
-        <form action="sanpham_timkiem_trangchu.php?username=<?php echo $row['username'] ?>" method="GET">
+        <form action="sanpham_timkiem_trangchu.php" method="GET">
+            <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
             <input type="text" placeholder="Tìm kiếm.." name="search">
-            <button type="submit" name="search">
+            <button type="submit">
                 <i class="fa fa-search"></i>
             </button>
         </form>
