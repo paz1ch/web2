@@ -25,7 +25,13 @@ $username = $_GET["username"];
 	<link rel="stylesheet" href="style/product_detail.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="style/font-awesome.min.css" media="screen" type="text/css">
+    <style>
+        .fa{
+            line-height: revert!important;
+        }
+    </style>
 </head>
+
 
 <body>
 	<!-- header -->

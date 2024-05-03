@@ -7,21 +7,12 @@ $id = $_GET['id'];
 <head>
     <title>Product details</title>
     <meta charset="utf-8" />
-    <meta name="viewpoint" content="width=device-width,initial-scal=1.0">
-    <meta http-equip="X-UA-compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="images/Real-Madrid.jpg">
     <link rel="stylesheet" href="style/style.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_topnav.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
-    <link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="style/style_pagination.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style/product-detail.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
-    <link rel="stylesheet" href="style/font-awesome.min.css" media="screen" type="text/css">
 </head>
 
 <body>

@@ -50,7 +50,9 @@ if (isset($_POST['search'])) {
     <div class="search-container">
         <form action="sanpham_timkiem_trangchu.php?username=<?php echo $row['username'] ?>" method="POST">
             <input type="text" placeholder="Tìm kiếm.." name="search">
-            <input type="submit" class="fa fa-search" name="search" value='Search'>
+            <button type="submit">
+                <i class="fa fa-search"></i>
+            </button>
         </form>
     </div>
 </div>

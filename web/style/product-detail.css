@@ -74,14 +74,6 @@ img {
     line-height: 1.5em;
 }
 
-@media screen and (min-width: 997px) {
-    .wrapper {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-    }
-}
 
 .details {
     display: -webkit-box;
@@ -156,7 +148,7 @@ img {
 }
 
 .add-to-cart:hover,
-.like:hover, .fa:hover {
+.like:hover {
     background: red;
 }
 
@@ -233,4 +225,8 @@ img {
 }
 #soluong{
     width: 30%;
+}
+
+.fa{
+    line-height: revert!important;
 }
