@@ -1,3 +1,7 @@
+<?php
+include ('config/config.php');
+$username = $_GET['username'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -54,10 +58,10 @@
 				</p>
 				<ul id="shopping-cart-actions">
 					<li>
-						<a href="select_address.php?username=" id="thanhtoan" class="btn">Thanh toán</a>
+						<a href="select_address.php?username=<?php echo urldecode($username) ?>" id="thanhtoan" class="btn">Thanh toán</a>
 					</li>
 					<li>
-						<a href="sanpham_trangchu.php?username=" class="btn">Tiếp tục mua sắm</a>
+						<a href="sanpham_trangchu.php?username=<?php echo urldecode($username) ?>" class="btn">Tiếp tục mua sắm</a>
 					</li>
 				</ul>
 			</form>
