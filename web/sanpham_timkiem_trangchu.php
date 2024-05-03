@@ -1,5 +1,6 @@
 <?php
 include_once("config/config.php");
+$username = $_GET["username"];
 ?>
 
 <html lang="vi" class="h-100">
@@ -32,16 +33,15 @@ include_once("config/config.php");
 	include_once("header_user.php");
 	?>
 	<!--end header-->
-	<br><br><br>
 	<main role="main">
 		<div class="container mt-4">
 			<form name="frmTimKiem" method="get" action="#">
 				<h1 class="text-center" style="margin-top: 75px;">Sản phẩm tìm thấy</h1>
+                <br>
 				<section class="on-sale">
 					<div id="site">
 						<div class="container">
 							<div class="row">
-
 								<?php
 								$tmp = mysqli_num_rows($sql_sanpham);
 								if ($tmp == 0) {

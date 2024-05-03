@@ -8,7 +8,7 @@ $row = mysqli_fetch_array($result);
 ?>
 
 <?php
-if (isset($_GET['search'])) {
+if (isset($_POST['search'])) {
     $search = $_GET['searchtext'];
 
     if (isset($_GET['page'])) {
@@ -48,7 +48,7 @@ if (isset($_GET['search'])) {
     <a href="cart.php?username=<?php echo $row['username'] ?>">Giỏ hàng</a>
     <a href="timkiem_trangchu.php?username=<?php echo $row['username'] ?>" class="account">Tìm kiếm</a>
     <div class="search-container">
-        <form action="sanpham_timkiem_trangchu.php?username=<?php echo $row['username'] ?>" method="get">
+        <form action="sanpham_timkiem_trangchu.php?username=<?php echo $row['username'] ?>" method="POST">
             <input type="text" placeholder="Tìm kiếm.." name="search">
             <input type="submit" class="fa fa-search" name="search" value='Search'>
         </form>
