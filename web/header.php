@@ -40,7 +40,7 @@ if (isset($_GET['search'])) {
     <div class="search-container">
         <form action="product_search.php" method="get">
             <input type="text" placeholder="Search.." name="searchtext">
-            <button type="submit">
+            <button type="submit" name="search">
                 <i class="fa fa-search"></i>
             </button>
         </form>
