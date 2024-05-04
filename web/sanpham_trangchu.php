@@ -1,7 +1,12 @@
 <?php
 include_once("config/config.php");
 global $mysqli;
-$username = $_GET['username']
+$username = $_GET['username'];
+if (isset($_POST['dathang'])){
+    echo '<script type="text/JavaScript">
+                window.location.href = "select_address.php?username=' . ($username) . '";
+              </script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +95,7 @@ $username = $_GET['username']
                                 <div>
 
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="select_address.php" method="post">
+                                    <form class="add-to-cart" action="" method="post">
                                         <div>
                                             <label for="qty-2">Số lượng</label>
                                             <input type="text" name="qty-2" id="qty-2" class="qty" value="1"/>

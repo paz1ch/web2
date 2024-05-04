@@ -1,6 +1,9 @@
 <?php
 global $mysqli;
 $id = $_GET['id'];
+if(isset($_POST['add'])){
+
+}
 ?>
 <html>
 
@@ -96,18 +99,18 @@ $id = $_GET['id'];
                                 <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
-
                                     <label for="soluong">Số lượng đặt mua:</label>
-                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">
+                                    <form id="add-to-cart-form" method="post">
                                         <input type="number" class="form-control" id="soluong" name="quantity[<?php echo $row['id_sp']?>]" value="1">
                                     </form>
                                 </div>
                                 <div class="action">
-                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">
-                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" type="submit" value="Thêm vào giỏ hàng">
+                                    <form id="add-to-cart-form" method="post">
+                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="add"
+                                               type="submit" value="Thêm vào giỏ hàng">
+                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="purchase"
+                                               type="submit" value="Mua ngay">
                                     </form>
-                                    <br><br>
-                                    <a class="add-to-cart btn btn-default" id="muangay" onclick="addCart()">Mua ngay</a>
                                 </div>
                             </div>
                         </div>
