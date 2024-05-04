@@ -36,7 +36,7 @@ $id = $_GET['id'];
 
             <div class="card">
                 <div class="container-fliud">
-                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post" action="">
+<!--                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post" action="cart.php">-->
 
                         <?php
                         $ctsp = "SELECT * FROM sanpham WHERE id_sp ='$id'";
@@ -96,20 +96,22 @@ $id = $_GET['id'];
                                 <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
+
                                     <label for="soluong">Số lượng đặt mua:</label>
-                                    <input type="number" class="form-control" id="soluong" name="soluong" value="1">
+                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">
+                                        <input type="number" class="form-control" id="soluong" name="quantity[<?php echo $row['id_sp']?>]" value="1">
+                                    </form>
                                 </div>
                                 <div class="action">
-                                    <div class="add-to-cart btn btn-default" id="btnThemVaoGioHang" onclick="addCart1()">
-                                        Thêm vào giỏ hàng
-                                    </div>
-
+                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">
+                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" type="submit" value="Thêm vào giỏ hàng">
+                                    </form>
                                     <br><br>
                                     <a class="add-to-cart btn btn-default" id="muangay" onclick="addCart()">Mua ngay</a>
                                 </div>
                             </div>
                         </div>
-                    </form>
+<!--                    </form>-->
                 </div>
             </div>
 

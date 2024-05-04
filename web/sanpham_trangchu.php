@@ -1,12 +1,7 @@
 <?php
 include_once("config/config.php");
 global $mysqli;
-$username = $_GET['username'];
-if(isset($_POST['submit'])){
-    echo '<script type="text/JavaScript">
-                window.location.href = "select_address.php?username=' . ($username) . '";
-              </script>';
-}
+$username = $_GET['username']
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +24,6 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 
 <body>
     <section id="home">
@@ -75,7 +69,7 @@ if(isset($_POST['submit'])){
                                         </a>
                                     </button>
 
-                                    <button type="button" class="btn btn-se`condary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -96,12 +90,12 @@ if(isset($_POST['submit'])){
                                 <div>
 
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="" method="post">
+                                    <form class="add-to-cart" action="select_address.php" method="post">
                                         <div>
                                             <label for="qty-2">Số lượng</label>
-                                            <input type="text" name="qty-2" id="qty-2" class="qty" />
+                                            <input type="text" name="qty-2" id="qty-2" class="qty" value="1"/>
                                         </div>
-                                            <p><input name="submit" type="submit" value="Mua ngay" class="btn"/></p>
+                                            <p><input name="dathang" type="submit" value="Mua ngay" class="btn" id="button" /></p>
                                     </form>
 
                                 </div>
