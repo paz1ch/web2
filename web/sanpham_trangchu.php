@@ -1,7 +1,12 @@
 <?php
 include_once("config/config.php");
 global $mysqli;
-$username = $_GET['username']
+$username = $_GET['username'];
+if(isset($_POST['submit'])){
+    echo '<script type="text/JavaScript">
+                window.location.href = "select_address.php?username=' . ($username) . '";
+              </script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +29,7 @@ $username = $_GET['username']
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 
 <body>
     <section id="home">
@@ -90,12 +96,12 @@ $username = $_GET['username']
                                 <div>
 
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="cart.php" method="post">
+                                    <form class="add-to-cart" action="" method="post">
                                         <div>
                                             <label for="qty-2">Số lượng</label>
                                             <input type="text" name="qty-2" id="qty-2" class="qty" />
                                         </div>
-                                            <p><input name="dathang" type="submit" value="Mua ngay" class="btn" id="button" /></p>
+                                            <p><input name="submit" type="submit" value="Mua ngay" class="btn"/></p>
                                     </form>
 
                                 </div>
