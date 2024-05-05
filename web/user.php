@@ -134,8 +134,8 @@ if(isset($_POST['submit'])){
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </button>
-
-                                    <button type="submit" class="btn btn-se`condary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
+                                    <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -155,11 +155,13 @@ if(isset($_POST['submit'])){
                                 <h4><?php echo $row['tensp'] ?></h4>
                                 <div>
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="" method="post">
+
                                         <div>
                                             <label for="qty-2">Số lượng</label>
-                                            <input type="text" name="qty-2" id="qty-2" class="qty" />
+                                            <input type="number" min="1" max="1000" name="quantity[<?php echo $row['id_sp']?>]"  class="qty" value="1"/>
                                         </div>
+                                    </form>
+                                    <form class="add-to-cart" action="" method="post">
                                         <p><input name="submit" type="submit" value="Mua ngay" class="btn"/></p>
                                     </form>
 
