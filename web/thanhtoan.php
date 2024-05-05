@@ -111,14 +111,15 @@ $id = $_GET['id'];
                             </div>
 
                             <hr class="mb-4">
-                            <button href="index.php" class="btn btn-primary btn-lg btn-block" id="dathang" type="button" name="btnDatHang">Đặt hàng</button>
-
+                        <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?> &action=submit" method="post">
+                            <input class="btn btn-primary btn-lg btn-block" id="dathang" type="submit" name="order_click"  value="Đặt hàng">
+                        </form>
                             <script>
-                                button1 = document.getElementById("dathang");
-                                button1.onclick = function() {
-                                    alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                    window.location.replace('sanpham_trangchu.php?username=<?php echo urlencode($username); ?>')
-                                }
+                                //button1 = document.getElementById("dathang");
+                                //button1.onclick = function() {
+                                //    alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
+                                //    window.location.replace('sanpham_trangchu.php?username=<?php //echo urlencode($username); ?>//')
+                                //}
                             </script>
 
                             <hr class="mb-4">
