@@ -49,9 +49,10 @@ $username = $_GET['username'];
                         break;
                 }
             }
-        if(!empty($_SESSION['cart'])){
-//            var_dump("SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")"); exit;
-            $products = mysqli_query($mysqli, "SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")");
+            $products = NULL;
+            if(!empty($_SESSION['cart'])){
+//              var_dump("SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")"); exit;
+                $products = mysqli_query($mysqli, "SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")");
             }
         ?>
 	</section>
@@ -73,7 +74,7 @@ $username = $_GET['username'];
 					</tr>
                     <?php
                     $num = 1;
-                    while($row = mysqli_fetch_assoc($products)){ ?>
+                    while($products != NULL && mysqli_fetch_assoc($products)){ ?>
 					<tr>
                         <td class="product-number"><?=$num++;?></td>
 						<td class="product-name" ><?= $row['tensp']?></td>
