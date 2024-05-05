@@ -2,12 +2,6 @@
 global $mysqli;
 $id = $_GET['id'];
 $username=$_GET['username'];
-    //if(isset($_POST['add'])){
-    //
-    //}
-    //if(isset($_POST['purchase'])){
-    //
-    //}
 ?>
 <html>
 
@@ -139,7 +133,6 @@ $username=$_GET['username'];
     <br>
 
     <!------Contact------------>
-    <?php include 'footer.php' ?>
     <!-- footer -->
     <footer class="footer mt-auto py-3">
         <div class="container">

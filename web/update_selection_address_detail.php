@@ -34,6 +34,11 @@ if (isset($_POST['submit'])) {
                 window.location.href = "select_address.php?username=' . ($username) . '";
               </script>';
     }
+    else{
+        echo '<script type="text/JavaScript">
+                window.location.href = "select_address.php?username=' . ($username) . '";
+              </script>';
+    }
     $stmt->close();
 }
 ?>

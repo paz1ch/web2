@@ -45,6 +45,7 @@ include_once("config/config.php");
     $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
     $sql_sanpham = mysqli_query($mysqli, $sql);
     ?>
+    <br>
     <section class="on-sale">
         <div id="site">
             <div class="container">
@@ -135,6 +136,7 @@ include_once("config/config.php");
             ?>
         </p>
     </div>
+<br><br>
 </body>
 
 </html>

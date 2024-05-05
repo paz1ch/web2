@@ -53,6 +53,7 @@ if (isset($_POST['dathang'])){
     $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
     $sql_sanpham = mysqli_query($mysqli, $sql);
     ?>
+    <br>
     <section class="on-sale">
         <div id="site">
             <div class="container">
@@ -123,12 +124,13 @@ if (isset($_POST['dathang'])){
             $a = ceil($count / 8);
 
             for ($b = 1; $b <= $a; $b++) {
-                echo '<a href="products.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                echo '<a href="sanpham_trangchu.php?username='.$username.'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
             }
 
             ?>
         </p>
     </div>
+<br><br>
 </body>
 
 </html>

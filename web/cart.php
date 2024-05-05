@@ -57,10 +57,9 @@ $username = $_GET['username'];
         ?>
 	</section>
 	<div id="site">
-		<header id="masthead">
-		</header>
 		<div id="content">
-			<h1>Giỏ hàng của bạn</h1>
+            <header id="masthead"></header>
+            <h1>Giỏ hàng của bạn</h1>
 			<form id="shopping-cart" action="cart.php?action=submit" method="post">
 				<table class="shopping-cart">
 					<tr class="item">
@@ -84,7 +83,9 @@ $username = $_GET['username'];
                         <td class="product-price"><?= $row['gia']?></td>
 						<td class="product-quantity"><?= $_SESSION["cart"][$row['id_sp']]?></td>
 						<td class="product-money"><?= $row['gia']?></td>
-                        <td class="product-delete"> <a href="cart.php?action=delete&id=<?= $row['id_sp']?>"/>Xóa</td>
+                        <td class="product-delete">
+                            <a href="cart.php?username=<?php echo ($username); ?>&action=delete&id=<?php echo ($row['id_sp']); ?>">Xóa</a>
+                        </td>
 					</tr>
                     <?php } ?>
                     <tr id="row-total">
