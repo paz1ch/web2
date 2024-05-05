@@ -216,16 +216,45 @@ img {
     background-color: #ee4d2d;
 }
 #btnThemVaoGioHang{
-    border: solid 2px #ee4d2d;
-    background-color: #eadbd9;
-    color: #ee4d2d;
+    border: none;
+    background: indianred;
+    color: #f2f2f2;
+    padding: 10px 35px;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 500ms ease;
+    overflow:hidden
 }
+
+#btnThemVaoGioHang:before {
+    font-family: FontAwesome;
+    content:"\f217";
+    position: absolute;
+    top: 11px;
+    left: -30px;
+    transition: all 200ms ease;
+}
+
+#btnThemVaoGioHang:hover:before {
+    left: 7px;
+}
+
+#btnThemVaoGioHang:hover {
+    box-shadow: 1px 3px 8px #000;
+}
+
+
+
 .add-to-cart{
     margin-right: 15px;
 }
 #soluong{
     width: 30%;
 }
+
+
 
 .fa{
     line-height: revert!important;

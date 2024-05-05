@@ -18,7 +18,7 @@ if (isset($_GET['search'])) {
     $sql_sanpham = mysqli_query($mysqli, $sql);
 }
 ?>
-<div class="topnav">
+<div class="topnav" >
     <div style="display: flex;" class="dangxuat">
         <a href="register.php" class="dangxuat">Đăng ký</a>
     </div>
@@ -26,7 +26,7 @@ if (isset($_GET['search'])) {
         <a href="login.php">Đăng nhập</a>
     </div>
 
-    <a class="active" href="index.php">Trang chủ</a>
+    <a class="active"  href="index.php">Trang chủ</a>
     <a href="products.php">Sản phẩm</a>
     <a href="#" id="giohang">Giỏ hàng</a>
     <script>

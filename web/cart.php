@@ -1,4 +1,6 @@
 <?php
+session_start();
+global $mysqli;
 include ('config/config.php');
 $username = $_GET['username'];
 ?>
@@ -23,8 +25,33 @@ $username = $_GET['username'];
 	<section id="home">
 		<?php
             include('header_user.php');
+            if(!isset($_SESSION['cart'])){
+                $_SESSION['cart'] = array();
+            }
             if(isset($_GET['action'])){
-                var_dump($_POST); exit;
+//                echo "<br> <br> <br> <br> <br>";
+                function update_cart($add = false)
+                {
+                    foreach($_POST['quantity'] as $id_sp => $quantity) {
+                        if($add) $_SESSION["cart"][$id_sp] += $quantity;
+                        else $_SESSION["cart"][$id_sp] = $quantity;
+                    }
+                }
+                switch($_GET['action']){
+                    case "add":
+                        update_cart(true);
+                        header("location: ./cart.php?username=$username");
+                        break;
+                    case "delete":
+                        if(isset($_GET['id'])){
+                            unset($_SESSION["cart"][$_GET['id']]);
+                        }
+                        break;
+                }
+            }
+        if(!empty($_SESSION['cart'])){
+//            var_dump("SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")"); exit;
+            $products = mysqli_query($mysqli, "SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")");
             }
         ?>
 	</section>
@@ -42,49 +69,23 @@ $username = $_GET['username'];
                         <th class="product-price"> Đơn giá</th>
 						<th class="product-quantity">Số lượng</th>
 						<th class="product-money">Thành tiền</th>
-						<th class="product-delete">Xóa</th>
+						<th class="product-delete">Thao tác</th>
 					</tr>
+                    <?php
+                    $num = 1;
+                    while($row = mysqli_fetch_assoc($products)){ ?>
 					<tr>
-                        <td class="product-number">1</td>
-						<td class="product-name">Gương-3</td>
+                        <td class="product-number"><?=$num++;?></td>
+						<td class="product-name" ><?= $row['tensp']?></td>
                         <td class="product-img">
-                            <img id="product-img" src="http://localhost/web2/web/images/table5.jpg" alt="" width="300" height="200">
-
-                            <!-- The Modal -->
-                            <div id="myModal" class="modal">
-                                <span class="close" style="color: #eeeeee">X</span>
-                                <img class="modal-content" id="img01">
-                                <div id="caption"></div>
-                            </div>
-
-                            <script>
-                                // Get the modal
-                                var modal = document.getElementById('myModal');
-
-                                // Get the image and insert it inside the modal - use its "alt" text as a caption
-                                var img = document.getElementById('product-img');
-                                var modalImg = document.getElementById("img01");
-                                var captionText = document.getElementById("caption");
-                                img.onclick = function(){
-                                    modal.style.display = "block";
-                                    modalImg.src = this.src;
-                                    captionText.innerHTML = this.alt;
-                                }
-
-                                // Get the <span> element that closes the modal
-                                var span = document.getElementsByClassName("close")[0];
-
-                                // When the user clicks on <span> (x), close the modal
-                                span.onclick = function() {
-                                    modal.style.display = "none";
-                                }
-                            </script>
+                            <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp']?>">
                         </td>
-                        <td class="product-price">3$</td>
-						<td class="product-quantity">3</td>
-						<td class="product-money">36€</td>
-                        <td class="product-delete"></td>
+                        <td class="product-price"><?= $row['gia']?></td>
+						<td class="product-quantity"><?= $_SESSION["cart"][$row['id_sp']]?></td>
+						<td class="product-money"><?= $row['gia']?></td>
+                        <td class="product-delete"> <a href="cart.php?action=delete&id=<?= $row['id_sp']?>"/>Xóa</td>
 					</tr>
+                    <?php } ?>
                     <tr id="row-total">
                         <th class="product-number">Tổng tiền</th>
                         <th class="product-name">&nbsp</th>
@@ -92,7 +93,7 @@ $username = $_GET['username'];
                         <th class="product-price">&nbsp</th>
                         <th class="product-quantity">&nbsp</th>
                         <th class="product-money">36$</th>
-                        <th class="product-delete">Xóa</th>
+                        <th class="product-delete"></th>
                     </tr>
 				</table>
 <!--				<p id="sub-total">-->

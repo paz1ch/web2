@@ -57,7 +57,7 @@ if (isset($_POST['dathang'])){
         <div id="site">
             <div class="container">
                 <div class="title-box">
-                    <h2>ĐỒ NỘI THẤT</h2>
+                    <h2>Đồ nội thất</h2>
                 </div>
 
                 <div class="row">
@@ -73,8 +73,8 @@ if (isset($_POST['dathang'])){
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </button>
-
-                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
+                                    <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                         <i class="fa fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -93,16 +93,16 @@ if (isset($_POST['dathang'])){
                                 <i class="fa fa-star-half-o"></i>
                                 <h4><?php echo $row['tensp'] ?></h4>
                                 <div>
-
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="" method="post">
                                         <div>
                                             <label for="qty-2">Số lượng</label>
-                                            <input type="text" name="qty-2" id="qty-2" class="qty" value="1"/>
+                                            <input type="number" min="1" max="1000" name="quantity[<?php echo $row['id_sp']?>]"  class="qty" value="1"/>
                                         </div>
-                                            <p><input name="dathang" type="submit" value="Mua ngay" class="btn" id="button" /></p>
                                     </form>
-
+                                    <form class="add-to-cart">
+                                        <br>
+                                        <p><input name="dathang" type="submit" value="Mua ngay" class="btn" id="button" /></p>
+                                    </form>
                                 </div>
                             </div>
                         </div>

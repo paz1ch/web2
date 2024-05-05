@@ -1,5 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic);
 
+
+
 *{
 	margin:0;
 	padding: 0;
@@ -35,20 +37,55 @@ html {
 /*---on sale---*/
 .title-box
 {
-	background: #00CDCD;
-	color: #fff;
-	width: 180px;
-	padding: 4px 10px;
-	height: 40px;
+	text-align: center;
+	width: 300px;
+	/*padding: 4px 10px;*/
 	margin-bottom: 30px;
-	display: flex;
+	display: inline-block;
 	margin-top: 70px;
+	background:saddlebrown;
+	color:#fff;
+	border:none;
+	position:relative;
+	height:60px;
+	font-size:1.0em;
+	padding:0 2em;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 }
 
+.title-box:hover{
+	background:#ffffff;
+	color:#000000;
+}
 
+.title-box:before,.title-box:after{
+	content:'';
+	position:absolute;
+	top:0;
+	right:0;
+	height:1px;
+	width:0;
+	background: saddlebrown;
+	transition:400ms ease all;
+}
+
+.title-box:after{
+	right:inherit;
+	top:inherit;
+	left:0;
+	bottom:0;
+}
+
+.title-box:hover:before,.title-box:hover:after{
+	width:100%;
+	transition:800ms ease all;
+}
 
 .title-box h2
 {
+	padding-top: 15px;
 	font-size: 24px;	
 }
 .title-box::after

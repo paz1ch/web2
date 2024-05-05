@@ -1,9 +1,13 @@
 <?php
 global $mysqli;
 $id = $_GET['id'];
-if(isset($_POST['add'])){
-
-}
+$username=$_GET['username'];
+    //if(isset($_POST['add'])){
+    //
+    //}
+    //if(isset($_POST['purchase'])){
+    //
+    //}
 ?>
 <html>
 
@@ -100,17 +104,16 @@ if(isset($_POST['add'])){
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
                                     <label for="soluong">Số lượng đặt mua:</label>
-                                    <form id="add-to-cart-form" method="post">
-                                        <input type="number" class="form-control" id="soluong" name="quantity[<?php echo $row['id_sp']?>]" value="1">
-                                    </form>
+                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
+                                        <input type="number" min="1" max="1000" class="form-control" id="soluong" name="quantity[<?php echo $row['id_sp']?>]" value="1">
+<!--                                    </form>-->
                                 </div>
-                                <div class="action">
-                                    <form id="add-to-cart-form" method="post">
-                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="add"
-                                               type="submit" value="Thêm vào giỏ hàng">
-                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="purchase"
-                                               type="submit" value="Mua ngay">
+                                <div class="main">
+<!--                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">-->
+                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" type="submit" value="Thêm vào giỏ hàng">
                                     </form>
+                                    <br> <br>
+                                    <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="purchase" type="submit" value="Mua ngay">
                                 </div>
                             </div>
                         </div>

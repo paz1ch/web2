@@ -25,19 +25,24 @@ body {
   background-color: #343a40;
 }
 
+/*.topnav a:hover{*/
+/*  color: #000000;*/
+/*  background-color: #ffffff;*/
+/*}*/
+
 .topnav:hover a:hover {
   color: white;
   text-decoration: none;
 }
 
 .topnav a.active {
-  background-color:black !important;
-  color: white !important;
+  background-color:black ;
+  color: white ;
   text-decoration: none;
 }
 
 .topnav .search-container {
-  float: left !important;
+  float: left ;
   margin-left: 20%;
 }
 
@@ -77,6 +82,7 @@ button[type=submit] {
 }
 
 .active{
-  color: white !important;
+  color: white ;
 }
+
 
