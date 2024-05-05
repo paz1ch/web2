@@ -148,9 +148,6 @@ $row = mysqli_fetch_array($sql_sanpham);
     </main>
     <br>
 
-    <!------Contact------------>
-    <?php include('footer.php'); ?>
-
     <!-- footer -->
     <footer class="footer mt-auto py-3">
         <div class="container">

@@ -1,5 +1,4 @@
 <section id="contact">
-
 	<div class="container">
 		<h1>Thông tin liên lạc</h1>
 		<div class="row">
@@ -22,6 +21,7 @@
 						var button = document.getElementById("btn");
 						button.onclick = function() {
 							alert("Thông tin liên lạc của bạn đã được gửi đến nhà bán hàng.");
+                            window.location.href='user.php?username';
 						}
 					</script>
 				</form>
@@ -37,7 +37,6 @@
 					<a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
 					<a href="https://twitter.com/login"><i class="fa fa-twitter"></i></a>
 					<a href="https://myaccount.google.com/"><i class="fa fa-google-plus"></i></a>
-
 				</div>
 			</div>
 

@@ -1,5 +1,6 @@
 <?php
 include_once("config/config.php");
+$username = $_GET["username"];
 ?>
 
 <html lang="vi" class="h-100">
@@ -135,7 +136,7 @@ include_once("config/config.php");
 				$a = ceil($count / 8);
 
 				for ($b = 1; $b <= $a; $b++) {
-					echo '<a href="?username=1&search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+					echo '<a href="?username='.$username.'&search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
 				}
 				?>
 			</p>

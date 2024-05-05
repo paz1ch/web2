@@ -139,7 +139,6 @@ $username=$_GET['username'];
     <br>
 
     <!------Contact------------>
-    <?php include 'footer.php' ?>
     <!-- footer -->
     <footer class="footer mt-auto py-3">
         <div class="container">
