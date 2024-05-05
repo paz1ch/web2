@@ -2,12 +2,6 @@
 global $mysqli;
 $id = $_GET['id'];
 $username=$_GET['username'];
-    //if(isset($_POST['add'])){
-    //
-    //}
-    //if(isset($_POST['purchase'])){
-    //
-    //}
 ?>
 <html>
 
