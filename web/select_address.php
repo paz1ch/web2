@@ -103,8 +103,7 @@ if (isset($_GET['id'])) {
                                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                         <input type="submit" name="submit_update" class="T_oZqJ" value="Cập nhật">
                                         <div class="YJU6OK"></div>
-                                        <a class="T_oZqJ" href="address.php?username=<?php echo ($row['username']); ?>
-                                                &id=<?php echo ($row['id']); ?>">Xóa
+                                        <a class="T_oZqJ" href="select_address.php?username=<?php echo ($row['username']);?>&id=<?php echo ($row['id']); ?>">Xóa
                                         </a>
                                     </div>
                                 </form>
