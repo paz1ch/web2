@@ -2,6 +2,7 @@
 include_once("config/config.php");
 global $mysqli;
 $username = $_GET['username'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -127,11 +128,10 @@ $username = $_GET['username'];
                                     <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>" class="btn btn-secondary" title="Xem chi tiết">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
+                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>" method="post">
                                         <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
                                             <i class="fa fa-shopping-cart"></i>
                                         </button>
-                                    </form>
                                 </div>
                             </div>
 
@@ -148,11 +148,10 @@ $username = $_GET['username'];
                                 <h4><?php echo $row['tensp'] ?></h4>
                                 <div>
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="cart.php?username=<?php echo $username?>" method="post">
                                         <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
                                         <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
-                                        <input type="number" min="1" max="1000" name="quantity[<?php echo $row['id_sp']?>]" class="qty" id="qty-<?php echo $row['id_sp']?>" value="1"/>
-                                        <p><input name="purchase" type="submit" value="Mua ngay" class="btn"/></p>
+                                        <input type="number" min="1" max="1000" name="quantity" value="1"/>
+                                        <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                     </form>
                                 </div>
                             </div>

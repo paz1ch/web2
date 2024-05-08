@@ -95,18 +95,16 @@ $username=$_GET['username'];
                                 <p class="product-description"><?php echo $row['motangan'] ?></p>
                                 <h4 class="price">Giá: <span><?php echo $row['gia'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
-                                <div class="form-group">
-                                    <label for="soluong">Số lượng đặt mua:</label>
-                                    <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
-                                        <input type="number" min="1" max="1000" class="form-control" id="soluong" name="quantity[<?php echo $row['id_sp']?>]" value="1">
-<!--                                    </form>-->
-                                </div>
-                                <div class="main">
-<!--                                    <form id="add-to-cart-form" action="cart.php?action=add" method="post">-->
-                                        <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" type="submit" value="Thêm vào giỏ hàng">
-                                    </form>
-                                    <br> <br>
-                                    <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="purchase" type="submit" value="Mua ngay">
+                                <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>" method="post">
+                                    <div class="form-group">
+                                        <label for="soluong">Số lượng đặt mua:</label>
+                                            <input type="number" min="1" max="1000" class="form-control" id="soluong" name="quantity" value="1">
+                                    </div>
+                                    <div class="main">
+                                            <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
+                                            <input class="add-to-cart btn btn-default" name="themvaogiohang"
+                                                   id="btnThemVaoGioHang" type="submit" value="Thêm vào giỏ hàng">
+                                </form>
                                 </div>
                             </div>
                         </div>

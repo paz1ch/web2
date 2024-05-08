@@ -3,11 +3,10 @@ session_start();
 include('config/config.php');
 global $mysqli;
 $username = $_GET['username'];
-$id = $_GET['id'];
-$id_product = $_SESSION['id_product'];
-$number_product=$_SESSION['number_product'];
-
-
+$id=$_GET['id'];
+$sql = "SELECT * from cart where username='$username'";
+$result = $mysqli->query($sql);
+$count = $result->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +37,6 @@ $number_product=$_SESSION['number_product'];
                     <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
                     <h2>Thanh toán</h2>
                 </div>
-                <?php
-                $sql = "SELECT * from sanpham where id_sp='$id_product'";
-                $result = $mysqli->query($sql);
-                $count = $result->num_rows;
-                // Loop through each row in the result set
-                while ($row = $result->fetch_assoc()) {
-                ?>
 
                 <div class="row">
                     <div class="col-md-4 order-md-2 mb-4">
@@ -54,33 +46,40 @@ $number_product=$_SESSION['number_product'];
                                 <?php echo $count?>
                             </span>
                         </h4>
+                        <?php
+                        $sql = "SELECT * from cart where username='$username'";
+                        $result = $mysqli->query($sql);
+                        $count = $result->num_rows;
+                        // Loop through each row in the result set
+                        while ($row = $result->fetch_assoc()) {
+                        ?>
                         <ul class="list-group mb-3">
-
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                                     <div>
                                         <!-- Output the product name -->
                                         <h6 class="my-0"><?php echo $row['tensp']; ?></h6>
                                         <!-- Output the product price and quantity -->
-                                        <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $number_product; ?></small>
+                                        <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
                                     </div>
                                     <span class="text-muted">
                                         <?php
-                                        $total_price = intval($row['gia']) * intval($number_product);
-                                        echo $total_price.'€';
+                                            echo $row['tong'].'€';
                                         ?>
                                     </span>
                                 </li>
+                            <?php
+                            }
+                            ?>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Tổng thành tiền</span>
                                 <strong>
                                     <?php
-                                    $total_price = intval($row['gia']) * intval($number_product);
-                                    echo $total_price.'€';
+                                        echo $_SESSION['tongtien'].'€';
                                     ?>
                                 </strong>
                             </li>
-                            <?php } ?>
                         </ul>
+
                     </div>
 
                     <div class="col-md-8 order-md-1">
@@ -110,9 +109,7 @@ $number_product=$_SESSION['number_product'];
                                     <label>Phuong thuc thanh toan</label>
                                     <input class="form-control" type="text" name="payment" readonly value="<?php echo ($row['payment']) ?>">
                                 </div>
-                            <?php
-                            }
-                            ?>
+
                             </div>
 
                             <hr class="mb-4">
@@ -126,6 +123,8 @@ $number_product=$_SESSION['number_product'];
 
                     </div>
                 </div>
+                <?php } ?>
+
             </form>
 
         </div>

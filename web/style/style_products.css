@@ -79,13 +79,12 @@ form.add-to-cart p
 	color: #00CDCD;
 }
 
-form.add-to-cart p .btn
+form.add-to-cart, p .btn
 {
 	text-align: center;
-	
 	color: white;
-	background: red;
-	margin-bottom: 40px;
+	background: #ef0e2a !important;
+	margin-top:10px;
 }
 
 

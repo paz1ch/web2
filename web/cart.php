@@ -1,16 +1,50 @@
 <?php
-session_start();
-global $mysqli;
 include ('config/config.php');
+global $mysqli;
+
 $username = $_GET['username'];
 
-// lấy dữ liệu khi bấm nút "mua ngay"
-if(isset($_POST['purchase'])){
-    $_SESSION['id_product'] = $_POST['id_product'];
-    $_SESSION['number_product'] = $_POST['quantity'];
-    echo '<script type="text/JavaScript">
-                window.location.href = "select_address.php?username=' . ($username).'";
-              </script>';
+// them sp vao gio hang
+if (isset($_POST['themvaogiohang'])) {
+
+    $id_sp = $_POST['id_product'];
+    $soluong = $_POST['quantity'];
+    // Query to get product details
+    $sql_sanpham = "SELECT * FROM sanpham WHERE id_sp='$id_sp'";
+    $result = $mysqli->query($sql_sanpham);
+    $row = $result->fetch_assoc();
+
+    // Product details
+    $tensp = $row['tensp'];
+    $gia = $row['gia'];
+    $image_sp = $row['image_sp'];
+
+    // Check if the product already exists in the cart for the user
+    $check = "SELECT * FROM cart WHERE id_sp='$id_sp' AND username='$username'";
+    $result_check = $mysqli->query($check);
+
+    if ($result_check->num_rows > 0) {
+        $row_cart = $result_check->fetch_assoc();
+        $soluong = $row_cart['soluong'] + $soluong;
+        $tong = intval($gia) * $soluong;
+
+        $sql_update_soluong = "UPDATE cart SET soluong='$soluong', tong='$tong' WHERE id_sp='$id_sp' AND username='$username'";
+        $result_update = $mysqli->query($sql_update_soluong);
+    }
+    else {
+        // Product doesn't exist in the cart, insert a new record
+        $tong = intval($gia) * $soluong;
+        $sql_insert = "INSERT INTO cart (id_sp, username, tensp, image_sp, gia, soluong, tong) 
+                       VALUES ('$id_sp', '$username', '$tensp', '$image_sp', '$gia', '$soluong', '$tong')";
+        $result_insert = $mysqli->query($sql_insert);
+    }
+}
+// xoa
+if (isset($_GET['action'])){
+    $id_sp=$_GET['id'];
+    $username=$_GET['username'];
+    $sql = "DELETE FROM cart WHERE id_sp='$id_sp' and username='$username'";
+    $result_delete = $mysqli->query($sql);
 }
 ?>
 <!DOCTYPE html>
@@ -52,13 +86,10 @@ if(isset($_POST['purchase'])){
                     <th class="product-delete">Thao tác</th>
                 </tr>
                 <?php
-                if (isset($_POST['themvaogiohang'])){
-                    $id_sp = $_POST['id_product'];
-                    $soluong=$_POST['quantity'];
-                    $sql = "SELECT * from sanpham where id_sp = '$id_sp'";
-                    $run = $mysqli->query($sql);
-                }
+                $sql = "SELECT * from cart where username='$username'";
+                $run = $mysqli->query($sql);
                 $num = 1;
+                $sum=0;
                 while($row = $run->fetch_assoc() ){
                 ?>
                     <tr>
@@ -68,20 +99,29 @@ if(isset($_POST['purchase'])){
                             <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp']?>">
                         </td>
                         <td class="product-price"><?= $row['gia']?></td>
-                        <td class="product-quantity"><?= $soluong?></td>
-                        <td class="product-money"><?= $row['gia']?></td>
+                        <td class="product-quantity"><?= $row['soluong']?></td>
+                        <td class="product-money"><?= $row['tong'].'€'?></td>
                         <td class="product-delete">
                             <a href="cart.php?username=<?php echo ($username); ?>&action=delete&id=<?php echo ($row['id_sp']); ?>">Xóa</a>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php
+                $sum+= $row['tong'];
+                }
+                ?>
                 <tr id="row-total">
                     <th class="product-number">Tổng tiền</th>
                     <th class="product-name">&nbsp</th>
                     <th class="product-img">&nbsp</th>
                     <th class="product-price">&nbsp</th>
                     <th class="product-quantity">&nbsp</th>
-                    <th class="product-money">36$</th>
+                    <th class="product-money">
+                        <?php
+                            echo $sum.'€';
+                            $_SESSION['tongtien']=$sum;
+                        ?>
+
+                    </th>
                     <th class="product-delete"></th>
                 </tr>
             </table>

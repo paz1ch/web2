@@ -41,7 +41,7 @@ $username = $_GET["username"];
 	<!--end header-->
 	<main role="main">
 		<div class="container mt-4">
-			<form name="frmTimKiem" method="get" action="#">
+			<form name="frmTimKiem" method="post" action="cart.php?username=<?php echo $username?>">
 				<h1 class="text-center" style="margin-top: 75px;">Sản phẩm tìm thấy</h1>
                 <br>
 				<section class="on-sale">
@@ -60,48 +60,41 @@ $username = $_GET["username"];
 									while ($row = mysqli_fetch_array($sql_sanpham)) {
 
 									?>
-										<div class="col-md-3">
-											<div class="product-top">
-												<img src="images/<?php echo $row['image_sp'] ?>" alt="">
-												<div class="overlay-right">
-													<button type="button" class="btn btn-secondary" title="Xem chi tiết">
-														<a href="productdetail.php?id=<?php echo $row['id_sp'] ?>">
-															<i class="fa fa-eye"></i>
-														</a>
-													</button>
+                                <div class="col-md-3">
+                                    <div class="product-top">
+                                        <img src="images/<?php echo $row['image_sp'] ?>" alt="">
+                                        <div class="overlay-right">
+                                            <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>" class="btn btn-secondary" title="Xem chi tiết">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>" method="post">
+                                                <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                        </div>
+                                    </div>
 
-													<button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" onclick="addtoCart()">
-														<i class="fa fa-shopping-cart"></i>
-													</button>
-												</div>
-											</div>
-
-
-											<div class="product-bottom text-center">
-												<?php
-												$sao = $row['star'];
-												$count = 0;
-												while ($count++ < $sao) {
-												?>
-													<i class="fa fa-star"></i>
-												<?php
-												} ?>
-												<i class="fa fa-star-half-o"></i>
-												<h4><?php echo $row['tensp'] ?></h4>
-												<div class="product-description" data-name="Mirror-3" data-price="12">
-
-													<p class="product-price"><?php echo $row["gia"] ?></p>
-													<form class="add-to-cart" action="cart.php" method="post">
-														<div>
-															<label for="qty-2">Số lượng</label>
-															<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
-														</div>
-														<p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
-													</form>
-
-												</div>
-											</div>
-										</div>
+                                    <div class="product-bottom text-center">
+                                        <?php
+                                        $sao = $row['star'];
+                                        $count = 0;
+                                        while ($count++ < $sao) {
+                                            ?>
+                                            <i class="fa fa-star"></i>
+                                            <?php
+                                        } ?>
+                                        <i class="fa fa-star-half-o"></i>
+                                        <h4><?php echo $row['tensp'] ?></h4>
+                                        <div>
+                                            <p class="product-price"><?php echo $row["gia"] ?></p>
+                                            <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
+                                            <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
+                                            <input type="number" min="1" max="1000" name="quantity" value="1"/>
+                                            <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
+                                        </div>
+                                    </div>
+            </form>
+        </div>
 								<?php
 									}
 								}
@@ -109,9 +102,9 @@ $username = $_GET["username"];
 							</div>
 						</div>
 					</div>
-		</div>
-		</section>
-		</form>
+		    </div>
+		    </section>
+		    </form>
 		</div>
 		<!-- End block content -->
 	</main>

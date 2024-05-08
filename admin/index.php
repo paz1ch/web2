@@ -1,6 +1,5 @@
 <?php
 include('config/config.php');
-$conn = new mysqli('localhost', 'root', '', 'web_php');
 $username_admin = $_GET['admin'];
 
 if (isset($_POST['submitFix'])) {

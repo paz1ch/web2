@@ -39,7 +39,6 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="style/style_product.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_pagination.css">
     <link rel="stylesheet" href="style/style_products.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
@@ -60,7 +59,6 @@ if (isset($_GET['id'])) {
         <?php include('header_user.php') ?>
     </section>
     <!-- top nav -->
-
     <div>
         <div>
             <div class="text-center">

@@ -1,3 +1,8 @@
+<?php
+include ('config/config.php');
+$username_admin = $_GET['admin'];
+?>
+
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
   <html lang="en">
@@ -75,7 +80,7 @@
 
           </table>
           <div class="button-back">
-            <a href="cart-admin.php">
+            <a href="cart-admin.php?admin=<?php echo $username_admin?>">
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;" title="Quay lại trang trước"></i>
             </a>
           </div>
