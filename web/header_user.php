@@ -51,8 +51,8 @@ if (isset($_GET['search'])) {
     <div class="search-container">
         <form action="sanpham_timkiem_trangchu.php" method="GET">
             <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['username']); ?>">
-            <input type="text" placeholder="Tìm kiếm.." name="search">
-            <button type="submit">
+            <input type="text" placeholder="Tìm kiếm.." name="searchtext">
+            <button type="submit" name="search">
                 <i class="fa fa-search"></i>
             </button>
         </form>
