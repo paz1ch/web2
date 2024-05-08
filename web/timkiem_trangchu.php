@@ -1,6 +1,10 @@
+<?php
+include ('config/config.php');
+global $mysqli;
+$username=$_GET['username'];
+?>
 <!DOCTYPE html>
-<html lang="vi" class="h-100">
-
+<html lang="vi">
 <head>
     <title>Tìm kiếm</title>
     <meta charset="utf-8" />
@@ -34,13 +38,15 @@
     <br><br><br>
     <main role="main">
         <div class="container mt-4">
-            <form name="frmTimKiem" method="get" action="#">
+            <form name="frmTimKiem" method="post" action="">
                 <h1 class="text-center" style="margin-top: 75px;">Tìm kiếm sản phẩm</h1>
                 <div class="row">
                     <div class="col col-md-12">
                         <div class="text-center">
-                            <button type="button" id="btnReset" class="btn btn-warning" onclick="alert('Xóa bộ lọc thành công')">Xóa bộ lọc</button>
-                            <button class="btn btn-primary btn-lg" onclick="alert('Tìm kiếm thành công')">Tìm kiếm <i class="fa fa-forward" aria-hidden="true"></i></button>
+                            <input type="reset" id="btnReset" class="btn btn-warning"
+                                   name="delete" value="Xóa bộ lọc">
+                            <input type="submit" class="btn btn-primary btn-lg"
+                                   name="search" value="Tìm kiếm">
                         </div>
                     </div>
                 </div>
@@ -55,10 +61,10 @@
                                 </header>
                                 <div class="filter-content">
                                     <div class="card-body">
-                                        <input class="form-control" type="text" placeholder="Tìm kiếm" aria-label="Search" name="keyword_tensanpham" value="">
-                                    </div> <!-- card-body.// -->
+                                        <input class="form-control" type="text" placeholder="Tìm kiếm" aria-label="Search" name="tensp" value="">
+                                    </div>
                                 </div>
-                            </article> <!-- // Tìm kiếm theo Tên sản phẩm -->
+                            </article>
 
                             <!-- Tìm kiếm theo Loại sản phẩm -->
                             <article class="card-group-item">
@@ -67,71 +73,16 @@
                                 </header>
                                 <div class="filter-content">
                                     <div class="card-body">
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">3</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_loaisanpham[]" value="1" id="chk-loaisanpham-1">
-                                            <label class="custom-control-label" for="chk-loaisanpham-1">Giường</label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">1</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_loaisanpham[]" value="2" id="chk-loaisanpham-2">
-                                            <label class="custom-control-label" for="chk-loaisanpham-2">Ghế</label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">4</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_loaisanpham[]" value="3" id="chk-loaisanpham-3">
-                                            <label class="custom-control-label" for="chk-loaisanpham-3">Bàn</label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">1</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_loaisanpham[]" value="4" id="chk-loaisanpham-4">
-                                            <label class="custom-control-label" for="chk-loaisanpham-4">Gương</label>
-                                        </div> <!-- form-check.// -->
-                                    </div> <!-- card-body.// -->
+                                        <select name="type_products">
+                                            <option value="0">--chon--</option>
+                                            <option value="1">Giường</option>
+                                            <option value="2">Ghế</option>
+                                            <option value="3">Bàn</option>
+                                            <option value="4">Gương</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </article><!-- // Tìm kiếm theo Loại sản phẩm -->
-
-                            <!-- Tìm kiếm theo Nhà sản xuất -->
-                            <article class="card-group-item">
-                                <header class="card-header">
-                                    <h6 class="title">Nhà sản xuất </h6>
-                                </header>
-                                <div class="filter-content">
-                                    <div class="card-body">
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">3</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_nhasanxuat[]" value="1" id="chk-nhasanxuat-1">
-                                            <label class="custom-control-label" for="chk-nhasanxuat-1">Cu Trường Đồng Nai</label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">3</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_nhasanxuat[]" value="2" id="chk-nhasanxuat-2">
-                                            <label class="custom-control-label" for="chk-nhasanxuat-2">Bé Phúc </label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">1</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_nhasanxuat[]" value="3" id="chk-nhasanxuat-3">
-                                            <label class="custom-control-label" for="chk-nhasanxuat-3">Bé Dạt quận Cam</label>
-                                        </div> <!-- form-check.// -->
-                                        <div class="custom-control custom-checkbox">
-                                            <span class="float-right badge badge-light round">1</span>
-                                            <input type="checkbox" class="custom-control-input" name="keyword_nhasanxuat[]" value="4" id="chk-nhasanxuat-4">
-                                            <label class="custom-control-label" for="chk-nhasanxuat-4">Anh Minh Wibu</label>
-                                        </div> <!-- form-check.// -->
-                                    </div> <!-- card-body.// -->
-                                </div>
-                            </article> <!-- // Tìm kiếm theo Nhà sản xuất -->
-
-                            <!-- Tìm kiếm theo Khuyến mãi -->
-                            <article class="card-group-item">
-                                <header class="card-header">
-                                    <h6 class="title">Khuyến mãi </h6>
-                                </header>
-                                <div class="filter-content">
-                                    <div class="card-body">
-                                    </div> <!-- card-body.// -->
-                                </div>
-                            </article> <!-- // Tìm kiếm theo Nhà sản xuất -->
+                            </article>
 
                             <!-- Tìm kiếm theo khoảng giá tiền -->
                             <article class="card-group-item">
@@ -143,233 +94,101 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Từ</label>
-                                                <input type="range" class="custom-range" min="0" max="50000000" step="100000" id="sotientu" name="keyword_sotientu" value="0">
-                                                <span><span id="sotientu-text">0</span></span>
+                                                <input type="number" class="custom-range" min="0" max="50000000" id="min" name="min" value="0">
                                             </div>
                                             <div class="form-group col-md-6 text-right">
                                                 <label>Đến</label>
-                                                <input type="range" class="custom-range" min="0" max="50000000" step="100000" id="sotienden" name="keyword_sotienden" value="50000000">
-                                                <span><span id="sotienden-text">50000000</span></span>
+                                                <input type="number" class="custom-range" min="0" max="50000000" id="max" name="max" value="50000000">
                                             </div>
                                         </div>
-                                    </div> <!-- card-body.// -->
+                                    </div>
                                 </div>
-                            </article> <!-- // Tìm kiếm theo khoảng giá tiền -->
-
-                            <!-- Tìm kiếm theo màu sắc sản phẩm -->
-                            <article class="card-group-item">
-                                <header class="card-header">
-                                    <h6 class="title">Phòng (tùy chọn thêm)</h6>
-                                </header>
-                                <div class="filter-content">
-                                    <div class="card-body">
-                                        <form action="/search.php">
-                                            <input type="checkbox" id="room1" name="room1" value="1">
-                                            <label for="room1">Phòng khách</label><br>
-                                            <input type="checkbox" id="room2" name="room2" value="2">
-                                            <label for="room1">Phòng ngủ</label><br>
-                                            <input type="checkbox" id="room3" name="room3" value="3">
-                                            <label for="room1">Nhà bếp</label><br>
-                                            <input type="checkbox" id="diff" name="diff" value="4">
-                                            <label for="room1">Khác</label>
-                                        </form>
-                                    </div> <!-- card-body.// -->
-                                </div>
-                            </article> <!-- // Tìm kiếm theo màu sắc sản phẩm -->
-                        </div> <!-- card.// -->
-                    </aside> <!-- col.// -->
+                            </article>
+                        </div>
+                    </aside>
 
                     <!-- Giải thuật duyệt và render Danh sách sản phẩm theo dòng, cột của Bootstrap -->
                     <div class="col-sm-8 mt-2">
                         <div class="row">
                             <div class="col-md-12">
-                                <h6>Tìm kiếm được 7 sản phẩm</h6>
+                                <h6>Tìm kiếm</h6>
                             </div>
                         </div>
-                        <div class="row">
+                        <?php
+                        $sql = "SELECT * from sanpham";
+                        $result = $mysqli->query($sql);
+                        $dem_fault=0;
 
+                        if (isset($_POST['search'])){
+                            $tensp = $_POST['tensp'];
+                            $min = $_POST['min'];
+                            $max = $_POST['max'];
+                            $type = $_POST['type_products'];
+
+                            // Base query
+                            $sql = "SELECT * FROM sanpham WHERE 1=1";
+
+                            if (!empty($tensp)) {
+                                $sql .= " AND tensp LIKE '%$tensp%'";
+                            }
+
+                            if ($type != '0') {
+                                $sql .= " AND id_danhmuc='$type'";
+                            }
+
+                            if ($type == '0') {
+                                $sql .= " AND REPLACE(giakhuyenmai, '€', '') BETWEEN $min AND $max";
+                            }
+                            $result = $mysqli->query($sql);
+                        }
+                        $count = 0;
+                        while ($row = $result->fetch_assoc()) {
+                            if ($count % 2 == 0) {
+                                // Mở một dòng mới nếu là sản phẩm đầu tiên hoặc sau mỗi 2 sản phẩm
+                                echo '<div class="row">';
+                            }
+                            ?>
                             <div class="col-md-6">
                                 <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/bed1.jpg">
+                                    <a>
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/<?php echo $row['image_sp'] ?>">
                                     </a>
                                     <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Giường 1</h5>
+                                        <a>
+                                            <h5><?php $dem_fault++;echo $row['tensp'] ?></h5>
                                         </a>
-                                        <h6>Giường</h6>
-                                        <p class="card-text">Giường tồi của năm</p>
+                                        <p class="card-text"><?php echo $row['motangan'] ?></p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
+                                                <a class="btn btn-sm btn-outline-secondary" href="chitiet_sanpham.php?username=<?php echo $username?>&id=<?php echo $row['id_sp']?>">Xem chi tiết</a>
                                             </div>
                                             <small class="text-muted text-right">
-                                                <s style="font-size: medium;">30 &euro;</s><br>
-                                                <b style="font-size: medium;">50 &euro;</b>
+                                                <s style="font-size: medium;"><?php echo $row['gia']?></s><br>
+                                                <b style="font-size: medium;"><?php echo $row['giakhuyenmai']?></b>
                                             </small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/mirror1.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Gương-1</h5>
-                                        </a>
-                                        <h6>Gương</h6>
-                                        <p class="card-text">Gương đã giảm giá rồi nên mua đi!</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">20 &euro;</s><br>
-                                                <b style="font-size: medium;">30 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/table2.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Bàn-1</h5>
-                                        </a>
-                                        <h6>Bàn</h6>
-                                        <p class="card-text">Bàn chất lượng cao!!!</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">15 &euro;</s>
-                                                <b style="font-size: medium;">100 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/bed5.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Giường-5</h5>
-                                        </a>
-                                        <h6>Giường</h6>
-                                        <p class="card-text">Giường do nghệ nhân Phúc làm !</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">50 &euro;</s>
-                                                <b style="font-size: medium;">45 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/sofa2.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Sofa-2</h5>
-                                        </a>
-                                        <h6>Sofa</h6>
-                                        <p class="card-text">Sofa do nghệ nhân Đông Nai làm.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">120 &euro;</s>
-                                                <b style="font-size: medium;">100 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/table4.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Bàn-4</h5>
-                                        </a>
-                                        <h6>Bàn</h6>
-                                        <p class="card-text">Bàn </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">300 &euro;</s>
-                                                <b style="font-size: medium;">290 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <div class="card mb-4 shadow-sm">
-                                    <a href="product_detail.php">
-                                        <img class="bd-placeholder-img card-img-top" width="100%" height="350" src="images/sofa5.jpg">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="product_detail.php">
-                                            <h5>Sofa-5</h5>
-                                        </a>
-                                        <h6>Sofa</h6>
-                                        <p class="card-text">Sofa đẹp đó không nói nhiều </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-outline-secondary" href="chitietsanpham_trangchu.php">Xem chi tiết</a>
-                                            </div>
-                                            <small class="text-muted text-right">
-                                                <s style="font-size: medium;">79 &euro;</s>
-                                                <b style="font-size: medium;">75 &euro;</b>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                            <?php
+                            $count++; // Tăng đếm
+                            if ($count % 2 == 0) {
+                                // Đóng dòng hiện tại nếu đã hiển thị 2 sản phẩm
+                                echo '</div>';
+                            }
+                        }
+                        if ($count % 2 != 0) {
+                            // Đóng thẻ div mở còn dư nếu số sản phẩm là lẻ
+                            echo '</div>';
+                        }
+                        if($dem_fault==0) echo 'ko tim thay san pham';
+                        ?>
                     </div>
                 </div> <!-- row.// -->
             </form>
         </div>
         <!-- End block content -->
     </main>
-
     <br>
 
 
