@@ -7,7 +7,7 @@ $username = $_GET['username'];
 // lấy dữ liệu khi bấm nút "mua ngay"
 if(isset($_POST['purchase'])){
     $_SESSION['id_product'] = $_POST['id_product'];
-    $_SESSION['number_product'] = $_POST['quantity'][$_POST['id_product']];
+    $_SESSION['number_product'] = $_POST['quantity'];
     echo '<script type="text/JavaScript">
                 window.location.href = "select_address.php?username=' . ($username).'";
               </script>';
@@ -34,37 +34,6 @@ if(isset($_POST['purchase'])){
 <section id="home">
     <?php
     include('header_user.php');
-    if(!isset($_SESSION['cart'])){
-        $_SESSION['cart'] = array();
-    }
-    if(isset($_GET['action'])){
-//                echo "<br> <br> <br> <br> <br>";
-        function update_cart($add = false)
-        {
-            foreach($_POST['quantity'] as $id_sp => $quantity) {
-                if($add) $_SESSION["cart"][$id_sp] += $quantity;
-                else $_SESSION["cart"][$id_sp] = $quantity;
-
-            }
-        }
-        switch($_GET['action']){
-            case "add":
-                update_cart(true);
-                header("location: ./cart.php?username=$username");
-                break;
-            case "delete":
-                if(isset($_GET['id'])){
-                    unset($_SESSION["cart"][$_GET['id']]);
-                }
-                header("location: ./cart.php?username=$username");
-                break;
-        }
-    }
-    $products = NULL;
-    if(!empty($_SESSION['cart'])){
-//              var_dump("SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")"); exit;
-        $products = mysqli_query($mysqli, "SELECT * FROM `sanpham` WHERE `id_sp` IN (".implode(",",array_keys($_SESSION['cart'])).")");
-    }
     ?>
 </section>
 <div id="site">
@@ -83,8 +52,15 @@ if(isset($_POST['purchase'])){
                     <th class="product-delete">Thao tác</th>
                 </tr>
                 <?php
+                if (isset($_POST['themvaogiohang'])){
+                    $id_sp = $_POST['id_product'];
+                    $soluong=$_POST['quantity'];
+                    $sql = "SELECT * from sanpham where id_sp = '$id_sp'";
+                    $run = $mysqli->query($sql);
+                }
                 $num = 1;
-                while($products != NULL && $row = mysqli_fetch_assoc($products)){ ?>
+                while($row = $run->fetch_assoc() ){
+                ?>
                     <tr>
                         <td class="product-number"><?=$num++;?></td>
                         <td class="product-name" ><?= $row['tensp']?></td>
@@ -92,7 +68,7 @@ if(isset($_POST['purchase'])){
                             <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp']?>">
                         </td>
                         <td class="product-price"><?= $row['gia']?></td>
-                        <td class="product-quantity"><?= $_SESSION["cart"][$row['id_sp']]?></td>
+                        <td class="product-quantity"><?= $soluong?></td>
                         <td class="product-money"><?= $row['gia']?></td>
                         <td class="product-delete">
                             <a href="cart.php?username=<?php echo ($username); ?>&action=delete&id=<?php echo ($row['id_sp']); ?>">Xóa</a>

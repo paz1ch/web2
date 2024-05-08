@@ -1,3 +1,7 @@
+<?php
+include ('config/config.php');
+$username_admin = $_GET['admin'];
+?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
   <html lang="en">
@@ -28,7 +32,7 @@
             <h1>TÌM KIẾM ĐƠN HÀNG</h1>
           </div>
           <div>
-            <form action="#" class="form-search">
+            <form action="" class="form-search">
               <h5 class="h5-search">--Tìm kiếm--</h5>
               <label for="" class="label">Từ ngày:</label>
               <input type="date" class="select">
@@ -36,19 +40,10 @@
               <input type="date" class="select">
               <input type="submit" id="submitbutton" style="display: none">
               <label for="submitbutton">
-                <span onclick="searchFunc()" class="button">Tìm</span>
+                <span  class="button">Tìm</span>
               </label>
-              <input type="reset" id="resetbutton" class="button" onclick="buttonReset()" title="Reset tìm kiếm">
-              <script>
-                function searchFunc() {
-                  alert("Tìm kiếm thành công!!!");
-                }
+              <input type="reset" id="resetbutton" class="button" title="Reset tìm kiếm">
 
-                function buttonReset() {
-                  location.reload();
-                  alert("Reset thành công!!!");
-                }
-              </script>
             </form>
           </div>
         </div>
@@ -85,7 +80,7 @@
                 </form>
               </td>
               <td class="thongtin" rowspan="2">
-                <a href="donhang1.php" style="color: blue;">Chi tiết</a>
+                <a href="donhang1.php?admin=<?php echo $username_admin?>" style="color: blue;">Chi tiết</a>
               </td>
             </tr>
             <tr>
@@ -111,7 +106,7 @@
                 </form>
               </td>
               <td class="thongtin" rowspan="2">
-                <a href="donhang2.php" style="color: blue;">Chi tiết</a>
+                <a href="donhang2.php?admin=<?php $username_admin?>" style="color: blue;">Chi tiết</a>
               </td>
             </tr>
           </table>
