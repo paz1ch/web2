@@ -93,8 +93,7 @@ $username=$_GET['username'];
                                 </div>
                                 <!--Mô tả sản phẩm ở đây-->
                                 <p class="product-description"><?php echo $row['motangan'] ?></p>
-                                <small class="text-muted">Giá cũ: <s><span><?php echo $row['gia'] ?></span></s></small>
-                                <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
+                                <h4 class="price">Giá: <span><?php echo $row['gia'] ?></span></h4>
                                 <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                                 <div class="form-group">
                                     <label for="soluong">Số lượng đặt mua:</label>
@@ -111,7 +110,6 @@ $username=$_GET['username'];
                                 </div>
                             </div>
                         </div>
-<!--                    </form>-->
                 </div>
             </div>
 

@@ -3,6 +3,15 @@ session_start();
 global $mysqli;
 include ('config/config.php');
 $username = $_GET['username'];
+
+// lấy dữ liệu khi bấm nút "mua ngay"
+if(isset($_POST['purchase'])){
+    $_SESSION['id_product'] = $_POST['id_product'];
+    $_SESSION['number_product'] = $_POST['quantity'][$_POST['id_product']];
+    echo '<script type="text/JavaScript">
+                window.location.href = "select_address.php?username=' . ($username).'";
+              </script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,6 +44,7 @@ $username = $_GET['username'];
             foreach($_POST['quantity'] as $id_sp => $quantity) {
                 if($add) $_SESSION["cart"][$id_sp] += $quantity;
                 else $_SESSION["cart"][$id_sp] = $quantity;
+
             }
         }
         switch($_GET['action']){
@@ -99,9 +109,6 @@ $username = $_GET['username'];
                     <th class="product-delete"></th>
                 </tr>
             </table>
-            <!--				<p id="sub-total">-->
-            <!--					<strong>Tổng cộng</strong>: 130€<span id="stotal"></span>-->
-            <!--				</p>-->
             <ul id="shopping-cart-actions">
                 <li>
                     <a href="select_address.php?username=<?php echo urldecode($username) ?>" id="thanhtoan" class="btn">Thanh toán</a>

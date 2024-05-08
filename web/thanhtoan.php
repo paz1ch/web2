@@ -1,8 +1,13 @@
-<?php session_start();
+<?php
+session_start();
 include('config/config.php');
 global $mysqli;
 $username = $_GET['username'];
 $id = $_GET['id'];
+$id_product = $_SESSION['id_product'];
+$number_product=$_SESSION['number_product'];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,49 +38,49 @@ $id = $_GET['id'];
                     <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
                     <h2>Thanh toán</h2>
                 </div>
+                <?php
+                $sql = "SELECT * from sanpham where id_sp='$id_product'";
+                $result = $mysqli->query($sql);
+                $count = $result->num_rows;
+                // Loop through each row in the result set
+                while ($row = $result->fetch_assoc()) {
+                ?>
 
                 <div class="row">
                     <div class="col-md-4 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Giỏ hàng</span>
-                            <span class="badge badge-secondary badge-pill">3</span>
+                            <span class="badge badge-secondary badge-pill">
+                                <?php echo $count?>
+                            </span>
                         </h4>
                         <ul class="list-group mb-3">
-                            <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
-                            <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
-                            <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
 
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Sofa</h6>
-                                    <small class="text-muted">34€ * 1</small>
-                                </div>
-                                <span class="text-muted">34€</span>
-                            </li>
-                            <input type="hidden" name="sanphamgiohang[2][sp_ma]" value="4">
-                            <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
-                            <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
-
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Gương lớn</h6>
-                                    <small class="text-muted">36€ x 3</small>
-                                </div>
-                                <span class="text-muted">108€</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Bàn lớn</h6>
-                                    <small class="text-muted">60€ x 3</small>
-                                </div>
-                                <span class="text-muted">180€</span>
-                            </li>
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <!-- Output the product name -->
+                                        <h6 class="my-0"><?php echo $row['tensp']; ?></h6>
+                                        <!-- Output the product price and quantity -->
+                                        <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $number_product; ?></small>
+                                    </div>
+                                    <span class="text-muted">
+                                        <?php
+                                        $total_price = intval($row['gia']) * intval($number_product);
+                                        echo $total_price.'€';
+                                        ?>
+                                    </span>
+                                </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Tổng thành tiền</span>
-                                <strong>322€</strong>
+                                <strong>
+                                    <?php
+                                    $total_price = intval($row['gia']) * intval($number_product);
+                                    echo $total_price.'€';
+                                    ?>
+                                </strong>
                             </li>
+                            <?php } ?>
                         </ul>
-
                     </div>
 
                     <div class="col-md-8 order-md-1">
@@ -106,7 +111,7 @@ $id = $_GET['id'];
                                     <input class="form-control" type="text" name="payment" readonly value="<?php echo ($row['payment']) ?>">
                                 </div>
                             <?php
-                        }
+                            }
                             ?>
                             </div>
 
@@ -114,13 +119,6 @@ $id = $_GET['id'];
                         <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?> &action=submit" method="post">
                             <input class="btn btn-primary btn-lg btn-block" id="dathang" type="submit" name="order_click"  value="Đặt hàng">
                         </form>
-                            <script>
-                                //button1 = document.getElementById("dathang");
-                                //button1.onclick = function() {
-                                //    alert("Đặt hàng thành công. Bạn sẽ được đưa về trang chủ, Vui lòng giữ điện thoại khi tới ngày giao hàng và kiểm tra email để theo dõi ngày giao hàng");
-                                //    window.location.replace('sanpham_trangchu.php?username=<?php //echo urlencode($username); ?>//')
-                                //}
-                            </script>
 
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="button" name="btnDatHang" onclick="window.location.replace

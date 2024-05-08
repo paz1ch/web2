@@ -2,11 +2,6 @@
 include_once("config/config.php");
 global $mysqli;
 $username = $_GET['username'];
-if(isset($_POST['submit'])){
-    echo '<script type="text/JavaScript">
-                window.location.href = "select_address.php?username=' . ($username) . '";
-              </script>';
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -129,18 +124,16 @@ if(isset($_POST['submit'])){
                             <div class="product-top">
                                 <img src="images/<?php echo $row['image_sp'] ?>" alt="">
                                 <div class="overlay-right">
-                                    <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                        <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </button>
+                                    <a href="chitiet_sanpham.php?username=<?php echo urlencode($username); ?>&id=<?php echo $row['id_sp']; ?>" class="btn btn-secondary" title="Xem chi tiết">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
                                     <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?>&action=add" method="post">
-                                    <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
+                                        <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-
 
                             <div class="product-bottom text-center">
                                 <?php
@@ -155,16 +148,12 @@ if(isset($_POST['submit'])){
                                 <h4><?php echo $row['tensp'] ?></h4>
                                 <div>
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-
-                                        <div>
-                                            <label for="qty-2">Số lượng</label>
-                                            <input type="number" min="1" max="1000" name="quantity[<?php echo $row['id_sp']?>]"  class="qty" value="1"/>
-                                        </div>
+                                    <form class="add-to-cart" action="cart.php?username=<?php echo $username?>" method="post">
+                                        <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
+                                        <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
+                                        <input type="number" min="1" max="1000" name="quantity[<?php echo $row['id_sp']?>]" class="qty" id="qty-<?php echo $row['id_sp']?>" value="1"/>
+                                        <p><input name="purchase" type="submit" value="Mua ngay" class="btn"/></p>
                                     </form>
-                                    <form class="add-to-cart" action="" method="post">
-                                        <p><input name="submit" type="submit" value="Mua ngay" class="btn"/></p>
-                                    </form>
-
                                 </div>
                             </div>
                         </div>

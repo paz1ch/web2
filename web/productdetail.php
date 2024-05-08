@@ -19,6 +19,7 @@ $row = mysqli_fetch_array($sql_sanpham);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style/product-detail.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
+
 </head>
 
 <body>
@@ -98,28 +99,29 @@ include 'header.php';
                         </div>
                         <!--Mô tả sản phẩm ở đây-->
                         <p class="product-description"><?php echo $row['motangan'] ?></p>
-                        <small class="text-muted">Giá cũ: <s><span><?php echo $row['gia'] ?></span></s></small>
-                        <h4 class="price">Giá hiện tại: <span><?php echo $row['giakhuyenmai'] ?></span></h4>
+                        <h4 class="price">Giá: <span><?php echo $row['gia'] ?></span></h4>
                         <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                         <div class="form-group">
                             <label for="soluong">Số lượng đặt mua:</label>
                             <form id="add-to-cart-form" >
                                 <input type="number" min="1" max="1000" class="form-control" id="soluong" value="1">
+                            </form>
                         </div>
                         <div class="main">
                             <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" value="Thêm vào giỏ hàng"
                                   type="submit" onclick="myFunction()">
-                            </form>
                             <br> <br>
-                            <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" name="purchase"
+                            <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang"
                                    value="Mua ngay" type="submit" onclick="myFunction()">
+                            <script>
+                                function myFunction(){
+                                    alert("Cần phải đăng nhập trước khi thực hiện thao tác này!!!");
+                                    window.location.href='login.php';
+                                }
+                            </script>
+
                         </div>
-                        <script>
-                            function myFunction(){
-                                alert("Cần phải đăng nhập trước khi thực hiện tao tác này!!!");
-                                window.location.replace('login.php');
-                            }
-                        </script>
+
                     </div>
                 </div>
             </div>

@@ -163,8 +163,7 @@ $username=$_GET['username'];
                                                 <a class="btn btn-sm btn-outline-secondary" href="chitiet_sanpham.php?username=<?php echo $username?>&id=<?php echo $row['id_sp']?>">Xem chi tiết</a>
                                             </div>
                                             <small class="text-muted text-right">
-                                                <s style="font-size: medium;"><?php echo $row['gia']?></s><br>
-                                                <b style="font-size: medium;"><?php echo $row['giakhuyenmai']?></b>
+                                                <b style="font-size: medium;"><?php echo $row['gia']?></b>
                                             </small>
                                         </div>
                                     </div>
