@@ -1,7 +1,6 @@
 <?php
 include ('config/config.php');
 global $mysqli;
-
 $username = $_GET['username'];
 
 // them sp vao gio hang
@@ -40,9 +39,8 @@ if (isset($_POST['themvaogiohang'])) {
     }
 }
 // xoa
-if (isset($_GET['action'])){
+if (isset($_GET['action'])) {
     $id_sp=$_GET['id'];
-    $username=$_GET['username'];
     $sql = "DELETE FROM cart WHERE id_sp='$id_sp' and username='$username'";
     $result_delete = $mysqli->query($sql);
 }
@@ -90,7 +88,7 @@ if (isset($_GET['action'])){
                 $run = $mysqli->query($sql);
                 $num = 1;
                 $sum = 0;
-                $tensp = ''; // Initialize variables
+                $tensp = '';
                 $gia = '';
                 $soluong = '';
                 $tong = '';
@@ -138,7 +136,7 @@ if (isset($_GET['action'])){
             </table>
             <ul id="shopping-cart-actions">
                 <li>
-                    <a href="select_address.php?username=<?php echo urldecode($username) ?>" id="thanhtoan" class="btn">Thanh toán</a>
+                    <a href="select_address.php?username=<?php echo urldecode($username)?>" id="thanhtoan" class="btn">Thanh toán</a>
                 </li>
                 <li>
                     <a href="sanpham_trangchu.php?username=<?php echo urldecode($username) ?>" class="btn">Tiếp tục mua sắm</a>

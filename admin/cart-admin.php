@@ -1,5 +1,6 @@
 <?php
 include ('config/config.php');
+global $conn;
 $username_admin = $_GET['admin'];
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -18,8 +19,6 @@ $username_admin = $_GET['admin'];
   <body>
     <div class="container">
       <?php include 'navbar.php'; ?>
-
-
       <!-- top banner -->
       <div class="top-banner">
         <p>Online store</p>
@@ -42,75 +41,58 @@ $username_admin = $_GET['admin'];
               <label for="submitbutton">
                 <span  class="button">Tìm</span>
               </label>
-              <input type="reset" id="resetbutton" class="button" title="Reset tìm kiếm">
-
+              <input type="reset" id="resetbutton" class="button" title="Reset">
             </form>
           </div>
         </div>
         <div class="background-section">
-          <div class="main-body">
+            <div class="main-body">
             <h1>QUẢN LÝ ĐƠN HÀNG</h1>
-          </div>
-          <table class="table-main">
+        </div>
+        <?php
+        $sql = "SELECT * from cart_detail";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc())
+        {
+        ?>
+        <table class="table-main">
             <tr class="tr-main">
-              <th class="sanpham" colspan="2">Sản phẩm</th>
-              <th class="doanhthu">Tổng tiền</th>
-              <th class="vanchuyen">Đơn vị vận chuyển</th>
-              <th class="thoigian">Thời gian tạo đơn</th>
-              <th class="trangthai">Trạng thái</th>
-              <th class="duyet">Thao tác</th>
-              <th class="thongtin">Thông tin</th>
+                <th class="sanpham" colspan="2">Sản phẩm</th>
+                <th class="doanhthu">Tổng tiền</th>
+                <th class="vanchuyen">Phương thức thanh toán</th>
+                <th class="thoigian">Thời gian tạo đơn</th>
+                <th class="trangthai">Trạng thái</th>
+                <th class="duyet">Thao tác</th>
+                <th class="thongtin">Thông tin</th>
             </tr>
-          </table>
-          <table class="table-data">
+        </table>
+        <table class="table-data">
             <tr class="tr-data">
-              <th class="mavandon" colspan="9">Mã vận đơn: 122315</th>
+                <th class="mavandon" colspan="9">Mã vận đơn: 122315</th>
             </tr>
             <tr>
-              <td class="sanpham">Giường-1</td>
-              <td class="soluong">Số lượng: x3</td>
-              <td class="doanhthu" rowspan="2">60tr</td>
-              <td class="vanchuyen" rowspan="2">Hàng không</td>
-              <td class="date" rowspan="2">11/12/1999 </td>
-              <td class="time" rowspan="2"> 11h45p33s</td>
-              <td class="trangthai" rowspan="2">Chưa xử lý</td>
-              <td class="duyet" rowspan="2">
+                <td class="sanpham">Giường-1</td>
+                <td class="soluong">Số lượng: x3</td>
+                <td class="doanhthu" rowspan="2">60tr</td>
+                <td class="vanchuyen" rowspan="2">Hàng không</td>
+                <td class="date" rowspan="2">11/12/1999 </td>
+                <td class="time" rowspan="2"> 11h45p33s</td>
+                <td class="trangthai" rowspan="2">Chưa xử lý</td>
+                <td class="duyet" rowspan="2">
                 <form action="" class="">
                   <input type="checkbox" id="myCheck" onclick="myFunction()">
                 </form>
-              </td>
-              <td class="thongtin" rowspan="2">
-                <a href="donhang1.php?admin=<?php echo $username_admin?>" style="color: blue;">Chi tiết</a>
-              </td>
+                </td>
+                <td class="thongtin" rowspan="2">
+                <a href="donhang.php?admin=<?php echo $username_admin?>" style="color: blue;">Chi tiết</a>
+                </td>
             </tr>
             <tr>
-              <td class="sanpham">Giường-2</td>
-              <td class="soluong">Số lượng: x1</td>
+                <td class="sanpham">Giường-2</td>
+                <td class="soluong">Số lượng: x1</td>
             </tr>
-          </table>
-          <table class="table-data">
-            <tr class="tr-data">
-              <th class="mavandon" colspan="9">Mã vận đơn: 122316</th>
-            </tr>
-            <tr>
-              <td class="sanpham">Giường-3</td>
-              <td class="soluong">Số lượng: x3</td>
-              <td class="doanhthu" rowspan="2">60tr</td>
-              <td class="vanchuyen" rowspan="2">Hàng không</td>
-              <td class="date" rowspan="2">11/12/1999 </td>
-              <td class="time" rowspan="2"> 11h45p33s</td>
-              <td class="trangthai" rowspan="2">Chưa xử lý</td>
-              <td class="duyet" rowspan="2">
-                <form action="" class="">
-                  <input type="checkbox" id="myCheck" onclick="myFunction()">
-                </form>
-              </td>
-              <td class="thongtin" rowspan="2">
-                <a href="donhang2.php?admin=<?php $username_admin?>" style="color: blue;">Chi tiết</a>
-              </td>
-            </tr>
-          </table>
-
+        </table>
+        <?php } ?>
         </div>
       </section>
     </div>

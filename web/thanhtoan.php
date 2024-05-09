@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
     $result = $mysqli->query($sql);
     echo '<script>
         alert("Đặt hàng thành công");
-        window.location.href="user.php?username='.$username.'";
+        window.location.href="lichsudonhang.php?username='.$username.'";
         </script>';
 }
 ?>

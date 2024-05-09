@@ -1,6 +1,7 @@
 <?php
 include ('config/config.php');
 $username_admin = $_GET['admin'];
+global $conn;
 if (isset($_GET['action'])){
 
 }
