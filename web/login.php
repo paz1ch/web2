@@ -113,9 +113,6 @@ if (isset($_POST['submit'])) {
                                         <div class="col-6">
                                             <input class="btn btn-primary px-4" type="submit" name="submit" value="Đăng nhập">
                                         </div>
-                                        <div class="col-6 text-right">
-                                            <button class="btn btn-link px-0" type="button"><a href="">Quên mật khẩu?</a></button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
