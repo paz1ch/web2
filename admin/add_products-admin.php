@@ -1,4 +1,24 @@
-span style="font-family: verdana, geneva, sans-serif;">
+<span style="font-family: verdana, geneva, sans-serif;">
+<<<<<<< HEAD
+
+<?php
+  $id_sp = $_POST['id_sp'];
+  $tensp = $_POST['tensp'];
+  $id_danhmuc = $_POST['loaisp'];
+  $gia = $_POST['gia'];
+  $motangan = $_POST['mota'];
+  $image_sp = $_POST['uploadfile'];
+
+  if(isset($_POST['them'])){
+
+    $sql_them = "INSERT INTO sanpham (id_sp, id_danhmuc, tensp, gia, motangan, image_sp) 
+    VALUES ('$id_sp', 'id_danhmuc', '$tensp', '$gia', '$motangan', '$image_sp')";
+
+  }
+?>
+
+=======
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +49,7 @@ span style="font-family: verdana, geneva, sans-serif;">
         </div>
         <div class="main-body">
           <img src="image/none-image.png" alt="add image">
-          <form action="">
+          <form action="" method="post">
             <input type="file" name="uploadfile" id="img" style="display: none;">
             <label for="img" class="img">
               <span class="add-image">Thêm hình ảnh</span>
@@ -46,70 +66,60 @@ span style="font-family: verdana, geneva, sans-serif;">
           </tr>
           <tr>
             <td>
-              <form action="">
-                <input type="text" placeholder="Nhập mã sản phẩm">
+              <form action="" method="post">
+                <input name="id_sp" type="text" placeholder="Nhập mã sản phẩm">
               </form>
             </td>
             <td>
-              <form action="">
-                <select name="" id="" class='form-control'>
+              <form action="" method="post">
+                <select name="loaisp" id="" class='form-control'>
                   <option value="">--Chọn--</option>
-                  <option value="">Giường</option>
-                  <option value="">Gương</option>
-                  <option value="">Bàn</option>
-                  <option value="">Ghế</option>
+                  <option value="1">Giường</option>
+                  <option value="2">Gương</option>
+                  <option value="3">Bàn</option>
+                  <option value="4">Ghế</option>
                 </select>
               </form>
             </td>
             <td>
-              <form action="">
-                <input type="text" placeholder="Nhập tên sản phẩm">
+              <form action="" method="post">
+                <input name="tensp" type="text" placeholder="Nhập tên sản phẩm">
               </form>
             </td>
           </tr>
           <tr>
-            <th>Số lượng</th>
             <th>Giá</th>
             <th>Mô tả sản phẩm</th>
           </tr>
           <tr>
             <td>
-              <form action="">
-                <input type="text" placeholder="Nhập số lượng sản phẩm">
+              <form action="" method="post">
+                <input name="gia" type="text" placeholder="Nhập giá sản phẩm">
               </form>
             </td>
             <td>
-              <form action="">
-                <input type="text" placeholder="Nhập giá sản phẩm">
-              </form>
-            </td>
-            <td>
-              <form action="">
-                <input type="text" placeholder="Nhập mô tả">
+              <form action="" method="post">
+                <textarea name="mota" id="" placeholder="Nhập mô tả" rows="10" cols="50"></textarea>
               </form>
             </td>
           </tr>
           </tr>
         </table>
-        <form class="reset-form">
+        <form class="reset-form" method="post">
+<<<<<<< HEAD
           <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
+=======
+          <input type="submit" id="buttonreset" style="display: none;" >
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
           <label class="buttonReset" for="buttonreset">Reset</label>
-          <script>
-            function clickReset() {
-              location.reload();
-              alert("Reset thành công!!");
-            }
-          </script>
         </form>
-        <form class="submit-form">
-          <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+        <form class="submit-form" method="post">
+<<<<<<< HEAD
+          <input name="them" type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+=======
+          <input type="submit" id="buttonsubmit" style="display: none;">
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
           <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
-          <script>
-            function clickSubmit() {
-              location.reload();
-              alert("Thêm sản phẩm thành công!!");
-            }
-          </script>
         </form>
       </div>
     </section>

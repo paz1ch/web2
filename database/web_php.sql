@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 03, 2024 lúc 01:51 PM
+-- Thời gian đã tạo: Th5 09, 2024 lúc 04:38 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -45,9 +45,9 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
 (4, 'test2', 'nhat truong', '.0.0.0.', 'vietnam', 'trung', ' a', ' b', 'Thanh toán khi nhận hàng'),
-(38, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử'),
 (39, 'user1', 'nhat Truong', '03333333', 'vietnam', ' ', ' ', ' ', ''),
-(40, 'user3', 'nhat Truong', '01111111', 'vietnam', ' ', ' ', ' ', '');
+(40, 'user3', 'nhat Truong', '01111111', 'vietnam', ' ', ' ', ' ', ''),
+(42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử');
 
 -- --------------------------------------------------------
 
@@ -60,10 +60,20 @@ CREATE TABLE `cart` (
   `id_sp` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `tensp` varchar(50) NOT NULL,
+  `image_sp` varchar(50) NOT NULL,
   `soluong` int(11) NOT NULL,
   `gia` varchar(50) NOT NULL,
-  `giakhuyenmai` varchar(50) NOT NULL
+  `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `gia`, `tong`) VALUES
+(25, 1, '1', 'BÀN NHỎ LOẠI 3', 'table3.jpg', 2, '40€', '80'),
+(26, 20, '1', 'BÀN GỖ SỒI', 'table5.jpg', 1, '90€', '90'),
+(27, 19, '1', 'SOFA LOẠI TỐT', 'sofa5.jpg', 1, '200€', '200');
 
 -- --------------------------------------------------------
 
@@ -73,10 +83,9 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `cart_detail` (
   `id` int(11) NOT NULL,
-  `id_sp` int(11) DEFAULT NULL,
-  `id_cart` int(11) NOT NULL,
-  `soluong` int(11) NOT NULL,
-  `gia` int(11) NOT NULL
+  `username` varchar(500) NOT NULL,
+  `soluong` varchar(500) NOT NULL,
+  `gia` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -111,7 +120,6 @@ CREATE TABLE `sanpham` (
   `id_danhmuc` int(11) NOT NULL,
   `tensp` varchar(255) NOT NULL,
   `gia` varchar(100) NOT NULL,
-  `giakhuyenmai` varchar(100) NOT NULL,
   `sp_active` int(11) NOT NULL,
   `image_sp` varchar(50) NOT NULL,
   `star` int(11) NOT NULL,
@@ -123,27 +131,27 @@ CREATE TABLE `sanpham` (
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `giakhuyenmai`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`) VALUES
-(1, 3, 'BÀN NHỎ LOẠI 3', '40€', '20€', 1, 'table3.jpg', 4, '', ''),
-(2, 4, 'GƯƠNG LUXURY FAKE', '300€', '199€', 1, 'mirror5.jpg', 3, '', ''),
-(3, 4, 'GƯƠNG LOẠI 3', '50€', '12€', 1, 'mirror3.jpg', 5, '', ''),
-(4, 3, 'SOFA LOẠI 3', '100€', '34€', 1, 'sofa3.jpg', 4, '', ''),
-(5, 1, 'GIƯỜNG ĐÔI', '120€', '60€', 1, 'bed3.jpg', 5, '', ''),
-(6, 4, 'GƯƠNG SIÊU BỰ', '90€', '70€', 1, 'mirror4.jpg', 3, '', ''),
-(7, 2, 'SOFA LOẠI CỰC ÊM', '260€', '199€', 1, 'sofa4.jpg', 4, '', ''),
-(8, 3, 'BÀN SIÊU CỨNG', '75€', '50€', 1, 'table4.jpg', 5, '', ''),
-(9, 1, 'GIƯỜNG THÔNG MINH', '500€', '399€', 1, 'bed4.jpg', 3, '', ''),
-(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300€', '199€', 1, 'bed1.jpg', 2, '', ''),
-(11, 1, 'GIƯỜNG TIỆN LỢI', '290€', '189€', 1, 'bed2.jpg', 5, '', ''),
-(12, 2, 'SOFA LUXURY', '250€', '199€', 1, 'sofa1.jpg', 3, '', ''),
-(13, 2, 'SOFA TRẮNG TINH TẾ', '300€', '155€', 1, 'sofa2.jpg', 4, '', ''),
-(14, 3, 'BÀN KÍNH', '200€', '149€', 1, 'table1.jpg', 4, '', ''),
-(15, 3, 'BÀN VĂN PHÒNG', '230€', '175€', 1, 'table2.jpg', 5, '', ''),
-(16, 4, 'GƯƠNG TRANG ĐIỂM', '130€', '89€', 1, 'mirror1.jpg', 5, '', ''),
-(17, 4, 'GƯƠNG MẶT TRỜI', '100€', '75€', 1, 'mirror2.jpg', 4, '', ''),
-(18, 1, 'GƯỜNG LUXURY', '1000€', '800€', 1, 'bed5.jpg', 5, '', ''),
-(19, 2, 'SOFA LOẠI TỐT', '200€', '159€', 1, 'sofa5.jpg', 5, '', ''),
-(20, 3, 'BÀN GỖ SỒI', '90€', '89€', 1, 'table5.jpg', 4, '', '');
+INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`) VALUES
+(1, 3, 'BÀN NHỎ LOẠI 3', '40€', 1, 'table3.jpg', 4, '', ''),
+(2, 4, 'GƯƠNG LUXURY FAKE', '300€', 1, 'mirror5.jpg', 3, '', ''),
+(3, 4, 'GƯƠNG LOẠI 3', '50€', 1, 'mirror3.jpg', 5, '', ''),
+(4, 3, 'SOFA LOẠI 3', '100€', 1, 'sofa3.jpg', 4, '', ''),
+(5, 1, 'GIƯỜNG ĐÔI', '120€', 1, 'bed3.jpg', 5, '', ''),
+(6, 4, 'GƯƠNG SIÊU BỰ', '90€', 1, 'mirror4.jpg', 3, '', ''),
+(7, 2, 'SOFA LOẠI CỰC ÊM', '260€', 1, 'sofa4.jpg', 4, '', ''),
+(8, 3, 'BÀN SIÊU CỨNG', '75€', 1, 'table4.jpg', 5, '', ''),
+(9, 1, 'GIƯỜNG THÔNG MINH', '500€', 1, 'bed4.jpg', 3, '', ''),
+(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300€', 1, 'bed1.jpg', 2, '', ''),
+(11, 1, 'GIƯỜNG TIỆN LỢI', '290€', 1, 'bed2.jpg', 5, '', ''),
+(12, 2, 'SOFA LUXURY', '250€', 1, 'sofa1.jpg', 3, '', ''),
+(13, 2, 'SOFA TRẮNG TINH TẾ', '300€', 1, 'sofa2.jpg', 4, '', ''),
+(14, 3, 'BÀN KÍNH', '200€', 1, 'table1.jpg', 4, '', ''),
+(15, 3, 'BÀN VĂN PHÒNG', '230€', 1, 'table2.jpg', 5, '', ''),
+(16, 4, 'GƯƠNG TRANG ĐIỂM', '130€', 1, 'mirror1.jpg', 5, '', ''),
+(17, 4, 'GƯƠNG MẶT TRỜI', '100€', 1, 'mirror2.jpg', 4, '', ''),
+(18, 1, 'GƯỜNG LUXURY', '1000€', 1, 'bed5.jpg', 5, '', ''),
+(19, 2, 'SOFA LOẠI TỐT', '200€', 1, 'sofa5.jpg', 5, '', ''),
+(20, 3, 'BÀN GỖ SỒI', '90€', 1, 'table5.jpg', 4, '', '');
 
 -- --------------------------------------------------------
 
@@ -193,18 +201,15 @@ ALTER TABLE `address`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `username_2` (`username`),
-  ADD KEY `username_3` (`username`),
-  ADD KEY `id_sp` (`id_sp`);
+  ADD KEY `id_sp` (`id_sp`),
+  ADD KEY `id_sp_2` (`id_sp`),
+  ADD KEY `id_sp_3` (`id_sp`);
 
 --
 -- Chỉ mục cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cart` (`id_cart`),
-  ADD KEY `cart_detail_ibfk_1` (`id_sp`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `danhmucsp`
@@ -233,13 +238,13 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `cart_detail`
@@ -262,19 +267,6 @@ ALTER TABLE `sanpham`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`username`) REFERENCES `taikhoan` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`username`) REFERENCES `taikhoan` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `cart_detail`
---
-ALTER TABLE `cart_detail`
-  ADD CONSTRAINT `cart_detail_ibfk_1` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `cart_detail_ibfk_2` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `sanpham`

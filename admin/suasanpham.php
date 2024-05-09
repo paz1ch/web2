@@ -1,3 +1,11 @@
+<?php
+include('../web/config/config.php');
+$conn = new mysqli("localhost", "root", "", "web_php");
+$username_admin = $_GET["admin"];
+if(isset($_POST["submit"])){
+    //
+}
+?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
   <html lang="en">
@@ -13,8 +21,9 @@
   <body>
 
     <div class="container">
-
       <?php include 'navbar.php'; ?>
+
+
       <!-- top banner -->
       <div class="top-banner">
         <p>online store</p>
@@ -27,7 +36,7 @@
             <h1 style="text-transform: uppercase;">chỉnh sửa sản phẩm</h1>
           </div>
           <div class="main-body">
-            <img src="image/bed3.jpg" alt="add image">
+            <img src="image/bed1.jpg" alt="add image">
             <form action="" style="padding-bottom: 30px;">
               <input type="file" name="uploadfile" id="img" style="display: none;">
               <label for="img" class="img">
@@ -54,7 +63,7 @@
               </td>
               <td>
                 <form action="">
-                  <input type="text" placeholder="Nhập tên sản phẩm" value="Giường-3">
+                  <input type="text" placeholder="Nhập tên sản phẩm" value="Giường-1">
                 </form>
               </td>
               <td>
@@ -72,7 +81,7 @@
 
               <td>
                 <form action="">
-                  <input type="text" placeholder="Nhập giá sản phẩm" value="15.000.000">
+                  <input type="text" placeholder="Nhập giá sản phẩm" value="20.000.000">
                 </form>
               </td>
               <td>
@@ -83,27 +92,15 @@
             </tr>
           </table>
           <form class="reset-form">
-            <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
+            <input type="button" id="buttonreset" style="display: none;">
             <label class="buttonReset" for="buttonreset">Reset</label>
-            <script>
-              function clickReset() {
-                location.reload();
-                alert("Reset thành công!!");
-              }
-            </script>
           </form>
-          <form class="submit-form">
-            <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+          <form class="submit-form" method="post">
+            <input type="submit" id="buttonsubmit" style="display: none;" name="submit">
             <label class="buttonsubmit" for="buttonsubmit">Cập nhật</label>
-            <script>
-              function clickSubmit() {
-                location.reload();
-                alert("Cập nhật sản phẩm thành công!!");
-              }
-            </script>
           </form>
           <div class="button-back" title="Quay về trang trước">
-            <a href="products-admin.php">
+            <a href="products-admin.php?admin=<?php echo $username_admin?>">
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
             </a>
           </div>
