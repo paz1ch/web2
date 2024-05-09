@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 09, 2024 lúc 04:38 AM
+-- Thời gian đã tạo: Th5 09, 2024 lúc 09:30 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -66,15 +66,6 @@ CREATE TABLE `cart` (
   `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `cart`
---
-
-INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `gia`, `tong`) VALUES
-(25, 1, '1', 'BÀN NHỎ LOẠI 3', 'table3.jpg', 2, '40€', '80'),
-(26, 20, '1', 'BÀN GỖ SỒI', 'table5.jpg', 1, '90€', '90'),
-(27, 19, '1', 'SOFA LOẠI TỐT', 'sofa5.jpg', 1, '200€', '200');
-
 -- --------------------------------------------------------
 
 --
@@ -84,9 +75,29 @@ INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `
 CREATE TABLE `cart_detail` (
   `id` int(11) NOT NULL,
   `username` varchar(500) NOT NULL,
+  `hoten` varchar(50) NOT NULL,
+  `diachi` varchar(1000) NOT NULL,
+  `sdt` varchar(50) NOT NULL,
+  `payment` varchar(50) NOT NULL,
+  `tensp` varchar(500) NOT NULL,
   `soluong` varchar(500) NOT NULL,
-  `gia` varchar(500) NOT NULL
+  `gia` varchar(500) NOT NULL,
+  `tong` varchar(50) NOT NULL,
+  `tongtien` varchar(50) NOT NULL,
+  `xuly` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`) VALUES
+(7, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/30/60', '90€/200€/1000€', '90/6000/60000', '66090', 0),
+(8, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(9, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(10, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(11, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI', '1', '90€', '90', '90', 0),
+(12, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -151,7 +162,9 @@ INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `imag
 (17, 4, 'GƯƠNG MẶT TRỜI', '100€', 1, 'mirror2.jpg', 4, '', ''),
 (18, 1, 'GƯỜNG LUXURY', '1000€', 1, 'bed5.jpg', 5, '', ''),
 (19, 2, 'SOFA LOẠI TỐT', '200€', 1, 'sofa5.jpg', 5, '', ''),
-(20, 3, 'BÀN GỖ SỒI', '90€', 1, 'table5.jpg', 4, '', '');
+(20, 3, 'BÀN GỖ SỒI', '90€', 1, 'table5.jpg', 4, '', ''),
+(11312, 1, 'ban ghe', '1321321', 0, '', 0, 'toi la ban', 'toi la chi tiet\r\n'),
+(113146, 1, 'ban ghe', '1321321', 0, '', 0, 'toi la ban', 'toi la chi tiet\r\n');
 
 -- --------------------------------------------------------
 
@@ -244,19 +257,19 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113147;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
