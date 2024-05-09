@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 09, 2024 lúc 09:30 AM
+-- Thời gian đã tạo: Th5 09, 2024 lúc 07:02 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -45,9 +45,8 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
 (4, 'test2', 'nhat truong', '.0.0.0.', 'vietnam', 'trung', ' a', ' b', 'Thanh toán khi nhận hàng'),
-(39, 'user1', 'nhat Truong', '03333333', 'vietnam', ' ', ' ', ' ', ''),
-(40, 'user3', 'nhat Truong', '01111111', 'vietnam', ' ', ' ', ' ', ''),
-(42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử');
+(42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử'),
+(43, '1', 'Truong nhat', '03452951211', 'Vietnam', 'đồng nai', 'thủ đức', 'nguyễn văn trỗi', 'Thanh toán khi nhận hàng');
 
 -- --------------------------------------------------------
 
@@ -92,12 +91,13 @@ CREATE TABLE `cart_detail` (
 --
 
 INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`) VALUES
-(7, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/30/60', '90€/200€/1000€', '90/6000/60000', '66090', 0),
-(8, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
-(9, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
-(10, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
-(11, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI', '1', '90€', '90', '90', 0),
-(12, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', '', '', '', '', '', 0);
+(7, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/30/60', '90/200/1000', '90/6000/60000', '66090', 0),
+(8, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200', '200', '200', 0),
+(9, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200', '200', '200', 0),
+(10, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200', '200', '200', 0),
+(11, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI', '1', '90', '90', '90', 0),
+(12, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', '', '', '', '', '', 0),
+(13, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'ban ghe/BÀN GỖ SỒI', '1/1', '1321321/90', '1321321/90', '1321411', 0);
 
 -- --------------------------------------------------------
 
@@ -143,28 +143,26 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`) VALUES
-(1, 3, 'BÀN NHỎ LOẠI 3', '40€', 1, 'table3.jpg', 4, '', ''),
-(2, 4, 'GƯƠNG LUXURY FAKE', '300€', 1, 'mirror5.jpg', 3, '', ''),
-(3, 4, 'GƯƠNG LOẠI 3', '50€', 1, 'mirror3.jpg', 5, '', ''),
-(4, 3, 'SOFA LOẠI 3', '100€', 1, 'sofa3.jpg', 4, '', ''),
-(5, 1, 'GIƯỜNG ĐÔI', '120€', 1, 'bed3.jpg', 5, '', ''),
-(6, 4, 'GƯƠNG SIÊU BỰ', '90€', 1, 'mirror4.jpg', 3, '', ''),
-(7, 2, 'SOFA LOẠI CỰC ÊM', '260€', 1, 'sofa4.jpg', 4, '', ''),
-(8, 3, 'BÀN SIÊU CỨNG', '75€', 1, 'table4.jpg', 5, '', ''),
-(9, 1, 'GIƯỜNG THÔNG MINH', '500€', 1, 'bed4.jpg', 3, '', ''),
-(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300€', 1, 'bed1.jpg', 2, '', ''),
-(11, 1, 'GIƯỜNG TIỆN LỢI', '290€', 1, 'bed2.jpg', 5, '', ''),
-(12, 2, 'SOFA LUXURY', '250€', 1, 'sofa1.jpg', 3, '', ''),
-(13, 2, 'SOFA TRẮNG TINH TẾ', '300€', 1, 'sofa2.jpg', 4, '', ''),
-(14, 3, 'BÀN KÍNH', '200€', 1, 'table1.jpg', 4, '', ''),
-(15, 3, 'BÀN VĂN PHÒNG', '230€', 1, 'table2.jpg', 5, '', ''),
-(16, 4, 'GƯƠNG TRANG ĐIỂM', '130€', 1, 'mirror1.jpg', 5, '', ''),
-(17, 4, 'GƯƠNG MẶT TRỜI', '100€', 1, 'mirror2.jpg', 4, '', ''),
-(18, 1, 'GƯỜNG LUXURY', '1000€', 1, 'bed5.jpg', 5, '', ''),
-(19, 2, 'SOFA LOẠI TỐT', '200€', 1, 'sofa5.jpg', 5, '', ''),
-(20, 3, 'BÀN GỖ SỒI', '90€', 1, 'table5.jpg', 4, '', ''),
-(11312, 1, 'ban ghe', '1321321', 0, '', 0, 'toi la ban', 'toi la chi tiet\r\n'),
-(113146, 1, 'ban ghe', '1321321', 0, '', 0, 'toi la ban', 'toi la chi tiet\r\n');
+(1, 3, 'BÀN NHỎ LOẠI 3', '40', 1, 'table3.jpg', 4, '', ''),
+(2, 4, 'GƯƠNG LUXURY FAKE', '300', 1, 'mirror5.jpg', 3, '', ''),
+(3, 4, 'GƯƠNG LOẠI 3', '50', 1, 'mirror3.jpg', 5, '', ''),
+(4, 3, 'SOFA LOẠI 3', '100', 1, 'sofa3.jpg', 4, '', ''),
+(5, 1, 'GIƯỜNG ĐÔI', '120', 1, 'bed3.jpg', 5, '', ''),
+(6, 4, 'GƯƠNG SIÊU BỰ', '90', 1, 'mirror4.jpg', 3, '', ''),
+(7, 2, 'SOFA LOẠI CỰC ÊM', '260', 1, 'sofa4.jpg', 4, '', ''),
+(8, 3, 'BÀN SIÊU CỨNG', '75', 1, 'table4.jpg', 5, '', ''),
+(9, 1, 'GIƯỜNG THÔNG MINH', '500', 1, 'bed4.jpg', 3, '', ''),
+(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300', 1, 'bed1.jpg', 2, '', ''),
+(11, 1, 'GIƯỜNG TIỆN LỢI', '290', 1, 'bed2.jpg', 5, '', ''),
+(12, 2, 'SOFA LUXURY', '250', 1, 'sofa1.jpg', 3, '', ''),
+(13, 2, 'SOFA TRẮNG TINH TẾ', '300', 1, 'sofa2.jpg', 4, '', ''),
+(14, 3, 'BÀN KÍNH', '200', 1, 'table1.jpg', 4, '', ''),
+(15, 3, 'BÀN VĂN PHÒNG', '230', 1, 'table2.jpg', 5, '', ''),
+(16, 4, 'GƯƠNG TRANG ĐIỂM', '130', 1, 'mirror1.jpg', 5, '', ''),
+(17, 4, 'GƯƠNG MẶT TRỜI', '100', 1, 'mirror2.jpg', 4, '', ''),
+(18, 1, 'GƯỜNG LUXURY', '1000', 1, 'bed5.jpg', 5, '', ''),
+(19, 2, 'SOFA LOẠI TỐT', '200', 1, 'sofa5.jpg', 5, '', ''),
+(20, 3, 'BÀN GỖ SỒI', '90', 1, 'table5.jpg', 4, '', '');
 
 -- --------------------------------------------------------
 
@@ -251,19 +249,19 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
