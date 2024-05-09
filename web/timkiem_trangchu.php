@@ -137,7 +137,7 @@ $username=$_GET['username'];
                             }
 
                             if ($type == '0') {
-                                $sql .= " AND REPLACE(giakhuyenmai, '€', '') BETWEEN $min AND $max";
+                                $sql .= " AND REPLACE(gia, '€', '') BETWEEN $min AND $max";
                             }
                             $result = $mysqli->query($sql);
                         }
