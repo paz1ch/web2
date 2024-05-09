@@ -108,10 +108,16 @@ $username = $_GET['username'];
                                             <strong>Tình trạng đơn:</strong>
                                             <?php
                                             if ($row['xuly']==0){
-                                                echo 'Đơn chưa xử lý';
+                                                echo 'Đơn chưa xác nhận';
                                             }
-                                            else{
-                                                echo 'Đơn đã xử lý';
+                                            else if ($row['xuly']==1){
+                                                echo 'Đơn đã xác nhận';
+                                            }
+                                            else if ($row['xuly']==2){
+                                                echo 'Đơn giao thành công';
+                                            }
+                                            else if ($row['xuly']==3){
+                                                echo 'Hủy đơn';
                                             }
                                             ?>
                                             <span id="stotal"></span>
