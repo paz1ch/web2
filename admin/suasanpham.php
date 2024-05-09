@@ -1,3 +1,11 @@
+<?php
+include('../web/config/config.php');
+$conn = new mysqli("localhost", "root", "", "web_php");
+$username_admin = $_GET["admin"];
+if(isset($_POST["submit"])){
+    //
+}
+?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
   <html lang="en">
@@ -84,27 +92,15 @@
             </tr>
           </table>
           <form class="reset-form">
-            <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
+            <input type="button" id="buttonreset" style="display: none;">
             <label class="buttonReset" for="buttonreset">Reset</label>
-            <script>
-              function clickReset() {
-                location.reload();
-                alert("Reset thành công!!");
-              }
-            </script>
           </form>
-          <form class="submit-form">
-            <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+          <form class="submit-form" method="post">
+            <input type="submit" id="buttonsubmit" style="display: none;" name="submit">
             <label class="buttonsubmit" for="buttonsubmit">Cập nhật</label>
-            <script>
-              function clickSubmit() {
-                location.reload();
-                alert("Cập nhật sản phẩm thành công!!");
-              }
-            </script>
           </form>
           <div class="button-back" title="Quay về trang trước">
-            <a href="products-admin.php">
+            <a href="products-admin.php?admin=<?php echo $username_admin?>">
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
             </a>
           </div>

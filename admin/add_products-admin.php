@@ -1,4 +1,5 @@
 <span style="font-family: verdana, geneva, sans-serif;">
+<<<<<<< HEAD
 
 <?php
   $id_sp = $_POST['id_sp'];
@@ -16,6 +17,8 @@
   }
 ?>
 
+=======
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,24 +106,20 @@
           </tr>
         </table>
         <form class="reset-form" method="post">
+<<<<<<< HEAD
           <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
+=======
+          <input type="submit" id="buttonreset" style="display: none;" >
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
           <label class="buttonReset" for="buttonreset">Reset</label>
-          <script>
-            function clickReset() {
-              location.reload();
-              alert("Reset thành công!!");
-            }
-          </script>
         </form>
         <form class="submit-form" method="post">
+<<<<<<< HEAD
           <input name="them" type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+=======
+          <input type="submit" id="buttonsubmit" style="display: none;">
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
           <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
-          <script>
-            function clickSubmit() {
-              location.reload();
-              alert("Thêm sản phẩm thành công!!");
-            }
-          </script>
         </form>
       </div>
     </section>

@@ -1,3 +1,7 @@
+<?php
+include('../web/config/config.php');
+$username_admin = $_GET["admin"];
+?>
 <span style="font-family: verdana, geneva, sans-serif;">
 
 <?php
@@ -57,7 +61,11 @@
               <td class="gia">20tr/cái</td>
               <td class="mota">dành cho nhà giàu</td>
               <td class="chucnang">
+<<<<<<< HEAD
                 <a href="suasanpham.php" style="color: blue;">Sửa</a>
+=======
+                <a href="suasanpham.php?admin=<?php echo $username_admin?>" style="color: blue;">Sửa</a>
+>>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
               </td>
               <td class="xoa" onclick="buttonXoa()">Xóa</td>
             </tr>
