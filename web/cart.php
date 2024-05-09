@@ -86,44 +86,55 @@ if (isset($_GET['action'])){
                     <th class="product-delete">Thao tác</th>
                 </tr>
                 <?php
-                $sql = "SELECT * from cart where username='$username'";
+                $sql = "SELECT * FROM cart WHERE username='$username'";
                 $run = $mysqli->query($sql);
                 $num = 1;
-                $sum=0;
-                while($row = $run->fetch_assoc() ){
-                ?>
+                $sum = 0;
+                $tensp = ''; // Initialize variables
+                $gia = '';
+                $soluong = '';
+                $tong = '';
+
+                while ($row = $run->fetch_assoc()) {
+                    ?>
                     <tr>
-                        <td class="product-number"><?=$num++;?></td>
-                        <td class="product-name" ><?= $row['tensp']?></td>
+                        <td class="product-number"><?= $num++; ?></td>
+                        <td class="product-name"><?= $row['tensp'] ?></td>
                         <td class="product-img">
-                            <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp']?>">
+                            <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp'] ?>">
                         </td>
-                        <td class="product-price"><?= $row['gia']?></td>
-                        <td class="product-quantity"><?= $row['soluong']?></td>
-                        <td class="product-money"><?= $row['tong'].'€'?></td>
+                        <td class="product-price"><?= $row['gia'] ?></td>
+                        <td class="product-quantity"><?= $row['soluong'] ?></td>
+                        <td class="product-money"><?= $row['tong'] . '€' ?></td>
                         <td class="product-delete">
-                            <a href="cart.php?username=<?php echo ($username); ?>&action=delete&id=<?php echo ($row['id_sp']); ?>">Xóa</a>
+                            <a href="cart.php?username=<?= $username ?>&action=delete&id=<?= $row['id_sp'] ?>">Xóa</a>
                         </td>
                     </tr>
-                <?php
-                $sum+= $row['tong'];
+                    <?php
+                    // Concatenate values
+                    $tensp .= $row['tensp'] . '/';
+                    $gia .= $row['gia'] . '/';
+                    $soluong .= $row['soluong'] . '/';
+                    $tong .= $row['tong'] . '/';
+                    $sum += $row['tong'];
                 }
+                // Store session variables after loop
+                $_SESSION['tensp'] = rtrim($tensp, '/'); // Remove trailing slash
+                $_SESSION['gia'] = rtrim($gia, '/');
+                $_SESSION['soluong'] = rtrim($soluong, '/');
+                $_SESSION['tong'] = rtrim($tong, '/');
+                $_SESSION['tongtien'] = $sum;
                 ?>
                 <tr id="row-total">
                     <th class="product-number">Tổng tiền</th>
-                    <th class="product-name">&nbsp</th>
-                    <th class="product-img">&nbsp</th>
-                    <th class="product-price">&nbsp</th>
-                    <th class="product-quantity">&nbsp</th>
-                    <th class="product-money">
-                        <?php
-                            echo $sum.'€';
-                            $_SESSION['tongtien']=$sum;
-                        ?>
-
-                    </th>
+                    <th class="product-name">&nbsp;</th>
+                    <th class="product-img">&nbsp;</th>
+                    <th class="product-price">&nbsp;</th>
+                    <th class="product-quantity">&nbsp;</th>
+                    <th class="product-money"><?= $sum . '€' ?></th>
                     <th class="product-delete"></th>
                 </tr>
+
             </table>
             <ul id="shopping-cart-actions">
                 <li>

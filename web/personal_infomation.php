@@ -104,10 +104,10 @@ if (isset($_POST['submit'])) {
         <?php include('header_user.php') ?>
     </section>
     <!-- top nav -->
-    <div>
-        <div style="display: flex;">
-            <?php include("link_personalinfo.php"); ?>
-            <form action="" method="POST" style="display: contents">
+<div>
+    <div style="display: flex;">
+        <?php include("link_personalinfo.php"); ?>
+        <form action="" method="POST" style="display: contents">
                 <div class="div_right">
                     <div style="margin-left: 5%; margin-right: 5%;">
                         <h2 style="text-align: center;">Cập nhật thông tin tài khoản</h2>
@@ -204,7 +204,6 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 

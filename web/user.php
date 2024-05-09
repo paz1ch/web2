@@ -2,7 +2,6 @@
 include_once("config/config.php");
 global $mysqli;
 $username = $_GET['username'];
-
 ?>
 <!DOCTYPE html>
 <html>
