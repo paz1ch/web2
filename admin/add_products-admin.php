@@ -85,7 +85,7 @@
             </td>
             <td>
               <form action="">
-                <input type="text" placeholder="Nhập mô tả">
+                <textarea name="" id="" placeholder="Nhập mô tả" rows="10" cols="50"></textarea>
               </form>
             </td>
           </tr>
