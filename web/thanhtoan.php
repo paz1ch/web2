@@ -35,8 +35,6 @@ if(isset($_POST['submit'])){
         alert("Đặt hàng thành công");
         window.location.href="user.php?username='.$username.'";
         </script>';
-
-
 }
 ?>
 <!DOCTYPE html>
