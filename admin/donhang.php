@@ -1,6 +1,9 @@
 <?php
 include ('config/config.php');
 $username_admin = $_GET['admin'];
+if (isset($_GET['action'])){
+
+}
 ?>
 
 <span style="font-family: verdana, geneva, sans-serif;">

@@ -1,24 +1,28 @@
-<span style="font-family: verdana, geneva, sans-serif;">
-<<<<<<< HEAD
-
 <?php
-  $id_sp = $_POST['id_sp'];
-  $tensp = $_POST['tensp'];
-  $id_danhmuc = $_POST['loaisp'];
-  $gia = $_POST['gia'];
-  $motangan = $_POST['mota'];
-  $image_sp = $_POST['uploadfile'];
+  include('config/config.php');
+  $conn = new mysqli("localhost", "root", "", "web_php");
+  $username_admin = $_GET["admin"];
 
-  if(isset($_POST['them'])){
-
-    $sql_them = "INSERT INTO sanpham (id_sp, id_danhmuc, tensp, gia, motangan, image_sp) 
-    VALUES ('$id_sp', 'id_danhmuc', '$tensp', '$gia', '$motangan', '$image_sp')";
-
+  if (isset($_POST['submit'])) {
+    $id_sp = $_POST['id_sp'];
+    $tensp = $_POST['tensp'];
+    $id_danhmuc = $_POST['id_danhmuc'];
+    $gia = $_POST['gia'];
+    $motangan = $_POST['motangan'];
+    $motachitiet = $_POST['motachitiet'];
+    
+    $sql_add = "INSERT INTO sanpham (id_sp, id_danhmuc, tensp, gia, motangan, motachitiet)
+    VALUES ('$id_sp','$id_danhmuc','$tensp','$gia','$motangan','$motachitiet')";
+    $result = $conn -> query($sql_add);
+    echo '<script>
+        alert("Đặt hàng thành công");
+        window.location.href="add_products-admin.php?admin='.$username_admin.'";
+        </script>';
   }
-?>
 
-=======
->>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
+?>
+<span style="font-family: verdana, geneva, sans-serif;">
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,84 +48,59 @@
     <section class="main">
       <div class="main-top"></div>
       <div class="background-section">
-        <div class="main-body">
-          <h1>THÊM SẢN PHẨM</h1>
-        </div>
-        <div class="main-body">
-          <img src="image/none-image.png" alt="add image">
-          <form action="" method="post">
-            <input type="file" name="uploadfile" id="img" style="display: none;">
-            <label for="img" class="img">
-              <span class="add-image">Thêm hình ảnh</span>
-            </label>
+          <div class="main-body">
+            <h1>THÊM SẢN PHẨM</h1>
+          </div>
+          <form method="POST" action="" autocomplete="on">
+            <table>
+              <tr>
+                <th>ID SẢN PHẨM</th>
+                <th>TÊN SẢN PHẨM</th>
+                <th>LOẠI SẢN PHẨM</th>
+              </tr>
+              <tr>
+                <td>
+                  <input name="id_sp" id="" type="text" placeholder="Nhập mã sản phẩm" require>
+                </td>
+                <td>
+                  <input name="tensp" type="text" placeholder="Nhập tên sản phẩm" required>
+                </td>
+                <td>
+                  <select name="id_danhmuc" class='form-control'>
+                    <option value="1">GIƯỜNG</option>
+                    <option value="2">GHẾ</option>
+                    <option value="3">BÀN</option>
+                    <option value="4">GƯƠNG</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>GIÁ</th>
+                <th>MÔ TẢ NGẮN</th>
+                <th>MÔ TẢ CHI TIẾT</th>
+              </tr>
+              <tr>
+                <td>
+                  <input name="gia" type="text" placeholder="Nhập giá" require>
+                </td>
+                <td>
+                  <input type="text" name="motangan" placeholder="Mô tả ngắn" required>
+                </td>
+                <td>
+                  <textarea type="text" placeholder="Mô tả chi tiết" name="motachitiet" required rows="5" cols="50"></textarea>
+                </td>
+              </tr>
+            </table>
+            <div class="reset-form">
+              <label class="buttonReset" for="buttonreset" onclick="window.location.replace('add_user-admin.php?admin=<?php echo $username_admin ?>')">Reset</label>
+            </div>
+
+            <div class="submit-form">
+              <input type="submit" id="buttonsubmit" name="submit" style="display: none;">
+              <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
+            </div>
           </form>
         </div>
-        <br>
-        <br>
-        <table>
-          <tr>
-            <th>Mã sản phẩm</th>
-            <th>Phân loại</th>
-            <th>Tên sản phẩm</th>
-          </tr>
-          <tr>
-            <td>
-              <form action="" method="post">
-                <input name="id_sp" type="text" placeholder="Nhập mã sản phẩm">
-              </form>
-            </td>
-            <td>
-              <form action="" method="post">
-                <select name="loaisp" id="" class='form-control'>
-                  <option value="">--Chọn--</option>
-                  <option value="1">Giường</option>
-                  <option value="2">Gương</option>
-                  <option value="3">Bàn</option>
-                  <option value="4">Ghế</option>
-                </select>
-              </form>
-            </td>
-            <td>
-              <form action="" method="post">
-                <input name="tensp" type="text" placeholder="Nhập tên sản phẩm">
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <th>Giá</th>
-            <th>Mô tả sản phẩm</th>
-          </tr>
-          <tr>
-            <td>
-              <form action="" method="post">
-                <input name="gia" type="text" placeholder="Nhập giá sản phẩm">
-              </form>
-            </td>
-            <td>
-              <form action="" method="post">
-                <textarea name="mota" id="" placeholder="Nhập mô tả" rows="10" cols="50"></textarea>
-              </form>
-            </td>
-          </tr>
-          </tr>
-        </table>
-        <form class="reset-form" method="post">
-<<<<<<< HEAD
-          <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
-=======
-          <input type="submit" id="buttonreset" style="display: none;" >
->>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
-          <label class="buttonReset" for="buttonreset">Reset</label>
-        </form>
-        <form class="submit-form" method="post">
-<<<<<<< HEAD
-          <input name="them" type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
-=======
-          <input type="submit" id="buttonsubmit" style="display: none;">
->>>>>>> 47e6464423d52b2ab23100740df177c532e5f55e
-          <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
-        </form>
-      </div>
     </section>
   </div>
 

@@ -7,6 +7,35 @@ $id=$_GET['id'];
 $sql = "SELECT * from cart where username='$username'";
 $result = $mysqli->query($sql);
 $count = $result->num_rows;
+
+if(isset($_POST['submit'])){
+    $hoten = $_POST['name'];
+    $diachi = $_POST['address'];
+    $sdt=$_POST['phone'];
+    $payment = $_POST['payment'];
+    $tensp = $_SESSION['tensp'];
+    $soluong=$_SESSION['soluong'];
+    $gia=$_SESSION['gia'];
+    $tong=$_SESSION['tong'];
+    $tongtien=$_SESSION['tongtien'];
+
+    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien)
+    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien')";
+    $result = $mysqli->query($sql);
+
+    $_SESSION['tensp']='';
+    $_SESSION['soluong']='';
+    $_SESSION['gia']='';
+    $_SESSION['tong']='';
+    $_SESSION['tongtien']='';
+
+    $sql = "DELETE FROM cart WHERE username = '$username'";
+    $result = $mysqli->query($sql);
+    echo '<script>
+        alert("Đặt hàng thành công");
+        window.location.href="user.php?username='.$username.'";
+        </script>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,57 +67,65 @@ $count = $result->num_rows;
                     <h2>Thanh toán</h2>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-4 order-md-2 mb-4">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted">Giỏ hàng</span>
-                            <span class="badge badge-secondary badge-pill">
+                <form method="post" action="">
+                    <div class="row">
+                        <div class="col-md-4 order-md-2 mb-4">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Giỏ hàng</span>
+                                <span class="badge badge-secondary badge-pill">
                                 <?php echo $count?>
                             </span>
-                        </h4>
-                        <?php
-                        $sql = "SELECT * from cart where username='$username'";
-                        $result = $mysqli->query($sql);
-                        $count = $result->num_rows;
-                        // Loop through each row in the result set
-                        while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <ul class="list-group mb-3">
+                            </h4>
+                            <?php
+                            $sql = "SELECT * from cart where username='$username'";
+                            $result = $mysqli->query($sql);
+                            $count = $result->num_rows;
+                            // Loop through each row in the result set
+                            while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <ul class="list-group mb-3">
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                                     <div>
                                         <!-- Output the product name -->
                                         <h6 class="my-0"><?php echo $row['tensp']; ?></h6>
                                         <!-- Output the product price and quantity -->
                                         <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
+
+                                        <input type="hidden" name="tensp" value="<?php echo $row['tensp']?>">
+                                        <input type="hidden" name="gia" value="<?php echo $row['gia']?>">
+                                        <input type="hidden" name="soluong" value="<?php echo $row['soluong']?>">
+
                                     </div>
                                     <span class="text-muted">
                                         <?php
-                                            echo $row['tong'].'€';
+                                        echo $row['tong'].'€';
                                         ?>
+                                        <input type="hidden" name="tong" value="<?php echo $row['tong']?>">
                                     </span>
                                 </li>
-                            <?php
-                            }
-                            ?>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Tổng thành tiền</span>
-                                <strong>
-                                    <?php
+                                <?php
+                                }
+                                ?>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Tổng thành tiền</span>
+                                    <strong>
+                                        <?php
                                         echo $_SESSION['tongtien'].'€';
-                                    ?>
-                                </strong>
-                            </li>
-                        </ul>
+                                        ?>
+                                        <input type="hidden" name="tongtien" value="<?php echo $row['tongtien']?>">
+                                    </strong>
+                                </li>
+                            </ul>
 
-                    </div>
+                        </div>
 
-                    <div class="col-md-8 order-md-1">
-                        <h4 class="mb-3">Thông tin khách hàng</h4>
-                        <?php
-                        $sql = "SELECT * FROM address where id = '$id' and username = '$username'";
-                        $result = $mysqli->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                        ?>
+                        <div class="col-md-8 order-md-1">
+                            <h4 class="mb-3">Thông tin khách hàng</h4>
+                            <?php
+                            $sql = "SELECT * FROM address where id = '$id' and username = '$username'";
+                            $result = $mysqli->query($sql);
+                            while ($row = $result->fetch_assoc()) {
+                            ?>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Họ tên</label>
@@ -113,17 +150,18 @@ $count = $result->num_rows;
                             </div>
 
                             <hr class="mb-4">
-                        <form id="add-to-cart-form" action="cart.php?username=<?php echo $username?> &action=submit" method="post">
-                            <input class="btn btn-primary btn-lg btn-block" id="dathang" type="submit" name="order_click"  value="Đặt hàng">
-                        </form>
+                            <form id="add-to-cart-form">
+                                <input class="btn btn-primary btn-lg btn-block" id="dathang" type="submit" name="submit"  value="Đặt hàng">
+                            </form>
 
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="button" name="btnDatHang" onclick="window.location.replace
-                                ('select_address.php?username=<?php echo urlencode($username); ?>')" style="background-color:green;border: none">Quay lại</button>
+                                    ('select_address.php?username=<?php echo urlencode($username); ?>')" style="background-color:green;border: none">Quay lại</button>
 
+                        </div>
                     </div>
-                </div>
                 <?php } ?>
+                </form>
 
             </form>
 
