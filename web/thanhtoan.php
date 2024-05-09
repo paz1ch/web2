@@ -89,7 +89,7 @@ if(isset($_POST['submit'])){
                                         <!-- Output the product name -->
                                         <h6 class="my-0"><?php echo $row['tensp']; ?></h6>
                                         <!-- Output the product price and quantity -->
-                                        <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
+                                        <small class="text-muted">Giá: <?php echo $row['gia'].'€' ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
 
                                         <input type="hidden" name="tensp" value="<?php echo $row['tensp']?>">
                                         <input type="hidden" name="gia" value="<?php echo $row['gia']?>">

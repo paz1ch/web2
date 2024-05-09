@@ -132,7 +132,7 @@ if (isset($_POST['themvaogiohang'])){
                             <div class="product-top">
                                 <img src="images/<?php echo $row['image_sp'] ?>" alt="">
                                 <div class="overlay-right">
-                                    <a href="productdetail.php" class="btn btn-secondary" title="Xem chi tiết">
+                                    <a href="productdetail.php?id=<?php echo $row['id_sp']?>" class="btn btn-secondary" title="Xem chi tiết">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                     <form id="add-to-cart-form" method="post">
@@ -154,7 +154,7 @@ if (isset($_POST['themvaogiohang'])){
                                 <i class="fa fa-star-half-o"></i>
                                 <h4><?php echo $row['tensp'] ?></h4>
                                 <div>
-                                    <p class="product-price"><?php echo $row["gia"] ?></p>
+                                    <p class="product-price"><?php echo $row["gia"].'€'?></p>
                                     <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
                                     <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
                                     <input type="number" min="1" max="1000" name="quantity" value="1"/>

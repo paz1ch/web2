@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
                         <td class="product-img">
                             <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp'] ?>">
                         </td>
-                        <td class="product-price"><?= $row['gia'] ?></td>
+                        <td class="product-price"><?= $row['gia']?></td>
                         <td class="product-quantity"><?= $row['soluong'] ?></td>
                         <td class="product-money"><?= $row['tong'] . '€' ?></td>
                         <td class="product-delete">

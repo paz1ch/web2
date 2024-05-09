@@ -36,10 +36,10 @@ if (isset($_GET['search'])) {
             location.assign("login.php");
         }
     </script>
-    <a href="product_search.php" class="account">Tìm kiếm</a>
+    <a href="advanced_product_search.php" class="account">Tìm kiếm</a>
     <div class="search-container">
         <form action="product_search.php" method="get">
-            <input type="text" placeholder="Search.." name="searchtext">
+            <input type="text" placeholder="Tìm kiếm.." name="searchtext">
             <button type="submit" name="search">
                 <i class="fa fa-search"></i>
             </button>

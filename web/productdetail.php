@@ -99,7 +99,7 @@ include 'header.php';
                         </div>
                         <!--Mô tả sản phẩm ở đây-->
                         <p class="product-description"><?php echo $row['motangan'] ?></p>
-                        <h4 class="price">Giá: <span><?php echo $row['gia'] ?></span></h4>
+                        <h4 class="price">Giá: <span><?php echo $row['gia'].'€' ?></span></h4>
                         <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo <strong>Uy tín</strong>!</p>
                         <div class="form-group">
                             <label for="soluong">Số lượng đặt mua:</label>
@@ -111,8 +111,6 @@ include 'header.php';
                             <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang" value="Thêm vào giỏ hàng"
                                   type="submit" onclick="myFunction()">
                             <br> <br>
-                            <input class="add-to-cart btn btn-default" id="btnThemVaoGioHang"
-                                   value="Mua ngay" type="submit" onclick="myFunction()">
                             <script>
                                 function myFunction(){
                                     alert("Cần phải đăng nhập trước khi thực hiện thao tác này!!!");
