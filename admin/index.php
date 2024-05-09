@@ -26,6 +26,13 @@ if (isset($_POST['submit'])) {
   }
   $stmt->close();
 }
+if(isset($_POST['xoa'])){
+    $username_user = $_POST['username'];// Get the username from the hidden input field
+    $username = $_POST['username']; // Giả sử bạn nhận tham số username từ form hoặc nơi khác
+
+    $query = "DELETE FROM taikhoan WHERE username = '$username' LIMIT 1";
+    $result = $conn->query($query);
+}
 ?>
 
 
@@ -65,6 +72,7 @@ if (isset($_POST['submit'])) {
               <th style="width: 12%;">Tình trạng tài khoản</th>
               <th>Khóa</th>
               <th class="thongtin">Thông tin</th>
+                <th class="delete">Xóa</th>
             </tr>
             <tr>
               <?php
@@ -93,6 +101,10 @@ if (isset($_POST['submit'])) {
 
                     <td class="sua">
                       <input type="submit" name="submitFix" class="sua" value="Sửa">
+                    </td>
+
+                      <td class="sua">
+                      <input type="submit" name="xoa" class="delete" value="Xóa">
                     </td>
 
                   </form>
