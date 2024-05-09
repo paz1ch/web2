@@ -1,3 +1,7 @@
+<?php
+include('../web/config/config.php');
+$username_admin = $_GET["admin"];
+?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
   <html lang="en">
@@ -51,37 +55,7 @@
               <td class="gia">20tr/cái</td>
               <td class="mota">dành cho nhà giàu</td>
               <td class="chucnang">
-                <a href="suasanpham1.php" style="color: blue;">Sửa</a>
-              </td>
-              <td class="xoa" onclick="buttonXoa()">Xóa</td>
-            </tr>
-            <tr>
-              <td class="masanpham">2</td>
-              <td class="phanloai">Giường</td>
-              <td class="anh">
-                <img src="image/bed2.jpg" alt="" width="80px" height="80px">
-              </td>
-              <td class="name">Giường-2</td>
-              <td class="soluong">8</td>
-              <td class="gia">15tr/cái</td>
-              <td class="mota">dành cho nhà giàu</td>
-              <td class="chucnang">
-                <a href="suasanpham2.php" style="color: blue;">Sửa</a>
-              </td>
-              <td class="xoa" onclick="buttonXoa()">Xóa</td>
-            </tr>
-            <tr>
-              <td class="masanpham">3</td>
-              <td class="phanloai">Giường</td>
-              <td class="anh">
-                <img src="image/bed3.jpg" alt="" width="80px" height="80px">
-              </td>
-              <td class="name">Giường-3</td>
-              <td class="soluong">10</td>
-              <td class="gia">15tr/cái</td>
-              <td class="mota">dành cho nhà giàu</td>
-              <td class="chucnang">
-                <a href="suasanpham3.php" style="color: blue;">Sửa</a>
+                <a href="suasanpham.php?admin=<?php echo $username_admin?>" style="color: blue;">Sửa</a>
               </td>
               <td class="xoa" onclick="buttonXoa()">Xóa</td>
             </tr>

@@ -1,4 +1,4 @@
-span style="font-family: verdana, geneva, sans-serif;">
+<span style="font-family: verdana, geneva, sans-serif;">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,25 +91,13 @@ span style="font-family: verdana, geneva, sans-serif;">
           </tr>
           </tr>
         </table>
-        <form class="reset-form">
-          <input type="reset" id="buttonreset" style="display: none;" onclick="clickReset()">
+        <form class="reset-form" method="post">
+          <input type="submit" id="buttonreset" style="display: none;" >
           <label class="buttonReset" for="buttonreset">Reset</label>
-          <script>
-            function clickReset() {
-              location.reload();
-              alert("Reset thành công!!");
-            }
-          </script>
         </form>
-        <form class="submit-form">
-          <input type="submit" id="buttonsubmit" style="display: none;" onclick="clickSubmit()">
+        <form class="submit-form" method="post">
+          <input type="submit" id="buttonsubmit" style="display: none;">
           <label class="buttonsubmit" for="buttonsubmit">Thêm</label>
-          <script>
-            function clickSubmit() {
-              location.reload();
-              alert("Thêm sản phẩm thành công!!");
-            }
-          </script>
         </form>
       </div>
     </section>
