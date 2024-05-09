@@ -1,6 +1,12 @@
 <?php
 global $mysqli;
 include_once("config/config.php");
+if (isset($_POST['themvaogiohang'])){
+    echo '<script type="text/javascript">
+        alert("Cần phải đăng nhâp !!!");
+        window.location.href = "login.php";
+    </script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,34 +123,24 @@ include_once("config/config.php");
                 <div class="title-box">
                     <h2>ĐỒ NỘI THẤT</h2>
                 </div>
-                <script>
-                    function addtoCart() {
-                        alert("Cần phải đăng nhập");
-                        window.location.replace("login.php")
-                    }
-                </script>
 
                 <div class="row">
                     <?php
                     while ($row = mysqli_fetch_array($sql_sanpham)) {
-
                         ?>
                         <div class="col-md-3">
                             <div class="product-top">
                                 <img src="images/<?php echo $row['image_sp'] ?>" alt="">
                                 <div class="overlay-right">
-                                    <button type="button" class="btn btn-secondary" title="Xem chi tiết">
-                                        <a href="productdetail.php?id=<?php echo $row['id_sp'] ?>">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </button>
-
-                                    <button type="button" class="btn btn-secondary" title="Thêm vào giỏ hàng" onclick="addtoCart()">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
+                                    <a href="productdetail.php" class="btn btn-secondary" title="Xem chi tiết">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <form id="add-to-cart-form" method="post">
+                                        <button type="submit" class="btn btn-secondary" title="Thêm vào giỏ hàng" name="themvaogiohang">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
                                 </div>
                             </div>
-
 
                             <div class="product-bottom text-center">
                                 <?php
@@ -157,24 +153,13 @@ include_once("config/config.php");
                                 } ?>
                                 <i class="fa fa-star-half-o"></i>
                                 <h4><?php echo $row['tensp'] ?></h4>
-                                <div class="product-description" data-name="Mirror-3" data-price="12">
-
+                                <div>
                                     <p class="product-price"><?php echo $row["gia"] ?></p>
-                                    <form class="add-to-cart" action="cart.php" method="post">
-                                        <div>
-                                            <label for="qty-2">Số lượng</label>
-                                            <input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
-                                        </div>
-                                        <p><input type="button" value="Mua ngay" class="btn" id="button" /></p>
-                                        <script>
-                                            button = document.getElementById("button");
-                                            button.onclick = function() {
-                                                alert("Cần phải đăng nhập")
-                                                window.location.replace("login.php");
-                                            }
-                                        </script>
+                                    <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
+                                    <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
+                                    <input type="number" min="1" max="1000" name="quantity" value="1"/>
+                                    <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                     </form>
-
                                 </div>
                             </div>
                         </div>
