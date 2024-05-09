@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 02, 2024 lúc 01:32 PM
+-- Thời gian đã tạo: Th5 09, 2024 lúc 09:28 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,11 +29,30 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart_detail` (
   `id` int(11) NOT NULL,
-  `id_sp` int(11) DEFAULT NULL,
-  `id_cart` int(11) NOT NULL,
-  `soluong` int(11) NOT NULL,
-  `gia` int(11) NOT NULL
+  `username` varchar(500) NOT NULL,
+  `hoten` varchar(50) NOT NULL,
+  `diachi` varchar(1000) NOT NULL,
+  `sdt` varchar(50) NOT NULL,
+  `payment` varchar(50) NOT NULL,
+  `tensp` varchar(500) NOT NULL,
+  `soluong` varchar(500) NOT NULL,
+  `gia` varchar(500) NOT NULL,
+  `tong` varchar(50) NOT NULL,
+  `tongtien` varchar(50) NOT NULL,
+  `xuly` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`) VALUES
+(7, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/30/60', '90€/200€/1000€', '90/6000/60000', '66090', 0),
+(8, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(9, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(10, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'SOFA LOẠI TỐT', '1', '200€', '200', '200', 0),
+(11, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', 'BÀN GỖ SỒI', '1', '90€', '90', '90', 0),
+(12, '1', 'Truong nhat', 'kalsjd, đồng nai, Vietnam', '1111111', 'Ví điện tử', '', '', '', '', '', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -43,9 +62,7 @@ CREATE TABLE `cart_detail` (
 -- Chỉ mục cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cart` (`id_cart`),
-  ADD KEY `cart_detail_ibfk_1` (`id_sp`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -55,18 +72,7 @@ ALTER TABLE `cart_detail`
 -- AUTO_INCREMENT cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `cart_detail`
---
-ALTER TABLE `cart_detail`
-  ADD CONSTRAINT `cart_detail_ibfk_1` FOREIGN KEY (`id_sp`) REFERENCES `sanpham` (`id_sp`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `cart_detail_ibfk_2` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

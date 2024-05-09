@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2024 lúc 08:01 AM
+-- Thời gian đã tạo: Th5 09, 2024 lúc 09:28 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -32,9 +32,10 @@ CREATE TABLE `cart` (
   `id_sp` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `tensp` varchar(50) NOT NULL,
+  `image_sp` varchar(50) NOT NULL,
   `soluong` int(11) NOT NULL,
   `gia` varchar(50) NOT NULL,
-  `giakhuyenmai` varchar(50) NOT NULL
+  `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -46,10 +47,9 @@ CREATE TABLE `cart` (
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `username_2` (`username`),
-  ADD KEY `username_3` (`username`),
-  ADD KEY `id_sp` (`id_sp`);
+  ADD KEY `id_sp` (`id_sp`),
+  ADD KEY `id_sp_2` (`id_sp`),
+  ADD KEY `id_sp_3` (`id_sp`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -59,17 +59,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`username`) REFERENCES `taikhoan` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
