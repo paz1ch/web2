@@ -1,5 +1,3 @@
-<span style="font-family: verdana, geneva, sans-serif;">
-
 <?php
   include('config/config.php');
   $conn = new mysqli("localhost", "root", "", "web_php");
@@ -18,11 +16,12 @@
     $result = $conn -> query($sql_add);
     echo '<script>
         alert("Đặt hàng thành công");
-        window.location.href="add_product-admin.php?admin='.$username_admin.'";
+        window.location.href="add_products-admin.php?admin='.$username_admin.'";
         </script>';
   }
 
 ?>
+<span style="font-family: verdana, geneva, sans-serif;">
 
 <!DOCTYPE html>
 <html lang="en">
