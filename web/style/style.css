@@ -529,7 +529,7 @@ hr.featurette-divider {
 	border-radius: 8px;
 	box-shadow: 0 0 0 #fec1958c;
 	transition: all .3s ease-in-out;
-	cursor: pointer;
+	cursor: unset;
 }
 
 .star-1 {
