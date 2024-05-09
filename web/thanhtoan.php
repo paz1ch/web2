@@ -19,8 +19,8 @@ if(isset($_POST['submit'])){
     $tong=$_SESSION['tong'];
     $tongtien=$_SESSION['tongtien'];
 
-    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien)
-    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien')";
+    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien,xuly)
+    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien','1')";
     $result = $mysqli->query($sql);
 
     $_SESSION['tensp']='';

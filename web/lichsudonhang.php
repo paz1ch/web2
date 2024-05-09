@@ -107,16 +107,16 @@ $username = $_GET['username'];
                                         <p id="sub-total" style="text-align: left">
                                             <strong>Tình trạng đơn:</strong>
                                             <?php
-                                            if ($row['xuly']==0){
+                                            if ($row['xuly']==1){
                                                 echo 'Đơn chưa xác nhận';
                                             }
-                                            else if ($row['xuly']==1){
+                                            else if ($row['xuly']==2){
                                                 echo 'Đơn đã xác nhận';
                                             }
-                                            else if ($row['xuly']==2){
+                                            else if ($row['xuly']==3){
                                                 echo 'Đơn giao thành công';
                                             }
-                                            else if ($row['xuly']==3){
+                                            else if ($row['xuly']==4){
                                                 echo 'Hủy đơn';
                                             }
                                             ?>

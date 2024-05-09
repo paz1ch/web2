@@ -2,6 +2,23 @@
 include ('config/config.php');
 global $conn;
 $username_admin = $_GET['admin'];
+if (isset($_POST['update'])){
+    $username = $_POST['username'];
+    $selection = $_POST['selection'];
+    if($selection!=''){
+        $sql = "UPDATE cart_detail SET xuly = '$selection' WHERE username = '$username';";
+        $result = $conn->query($sql);
+        echo '<script>
+        alert("Cập nhật thành công");
+        window.location.href="cart-admin.php?admin='.$username_admin.'";
+        </script>';
+    }
+    else{
+        echo '<script>
+        alert("Vui lòng chọn Tình trạng đơn hàng trước khi cập nhật");
+        </script>';
+    }
+}
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
   <!DOCTYPE html>
@@ -49,49 +66,99 @@ $username_admin = $_GET['admin'];
             <div class="main-body">
             <h1>QUẢN LÝ ĐƠN HÀNG</h1>
         </div>
+        <table class="table-main">
+        <tr class="tr-main">
+            <th class="sanpham" colspan="2">Sản phẩm</th>
+            <th class="doanhthu">Tổng tiền</th>
+            <th class="vanchuyen">Phương thức thanh toán</th>
+            <th class="thoigian">Thời gian tạo đơn</th>
+            <th class="trangthai">Trạng thái</th>
+            <th class="thaotac" colspan="2">Cập nhật tình trạng đơn</th>
+        </tr>
+        </table>
         <?php
         $sql = "SELECT * from cart_detail";
         $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc())
-        {
-        ?>
-        <table class="table-main">
-            <tr class="tr-main">
-                <th class="sanpham" colspan="2">Sản phẩm</th>
-                <th class="doanhthu">Tổng tiền</th>
-                <th class="vanchuyen">Phương thức thanh toán</th>
-                <th class="thoigian">Thời gian tạo đơn</th>
-                <th class="trangthai">Trạng thái</th>
-                <th class="duyet">Thao tác</th>
-                <th class="thongtin">Thông tin</th>
-            </tr>
-        </table>
-        <table class="table-data">
-            <tr class="tr-data">
-                <th class="mavandon" colspan="9">Mã vận đơn: 122315</th>
-            </tr>
-            <tr>
-                <td class="sanpham">Giường-1</td>
-                <td class="soluong">Số lượng: x3</td>
-                <td class="doanhthu" rowspan="2">60tr</td>
-                <td class="vanchuyen" rowspan="2">Hàng không</td>
-                <td class="date" rowspan="2">11/12/1999 </td>
-                <td class="time" rowspan="2"> 11h45p33s</td>
-                <td class="trangthai" rowspan="2">Chưa xử lý</td>
-                <td class="duyet" rowspan="2">
-                <form action="" class="">
-                  <input type="checkbox" id="myCheck" onclick="myFunction()">
-                </form>
-                </td>
-                <td class="thongtin" rowspan="2">
-                <a href="donhang.php?admin=<?php echo $username_admin?>" style="color: blue;">Chi tiết</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="sanpham">Giường-2</td>
-                <td class="soluong">Số lượng: x1</td>
-            </tr>
-        </table>
+        while ($row = $result->fetch_assoc()) {
+            $tensp_array = explode('/', $row['tensp']);
+            $soluong_array = explode('/', $row['soluong']);
+            $count_slash = count($tensp_array); // Count the number of elements in $tensp_array
+
+            // Output the table structure outside the loop
+            ?>
+            <table class="table-data">
+                <tr class="tr-data">
+                <th class="mavandon" colspan="8">
+                    Mã vận đơn: <?php echo $row['id']?>
+                </th>
+                </tr>
+                <?php foreach ($tensp_array as $key => $product) { ?>
+                    <tr>
+                        <td class="sanpham">
+                            <?php echo $product?>
+                        </td>
+                        <td class="soluong">Số lượng: x<?php echo $soluong_array[$key]?></td>
+                        <?php if ($key === 0)// Apply rowspan to the first occurrence of the cell
+                        {
+                        ?>
+                            <td class="doanhthu" rowspan="<?php echo $count_slash?>">
+                                <?php echo $row['tongtien'].'€'?>
+                            </td>
+                            <td class="vanchuyen" rowspan="<?php echo $count_slash?>">
+                                <?php echo $row['payment']?>
+                            </td>
+                            <td class="date" rowspan="<?php echo $count_slash?>">11/12/1999</td>
+                            <td class="trangthai" rowspan="<?php echo $count_slash?>">
+                                <?php
+                                if ($row['xuly']==1){
+                                    echo 'Đơn chưa xác nhận';
+                                }
+                                else if ($row['xuly']==2){
+                                    echo 'Đơn đã xác nhận';
+                                }
+                                else if ($row['xuly']==3){
+                                    echo 'Đơn giao thành công';
+                                }
+                                else if ($row['xuly']==4){
+                                    echo 'Hủy đơn';
+                                }
+                                ?>
+                            </td>
+                            <form method="post">
+                                <td class="option" rowspan="<?php echo $count_slash?>">
+                                    <select name="selection">
+                                        <option value="">--Chọn--</option>
+                                        <option value="1">Chưa xác nhận</option>
+                                        <option value="2">Xác nhận</option>
+                                        <option value="3">Giao thành công</option>
+                                        <option value="4">Hủy đơn</option>
+                                    </select>
+                                </td>
+                                <td class="capnhat" rowspan="<?php echo $count_slash?>">
+                                    <input type="hidden" name="username" value="<?php echo $row['username']?>">
+                                    <input type="submit" name="update" value="Cập nhật">
+                                </td>
+                            </form>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <th class="name">Tên</th>
+                    <th class="sdt">Số điện thoại</th>
+                    <th colspan="6" class="address">Địa chỉ</th>
+                </tr>
+                <tr>
+                    <td class="name">
+                        <?php echo $row['hoten']?>
+                    </td >
+                    <td class="sdt">
+                        <?php echo $row['sdt']?>
+                    </td>
+                    <td colspan="6" class="address">
+                        <?php echo $row['diachi']?>
+                    </td>
+                </tr>
+            </table>
         <?php } ?>
         </div>
       </section>
