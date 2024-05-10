@@ -112,3 +112,15 @@
 h1, tr{
 	text-align: center;
 }
+
+.cart-empty {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: rgba(0, 0, 0, 0.4);
+	font-size: .999rem;
+	line-height: 1rem;
+	margin-top: 5rem;
+	font-weight: 700;
+}
