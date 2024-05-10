@@ -120,7 +120,9 @@ $username = $_GET['username'];
                                                 echo 'Hủy đơn';
                                             }
                                             ?>
-                                            <span id="stotal"></span>
+                                            <p id="time">Thời gian nhận hàng (dự kiến):
+                                                <?php echo $row['date']; ?>
+                                            </p>
                                         </p>
                                     </td>
                                     <td>

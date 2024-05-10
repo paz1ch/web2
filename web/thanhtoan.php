@@ -18,9 +18,10 @@ if(isset($_POST['submit'])){
     $gia=$_SESSION['gia'];
     $tong=$_SESSION['tong'];
     $tongtien=$_SESSION['tongtien'];
+    $currentTime = date("Y-m-d", strtotime("+3 days"));
 
-    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien,xuly)
-    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien','1')";
+    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien,xuly,date)
+    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien','1','$currentTime')";
     $result = $mysqli->query($sql);
 
     $_SESSION['tensp']='';
