@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 09, 2024 lúc 09:19 PM
+-- Thời gian đã tạo: Th5 10, 2024 lúc 06:00 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -44,9 +44,9 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
-(4, 'test2', 'nhat truong', '.0.0.0.', 'vietnam', 'trung', ' a', ' b', 'Thanh toán khi nhận hàng'),
+(4, 'test2', 'nhat truong', '034623612', 'vietnam', 'hồ chí minh', 'tân phú', 'hai bà trưng', 'Thanh toán khi nhận hàng'),
 (42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử'),
-(43, '1', 'Truong nhat', '03452951211', 'Vietnam', 'đồng nai', 'thủ đức', 'nguyễn văn trỗi', 'Thanh toán khi nhận hàng');
+(43, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử');
 
 -- --------------------------------------------------------
 
@@ -64,6 +64,14 @@ CREATE TABLE `cart` (
   `gia` varchar(50) NOT NULL,
   `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `gia`, `tong`) VALUES
+(62, 18, '1', 'GƯỜNG LUXURY', 'bed5.jpg', 1, '1000', '1000'),
+(63, 14, '1', 'BÀN KÍNH', 'table1.jpg', 2, '200', '400');
 
 -- --------------------------------------------------------
 
@@ -83,15 +91,20 @@ CREATE TABLE `cart_detail` (
   `gia` varchar(500) NOT NULL,
   `tong` varchar(50) NOT NULL,
   `tongtien` varchar(50) NOT NULL,
-  `xuly` varchar(50) NOT NULL
+  `xuly` varchar(50) NOT NULL,
+  `time_shipping` date NOT NULL,
+  `time_order` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`) VALUES
-(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '3');
+INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`, `time_shipping`, `time_order`) VALUES
+(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '3', '2000-10-30', '0000-00-00'),
+(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '4', '2000-10-30', '0000-00-00'),
+(16, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY/GƯƠNG MẶT TRỜI', '1/1/1/1', '90/200/1000/100', '90/200/1000/100', '1390', '4', '2024-05-10', '0000-00-00'),
+(17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '2', '2024-05-10', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -182,7 +195,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`username`, `password`, `ho`, `ten`, `phone`, `email`, `sex`, `date`, `isadmin`, `status`) VALUES
-('1', '1', 'do nhat', 'nguyen', '03452951221', 'affg@gmail.com', 'Nam', '3000-01-02', 0, 1),
+('1', '', 'do nhat', 'nguyen', '03452951221', 'affg@gmail.com', 'Nam', '3000-01-02', 0, 1),
 ('123', '', 'do', 'nguyen', '03452951211', 'x@gmail.com', 'Nữ', '2004-01-14', 0, 1),
 ('admin', '1', '', '', '', '', '', '0000-00-00', 1, 1),
 ('test2', '1', 'phuc', 'dang', '0345295121', 'asd@gmail.com', 'Nữ', '0004-12-01', 0, 1),
@@ -249,13 +262,13 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT cho bảng `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
