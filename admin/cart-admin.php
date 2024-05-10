@@ -31,7 +31,7 @@ if (isset($_POST['search'])){
     $district = $_POST['district'];
 
     if (!empty($from_date) && !empty($to_date)) {
-        $sql .= " AND `date` BETWEEN '$from_date' AND '$to_date'";
+        $sql .= " AND `time_shipping` BETWEEN '$from_date' AND '$to_date'";
     }
     if (!empty($donhang)) {
         $sql .= " AND `xuly` = '$donhang'";
@@ -190,7 +190,7 @@ if(isset($_POST['reset'])){
                     <td class="vanchuyen" rowspan="<?php echo $count_slash?>">
                         <?php echo $row['payment']?>
                     </td>
-                    <td class="date" rowspan="<?php echo $count_slash?>"><?php echo $row['date']?></td>
+                    <td class="date" rowspan="<?php echo $count_slash?>"><?php echo $row['time_shipping']?></td>
                     <td class="trangthai" rowspan="<?php echo $count_slash?>">
                         <?php
                         if ($row['xuly']==1){

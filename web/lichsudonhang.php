@@ -121,7 +121,7 @@ $username = $_GET['username'];
                                             }
                                             ?>
                                             <p id="time">Thời gian nhận hàng (dự kiến):
-                                                <?php echo $row['date']; ?>
+                                                <?php echo $row['time_shipping']; ?>
                                             </p>
                                         </p>
                                     </td>
