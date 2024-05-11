@@ -8,6 +8,7 @@ $result = $conn->query($sql);
 $unique_products = [];
 $total_quantity = 0;
 $total_price = 0;
+$count_tensp = 0;
 
 while ($row = $result->fetch_assoc()) {
     // Split tensp values by '/'
@@ -16,19 +17,15 @@ while ($row = $result->fetch_assoc()) {
 
     // Add products to the unique_products array if not already present
     foreach ($tensp_array as $product) {
-        $product = trim($product); // Trim to remove any extra spaces
-        if (!in_array($product, $unique_products)) {
-            $unique_products[] = $product;
-        }
+        $count_tensp++;
     }
     foreach ($soluong_array as $quantity) {
         $total_quantity += (int)$quantity; // Cast quantity to integer and add to total
     }
     $total_price += (int)$row['tongtien'];
 }
-// Count unique products
-$count_tensp = count($unique_products);
 ?>
+
 
 <span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
 <html lang="en">
@@ -86,7 +83,7 @@ $count_tensp = count($unique_products);
         <table style="border-collapse:collapse">
             <tr>
                 <th>Mã vận đơn</th>
-                <th>Số lượng sản phẩm</th>
+                <th>Số sản phẩm</th>
                 <th>Tổng tiền</th>
                 <th>Thông tin</th>
             </tr>
