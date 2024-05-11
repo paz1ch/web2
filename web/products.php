@@ -92,7 +92,7 @@ if (isset($_POST['themvaogiohang'])){
                                     <p class="product-price"><?php echo $row["gia"].'€' ?></p>
                                     <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
                                     <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
-                                    <input type="number" min="1" max="1000" name="quantity" value="1"/>
+                                    <input type="number" class="product-value" min="1" max="1000" name="quantity" value="1"/>
                                     <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                     </form>
                                 </div>
@@ -115,7 +115,7 @@ if (isset($_POST['themvaogiohang'])){
             $a = ceil($count / 8);
 
             for ($b = 1; $b <= $a; $b++) {
-                echo '<a href="products.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                echo '<a class="phantrang" href="products.php?page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
             }
 
             ?>

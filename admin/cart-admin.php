@@ -96,7 +96,7 @@ if(isset($_POST['reset'])){
 
                 <!--    Tim kiem theo tinh trang don hang    -->
                 <div class="abcde">
-                    <label for="" class="label">Tinh trang don hang</label>
+                    <label for="" class="label">Tình trạng đơn hàng</label>
                     <select name="donhang" >
                         <option value="">--Chọn--</option>
                         <option value="1">Chưa xác nhận</option>
@@ -151,9 +151,9 @@ if(isset($_POST['reset'])){
     $result_offset = $conn->query($sql_offset);
 
     // Tạo liên kết phân trang
-    $pagination = "<div class='pagination'>";
+    $pagination = "<div class='pagination' style='font-size: 20px;'> Trang ";
     for ($i = 1; $i <= $total_pages; $i++) {
-        $pagination .= "<a href='?admin=$username_admin&page=$i'>$i</a>";
+        $pagination .= "<a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem; margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4); display: inline; justify-content: center;' href='?admin=$username_admin&page=$i'>$i</a>";
     }
     $pagination .= "</div>";
 

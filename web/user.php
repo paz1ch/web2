@@ -149,7 +149,7 @@ $username = $_GET['username'];
                                     <p class="product-price"><?php echo $row["gia"].'€' ?></p>
                                         <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
                                         <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
-                                        <input type="number" min="1" max="1000" name="quantity" value="1"/>
+                                        <input class="product-value" type="number" min="1" max="10000" name="quantity" value="1">
                                         <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                     </form>
                                 </div>
@@ -172,7 +172,7 @@ $username = $_GET['username'];
             $a = ceil($count / 8);
 
             for ($b = 1; $b <= $a; $b++) {
-                echo '<a href="sanpham_trangchu.php?username=' .$username .'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                echo '<a class="phantrang" href="sanpham_trangchu.php?username=' .$username .'&page=' . $b . '" > ' . ' ' . $b . ' ' . '</a>';
             }
 
             ?>
