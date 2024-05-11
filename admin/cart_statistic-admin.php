@@ -62,7 +62,7 @@ $count_tensp = count($unique_products);
             <th>Tổng tiền</th>
         </tr>
         <tr>
-            <td style=" align-items:center; text-align:center">
+            <td style=" align-items:center; text-align:center; width: 33%">
                 <img src="image/products.png" alt="" style="width: 35px;height:35px;object-fit:cover;margin-left: 0px">
                 <p style=" padding:10px 15px;"><?php echo $count_tensp?></p>
             </td>
@@ -70,7 +70,7 @@ $count_tensp = count($unique_products);
                 <img src="image/cart.png" alt="" style="width: 35px;height:35px;object-fit:cover;margin-left: 0px">
                 <p style=" padding:10px 15px;"><?php echo $total_quantity?></p>
             </td>
-            <td style=" align-items:center; text-align:center">
+            <td style=" align-items:center; text-align:center"">
                 <img src="image/salary.jpg" alt="" style="width: 35px;height:35px;object-fit:cover;margin-left: 0px">
                 <p style=" padding:10px 15px;"><?php echo $total_price . '€'?></p>
             </td>
