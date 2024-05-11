@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 10, 2024 lúc 06:00 PM
+-- Thời gian đã tạo: Th5 11, 2024 lúc 08:27 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -102,9 +102,9 @@ CREATE TABLE `cart_detail` (
 
 INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`, `time_shipping`, `time_order`) VALUES
 (14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '3', '2000-10-30', '0000-00-00'),
-(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '4', '2000-10-30', '0000-00-00'),
-(16, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY/GƯƠNG MẶT TRỜI', '1/1/1/1', '90/200/1000/100', '90/200/1000/100', '1390', '4', '2024-05-10', '0000-00-00'),
-(17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '2', '2024-05-10', '0000-00-00');
+(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '3', '2000-10-30', '0000-00-00'),
+(16, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY/GƯƠNG MẶT TRỜI', '1/1/1/1', '90/200/1000/100', '90/200/1000/100', '1390', '3', '2024-05-10', '0000-00-00'),
+(17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '3', '2024-05-10', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -199,7 +199,6 @@ INSERT INTO `taikhoan` (`username`, `password`, `ho`, `ten`, `phone`, `email`, `
 ('123', '', 'do', 'nguyen', '03452951211', 'x@gmail.com', 'Nữ', '2004-01-14', 0, 1),
 ('admin', '1', '', '', '', '', '', '0000-00-00', 1, 1),
 ('test2', '1', 'phuc', 'dang', '0345295121', 'asd@gmail.com', 'Nữ', '0004-12-01', 0, 1),
-('truongdonguyen', '123', 'nguyen ', 'do', '09432021401', '1234@gmail.com', 'Nam', '2004-01-14', 0, 1),
 ('user1', '1', 'nhat', 'Truong', '03333333', 'fjjghf@gmail.com', '', '0000-00-00', 0, 1),
 ('user3', '1', 'nhat', 'Truong', '01111111', '1111@gmail.com', '', '0000-00-00', 0, 1);
 
