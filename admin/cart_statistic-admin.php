@@ -88,9 +88,36 @@ while ($row = $result->fetch_assoc()) {
                 <th>Thông tin</th>
             </tr>
             <?php
-            $sql = "SELECT * FROM cart_detail ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC";
-            $result = $conn->query($sql);
-            while ($row = $result->fetch_assoc()){
+            $records_per_page = 10; // Số bản ghi mỗi trang
+
+            // Tính tổng số bản ghi
+            $sql_count = "SELECT COUNT(*) AS total_records FROM cart_detail";
+            $result_count = $conn->query($sql_count);
+            $row_count = $result_count->fetch_assoc();
+            $total_records = $row_count['total_records'];
+
+            // Tính tổng số trang
+            $total_pages = ceil($total_records / $records_per_page);
+
+            // Xác định trang hiện tại
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+            // Tính OFFSET cho truy vấn SQL mới
+            $offset = ($current_page - 1) * $records_per_page;
+
+            // Sửa đổi truy vấn SQL để chỉ trả về số lượng bản ghi phù hợp cho trang hiện tại
+            $sql_offset = "SELECT * FROM cart_detail ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC 
+            LIMIT $records_per_page OFFSET $offset";
+            $result_offset = $conn->query($sql_offset);
+
+            // Tạo liên kết phân trang
+            $pagination = "<div class='pagination' style='font-size: 20px;'> Trang ";
+            for ($i = 1; $i <= $total_pages; $i++) {
+                $pagination .= "<a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem; margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4); display: inline; justify-content: center;' href='?admin=$admin&page=$i'>$i</a>";
+            }
+            $pagination .= "</div>";
+
+            while ($row = $result_offset->fetch_assoc()){
                 $tensp_array = explode('/', $row['tensp']);
                 $count_slash_tensp = count($tensp_array); // Số lượng các phần tử trong $tensp_array
                 ?>
@@ -104,9 +131,12 @@ while ($row = $result->fetch_assoc()) {
                     </a>
                 </td>
             </tr>
-
             <?php } ?>
         </table>
+        <div style="padding-top: 30px">
+            <?php
+            echo $pagination;
+            ?>
         </div>
     </section>
 

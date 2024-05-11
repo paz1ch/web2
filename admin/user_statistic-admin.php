@@ -13,9 +13,6 @@ if (isset($_POST['search'])) {
     $to_date = $_POST['to-date'];
 
     if (!empty($from_date) && !empty($to_date)) {
-        // Basic sanitization
-        $from_date = $conn->real_escape_string($from_date);
-        $to_date = $conn->real_escape_string($to_date);
 
         $sql = "SELECT hoten, COUNT(*) AS so_luong_mua, SUM(tongtien) AS tong_luong_mua 
                 FROM cart_detail 
@@ -88,7 +85,6 @@ if (isset($_POST['search'])) {
             <?php
             $count = 1;
             while ($row = $result->fetch_assoc()) {
-                $count++;
                 if ($count > 5) break;
                 ?>
                 <tr>
@@ -103,8 +99,9 @@ if (isset($_POST['search'])) {
                         </td>
                     </tr>
                 <?php
-            }
-            ?>
+                $count++;
+                }
+                ?>
 
         </table>
         <?php

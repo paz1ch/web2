@@ -2,16 +2,15 @@
 include ('config/config.php');
 global $conn;
 $username_admin = $_GET['admin'];
-$sql = "SELECT * from cart_detail where 1=1";
-$result = $conn->query($sql);
+$sql_offset = "SELECT * from cart_detail";
 
 if (isset($_POST['update'])){
     $username = $_POST['username'];
     $selection = $_POST['selection'];
     $id_mvd= $_POST['id_mvd'];
     if(!empty($selection)){
-        $sql = "UPDATE cart_detail SET xuly = '$selection' WHERE username = '$username' and id='$id_mvd';";
-        $result = $conn->query($sql);
+        $sql_offset = "UPDATE cart_detail SET xuly = '$selection' WHERE username = '$username' and id='$id_mvd';";
+        $result_offset = $conn->query($sql_offset);
         echo '<script>
         alert("Cập nhật thành công");
         window.location.href="cart-admin.php?admin='.$username_admin.'";
@@ -23,31 +22,35 @@ if (isset($_POST['update'])){
         </script>';
     }
 }
-if (isset($_POST['search'])){
-    $from_date = $_POST['from-date'];
-    $to_date = $_POST['to-date'];
-    $donhang = $_POST['donhang'];
-    $city = $_POST['city'];
-    $district = $_POST['district'];
+function search(&$sql_offset)
+{
+    if (isset($_POST['search'])) {
+        // Sanitize input
+        $from_date = $_POST['from-date'];
+        $to_date = $_POST['to-date'];
+        $donhang = $_POST['donhang'];
+        $city = $_POST['city'];
+        $district = $_POST['district'];
 
-    if (!empty($from_date) && !empty($to_date)) {
-        $sql .= " AND `time_shipping` BETWEEN '$from_date' AND '$to_date'";
-    }
-    if (!empty($donhang)) {
-        $sql .= " AND `xuly` = '$donhang'";
-    }
-    if (!empty($city)) {
-        $sql .= " AND `diachi` LIKE '%$city%'";
-    }
-    if (!empty($district)) {
-        $sql .= " AND `diachi` LIKE '%$district%'";
-    }
-    if(empty($from_date) && empty($to_date) && empty($donhang) && empty($city) && empty($district)){
-        echo '<script>
-        alert("Vui lòng nhập liệu trước khi Lọc")
+        if (!empty($from_date) && !empty($to_date)) {
+            $sql_offset .= " AND `time_shipping` BETWEEN '$from_date' AND '$to_date'";
+        }
+        if (!empty($donhang)) {
+            $sql_offset .= " AND `xuly` = '$donhang'";
+        }
+        if (!empty($city)) {
+            $sql_offset .= " AND `diachi` LIKE '%$city%'";
+        }
+        if (!empty($district)) {
+            $sql_offset .= " AND `diachi` LIKE '%$district%'";
+        }
+        if (empty($from_date) && empty($to_date) && empty($donhang) && empty($city) && empty($district)) {
+            echo '<script>
+        alert("Vui lòng nhập liệu trước khi Lọc");
         </script>';
+        }
     }
-    $result = $conn->query($sql);
+
 }
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -146,20 +149,24 @@ if (isset($_POST['search'])){
     // Tính OFFSET cho truy vấn SQL mới
     $offset = ($current_page - 1) * $records_per_page;
 
-    // Sửa đổi truy vấn SQL để chỉ trả về số lượng bản ghi phù hợp cho trang hiện tại
-    $sql_offset = "SELECT * FROM cart_detail LIMIT $records_per_page OFFSET $offset";
+    // Sửa đổi truy vấn SQL để chỉ trả về số lượng bản ghi phù hợp cho trang hiện tại=
+    $sql_offset .= " WHERE 1=1 ";
+    search($sql_offset); // Call the search function to modify the query
+    $sql_offset .= " LIMIT $records_per_page OFFSET $offset"; // Add LIMIT and OFFSET clauses
     $result_offset = $conn->query($sql_offset);
 
     // Tạo liên kết phân trang
     $pagination = "<div class='pagination' style='font-size: 20px;'> Trang ";
     for ($i = 1; $i <= $total_pages; $i++) {
-        $pagination .= "<a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem; margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4); display: inline; justify-content: center;' href='?admin=$username_admin&page=$i'>$i</a>";
+        $pagination .= "<a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem; 
+        margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4); 
+        display: inline; justify-content: center;' href='?admin=$username_admin&page=$i'>$i</a>";
     }
     $pagination .= "</div>";
 
     // xuat du lieu ra table cart_detail
     $dem_fail=0;
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result_offset->fetch_assoc()) {
         $dem_fail++;
         $tensp_array = explode('/', $row['tensp']);
         $soluong_array = explode('/', $row['soluong']);
