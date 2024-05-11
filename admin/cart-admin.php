@@ -77,44 +77,42 @@ if (isset($_POST['search'])){
         <div class="main-body">
             <h1>TÌM KIẾM ĐƠN HÀNG</h1>
         </div>
-        <form action="" class="form-search" method="post">
-        <h5 class="h5-search">- - Tìm kiếm - -</h5>
+            <form action="" class="form-search" method="post">
+                <h5 class="h5-search">- - Tìm kiếm - -</h5>
 
-        <!--    tim kiem theo thoi gian nhan hang    -->
-        <div>
-            <label for="" class="label">Từ ngày:</label>
-            <input type="date" name="from-date" class="select">
-            <label for="" class="label">Đến ngày:</label>
-            <input type="date" class="select" name="to-date">
-        </div>
+                <!--    tim kiem theo thoi gian nhan hang    -->
+                <div class="date-search-cart-admin">
+                    <label for="" class="label">Từ ngày:</label>
+                    <input type="date" name="from-date" class="select">
+                    <label for="" class="label">Đến ngày:</label>
+                    <input type="date" class="select" name="to-date">
+                </div>
 
-        <!--    tim kiem theo dia chi    -->
-        <div>
-            <label for="" class="label">Tinh/Thanh pho</label>
-            <input type="text" name="city">
-            <label for="" class="label">Quan/Huyen</label>
-            <input type="text" name="district">
-        </div>
+                <!--    tim kiem theo dia chi    -->
+                <div class="address-search-cart-admin">
+                    <input class="label2" type="text" name="city" placeholder="Tỉnh thành phố">
+                    <input class="label3" type="text" name="district" placeholder="Quận huyện">
+                </div>
 
-        <!--    Tim kiem theo tinh trang don hang    -->
-        <div>
-            <label for="" class="label">Tinh trang don hang</label>
-            <select name="donhang" >
-                <option value="">--Chọn--</option>
-                <option value="1">Chưa xác nhận</option>
-                <option value="2">Xác nhận</option>
-                <option value="3">Giao thành công</option>
-                <option value="4">Hủy đơn</option>
-            </select>
-        </div>
-        <div style="padding-top: 30px">
-            <input type="submit" name="search" id="submitbutton" style="display: none">
-            <label for="submitbutton">
-            <span  class="button">Lọc</span>
-            </label>
-            <input type="submit" id="resetbutton" name="reset" class="button" value="Reset">
-        </div>
-    </form>
+                <!--    Tim kiem theo tinh trang don hang    -->
+                <div class="abcde">
+                    <label for="" class="label">Tinh trang don hang</label>
+                    <select name="donhang" >
+                        <option value="">--Chọn--</option>
+                        <option value="1">Chưa xác nhận</option>
+                        <option value="2">Xác nhận</option>
+                        <option value="3">Giao thành công</option>
+                        <option value="4">Hủy đơn</option>
+                    </select>
+                </div>
+                <div class="nut-loc-va-reset">
+                    <input type="submit" name="search" id="submitbutton" style="display: none">
+                    <label for="submitbutton">
+                    <span  class="button">Lọc</span>
+                    </label>
+                    <input type="submit" id="resetbutton" name="reset" class="button" value="Reset">
+                </div>
+            </form>
     </div>
     <div class="background-section">
         <div class="main-body">

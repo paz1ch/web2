@@ -124,16 +124,85 @@ td.address{
 .button:hover{
     cursor: pointer;
 }
+
 input.select{
-    margin-left: 5px;
+    margin-left: 10px;
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
+    text-align: left;
 }
 .label{
-    color: white;
-    size: 18px;
+    color: whitesmoke;
+    min-width: 20%;
+    overflow: hidden;
+    padding-bottom: 30px;
+    text-align: right;
+    white-space: nowrap;
 }
-.button-back{
-    display: block;
-    margin-top: 3%;
+
+.date-search-cart-admin {
+    padding: 15px;
+}
+
+.address-search-cart-admin {
+    padding: 15px;
+}
+
+.label2 {
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
     text-align: left;
+}
+
+.label3 {
+    margin-left: 10px;
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
+    text-align: left;
+}
+
+.abcde {
+    padding: 15px;
+}
+
+.abcde select {
     margin-left: 20px;
+    color: rgba(0,0,0,0.8);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.nut-loc-va-reset {
+    padding: 15px;
+}
+
+.nut-loc-va-reset span {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: rgb(238, 77, 45);
+    color: rgb(255,255,255);
+    outline: 0px;
+    overflow: visible;
+    position: relative;
+}
+
+.nut-loc-va-reset input {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: rgb(238, 77, 45);
+    color: rgb(255,255,255);
+    outline: 0px;
+    overflow: visible;
+    position: relative;
 }
