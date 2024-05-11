@@ -188,8 +188,8 @@ input.select{
 }
 
 .nut-loc-va-reset span {
-    padding: 15px;
-    font-size: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
     background-color: rgb(238, 77, 45);
     color: rgb(255,255,255);
     outline: 0px;
@@ -198,8 +198,8 @@ input.select{
 }
 
 .nut-loc-va-reset input {
-    padding: 15px;
-    font-size: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
     background-color: rgb(238, 77, 45);
     color: rgb(255,255,255);
     outline: 0px;
