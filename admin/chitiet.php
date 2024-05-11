@@ -69,7 +69,7 @@
             </tr>
           </table>
           <div class="button-back" title="Quay về trang trước">
-            <a href="statistic-admin.php">
+            <a href="user_statistic-admin.php">
               <i class="fa-solid fa-backward-step fa-xl" style="color: black;"></i>
             </a>
           </div>

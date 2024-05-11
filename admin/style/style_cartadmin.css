@@ -131,3 +131,9 @@ input.select{
     color: white;
     size: 18px;
 }
+.button-back{
+    display: block;
+    margin-top: 3%;
+    text-align: left;
+    margin-left: 20px;
+}

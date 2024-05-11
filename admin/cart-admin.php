@@ -42,12 +42,12 @@ if (isset($_POST['search'])){
     if (!empty($district)) {
         $sql .= " AND `diachi` LIKE '%$district%'";
     }
-    $result = $conn->query($sql);
-}
-if(isset($_POST['reset'])){
-    echo '<script>
-        window.location.href="cart-admin.php?admin='.$username_admin.'";
+    if(empty($from_date) && empty($to_date) && empty($donhang) && empty($city) && empty($district)){
+        echo '<script>
+        alert("Vui lòng nhập liệu trước khi Lọc")
         </script>';
+    }
+    $result = $conn->query($sql);
 }
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -258,6 +258,7 @@ if(isset($_POST['reset'])){
     echo $pagination;
     ?>
     </div>
+
     </section>
 
 </div>
