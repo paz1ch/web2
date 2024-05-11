@@ -29,7 +29,7 @@
           <div>
             <form action="#" class="form-search">
               <div style="padding-bottom: 10px;">
-                <h5 class="h5-search">--Tìm--</h5>
+                <h5 class="h5-search"></h5>
                 <select name="" id="" class="select">
                   <option value="">Tất cả</option>
                   <option value="">Giường</option>
