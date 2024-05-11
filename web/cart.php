@@ -78,12 +78,10 @@ if (isset($_GET['action'])){
             $count = "SELECT COUNT(*) FROM cart WHERE username='$username'";
             $result_count = $mysqli->query($count);
             if($result_count->fetch_row()[0] == 0){ ?>
-<!--                <div>-->
-<!--                    <img src="../images/cart-empty.png">-->
-<!--                </div>-->
+                <div class="cart-empty div-cart-img">
+                    <img src="images/cart_empty.png" class="cart-empty cart-img">
+                </div>
                 <div class="cart-empty">Giỏ hàng của bạn còn trống</div>
-                <a href="sanpham_trangchu.php">
-                </a>
             <?php }
             else{ ?>
                 <form id="shopping-cart" action="cart.php?action=submit" method="post">
