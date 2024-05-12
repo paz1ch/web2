@@ -39,6 +39,104 @@ if (isset($_POST['themvaogiohang'])){
 
 
 <body>
+<<<<<<< HEAD
+	<!-- header -->
+	<?php
+	include_once("header.php");
+	?>
+	<!--end header-->
+    <br><br><br>
+    <main role="main">
+        <div class="container mt-4">
+            <form name="frmTimKiem" method="post" action="">
+                <button class="tim-kiem">Tìm kiếm nâng cao
+                    <div class="star-1">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                    <div class="star-2">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                    <div class="star-3">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                    <div class="star-4">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                    <div class="star-5">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                    <div class="star-6">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                    </div>
+                </button>
+                <div class="row">
+                    <aside class="col-sm-4">
+                        <p>Bộ lọc </p>
+                        <div class="card">
+                            <!-- Tìm kiếm theo tên sản phẩm -->
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Tên sản phẩm </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
+                                        <input class="form-control" type="text" placeholder="Tìm kiếm" aria-label="Search" name="tensp" value="">
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Tìm kiếm theo Loại sản phẩm -->
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Loại sản phẩm </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
+                                        <select name="type_products">
+                                            <option value="0">--chọn--</option>
+                                            <option value="1">Giường</option>
+                                            <option value="2">Ghế</option>
+                                            <option value="3">Bàn</option>
+                                            <option value="4">Gương</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Tìm kiếm theo khoảng giá tiền -->
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Khoảng tiền </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Từ</label>
+                                                <input type="number" class="custom-range" min="0" max="50000000" id="min" name="min" value="0">
+                                            </div>
+                                            <div class="form-group col-md-6 text-right">
+                                                <label>Đến</label>
+                                                <input type="number" class="custom-range" min="0" max="50000000" id="max" name="max" value="50000000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <div class="text-center">
+                                <button type="reset" id="Search-button" class="btn-warnin" name="delete" >
+                                    <span>Xóa bộ lọc</span>
+
+                                    <button type="submit" class="btn-warnin" name="search" id="Search-button" >
+                                        <span>Tìm kiếm</span>
+                                    </button>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Giải thuật duyệt và render Danh sách sản phẩm theo dòng, cột của Bootstrap -->
+                    <div class="col-sm-8 mt-2">
+=======
 <!-- header -->
 <?php
 include_once("header.php");
@@ -52,6 +150,7 @@ include_once("header.php");
             <section class="on-sale">
                 <div id="site">
                     <div class="container">
+>>>>>>> ea97da4bc23785d2fdb40b665bf8d43549528c31
                         <div class="row">
                             <?php
                             $tmp = mysqli_num_rows($sql_sanpham);
