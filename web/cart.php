@@ -74,7 +74,17 @@ if (isset($_GET['action'])){
     <div id="content">
         <header id="masthead"></header>
         <h1>Giỏ hàng của bạn</h1>
-        <form id="shopping-cart" action="cart.php?action=submit" method="post">
+        <?php
+            $count = "SELECT COUNT(*) FROM cart WHERE username='$username'";
+            $result_count = $mysqli->query($count);
+            if($result_count->fetch_row()[0] == 0){ ?>
+                <div class="cart-empty div-cart-img">
+                    <img src="images/cart_empty.png" class="cart-empty cart-img">
+                </div>
+                <div class="cart-empty">Giỏ hàng của bạn còn trống</div>
+            <?php }
+            else{ ?>
+                <form id="shopping-cart" action="cart.php?action=submit" method="post">
             <table class="shopping-cart">
                 <tr class="item">
                     <th class="product-number">Stt</th>
@@ -97,54 +107,55 @@ if (isset($_GET['action'])){
 
                 while ($row = $run->fetch_assoc()) {
                     ?>
-                    <tr>
-                        <td class="product-number"><?= $num++; ?></td>
-                        <td class="product-name"><?= $row['tensp'] ?></td>
-                        <td class="product-img">
-                            <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp'] ?>">
-                        </td>
-                        <td class="product-price"><?= $row['gia'] ?></td>
-                        <td class="product-quantity"><?= $row['soluong'] ?></td>
-                        <td class="product-money"><?= $row['tong'] . '€' ?></td>
-                        <td class="product-delete">
-                            <a href="cart.php?username=<?= $username ?>&action=delete&id=<?= $row['id_sp'] ?>">Xóa</a>
-                        </td>
-                    </tr>
-                    <?php
-                    // Concatenate values
-                    $tensp .= $row['tensp'] . '/';
-                    $gia .= $row['gia'] . '/';
-                    $soluong .= $row['soluong'] . '/';
-                    $tong .= $row['tong'] . '/';
-                    $sum += $row['tong'];
-                }
-                // Store session variables after loop
-                $_SESSION['tensp'] = rtrim($tensp, '/'); // Remove trailing slash
-                $_SESSION['gia'] = rtrim($gia, '/');
-                $_SESSION['soluong'] = rtrim($soluong, '/');
-                $_SESSION['tong'] = rtrim($tong, '/');
-                $_SESSION['tongtien'] = $sum;
-                ?>
-                <tr id="row-total">
-                    <th class="product-number">Tổng tiền</th>
-                    <th class="product-name">&nbsp;</th>
-                    <th class="product-img">&nbsp;</th>
-                    <th class="product-price">&nbsp;</th>
-                    <th class="product-quantity">&nbsp;</th>
-                    <th class="product-money"><?= $sum . '€' ?></th>
-                    <th class="product-delete"></th>
-                </tr>
+        <tr>
+            <td class="product-number"><?= $num++; ?></td>
+            <td class="product-name"><?= $row['tensp'] ?></td>
+            <td class="product-img">
+                <img id="product-img" src="http://localhost/web2/web/images/<?= $row['image_sp'] ?>">
+            </td>
+            <td class="product-price"><?= $row['gia'] ?></td>
+            <td class="product-quantity"><?= $row['soluong'] ?></td>
+            <td class="product-money"><?= $row['tong'] . '€' ?></td>
+            <td class="product-delete">
+                <a href="cart.php?username=<?= $username ?>&action=delete&id=<?= $row['id_sp'] ?>">Xóa</a>
+            </td>
+        </tr>
+        <?php
+        // Concatenate values
+        $tensp .= $row['tensp'] . '/';
+        $gia .= $row['gia'] . '/';
+        $soluong .= $row['soluong'] . '/';
+        $tong .= $row['tong'] . '/';
+        $sum += $row['tong'];
+        }
+        // Store session variables after loop
+        $_SESSION['tensp'] = rtrim($tensp, '/'); // Remove trailing slash
+        $_SESSION['gia'] = rtrim($gia, '/');
+        $_SESSION['soluong'] = rtrim($soluong, '/');
+        $_SESSION['tong'] = rtrim($tong, '/');
+        $_SESSION['tongtien'] = $sum;
+        ?>
+        <tr id="row-total">
+            <th class="product-number">Tổng tiền</th>
+            <th class="product-name">&nbsp;</th>
+            <th class="product-img">&nbsp;</th>
+            <th class="product-price">&nbsp;</th>
+            <th class="product-quantity">&nbsp;</th>
+            <th class="product-money"><?= $sum . '€' ?></th>
+            <th class="product-delete"></th>
+        </tr>
 
-            </table>
-            <ul id="shopping-cart-actions">
-                <li>
-                    <a href="select_address.php?username=<?php echo urldecode($username) ?>" id="thanhtoan" class="btn">Thanh toán</a>
-                </li>
-                <li>
-                    <a href="sanpham_trangchu.php?username=<?php echo urldecode($username) ?>" class="btn">Tiếp tục mua sắm</a>
-                </li>
-            </ul>
+        </table>
+        <ul id="shopping-cart-actions">
+            <li>
+                <a href="select_address.php?username=<?php echo urldecode($username) ?>" id="thanhtoan" class="btn">Thanh toán</a>
+            </li>
+            <li>
+                <a href="sanpham_trangchu.php?username=<?php echo urldecode($username) ?>" class="btn">Tiếp tục mua sắm</a>
+            </li>
+        </ul>
         </form>
+            <?php } ?>
     </div>
 </div>
 </body>

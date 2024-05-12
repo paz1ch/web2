@@ -18,9 +18,11 @@ if(isset($_POST['submit'])){
     $gia=$_SESSION['gia'];
     $tong=$_SESSION['tong'];
     $tongtien=$_SESSION['tongtien'];
+    $time_order = date("Y-m-d");
+    $time_shipping = date("Y-m-d", strtotime("+3 days"));
 
-    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien)
-    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien')";
+    $sql = "INSERT INTO cart_detail (username,hoten, diachi,sdt, payment, tensp, soluong, gia, tong, tongtien,xuly,time_shipping,time_order)
+    VALUES ('$username','$hoten', '$diachi','$sdt', '$payment', '$tensp', '$soluong', '$gia', '$tong', '$tongtien','1','$time_shipping','$time_order')";
     $result = $mysqli->query($sql);
 
     $_SESSION['tensp']='';
@@ -33,7 +35,7 @@ if(isset($_POST['submit'])){
     $result = $mysqli->query($sql);
     echo '<script>
         alert("Đặt hàng thành công");
-        window.location.href="user.php?username='.$username.'";
+        window.location.href="lichsudonhang.php?username='.$username.'";
         </script>';
 }
 ?>
@@ -89,7 +91,7 @@ if(isset($_POST['submit'])){
                                         <!-- Output the product name -->
                                         <h6 class="my-0"><?php echo $row['tensp']; ?></h6>
                                         <!-- Output the product price and quantity -->
-                                        <small class="text-muted">Giá: <?php echo $row['gia']; ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
+                                        <small class="text-muted">Giá: <?php echo $row['gia'].'€' ?> | Số lượng: x<?php echo $row['soluong']; ?></small>
 
                                         <input type="hidden" name="tensp" value="<?php echo $row['tensp']?>">
                                         <input type="hidden" name="gia" value="<?php echo $row['gia']?>">

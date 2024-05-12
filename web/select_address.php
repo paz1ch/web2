@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 include('config/config.php');
 global $mysqli;
 $username = $_GET['username'];

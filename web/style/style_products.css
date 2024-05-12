@@ -161,5 +161,19 @@ form input.qty {
 {
 	border-radius:16px!important;
 	margin-bottom: 20px;
-	
+}
+
+.product-value {
+	margin-left: 24px;
+	-webkit-appearance: none;
+	border-left: 0;
+	border-radius: 0;
+	border-right: 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 400;
+	height: 32px;
+	text-align: center;
+	width: 50px;
 }

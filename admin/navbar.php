@@ -37,6 +37,16 @@ $username = $_GET['admin'];
                         <a href="products-admin.php?admin=<?php echo $username ?>" class="font-bold">Chi tiết sản phẩm</a>
                         <a href="add_products-admin.php?admin=<?php echo $username ?>" class="font-bold">Thêm sản phẩm</a>
                     </div>
+
+                    <button class="dropdown-btn">
+                        <i class="fa-solid fa-chart-simple fa-xl"></i>
+                        <span class="nav-item">Thống kê</span>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="user_statistic-admin.php?admin=<?php echo $username ?>" class="font-bold">Theo khách hàng</a>
+                        <a href="cart_statistic-admin.php?admin=<?php echo $username ?>" class="font-bold">Theo đơn hàng</a>
+                    </div>
+
                     <script>
                         var dropdown = document.getElementsByClassName("dropdown-btn");
                         var i;
@@ -54,12 +64,6 @@ $username = $_GET['admin'];
                         }
                     </script>
                 </div>
-            </li>
-            <li>
-                <a href="statistic-admin.php?admin=<?php echo $username ?>" class="font-bold">
-                    <i class="fa-solid fa-chart-simple fa-xl"></i>
-                    <span class="nav-item">Thống kê</span>
-                </a>
             </li>
             <li class="bottom">
                 <a href="#" class="logout" onclick="logOut()">

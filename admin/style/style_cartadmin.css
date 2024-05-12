@@ -21,19 +21,21 @@ th,td{
 
 /* ô vận đơn */
 .mavandon{
-    text-align: left;;
+    background-color: #c5c5c5;
+    text-align: left;
+    font-size: 18px;
+    padding:10px
 }
-
 /* ô sản phẩm */
 th.sanpham {
     width: 30%;
 }
 td.soluong{
     text-align: right;
-    width: 10%;
+    width: 13%;
 }
 td.sanpham{
-    width: 20%;
+    width: 17%;
 }
 
 /* ô doanh thu đơn hàng */
@@ -56,40 +58,44 @@ td.vanchuyen{
 
 /* Thòi gian tạo đơn */
 .thoigian{
-    width: 20%;
+    width: 10%;
 }
 .date{
     width: 10%;
     text-align: center;
 }
-.time{
-    width: 10%;
-    text-align: center;
-}
 
 /* ô thao tác */
-.duyet{
+.thaotac{
+    width: 25%;
+    text-align: center;
+}
+.capnhat{
     width: 10%;
     text-align: center;
 }
-
-/* ô thông tin */
-td.thongtin{
+.option{
+    width: 15%;
     text-align: center;
 }
-a[href="product-info.php"]
-{
-    color: black;
-}
 
-
-/* ô Thông tin */
-td.thongtin:hover{
-    font-weight: bold;
-}
 .background-section{
     padding-bottom: 2.5%;
 }
+/*o ten*/
+th.name, th.address, th.sdt{
+    background-color: rgb(236, 236, 236);
+}
+/*o sdt*/
+td.sdt{
+    text-align: center;
+}
+/*o dia chi*/
+td.address{
+    padding-left: 15px;
+}
+
+
 
 /* tìm kiếm đơn hàng */
 .form-search{
@@ -118,10 +124,86 @@ td.thongtin:hover{
 .button:hover{
     cursor: pointer;
 }
+
 input.select{
-    margin-left: 5px;
+    margin-left: 10px;
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
+    text-align: left;
 }
 .label{
-    color: white;
-    size: 18px;
+    color: whitesmoke;
+    min-width: 20%;
+    overflow: hidden;
+    padding-bottom: 30px;
+    text-align: right;
+    white-space: nowrap;
 }
+
+.date-search-cart-admin {
+    padding: 15px;
+}
+
+.address-search-cart-admin {
+    padding: 15px;
+}
+
+.label2 {
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
+    text-align: left;
+}
+
+.label3 {
+    margin-left: 10px;
+    background: ghostwhite;
+    border: 0;
+    filter: none;
+    outline: none;
+    padding: 12px;
+    text-align: left;
+}
+
+.abcde {
+    padding: 15px;
+}
+
+.abcde select {
+    margin-left: 20px;
+    color: rgba(0,0,0,0.8);
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.nut-loc-va-reset {
+    padding: 15px;
+}
+
+.nut-loc-va-reset span {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: rgb(238, 77, 45);
+    color: rgb(255,255,255);
+    outline: 0px;
+    overflow: visible;
+    position: relative;
+}
+
+.nut-loc-va-reset input {
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color: rgb(238, 77, 45);
+    color: rgb(255,255,255);
+    outline: 0px;
+    overflow: visible;
+    position: relative;
+}
+

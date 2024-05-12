@@ -107,14 +107,22 @@ $username = $_GET['username'];
                                         <p id="sub-total" style="text-align: left">
                                             <strong>Tình trạng đơn:</strong>
                                             <?php
-                                            if ($row['xuly']==0){
-                                                echo 'Đơn chưa xử lý';
+                                            if ($row['xuly']==1){
+                                                echo 'Đơn chưa xác nhận';
                                             }
-                                            else{
-                                                echo 'Đơn đã xử lý';
+                                            else if ($row['xuly']==2){
+                                                echo 'Đơn đã xác nhận';
+                                            }
+                                            else if ($row['xuly']==3){
+                                                echo 'Đơn giao thành công';
+                                            }
+                                            else if ($row['xuly']==4){
+                                                echo 'Hủy đơn';
                                             }
                                             ?>
-                                            <span id="stotal"></span>
+                                            <p id="time">Thời gian nhận hàng (dự kiến):
+                                                <?php echo $row['time_shipping']; ?>
+                                            </p>
                                         </p>
                                     </td>
                                     <td>
