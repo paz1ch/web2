@@ -87,7 +87,7 @@ global $mysqli;
                                 <div class="filter-content">
                                     <div class="card-body">
                                         <select name="type_products">
-                                            <option value="0">--chon--</option>
+                                            <option value="0">--chọn--</option>
                                             <option value="1">Giường</option>
                                             <option value="2">Ghế</option>
                                             <option value="3">Bàn</option>
