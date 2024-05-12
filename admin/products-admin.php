@@ -1,5 +1,6 @@
 <?php
-include('../web/config/config.php');
+include('config/config.php');
+global $conn;
 $username_admin = $_GET["admin"];
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -20,8 +21,10 @@ $username_admin = $_GET["admin"];
 
     <div class="container">
       <?php include 'navbar.php'; ?>
-
-
+        <?php
+        $sql = "SELECT sanpham.id_sp, sanpham.tensp, sanpham.image_sp, sanpham.gia, sanpham.motangan, danhmucsp.tendanhmuc FROM sanpham INNER JOIN danhmucsp on sanpham.id_danhmuc = danhmucsp.id_danhmuc";
+        $result = $conn->query($sql);
+        ?>
       <!-- top banner -->
       <div class="top-banner">
         <p>Online Store</p>
@@ -45,7 +48,7 @@ $username_admin = $_GET["admin"];
               <th class="chucnang" colspan="2">Chức năng</th>
             </tr>
             <?php
-                while ($row = mysqli_fetch_array($sql_sanpham)) {
+                while ($row = mysqli_fetch_array($result)) {
             ?>
             <tr>
               <td class="masanpham"> <?php echo $row['id_sp'] ?> </td>
