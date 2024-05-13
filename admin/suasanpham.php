@@ -2,6 +2,12 @@
 include('../web/config/config.php');
 $conn = new mysqli("localhost", "root", "", "web_php");
 $username_admin = $_GET["admin"];
+$id_sp = $_GET["id_sp"];
+$sql = "SELECT sp.*, dm.* 
+        FROM sanpham sp
+        JOIN danhmucsp dm ON sp.id_danhmuc = dm.id_danhmuc
+        WHERE sp.id_sp = '$id_sp'";
+$result = $conn->query($sql);
 if(isset($_POST["submit"])){
     //
 }
@@ -34,52 +40,63 @@ if(isset($_POST["submit"])){
             <div class="main-body">
                 <h1 style="text-transform: uppercase;">chỉnh sửa sản phẩm</h1>
             </div>
-            <div class="main-body">
-                <img src="image/bed1.jpg" alt="add image">
-                <form action="" style="padding-bottom: 30px;">
-                    <input type="file" name="uploadfile" id="img" style="display: none;">
-                    <label for="img" class="img">
-                        <span class="add-image">Sửa hình ảnh</span>
-                    </label>
-                </form>
-            </div>
-            <form action="" method="">
+            <?php
+            while ($row = $result->fetch_assoc()){
+
+            ?>
+            <form action="" method="post">
+                <div class="main-body">
+                    <img src="image/<?php echo $row['image_sp']?>" alt="add image" width="200px">
+                        <input type="file" name="uploadfile" id="img" style="display: none;">
+                        <br><br><br>
+                        <label for="img" class="img">
+                            <span class="add-image">Sửa hình ảnh</span>
+                        </label>
+                </div>
+                <br><br>
                 <table>
                     <tr>
                         <th>Phân loại</th>
+                        <th>Sửa phân loại</th>
                         <th>Tên sản phẩm</th>
-                        <th>Số lượng</th>
                     </tr>
                     <tr>
                         <td>
+                            <input type="text" placeholder="Nhập tên sản phẩm" value="<?php echo $row['tendanhmuc']?>" readonly>
+                        </td>
+                        <td>
+                            <!--chua lam-->
                             <select name="" id="" class='form-control'>
-                                <option value="">Giường</option>
-                                <option value="">Gương</option>
-                                <option value="">Bàn</option>
-                                <option value="">Ghế</option>
+                                <option value="">--Chọn--</option>
+                                <option value="1">Giường</option>
+                                <option value="2">Ghế</option>
+                                <option value="3">Bàn</option>
+                                <option value="4">Gương</option>
                             </select>
                         </td>
                         <td>
-                            <input type="text" placeholder="Nhập tên sản phẩm" value="Giường-1">
-                        </td>
-                        <td>
-                            <input type="text" placeholder="Nhập số lượng sản phẩm" value="10">
+                            <input type="text" placeholder="Nhập tên sản phẩm" value="<?php echo $row['tensp']?>">
                         </td>
                     </tr>
 
                     <tr>
                       <th>Giá</th>
                       <th>Mô tả sản phẩm</th>
+                      <th>Mô tả chi tiết</th>
                     </tr>
 
                     <tr>
                         <td>
-                            <input type="text" placeholder="Nhập giá sản phẩm" value="20.000.000">
+                            <input type="text" placeholder="Nhập giá sản phẩm" value="<?php echo $row['gia'].'€'?>">
                         </td>
                         <td>
-                            <input type="text" placeholder="Nhập mô tả" value="Dành cho nhà giàu">
+                            <input type="text" placeholder="Nhập mô tả" value="<?php echo $row['motangan']?>">
+                        </td>
+                        <td>
+                            <textarea type="text" placeholder="Nhập mô tả"><?php echo $row['motachitiet']?></textarea>
                         </td>
                     </tr>
+                    <?php } ?>
                 </table>
                 <div class="reset-form">
                     <input type="button" id="buttonreset" style="display: none;">
