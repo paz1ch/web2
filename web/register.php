@@ -4,12 +4,16 @@ $conn = new mysqli("localhost","root","","web_php");
 if (isset($_POST['submit'])) {
     $username = $_POST['kh_tendangnhap'];
     $password = $_POST['kh_matkhau'];
-    $ho = $_POST['kh_ho'];
-    $ten = $_POST['kh_ten'];
     $phone = $_POST['kh_dienthoai'];
     $email = $_POST['kh_email'];
+
+    $ho = $_POST['kh_ho'];
+    $ten = $_POST['kh_ten'];
     $name = $ho . " " . $ten;
-    $country = "vietnam";
+
+    $city = $_POST['city'];
+    $district = $_POST['district'];
+    $detail = $_POST['detail'];
 
 
     // Check if username exists
@@ -50,14 +54,14 @@ if (isset($_POST['submit'])) {
 
     $query_taikhoan = "INSERT INTO taikhoan (username, password, ho, ten, phone, email, status) 
     VALUES ('$username', '$password', '$ho', '$ten', '$phone', '$email', 1)";
-    $query_address = "INSERT INTO address (username, name, phone, country, city, district, detail) 
-    VALUES ('$username', '$name', '$phone', '$country', '', '', '')";
+    $query_address = "INSERT INTO address (username, name, phone, city, district, detail) 
+    VALUES ('$username', '$name', '$phone', '$city', '$district', '$detail')";
 
     $result_Taikhoan = mysqli_query($conn, $query_taikhoan);
     $result_Address = mysqli_query($conn, $query_address);
 
 
-    if($result_Address&&$result_Taikhoan){
+    if($result_Address && $result_Taikhoan){
         echo '<script type="text/JavaScript">  
                  alert("Registration successful"); 
                  window.location.replace("login.php");
@@ -169,7 +173,30 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <input class="form-control" type="email" placeholder="Email" name="kh_email" required>
                                 </div>
-
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="email" placeholder="Tỉnh/Thành phố" name="city" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="email" placeholder="Quận/Huyện" name="district" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="email" placeholder="Địa chỉ chi tiết" name="detail" required>
+                                </div>
                                 <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký">
 
                             </div>
