@@ -23,7 +23,7 @@ if (isset($_GET['search'])) {
         $page1 = ($get_page * 8) - 8;
     }
 
-    $sql = "SELECT * FROM sanpham WHERE tensp LIKE '%$search%' ORDER BY id_sp DESC LIMIT $page1,8";
+    $sql = "SELECT * FROM sanpham WHERE tensp LIKE '%$search%' and trang_thai!=0 ORDER BY id_sp  DESC LIMIT $page1,8";
     
     $sql_sanpham = mysqli_query($mysqli, $sql);
 }
