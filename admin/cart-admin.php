@@ -246,6 +246,13 @@ if (isset($_GET['reset'])){
         <?php
     }
     ?>
+    <?php
+    // Kiểm tra nếu không tìm thấy bản ghi
+    if ($dem_fail==0) {
+        echo 'Không tìm thấy';
+        exit;
+    }
+    ?>
 
     <div style="text-align: center;">
     <p style="font-size: 20px;">Trang :
@@ -260,6 +267,7 @@ if (isset($_GET['reset'])){
             $donhang = $_GET['donhang'];
             $city = $_GET['city'];
             $district = $_GET['district'];
+
             for ($b = 1; $b <= $a; $b++) {
                 echo '<a class="phantrang" href="?admin=' .$username_admin.
                     '&from-date='.$from_date .
@@ -267,8 +275,9 @@ if (isset($_GET['reset'])){
                     '&city=' . $city.
                     '&district=' . $district.
                     '&donhang=' . $donhang.
+                    '&page=' . $b .
                     '&search=Submit'.
-                    '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                    '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
             }
         }
         else{
@@ -281,13 +290,7 @@ if (isset($_GET['reset'])){
     </p>
     </div>
 
-    <?php
-    // Kiểm tra nếu không tìm thấy bản ghi
-    if ($dem_fail==0) {
-        echo 'Không tìm thấy';
-        exit;
-    }
-    ?>
+
     </div>
 
 
