@@ -32,6 +32,7 @@ if (isset($_GET['action'])) {
 
     }
     else {
+        $temp = $tensp;
         $sql = "DELETE FROM sanpham WHERE tensp = '$temp'";
         $result = $conn->query($sql);
         echo '<script>
