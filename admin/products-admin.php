@@ -95,7 +95,7 @@ if (isset($_GET['action'])) {
                         <th class="chucnang" colspan="2">Chức năng</th>
                     </tr>
                     <?php
-                        while ($row = mysqli_fetch_array($result)) {
+                        while ($row = $result->fetch_assoc()) {
                     ?>
                     <tr>
                         <td class="masanpham"> <?php echo $row['id_sp'] ?> </td>
