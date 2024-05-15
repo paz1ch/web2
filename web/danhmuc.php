@@ -163,7 +163,7 @@ $id_danhmuc = $_GET['id_danhmuc'];
         $a = ceil($count / 8);
 
         for ($b = 1; $b <= $a; $b++) {
-            echo '<a class="phantrang" href="sanpham_trangchu.php?username='.$username.'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+            echo '<a class="phantrang" href="danhmuc.php?username='.$username.'&page=' . $b . '&id_danhmuc='.$id_danhmuc.'" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
         }
 
         ?>
