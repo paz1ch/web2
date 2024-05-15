@@ -82,7 +82,7 @@ if (isset($_POST['themvaogiohang'])){
         $page1 = ($get_page * 8) - 8;
     }
 
-    $sql = "SELECT * FROM sanpham ORDER BY id_sp DESC LIMIT $page1,8";
+    $sql = "SELECT * FROM sanpham where trang_thai=1 ORDER BY id_sp DESC LIMIT $page1,8";
     $sql_sanpham = mysqli_query($mysqli, $sql);
     ?>
     <br>
@@ -144,7 +144,7 @@ if (isset($_POST['themvaogiohang'])){
     <div style="text-align: center;">
         <p style="font-size: 20px;">Trang :
             <?php
-            $sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham");
+            $sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham where trang_thai!=0");
             $count = mysqli_num_rows($sql_trang);
             $a = ceil($count / 8);
 

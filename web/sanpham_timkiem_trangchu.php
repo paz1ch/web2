@@ -91,8 +91,8 @@ $username = $_GET["username"];
                                             <p style="margin-top: 0; margin-bottom: 1rem;"><input style="text-align: center; color: white; background: #ef0e2a !important; margin-top: 10px;" name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                         </div>
                                     </div>
-            </form>
-        </div>
+                </form>
+                                    </div>
 								<?php
 									}
 								}
@@ -122,7 +122,7 @@ $username = $_GET["username"];
 		<div style="text-align: center;">
 			<p style="font-size: 20px;">Trang :
 				<?php
-				$sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham WHERE tensp LIKE '%$search%'");
+				$sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham WHERE tensp LIKE '%$search%' and trang_thai!=0");
 				$count = mysqli_num_rows($sql_trang);
 				$a = ceil($count / 8);
 
