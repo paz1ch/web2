@@ -179,7 +179,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="email" placeholder="Tỉnh/Thành phố" name="city" required>
+                                    <input class="form-control" type="text" placeholder="Tỉnh/Thành phố" name="city" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -187,7 +187,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="email" placeholder="Quận/Huyện" name="district" required>
+                                    <input class="form-control" type="text" placeholder="Quận/Huyện" name="district" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -195,7 +195,7 @@ if (isset($_POST['submit'])) {
                                             <i class="fa fa-user"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="email" placeholder="Địa chỉ chi tiết" name="detail" required>
+                                    <input class="form-control" type="text" placeholder="Địa chỉ chi tiết" name="detail" required>
                                 </div>
                                 <input class="btn btn-block btn-success" type="submit" name="submit" value="Đăng ký">
 
