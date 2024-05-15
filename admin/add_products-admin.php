@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$id_sp','$id_danhmuc','$tensp','$gia','$motangan','$motachitiet', '$image_sp')";
     if ($conn->query($sql_add) === TRUE) {
         echo '<script>
-                alert("Đặt hàng thành công");
+                alert("Thêm sản phẩm thành công");
                 window.location.href="add_products-admin.php?admin='.$username_admin.'";
               </script>';
     } else {
