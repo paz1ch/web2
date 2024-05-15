@@ -23,21 +23,24 @@ if (isset($_GET['action'])) {
     $temp = '';
 
     if (checkSanpham($tensp, $temp)) {
-        $sql = "UPDATE sanpham SET trang_thai = 0 WHERE tensp = '$temp'";
-        $result = $conn->query($sql);
         echo '<script>
-            alert("Ẩn sản phẩm thành công");
-            window.location.href="products-admin.php?admin=' . $username_admin . '";
+            if (confirm("Bạn có muốn Ẩn sản phẩm không ????")){
+                window.location.href="delete_hide.php?action=hide'. '&temp='.$temp.'";
+                alert("Ẩn sản phẩm thành công");
+                window.location.href="products-admin.php?admin=' . $username_admin .'";
+            }
             </script>';
     }
     else {
         $temp = $tensp;
-        $sql = "DELETE FROM sanpham WHERE tensp = '$temp'";
-        $result = $conn->query($sql);
         echo '<script>
-            alert("Xoá sản phẩm thành công");
-            window.location.href="products-admin.php?admin=' . $username_admin . '";
-            </script>';    }
+            if (confirm("Bạn có muốn Xóa sản phẩm không ????")){
+                window.location.href="delete_hide.php?action=delete' . '&temp='.$temp.'";
+                alert("Xoá sản phẩm thành công");
+                window.location.href="products-admin.php?admin=' . $username_admin .'";
+            }
+            </script>';
+    }
 }
 
 
