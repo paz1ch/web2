@@ -2,9 +2,8 @@
 include "config/config.php";
 global $conn;
 $admin = $_GET['admin'];
-$sql = "SELECT hoten, COUNT(*) AS so_luong_mua, SUM(tongtien) AS tong_luong_mua 
+$sql = "SELECT hoten, count(id) as so_luong_van_don, SUM(tongtien) AS tong_luong_mua 
             FROM cart_detail 
-            WHERE xuly='3'
             GROUP BY hoten 
             ORDER BY tong_luong_mua DESC";
 $result = $conn->query($sql);
@@ -78,9 +77,9 @@ if (isset($_POST['search'])) {
             <tr>
                 <th>STT</th>
                 <th>Họ và Tên</th>
-                <th>Tổng lượng mua</th>
+                <th>Đơn hàng đã mua</th>
                 <th>Tổng tiền</th>
-                <th>Thông tin vận đơn</th>
+                <th>Thông tin đơn hàng</th>
             </tr>
             <?php
             $count = 1;
@@ -90,7 +89,7 @@ if (isset($_POST['search'])) {
                 <tr>
                         <td><?php echo $count; ?></td>
                         <td><?php echo htmlspecialchars($row['hoten']); ?></td>
-                        <td><?php echo $row['so_luong_mua']; ?></td>
+                        <td><?php echo $row['so_luong_van_don']; ?></td>
                         <td><?php echo $row['tong_luong_mua'].'€'; ?></td>
                         <td>
                             <a href="donhang_user-admin.php?admin=<?php echo $admin?>&name=<?php echo htmlspecialchars($row['hoten']); ?>">
