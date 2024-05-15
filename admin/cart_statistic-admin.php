@@ -118,12 +118,15 @@ while ($row = $result->fetch_assoc()) {
             $pagination .= "</div>";
 
             while ($row = $result_offset->fetch_assoc()){
-                $tensp_array = explode('/', $row['tensp']);
-                $count_slash_tensp = count($tensp_array); // Số lượng các phần tử trong $tensp_array
+                $soluong_array = explode('/', $row['soluong']);
+                $total_soluong = 0;
+                foreach ($soluong_array as $value){
+                    $total_soluong += (int)$value;
+                }
                 ?>
             <tr>
                 <td><?php echo $row['id'] ?></td>
-                <td><?php echo $count_slash_tensp ?></td>
+                <td><?php echo $total_soluong ?></td>
                 <td><?php echo $row['tongtien'].'€' ?></td>
                 <td>
                     <a href="chitietdonhang_statistic.php?admin=<?php echo $admin?>&mvd=<?php echo $row['id']?>">

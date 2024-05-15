@@ -3,8 +3,8 @@ include_once("config/config.php");
 global $mysqli;
 ?>
 
-< lang="vi" class="h-100">
-
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <title>Tìm kiếm</title>
     <meta charset="utf-8" />
@@ -25,12 +25,6 @@ global $mysqli;
     <link rel="stylesheet" href="style/product_detail.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/font-awesome.min.css" media="screen" type="text/css">
-    <style>
-
-        .fa{
-            line-height: revert!important;
-        }
-    </style>
 </head>
 
 <body>
@@ -42,7 +36,7 @@ include_once("header.php");
 <br><br><br>
 <main role="main">
     <div class="container mt-4">
-        <form name="frmTimKiem" method="post" action="">
+        <form name="frmTimKiem" method="get" action="">
             <button class="tim-kiem">Tìm kiếm nâng cao
                 <div class="star-1">
                     <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
@@ -120,7 +114,6 @@ include_once("header.php");
                         <div class="text-center">
                             <button type="reset" id="Search-button" class="btn-warnin" name="delete" >
                                 <span>Xóa bộ lọc</span>
-
                                 <button type="submit" class="btn-warnin" name="search" id="Search-button" >
                                     <span>Tìm kiếm</span>
                                 </button>
@@ -136,36 +129,41 @@ include_once("header.php");
                         </div>
                     </div>
                     <?php
-                    $sql = "SELECT * from sanpham";
-                    $result = $mysqli->query($sql);
-                    $dem_fault=0;
+                    $dem_fault = 0;
+                    $sql = "SELECT * FROM sanpham WHERE 1=1 and trang_thai!=0";
+                    $page1 = 0;
 
-                    if (isset($_POST['search'])){
-                        $tensp = $_POST['tensp'];
-                        $min = $_POST['min'];
-                        $max = $_POST['max'];
-                        $type = $_POST['type_products'];
+                    if (isset($_GET['page'])) {
+                        $get_page = (int)$_GET['page'];
+                        if ($get_page > 1) {
+                            $page1 = ($get_page * 8) - 8;
+                        }
+                    }
 
-                        // Base query
-                        $sql = "SELECT * FROM sanpham WHERE 1=1";
+                    if (isset($_GET['search'])) {
+                        $tensp =$_GET['tensp'];
+                        $min = $_GET['min'];
+                        $max = $_GET['max'];
+                        $type = $_GET['type_products'];
 
                         if (!empty($tensp)) {
                             $sql .= " AND tensp LIKE '%$tensp%'";
                         }
 
                         if ($type != '0') {
-                            $sql .= " AND id_danhmuc='$type'";
+                            $sql .= " AND id_danhmuc = '$type'";
                         }
 
-                        if ($type == '0') {
-                            $sql .= " AND REPLACE(gia, '€', '') BETWEEN $min AND $max";
+                        if ($type == '0' && $min !== 0 && $max !== 0) {
+                            $sql .= " AND gia BETWEEN $min AND $max";
                         }
-                        $result = $mysqli->query($sql);
                     }
+                    $sql .= " LIMIT $page1, 8";
+                    $result = $mysqli->query($sql);
+
                     $count = 0;
                     while ($row = $result->fetch_assoc()) {
                         if ($count % 2 == 0) {
-                            // Mở một dòng mới nếu là sản phẩm đầu tiên hoặc sau mỗi 2 sản phẩm
                             echo '<div class="row">';
                         }
                         ?>
@@ -217,7 +215,55 @@ include_once("header.php");
 
 <!-- pagination -->
 <br>
+<div style="text-align: center;">
+    <p style="font-size: 20px;">Trang :
+        <?php
+        $sql_trang = "SELECT * from sanpham where 1=1 and trang_thai!=0";
 
+        if(isset($_GET['search'])){
+            $tensp = $_GET['tensp'];
+            $min = $_GET['min'];
+            $max = $_GET['max'];
+            $type = $_GET['type_products'];
+
+            if (!empty($tensp)) {
+                $sql_trang .= " AND tensp LIKE '%$tensp%'";
+            }
+
+            if ($type != '0') {
+                $sql_trang .= " AND id_danhmuc = '$type'";
+            }
+
+            if ($type == '0' && $min !== 0 && $max !== 0) {
+                $sql_trang .= " AND gia BETWEEN $min AND $max";
+            }
+
+            $result = $mysqli->query($sql_trang);
+            $count = mysqli_num_rows($result);
+            $a = ceil($count / 8);
+
+            for ($b = 1; $b <= $a; $b++) {
+                echo '<a class="phantrang" href="?tensp=' .$tensp.
+                    '&min='. $min.
+                    '&max=' . $max.
+                    '&type_products=' . $type.
+                    '&page=' . $b .
+                    '&search='.'
+                    " style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+            }
+        }
+        else{
+            $result = $mysqli->query($sql_trang);
+            $count = mysqli_num_rows($result);
+            $a = ceil($count / 8);
+            for ($b = 1; $b <= $a; $b++) {
+                echo '<a class="phantrang" href="?page=' . $b . '" style="text-decoration:none;"> ' . $b . ' </a>';
+            }
+        }
+
+        ?>
+    </p>
+</div>
 </section>
 </body>
 <footer class="footer mt-auto py-3">

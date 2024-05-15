@@ -2,7 +2,7 @@
 include ('config/config.php');
 global $conn;
 $username_admin = $_GET['admin'];
-$sql_offset = "SELECT * from cart_detail";
+$sql_offset = "SELECT * from cart_detail where 1=1";
 
 if (isset($_POST['update'])){
     $username = $_POST['username'];
@@ -22,35 +22,53 @@ if (isset($_POST['update'])){
         </script>';
     }
 }
-function search(&$sql_offset)
-{
-    if (isset($_POST['search'])) {
-        // Sanitize input
-        $from_date = $_POST['from-date'];
-        $to_date = $_POST['to-date'];
-        $donhang = $_POST['donhang'];
-        $city = $_POST['city'];
-        $district = $_POST['district'];
+if (isset($_GET['search'])) {
+    // Sanitize input
+    $from_date = $_GET['from-date'];
+    $to_date = $_GET['to-date'];
+    $donhang = $_GET['donhang'];
+    $city = $_GET['city'];
+    $district = $_GET['district'];
+    $admin = $_GET['admin'];
 
-        if (!empty($from_date) && !empty($to_date)) {
-            $sql_offset .= " AND `time_shipping` BETWEEN '$from_date' AND '$to_date'";
-        }
-        if (!empty($donhang)) {
-            $sql_offset .= " AND `xuly` = '$donhang'";
-        }
-        if (!empty($city)) {
-            $sql_offset .= " AND `diachi` LIKE '%$city%'";
-        }
-        if (!empty($district)) {
-            $sql_offset .= " AND `diachi` LIKE '%$district%'";
-        }
-        if (empty($from_date) && empty($to_date) && empty($donhang) && empty($city) && empty($district)) {
-            echo '<script>
-        alert("Vui lòng nhập liệu trước khi Lọc");
-        </script>';
-        }
+    if (!empty($from_date) && !empty($to_date)) {
+        $sql_offset .= " AND `time_shipping` BETWEEN '$from_date' AND '$to_date'";
+    }
+    if (!empty($donhang)) {
+        $sql_offset .= " AND `xuly` = '$donhang'";
+    }
+    if (!empty($city)) {
+        $sql_offset .= " AND `diachi` LIKE '%$city%'";
+    }
+    if (!empty($district)) {
+        $sql_offset .= " AND `diachi` LIKE '%$district%'";
     }
 
+    if (isset($_GET['page'])) {
+        $get_page = $_GET['page'];
+    } else {
+        $get_page = '';
+    }
+    if ($get_page == '' || $get_page == 1) {
+        $page1 = 0;
+    } else {
+        $page1 = ($get_page * 5) - 5;
+    }
+    $sql_offset .= "limit $page1,5";
+
+
+    if (empty($from_date) && empty($to_date) && empty($donhang) && empty($city) && empty($district)) {
+        echo '<script>
+        alert("Vui lòng nhập liệu trước khi Lọc");
+        window.location.href ="?admin='.$admin.'";
+        </script>';
+    }
+}
+if (isset($_GET['reset'])){
+    $admin = $_GET['admin'];
+    echo '<script>
+        window.location.href ="?admin='.$admin.'";
+        </script>';
 }
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -80,8 +98,9 @@ function search(&$sql_offset)
         <div class="main-body">
             <h1>TÌM KIẾM ĐƠN HÀNG</h1>
         </div>
-            <form action="" class="form-search" method="post">
+            <form action="" class="form-search" method="get">
                 <h5 class="h5-search">- - Tìm kiếm - -</h5>
+                <input type="hidden" name="admin" value="<?php echo $username_admin?>">
 
                 <!--    tim kiem theo thoi gian nhan hang    -->
                 <div class="date-search-cart-admin">
@@ -96,7 +115,6 @@ function search(&$sql_offset)
                     <input class="label2" type="text" name="city" placeholder="Tỉnh thành phố">
                     <input class="label3" type="text" name="district" placeholder="Quận huyện">
                 </div>
-
                 <!--    Tim kiem theo tinh trang don hang    -->
                 <div class="abcde">
                     <label for="" class="label">Tình trạng đơn hàng</label>
@@ -132,39 +150,13 @@ function search(&$sql_offset)
     </tr>
     </table>
     <?php
-    $records_per_page = 5; // Số bản ghi mỗi trang
+    /*
+     <a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem;
+        margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4);
+        display: inline; justify-content: center;
+    */
 
-    // Tính tổng số bản ghi
-    $sql_count = "SELECT COUNT(*) AS total_records FROM cart_detail";
-    $result_count = $conn->query($sql_count);
-    $row_count = $result_count->fetch_assoc();
-    $total_records = $row_count['total_records'];
-
-    // Tính tổng số trang
-    $total_pages = ceil($total_records / $records_per_page);
-
-    // Xác định trang hiện tại
-    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-    // Tính OFFSET cho truy vấn SQL mới
-    $offset = ($current_page - 1) * $records_per_page;
-
-    // Sửa đổi truy vấn SQL để chỉ trả về số lượng bản ghi phù hợp cho trang hiện tại=
-    $sql_offset .= " WHERE 1=1 ";
-    search($sql_offset); // Call the search function to modify the query
-    $sql_offset .= " LIMIT $records_per_page OFFSET $offset"; // Add LIMIT and OFFSET clauses
-    $result_offset = $conn->query($sql_offset);
-
-    // Tạo liên kết phân trang
-    $pagination = "<div class='pagination' style='font-size: 20px;'> Trang ";
-    for ($i = 1; $i <= $total_pages; $i++) {
-        $pagination .= "<a style='text-decoration: none; padding: 0; min-width: 2.5rem; text-align: center; height: 1.875rem; font-size: 1.25rem; 
-        margin-left: .9375rem; margin-right: .9375rem; color: rgba(0,0,0,.4); 
-        display: inline; justify-content: center;' href='?admin=$username_admin&page=$i'>$i</a>";
-    }
-    $pagination .= "</div>";
-
-    // xuat du lieu ra table cart_detail
+    $result_offset = $conn ->query($sql_offset);
     $dem_fail=0;
     while ($row = $result_offset->fetch_assoc()) {
         $dem_fail++;
@@ -250,19 +242,57 @@ function search(&$sql_offset)
                 </td>
             </tr>
         </table>
+
         <?php
     }
-
+    ?>
+    <?php
     // Kiểm tra nếu không tìm thấy bản ghi
     if ($dem_fail==0) {
-        echo 'Không tìm thấy san pham';
+        echo 'Không tìm thấy';
         exit;
     }
-
-    // Hiển thị phân trang
-    echo $pagination;
     ?>
+
+    <div style="text-align: center;">
+    <p style="font-size: 20px;">Trang :
+        <?php
+        $sql_trang = mysqli_query($conn, "SELECT * FROM cart_detail");
+        $count = mysqli_num_rows($sql_trang);
+        $a = ceil($count / 8);
+
+        if(isset($_GET['search'])){
+            $from_date = $_GET['from-date'];
+            $to_date = $_GET['to-date'];
+            $donhang = $_GET['donhang'];
+            $city = $_GET['city'];
+            $district = $_GET['district'];
+
+            for ($b = 1; $b <= $a; $b++) {
+                echo '<a class="phantrang" href="?admin=' .$username_admin.
+                    '&from-date='.$from_date .
+                    '&to-date='. $to_date.
+                    '&city=' . $city.
+                    '&district=' . $district.
+                    '&donhang=' . $donhang.
+                    '&page=' . $b .
+                    '&search=Submit'.
+                    '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+            }
+        }
+        else{
+            for ($b = 1; $b <= $a; $b++) {
+                echo '<a class="phantrang" href="?admin=' .$username_admin.
+                    '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+            }
+        }
+        ?>
+    </p>
     </div>
+
+
+    </div>
+
 
     </section>
 

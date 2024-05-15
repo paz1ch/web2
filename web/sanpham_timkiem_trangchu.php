@@ -3,6 +3,7 @@ include_once("config/config.php");
 $username = $_GET["username"];
 ?>
 
+<!DOCTYPE html>
 <html lang="vi" class="h-100">
 
 <head>
@@ -25,11 +26,6 @@ $username = $_GET["username"];
 	<link rel="stylesheet" href="style/product_detail.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="style/bootstrap.min.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="style/font-awesome.min.css" media="screen" type="text/css">
-    <style>
-        .fa{
-            line-height: revert!important;
-        }
-    </style>
 </head>
 
 

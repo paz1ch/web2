@@ -2,9 +2,8 @@
 include "config/config.php";
 global $conn;
 $admin = $_GET['admin'];
-$sql = "SELECT hoten, COUNT(*) AS so_luong_mua, SUM(tongtien) AS tong_luong_mua 
+$sql = "SELECT hoten, count(id) as so_luong_van_don, SUM(tongtien) AS tong_luong_mua 
             FROM cart_detail 
-            WHERE xuly='3'
             GROUP BY hoten 
             ORDER BY tong_luong_mua DESC";
 $result = $conn->query($sql);
@@ -18,7 +17,8 @@ if (isset($_POST['search'])) {
                 FROM cart_detail 
                 WHERE xuly='3' AND time_order BETWEEN '$from_date' AND '$to_date'
                 GROUP BY hoten 
-                ORDER BY tong_luong_mua DESC";
+                ORDER BY tong_luong_mua DESC
+                limit 5";
         $result = $conn->query($sql);
     }
     else{
@@ -78,19 +78,18 @@ if (isset($_POST['search'])) {
             <tr>
                 <th>STT</th>
                 <th>Họ và Tên</th>
-                <th>Tổng lượng mua</th>
+                <th>Đơn hàng đã mua</th>
                 <th>Tổng tiền</th>
-                <th>Thông tin vận đơn</th>
+                <th>Thông tin đơn hàng</th>
             </tr>
             <?php
             $count = 1;
             while ($row = $result->fetch_assoc()) {
-                if ($count > 5) break;
-                ?>
+            ?>
                 <tr>
                         <td><?php echo $count; ?></td>
                         <td><?php echo htmlspecialchars($row['hoten']); ?></td>
-                        <td><?php echo $row['so_luong_mua']; ?></td>
+                        <td><?php echo $row['so_luong_van_don']; ?></td>
                         <td><?php echo $row['tong_luong_mua'].'€'; ?></td>
                         <td>
                             <a href="donhang_user-admin.php?admin=<?php echo $admin?>&name=<?php echo htmlspecialchars($row['hoten']); ?>">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2024 lúc 04:13 AM
+-- Thời gian đã tạo: Th5 15, 2024 lúc 04:53 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -47,7 +47,7 @@ INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `di
 (4, 'test2', 'nhat truong', '034623612', 'vietnam', 'hồ chí minh', 'tân phú', 'hai bà trưng', 'Thanh toán khi nhận hàng'),
 (42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử'),
 (43, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử'),
-(44, 'nhattruong', 'nhat truong', '0974121320', '', 'dong nai', 'tan phu ', '89/15 ap phu tho, xa phu loc', '');
+(44, 'nhattruong', 'nhat truong', '0974121320', 'Vietnam', 'dong nai', 'tan phu ', '89/15 ap phu tho, xa phu loc', 'Ví điện tử');
 
 -- --------------------------------------------------------
 
