@@ -4,6 +4,7 @@ global $conn;
 $admin = $_GET['admin'];
 $sql = "SELECT hoten, count(id) as so_luong_van_don, SUM(tongtien) AS tong_luong_mua 
             FROM cart_detail 
+            where xuly=3
             GROUP BY hoten 
             ORDER BY tong_luong_mua DESC";
 $result = $conn->query($sql);
