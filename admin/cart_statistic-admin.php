@@ -2,7 +2,7 @@
 include 'config/config.php';
 global $conn;
 $admin = $_GET['admin'];
-$sql = "SELECT * FROM cart_detail ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC";
+$sql = "SELECT * FROM cart_detail where xuly=3 ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC";
 $result = $conn->query($sql);
 
 $unique_products = [];
@@ -91,7 +91,7 @@ while ($row = $result->fetch_assoc()) {
             $records_per_page = 10; // Số bản ghi mỗi trang
 
             // Tính tổng số bản ghi
-            $sql_count = "SELECT COUNT(*) AS total_records FROM cart_detail";
+            $sql_count = "SELECT COUNT(*) AS total_records FROM cart_detail where xuly=3";
             $result_count = $conn->query($sql_count);
             $row_count = $result_count->fetch_assoc();
             $total_records = $row_count['total_records'];
@@ -106,7 +106,7 @@ while ($row = $result->fetch_assoc()) {
             $offset = ($current_page - 1) * $records_per_page;
 
             // Sửa đổi truy vấn SQL để chỉ trả về số lượng bản ghi phù hợp cho trang hiện tại
-            $sql_offset = "SELECT * FROM cart_detail ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC 
+            $sql_offset = "SELECT * FROM cart_detail where xuly=3 ORDER BY CAST(tongtien AS DECIMAL(10,2)) DESC 
             LIMIT $records_per_page OFFSET $offset";
             $result_offset = $conn->query($sql_offset);
 
