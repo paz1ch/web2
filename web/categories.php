@@ -29,10 +29,13 @@ $id_danhmuc = $_GET["id_danhmuc"];
 <section id="home">
     <?php include 'header.php'; ?>
 </section>
-<br><br>
-<br><br>
 <!--Danh mục-->
 <section class="featured-categories" id="products">
+    <div class="container">
+        <div class="title-box">
+            <h2>DANH MỤC</h2>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">

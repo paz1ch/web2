@@ -35,10 +35,11 @@ if (isset($_POST['themvaogiohang'])){
         include 'header.php';
         ?>
     </section>
-    <br><br>
-    <br><br>
     <section class="featured-categories" id="products">
         <div class="container">
+            <div class="title-box">
+                <h2>DANH MỤC</h2>
+            </div>
             <div class="row">
                 <div class="col-md-3">
                     <h1>Giường</h1>
