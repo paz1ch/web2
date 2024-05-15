@@ -92,7 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <tr>
               <td colspan="3">
                 <input required type="file" accept=".jpg,.jpeg,.png" name="image_sp" id="file-input">
-                <img id="img-preview" src=""/>
+                <div style="margin-left: 350px;">
+                    <img id="img-preview" style="width: 30%; margin-top: 40px" src=""/>
+                </div>
               </td>
             </tr>
           </table>
