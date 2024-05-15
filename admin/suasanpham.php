@@ -8,8 +8,18 @@ $sql = "SELECT sp.*, dm.*
         JOIN danhmucsp dm ON sp.id_danhmuc = dm.id_danhmuc
         WHERE sp.id_sp = '$id_sp'";
 $result = $conn->query($sql);
-if(isset($_POST["submit"])){
-    //
+if (isset($_POST['submit'])){
+    $image_sp = basename($_FILES['uploadfile']['name']);
+    $upload_dir = "image/";
+    $upload_file = $upload_dir . $image_sp;
+    if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $upload_file)){
+        $sql = "UPDATE sanpham SET image_sp = '$image_sp' WHERE id_sp = '$id_sp'";
+        if ($conn->query($sql) === TRUE) {
+            header('Location: suasanpham.php?admin=' . $username_admin . '&id_sp=' . $id_sp);
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
 }
 ?>
 <span style="font-family: verdana, geneva, sans-serif;">
@@ -44,14 +54,15 @@ if(isset($_POST["submit"])){
             while ($row = $result->fetch_assoc()){
 
             ?>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="main-body">
                     <img src="image/<?php echo $row['image_sp']?>" alt="add image" width="200px">
-                        <input type="file" name="uploadfile" id="img" style="display: none;">
-                        <br><br><br>
-                        <label for="img" class="img">
-                            <span class="add-image">Sửa hình ảnh</span>
-                        </label>
+                    <br><br>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <div class="add-image" style="display: inline-block; text-align: center; margin-left: 356px;">
+                        <label for="img" style="cursor: pointer">Chọn ảnh</label>
+                    </div>
+                    <input for="img" class="img add-image" type="file" name="uploadfile" accept=".jpg,.jpeg,.png" id="img" style="visibility: hidden">
                 </div>
                 <br><br>
                 <table>
