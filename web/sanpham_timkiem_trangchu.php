@@ -86,11 +86,13 @@ $username = $_GET["username"];
                                         <i class="fa fa-star-half-o"></i>
                                         <h4><?php echo $row['tensp'] ?></h4>
                                         <div>
-                                            <p class="product-price"><?php echo $row["gia"].'€' ?></p>
+                                            <p class="product-price" style="width: 2.7em; height: 2em; font-size: 1.7em; text-align: center; margin-left: 90px; background: #fff; color: black;"><?php echo $row["gia"].'€' ?></p>
                                             <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
-                                            <label for="qty-<?php echo $row['id_sp']?>">Số lượng</label>
-                                            <input type="number" min="1" max="1000" name="quantity" value="1"/>
-                                            <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
+                                            <div>
+                                                <label for="qty-<?php echo $row['id_sp']?>"">Số lượng</label>
+                                                <input  style="margin-left: 24px; -webkit-appearance: none; border-left: 0; border-radius: 0;border-right: 0; box-sizing: border-box; cursor: pointer; font-size: 16px; font-weight: 400; height: 32px; text-align: center; width: 50px;" type="number" min="1" max="10000" name="quantity" value="1" >
+                                            </div>
+                                            <p style="margin-top: 0; margin-bottom: 1rem;"><input style="text-align: center; color: white; background: #ef0e2a !important; margin-top: 10px;" name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                         </div>
                                     </div>
             </form>
@@ -129,7 +131,7 @@ $username = $_GET["username"];
 				$a = ceil($count / 8);
 
 				for ($b = 1; $b <= $a; $b++) {
-					echo '<a href="?username='.$username.'&search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+					echo '<a class="phantrang" href="?username='.$username.'&search=1&searchtext=' . $search . '&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
 				}
 				?>
 			</p>
@@ -152,3 +154,4 @@ if ($tmp != 0) {
 
 
 </html>
+
