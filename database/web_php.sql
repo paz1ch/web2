@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2024 lúc 08:27 AM
+-- Thời gian đã tạo: Th5 15, 2024 lúc 04:13 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `address` (
   `username` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL DEFAULT 'Việt Nam',
   `city` varchar(50) NOT NULL,
   `district` varchar(50) NOT NULL,
   `detail` varchar(50) NOT NULL,
@@ -46,7 +46,8 @@ CREATE TABLE `address` (
 INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
 (4, 'test2', 'nhat truong', '034623612', 'vietnam', 'hồ chí minh', 'tân phú', 'hai bà trưng', 'Thanh toán khi nhận hàng'),
 (42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử'),
-(43, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử');
+(43, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử'),
+(44, 'nhattruong', 'nhat truong', '0974121320', '', 'dong nai', 'tan phu ', '89/15 ap phu tho, xa phu loc', '');
 
 -- --------------------------------------------------------
 
@@ -64,14 +65,6 @@ CREATE TABLE `cart` (
   `gia` varchar(50) NOT NULL,
   `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `cart`
---
-
-INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `gia`, `tong`) VALUES
-(62, 18, '1', 'GƯỜNG LUXURY', 'bed5.jpg', 1, '1000', '1000'),
-(63, 14, '1', 'BÀN KÍNH', 'table1.jpg', 2, '200', '400');
 
 -- --------------------------------------------------------
 
@@ -101,8 +94,8 @@ CREATE TABLE `cart_detail` (
 --
 
 INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`, `time_shipping`, `time_order`) VALUES
-(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '3', '2000-10-30', '0000-00-00'),
-(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '3', '2000-10-30', '0000-00-00'),
+(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '1', '2000-10-30', '0000-00-00'),
+(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '1', '2000-10-30', '0000-00-00'),
 (16, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY/GƯƠNG MẶT TRỜI', '1/1/1/1', '90/200/1000/100', '90/200/1000/100', '1390', '3', '2024-05-10', '0000-00-00'),
 (17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '3', '2024-05-10', '0000-00-00');
 
@@ -142,34 +135,35 @@ CREATE TABLE `sanpham` (
   `image_sp` varchar(50) NOT NULL,
   `star` int(11) NOT NULL,
   `motangan` text NOT NULL,
-  `motachitiet` text NOT NULL
+  `motachitiet` text NOT NULL,
+  `trang_thai` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`) VALUES
-(1, 3, 'BÀN NHỎ LOẠI 3', '40', 1, 'table3.jpg', 4, '', ''),
-(2, 4, 'GƯƠNG LUXURY FAKE', '300', 1, 'mirror5.jpg', 3, '', ''),
-(3, 4, 'GƯƠNG LOẠI 3', '50', 1, 'mirror3.jpg', 5, '', ''),
-(4, 3, 'SOFA LOẠI 3', '100', 1, 'sofa3.jpg', 4, '', ''),
-(5, 1, 'GIƯỜNG ĐÔI', '120', 1, 'bed3.jpg', 5, '', ''),
-(6, 4, 'GƯƠNG SIÊU BỰ', '90', 1, 'mirror4.jpg', 3, '', ''),
-(7, 2, 'SOFA LOẠI CỰC ÊM', '260', 1, 'sofa4.jpg', 4, '', ''),
-(8, 3, 'BÀN SIÊU CỨNG', '75', 1, 'table4.jpg', 5, '', ''),
-(9, 1, 'GIƯỜNG THÔNG MINH', '500', 1, 'bed4.jpg', 3, '', ''),
-(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300', 1, 'bed1.jpg', 2, '', ''),
-(11, 1, 'GIƯỜNG TIỆN LỢI', '290', 1, 'bed2.jpg', 5, '', ''),
-(12, 2, 'SOFA LUXURY', '250', 1, 'sofa1.jpg', 3, '', ''),
-(13, 2, 'SOFA TRẮNG TINH TẾ', '300', 1, 'sofa2.jpg', 4, '', ''),
-(14, 3, 'BÀN KÍNH', '200', 1, 'table1.jpg', 4, '', ''),
-(15, 3, 'BÀN VĂN PHÒNG', '230', 1, 'table2.jpg', 5, '', ''),
-(16, 4, 'GƯƠNG TRANG ĐIỂM', '130', 1, 'mirror1.jpg', 5, '', ''),
-(17, 4, 'GƯƠNG MẶT TRỜI', '100', 1, 'mirror2.jpg', 4, '', ''),
-(18, 1, 'GƯỜNG LUXURY', '1000', 1, 'bed5.jpg', 5, '', ''),
-(19, 2, 'SOFA LOẠI TỐT', '200', 1, 'sofa5.jpg', 5, '', ''),
-(20, 3, 'BÀN GỖ SỒI', '90', 1, 'table5.jpg', 4, '', '');
+INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`, `trang_thai`) VALUES
+(1, 3, 'BÀN NHỎ LOẠI 3', '40', 1, 'table3.jpg', 4, '', 'toi la chi tiet', 1),
+(2, 4, 'GƯƠNG LUXURY FAKE', '300', 1, 'mirror5.jpg', 3, '', '', 1),
+(3, 4, 'GƯƠNG LOẠI 3', '50', 1, 'mirror3.jpg', 5, '', '', 1),
+(4, 3, 'SOFA LOẠI 3', '100', 1, 'sofa3.jpg', 4, '', '', 1),
+(5, 1, 'GIƯỜNG ĐÔI', '120', 1, 'bed3.jpg', 5, '', '', 1),
+(6, 4, 'GƯƠNG SIÊU BỰ', '90', 1, 'mirror4.jpg', 3, '', '', 1),
+(7, 2, 'SOFA LOẠI CỰC ÊM', '260', 1, 'sofa4.jpg', 4, '', '', 1),
+(8, 3, 'BÀN SIÊU CỨNG', '75', 1, 'table4.jpg', 5, '', '', 1),
+(9, 1, 'GIƯỜNG THÔNG MINH', '500', 1, 'bed4.jpg', 3, '', '', 1),
+(10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300', 1, 'bed1.jpg', 2, '', '', 1),
+(11, 1, 'GIƯỜNG TIỆN LỢI', '290', 1, 'bed2.jpg', 5, '', '', 1),
+(12, 2, 'SOFA LUXURY', '250', 1, 'sofa1.jpg', 3, '', '', 1),
+(13, 2, 'SOFA TRẮNG TINH TẾ', '300', 1, 'sofa2.jpg', 4, '', '', 1),
+(14, 3, 'BÀN KÍNH', '200', 1, 'table1.jpg', 4, '', '', 1),
+(15, 3, 'BÀN VĂN PHÒNG', '230', 1, 'table2.jpg', 5, '', '', 1),
+(16, 4, 'GƯƠNG TRANG ĐIỂM', '130', 1, 'mirror1.jpg', 5, '', '', 1),
+(17, 4, 'GƯƠNG MẶT TRỜI', '100', 1, 'mirror2.jpg', 4, '', '', 1),
+(18, 1, 'GƯỜNG LUXURY', '1000', 1, 'bed5.jpg', 5, '', '', 1),
+(19, 2, 'SOFA LOẠI TỐT', '200', 1, 'sofa5.jpg', 5, '', '', 1),
+(20, 3, 'BÀN GỖ SỒI', '90', 1, 'table5.jpg', 4, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -198,6 +192,7 @@ INSERT INTO `taikhoan` (`username`, `password`, `ho`, `ten`, `phone`, `email`, `
 ('1', '', 'do nhat', 'nguyen', '03452951221', 'affg@gmail.com', 'Nam', '3000-01-02', 0, 1),
 ('123', '', 'do', 'nguyen', '03452951211', 'x@gmail.com', 'Nữ', '2004-01-14', 0, 1),
 ('admin', '1', '', '', '', '', '', '0000-00-00', 1, 1),
+('nhattruong', '1', 'nhat', 'truong', '0974121320', 'nhattruong@gmail.com', '', '0000-00-00', 0, 1),
 ('test2', '1', 'phuc', 'dang', '0345295121', 'asd@gmail.com', 'Nữ', '0004-12-01', 0, 1),
 ('user1', '1', 'nhat', 'Truong', '03333333', 'fjjghf@gmail.com', '', '0000-00-00', 0, 1),
 ('user3', '1', 'nhat', 'Truong', '01111111', '1111@gmail.com', '', '0000-00-00', 0, 1);
@@ -255,7 +250,7 @@ ALTER TABLE `taikhoan`
 -- AUTO_INCREMENT cho bảng `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
