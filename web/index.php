@@ -72,7 +72,6 @@ if (isset($_POST['themvaogiohang'])){
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
     </section>
     <!-- top nav -->
 
@@ -82,19 +81,27 @@ if (isset($_POST['themvaogiohang'])){
             <div class="row">
                 <div class="col-md-3">
                     <h1>Giường</h1>
-                    <img src="images/bed5.jpg">
+                    <a href="categories.php?id_danhmuc=1">
+                        <img src="images/bed5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Ghế</h1>
-                    <img src="images/sofa5.jpg">
+                    <a href="categories.php?id_danhmuc=2">
+                        <img src="images/sofa5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Bàn</h1>
-                    <img src="images/table5.jpg">
+                    <a href="categories.php?id_danhmuc=3">
+                        <img src="images/table5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Gương</h1>
-                    <img src="images/mirror5.jpg">
+                    <a href="categories.php?id_danhmuc=4">
+                        <img src="images/mirror5.jpg">
+                    </a>
                 </div>
             </div>
         </div>

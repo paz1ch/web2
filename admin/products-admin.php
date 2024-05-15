@@ -29,7 +29,6 @@ if (isset($_GET['action'])) {
             alert("Ẩn sản phẩm thành công");
             window.location.href="products-admin.php?admin=' . $username_admin . '";
             </script>';
-
     }
     else {
         $temp = $tensp;

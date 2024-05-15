@@ -13,7 +13,6 @@ if (isset($_POST['search'])) {
     $to_date = $_POST['to-date'];
 
     if (!empty($from_date) && !empty($to_date)) {
-
         $sql = "SELECT hoten, COUNT(*) AS so_luong_mua, SUM(tongtien) AS tong_luong_mua 
                 FROM cart_detail 
                 WHERE xuly='3' AND time_order BETWEEN '$from_date' AND '$to_date'

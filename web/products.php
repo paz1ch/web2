@@ -35,6 +35,39 @@ if (isset($_POST['themvaogiohang'])){
         include 'header.php';
         ?>
     </section>
+    <br><br>
+    <br><br>
+    <section class="featured-categories" id="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1>Giường</h1>
+                    <a href="categories.php?id_danhmuc=1">
+                        <img src="images/bed5.jpg">
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <h1>Ghế</h1>
+                    <a href="categories.php?id_danhmuc=2">
+                        <img src="images/sofa5.jpg">
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <h1>Bàn</h1>
+                    <a href="categories.php?id_danhmuc=3">
+                        <img src="images/table5.jpg">
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <h1>Gương</h1>
+                    <a href="categories.php?id_danhmuc=4">
+                        <img src="images/mirror5.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- top nav -->
     <?php
     if (isset($_GET['page'])) {

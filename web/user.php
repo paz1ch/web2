@@ -72,24 +72,31 @@ $username = $_GET['username'];
             <div class="row">
                 <div class="col-md-3">
                     <h1>Giường</h1>
-                    <img src="images/bed5.jpg">
+                    <a href="danhmuc.php?username=<?php echo $username?>&id_danhmuc=1">
+                        <img src="images/bed5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Ghế</h1>
-                    <img src="images/sofa5.jpg">
+                    <a href="danhmuc.php?username=<?php echo $username?>&id_danhmuc=2">
+                        <img src="images/sofa5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Bàn</h1>
-                    <img src="images/table5.jpg">
+                    <a href="danhmuc.php?username=<?php echo $username?>&id_danhmuc=3">
+                        <img src="images/table5.jpg">
+                    </a>
                 </div>
                 <div class="col-md-3">
                     <h1>Gương</h1>
-                    <img src="images/mirror5.jpg">
+                    <a href="danhmuc.php?username=<?php echo $username?>?&id_danhmuc=4">
+                        <img src="images/mirror5.jpg">
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
 
     <?php
 
