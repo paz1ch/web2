@@ -101,11 +101,10 @@ if (isset($_POST['search'])) {
                 $count++;
                 }
                 ?>
-
         </table>
         <?php
             if($count==1){
-                echo '<p style="padding-top: 10px">Khong tim thay</p>';
+                echo '<p style="padding-top: 10px">Không tìm thấy</p>';
             }
             ?>
     </div>
