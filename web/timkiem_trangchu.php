@@ -201,7 +201,7 @@ include_once("header_user.php");
                         // Đóng thẻ div mở còn dư nếu số sản phẩm là lẻ
                         echo '</div>';
                     }
-                    if($dem_fault==0) echo 'ko tim thay san pham';
+                    if($dem_fault==0) echo '<div>Không tìm thấy sản phẩm nào</div>';
                     ?>
                 </div>
             </div> <!-- row.// -->
@@ -218,7 +218,7 @@ include_once("header_user.php");
 <!-- pagination -->
 <br>
 <div style="text-align: center;">
-    <p style="font-size: 20px;">Trang :
+    <p style="font-size: 20px;">
         <?php
         $sql_trang = "SELECT * from sanpham where 1=1 and trang_thai!=0";
 
