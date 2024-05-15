@@ -29,12 +29,6 @@ if (isset($_POST['submit'])) {
             </script>';
     }
 }
-
-if(isset($_POST['xoa'])){
-    $username = $_POST['username'];
-    $sql_offset = "DELETE FROM taikhoan WHERE username = '$username' LIMIT 1";
-    $result_offset = $conn->query($sql_offset);
-}
 ?>
 
 
@@ -102,7 +96,6 @@ if(isset($_POST['xoa'])){
             <th>Mật khẩu</th>
             <th style="width: 18%;" colspan="2">Tình trạng tài khoản</th>
             <th class="thongtin">Thông tin</th>
-            <th class="delete">Xóa</th>
         </tr>
         <tr>
             <?php
@@ -129,10 +122,6 @@ if(isset($_POST['xoa'])){
 
                     <td class="sua">
                         <input type="submit" name="submitFix" class="sua" value="Sửa">
-                    </td>
-
-                    <td class="sua">
-                        <input type="submit" name="xoa" class="delete" value="Xóa">
                     </td>
               </form>
         </tr>
