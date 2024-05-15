@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
                         <div>
                             <label style="width: 30%;"><span class="red_dot">*</span>
                                 Quốc gia:</label>
-                            <input type="text" name="country" id="" style="width: 50%;" placeholder="Quốc gia" required>
+                            <input type="text" name="country" id="" style="width: 50%;" placeholder="Quốc gia" value="Việt Nam" required>
                         </div>
                         <br>
 
@@ -152,7 +152,5 @@ if (isset($_POST['submit'])) {
 <br>
 <br>
 <br>
-
-<?php include("footer.php"); ?>
 </body>
 </html>
