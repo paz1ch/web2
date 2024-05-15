@@ -17,7 +17,8 @@ if (isset($_POST['search'])) {
                 FROM cart_detail 
                 WHERE xuly='3' AND time_order BETWEEN '$from_date' AND '$to_date'
                 GROUP BY hoten 
-                ORDER BY tong_luong_mua DESC";
+                ORDER BY tong_luong_mua DESC
+                limit 5";
         $result = $conn->query($sql);
     }
     else{
@@ -84,8 +85,7 @@ if (isset($_POST['search'])) {
             <?php
             $count = 1;
             while ($row = $result->fetch_assoc()) {
-                if ($count > 5) break;
-                ?>
+            ?>
                 <tr>
                         <td><?php echo $count; ?></td>
                         <td><?php echo htmlspecialchars($row['hoten']); ?></td>
