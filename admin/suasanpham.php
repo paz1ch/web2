@@ -56,13 +56,31 @@ if (isset($_POST['submit'])){
             ?>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="main-body">
-                    <img src="image/<?php echo $row['image_sp']?>" alt="add image" width="200px">
+                    <img id="preview-image" src="image/<?php echo $row['image_sp']?>" alt="add image" width="200px">
                     <br><br>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <div class="add-image" style="display: inline-block; text-align: center; margin-left: 356px;">
                         <label for="img" style="cursor: pointer">Chọn ảnh</label>
                     </div>
                     <input for="img" class="img add-image" type="file" name="uploadfile" accept=".jpg,.jpeg,.png" id="img" style="visibility: hidden">
+                    <script>
+                    const fileInput = document.getElementById('img');
+                    const previewImage = document.getElementById('preview-image');
+
+                    fileInput.addEventListener('change', function(event) {
+                      const file = event.target.files[0];
+
+                      if (file) {
+                        const reader = new FileReader();
+
+                        reader.addEventListener('load', function() {
+                          previewImage.setAttribute('src', reader.result);
+                        });
+
+                        reader.readAsDataURL(file);
+                      }
+                    });
+                    </script>
                 </div>
                 <br><br>
                 <table>
