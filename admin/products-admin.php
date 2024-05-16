@@ -151,7 +151,9 @@ if (isset($_GET['action'])) {
                         <th class="chucnang" colspan="2">Chức năng</th>
                     </tr>
                     <?php
+                        $count=0;
                         while ($row = $result->fetch_assoc()) {
+                            $count++;
                     ?>
                     <tr>
                         <td class="masanpham"> <?php echo $row['id_sp'] ?> </td>
@@ -169,9 +171,15 @@ if (isset($_GET['action'])) {
                         </td>
                     </tr>
                     <?php } ?>
+
                 </table>
             </form>
             <br><br>
+            <?php if ($count==0) {
+                echo '<p>Không tìm thấy sản phẩm</p>';
+                exit;
+            }
+            ?>
             <div style="text-align: center;">
                 <p style="font-size: 20px;">Trang :
                     <?php
@@ -198,7 +206,7 @@ if (isset($_GET['action'])) {
                                 '&page=' . $b .
                                 '&tensp='. $tensp.
                                 '&phanloai='. $phanloai.
-                                'search=Submit'.
+                                '&search=Submit'.
                                 '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
                         }
                     }
@@ -209,12 +217,11 @@ if (isset($_GET['action'])) {
                         for ($b = 1; $b <= $a; $b++) {
                             echo '<a class="phantrang" href="?admin='.$username_admin.'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
                         }
-
                     }
-
                     ?>
                 </p>
             </div>
+
         </div>
         </section>
     </div>
