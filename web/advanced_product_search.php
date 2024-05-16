@@ -81,7 +81,7 @@ include_once("header.php");
                             <div class="filter-content">
                                 <div class="card-body">
                                     <select name="type_products">
-                                        <option value="0">--chon--</option>
+                                        <option value="0">--Chọn--</option>
                                         <option value="1">Giường</option>
                                         <option value="2">Ghế</option>
                                         <option value="3">Bàn</option>
@@ -101,11 +101,11 @@ include_once("header.php");
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Từ</label>
-                                            <input type="number" class="custom-range" min="0" max="50000000" id="min" name="min" value="0">
+                                            <input type="number" class="custom-range" min="0" max="10000" id="min" name="min" value="0">
                                         </div>
                                         <div class="form-group col-md-6 text-right">
                                             <label>Đến</label>
-                                            <input type="number" class="custom-range" min="0" max="50000000" id="max" name="max" value="50000000">
+                                            <input type="number" class="custom-range" min="0" max="10000" id="max" name="max" value="500">
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@ include_once("header.php");
                         // Đóng thẻ div mở còn dư nếu số sản phẩm là lẻ
                         echo '</div>';
                     }
-                    if($dem_fault==0) echo 'ko tim thay san pham';
+                    if($dem_fault==0) echo 'Không tìm thấy sản phẩm';
                     ?>
                 </div>
             </div> <!-- row.// -->

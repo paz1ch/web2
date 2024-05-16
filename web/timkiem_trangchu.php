@@ -14,7 +14,6 @@ $username = $_GET['username'];
     <link rel="icon" type="image/png" href="images/icon_search.png">
     <link rel="stylesheet" href="style/style.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_topnav.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="style/style_ourteam.css" media="screen" type="text/css">
     <link rel="stylesheet" href="style/style_banner.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_serviece.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="style/style_product.css" media="screen" type="text/css" />
@@ -82,7 +81,7 @@ include_once("header_user.php");
                             </header>
                             <div class="filter-content">
                                 <div class="card-body">
-                                    <select name="type_products">
+                                    <select name="type_products" class="category">
                                         <option value="0">--Chọn--</option>
                                         <option value="1">Giường</option>
                                         <option value="2">Ghế</option>
@@ -103,11 +102,11 @@ include_once("header_user.php");
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Từ</label>
-                                            <input type="number" class="custom-range" min="0" max="50000000" id="min" name="min" value="0">
+                                            <input type="number" class="custom-range" min="0" max="10000" id="min" name="min" value="0">
                                         </div>
                                         <div class="form-group col-md-6 text-right">
                                             <label>Đến</label>
-                                            <input type="number" class="custom-range" min="0" max="50000000" id="max" name="max" value="50000000">
+                                            <input type="number" class="custom-range" min="0" max="10000" id="max" name="max" value="500">
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +180,7 @@ include_once("header_user.php");
                                     <p class="card-text"><?php echo $row['motangan'] ?></p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-sm btn-outline-secondary" href="chitiet_sanpham.php?username=<?php echo $username?>id=<?php echo $row['id_sp']?>">Xem chi tiết</a>
+                                            <a class="btn btn-sm btn-outline-secondary" href="chitiet_sanpham.php?username=<?php echo $username?>&id=<?php echo $row['id_sp']?>">Xem chi tiết</a>
                                         </div>
                                         <small class="text-muted text-right">
                                             <b style="font-size: medium;"><?php echo $row['gia'].'€'?></b>

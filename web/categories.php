@@ -78,7 +78,7 @@ if ($get_page == '' || $get_page == 1) {
 } else {
     $page1 = ($get_page * 8) - 8;
 }
-$sql = "SELECT * FROM sanpham where id_danhmuc = '$id_danhmuc' ORDER BY id_sp DESC LIMIT $page1,8";
+$sql = "SELECT * FROM sanpham where id_danhmuc = '$id_danhmuc' and trang_thai!=0 ORDER BY id_sp DESC LIMIT $page1,8";
 $sql_sanpham = mysqli_query($mysqli, $sql);
 ?>
 <br>
@@ -156,7 +156,7 @@ $sql_sanpham = mysqli_query($mysqli, $sql);
 <div style="text-align: center;">
     <p style="font-size: 20px;">Trang :
         <?php
-        $sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham where id_danhmuc = '$id_danhmuc'");
+        $sql_trang = mysqli_query($mysqli, "SELECT * FROM sanpham where id_danhmuc = '$id_danhmuc' and trang_thai!=0");
         $count = mysqli_num_rows($sql_trang);
         $a = ceil($count / 8);
 
