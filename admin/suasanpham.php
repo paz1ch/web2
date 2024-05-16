@@ -63,13 +63,14 @@ if (isset($_POST['submit'])){
                         <label for="img" style="cursor: pointer">Chọn ảnh</label>
                     </div>
                     <input for="img" class="img add-image" type="file" name="uploadfile" accept=".jpg,.jpeg,.png" id="img" style="visibility: hidden">
+
+                    // hiện hình ảnh xem trước khi người dùng chỉnh sửa ảnh
                     <script>
                     const fileInput = document.getElementById('img');
                     const previewImage = document.getElementById('preview-image');
 
                     fileInput.addEventListener('change', function(event) {
                       const file = event.target.files[0];
-
                       if (file) {
                         const reader = new FileReader();
 
