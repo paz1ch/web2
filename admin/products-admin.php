@@ -59,21 +59,40 @@ if (isset($_GET['action'])) {
     <div class="container">
         <?php include 'navbar.php'; ?>
         <?php
-        if (isset($_GET['page'])) {
-            $get_page = $_GET['page'];
-        } else {
-            $get_page = '';
-        }
-        if ($get_page == '' || $get_page == 1) {
-            $page1 = 0;
-        } else {
-            $page1 = ($get_page * 10) - 10;
-        }
+        $page1 = 0;
         $sql = "SELECT sanpham.id_sp, sanpham.tensp, sanpham.image_sp, sanpham.gia, sanpham.motangan, danhmucsp.tendanhmuc 
-        FROM sanpham INNER JOIN danhmucsp ON sanpham.id_danhmuc = danhmucsp.id_danhmuc 
-        WHERE sanpham.trang_thai = 1
-        ORDER BY sanpham.id_sp
-        limit $page1,10";
+        FROM sanpham 
+        INNER JOIN danhmucsp ON sanpham.id_danhmuc = danhmucsp.id_danhmuc 
+        WHERE sanpham.trang_thai = 1 ";
+
+        if (isset($_GET['page'])) {
+            $get_page = (int)$_GET['page'];
+            if ($get_page > 1) {
+                $page1 = ($get_page * 8) - 8;
+            }
+        }
+
+        if (isset($_GET['search'])) {
+            $tensp = $_GET['tensp'];
+            $phanloai = $_GET['phanloai'];
+
+            if (!empty($tensp)) {
+                $sql .= "AND sanpham.tensp LIKE '%" . $tensp . "%' ";
+            }
+
+            if (!empty($phanloai)) {
+                $sql .= "AND sanpham.id_danhmuc = '" . $phanloai . "' ";
+            }
+
+            if (empty($tensp) && empty($phanloai)) {
+                echo '<script>
+                alert("Vui lòng nhập liệu trước khi tìm kiếm !!!");
+              </script>';
+            }
+        }
+
+        $sql .= "ORDER BY sanpham.id_sp LIMIT $page1, 10";
+
         $result = $conn->query($sql);
         ?>
         <!-- top banner -->
@@ -84,6 +103,40 @@ if (isset($_GET['action'])) {
         <section class="main">
         <div class="main-top"></div>
         <div class="background-section">
+        <div class="main-body">
+            <h1>TÌM KIẾM SẢN PHẨM</h1>
+        </div>
+            <form action="" class="form-search" method="get">
+                <h5 class="h5-search">- - Tìm kiếm - -</h5>
+                <input type="hidden" name="admin" value="<?php echo $username_admin?>">
+
+                <!--    tim kiem theo thoi gian nhan hang    -->
+                <div class="date-search-cart-admin">
+                    <label for="" class="label">Tên sản phẩm</label>
+                    <input type="text" name="tensp" class="select">
+                </div>
+
+                <!--    Tim kiem theo tinh trang don hang    -->
+                <div class="abcde">
+                    <label for="" class="label">Phân loại</label>
+                    <select name="phanloai" >
+                        <option value="">--Chọn--</option>
+                        <option value="1">Giường</option>
+                        <option value="2">Ghế</option>
+                        <option value="3">Bàn</option>
+                        <option value="4">Gương</option>
+                    </select>
+                </div>
+                <div class="nut-loc-va-reset">
+                    <input type="submit" name="search" id="submitbutton" style="display: none">
+                    <label for="submitbutton">
+                    <span  class="button">Lọc</span>
+                    </label>
+                    <input type="submit" id="resetbutton" name="reset" class="button" value="Reset">
+                </div>
+            </form>
+    </div>
+        <div class="background-section">
             <div class="main-body">
                 <h1 style="text-transform: uppercase;">chi tiết sản phẩm</h1>
             </div>
@@ -93,7 +146,7 @@ if (isset($_GET['action'])) {
                         <th class="masanpham">Mã sản phẩm</th>
                         <th class="planloai">Phân loại</th>
                         <th class="anh" style="width: 15%">Ảnh</th>
-                        <th class="name" style="width: 25%">Tên sản phẩm</th>
+                        <th class="tensp" style="width: 25%">Tên sản phẩm</th>
                         <th class="gia">Giá</th>
                         <th class="chucnang" colspan="2">Chức năng</th>
                     </tr>
@@ -122,13 +175,43 @@ if (isset($_GET['action'])) {
             <div style="text-align: center;">
                 <p style="font-size: 20px;">Trang :
                     <?php
-                    $sql_trang = mysqli_query($conn, "SELECT * FROM sanpham");
-                    $count = mysqli_num_rows($sql_trang);
-                    $a = ceil($count / 10);
+                    $sql_trang = "SELECT sanpham.id_sp, sanpham.tensp, sanpham.image_sp, sanpham.gia, sanpham.motangan, danhmucsp.tendanhmuc 
+                    FROM sanpham 
+                    INNER JOIN danhmucsp ON sanpham.id_danhmuc = danhmucsp.id_danhmuc 
+                    WHERE sanpham.trang_thai = 1 ";
+                    if (isset($_GET['search'])) {
+                        $tensp = $_GET['tensp'];
+                        $phanloai = $_GET['phanloai'];
 
-                    for ($b = 1; $b <= $a; $b++) {
-                        echo '<a class="phantrang" href="products-admin.php?admin='.$username_admin.'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                        if (!empty($tensp)) {
+                            $sql_trang .= "AND sanpham.tensp LIKE '%" . $tensp . "%' ";
+                        }
+
+                        if (!empty($phanloai)) {
+                            $sql_trang .= "AND sanpham.id_danhmuc = '" . $phanloai . "' ";
+                        }
+                        $result = $conn->query($sql_trang);
+                        $count = mysqli_num_rows($result);
+                        $a = ceil($count / 10);
+                        for ($b = 1; $b <= $a; $b++) {
+                            echo '<a class="phantrang" href="?admin='.$username_admin.
+                                '&page=' . $b .
+                                '&tensp='. $tensp.
+                                '&phanloai='. $phanloai.
+                                'search=Submit'.
+                                '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                        }
                     }
+                    else{
+                        $result = $conn->query($sql_trang);
+                        $count = mysqli_num_rows($result);
+                        $a = ceil($count / 10);
+                        for ($b = 1; $b <= $a; $b++) {
+                            echo '<a class="phantrang" href="?admin='.$username_admin.'&page=' . $b . '" style="text-decoration:none;">' . ' ' . $b . ' ' . '</a>';
+                        }
+
+                    }
+
                     ?>
                 </p>
             </div>
