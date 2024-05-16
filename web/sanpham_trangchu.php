@@ -122,10 +122,8 @@ $username = $_GET['username'];
                                 <div>
                                     <p class="product-price"><?php echo $row["gia"].'€' ?></p>
                                     <input type="hidden" name="id_product" value="<?php echo $row['id_sp']?>">
-                                    <div>
-                                        <label for="qty-<?php echo $row['id_sp']?>"">Số lượng</label>
-                                        <input class="product-value" type="number" min="1" max="10000" name="quantity" value="1" >
-                                    </div>
+                                    <label for="qty-<?php echo $row['id_sp']?>"">Số lượng</label>
+                                    <input class="product-value" type="number" min="1" max="10000" name="quantity" value="1" >
                                     <p><input name="themvaogiohang" type="submit" value="Mua" class="btn"/></p>
                                     </form>
                                 </div>
