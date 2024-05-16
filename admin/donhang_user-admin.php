@@ -149,9 +149,6 @@ $result = $conn->query($sql);
             echo 'Không tìm thấy san pham';
             exit;
         }
-
-        // Hiển thị phân trang
-        echo $pagination;
         ?>
         <!-- nut quay lai trang-->
             <div class="button-back" title="Quay về trang trước">
