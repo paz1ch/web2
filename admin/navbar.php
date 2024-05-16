@@ -6,7 +6,7 @@ $username = $_GET['admin'];
         <a href="index.php?admin=<?php echo $username ?>" style="color: black;">
             <div class="logo">
                 <img src="image/phuccac.jpg" alt="">
-                <h1>Phúc</h1>
+                <h1><?php echo $username?></h1>
             </div>
         </a>
         <div class="account-type">Tài khoản: Admin</div>
