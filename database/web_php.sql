@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2024 lúc 04:53 AM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2024 at 07:30 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `web_php`
+-- Database: `web_php`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `address`
+-- Table structure for table `address`
 --
 
 CREATE TABLE `address` (
@@ -36,23 +36,23 @@ CREATE TABLE `address` (
   `city` varchar(50) NOT NULL,
   `district` varchar(50) NOT NULL,
   `detail` varchar(50) NOT NULL,
-  `payment` varchar(50) NOT NULL
+  `payment` varchar(50) NOT NULL DEFAULT 'Thanh toán khi nhận hàng'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `address`
+-- Dumping data for table `address`
 --
 
 INSERT INTO `address` (`id`, `username`, `name`, `phone`, `country`, `city`, `district`, `detail`, `payment`) VALUES
 (4, 'test2', 'nhat truong', '034623612', 'vietnam', 'hồ chí minh', 'tân phú', 'hai bà trưng', 'Thanh toán khi nhận hàng'),
-(42, '1', 'Truong nhat', '1111111', 'Vietnam', 'đồng nai', 'kalsjd', '1321321', 'Ví điện tử'),
-(43, '1', 'Truong nhat', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Ví điện tử'),
+(42, '1', 'Truong nhat', '0312654823', 'Vietnam', 'đồng nai', 'phu xuan', '132/12 nguyen van huong', 'Thanh toán khi nhận hàng'),
+(43, '1', 'Truong do', '0345295121', 'Vietnam', 'đồng nai', 'tan phu', 'phu lam', 'Thanh toán khi nhận hàng'),
 (44, 'nhattruong', 'nhat truong', '0974121320', 'Vietnam', 'dong nai', 'tan phu ', '89/15 ap phu tho, xa phu loc', 'Ví điện tử');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
@@ -66,10 +66,17 @@ CREATE TABLE `cart` (
   `tong` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `id_sp`, `username`, `tensp`, `image_sp`, `soluong`, `gia`, `tong`) VALUES
+(69, 14, '1', 'BÀN KÍNH', 'table1.jpg', 1, '200', '200');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart_detail`
+-- Table structure for table `cart_detail`
 --
 
 CREATE TABLE `cart_detail` (
@@ -90,19 +97,22 @@ CREATE TABLE `cart_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `cart_detail`
+-- Dumping data for table `cart_detail`
 --
 
 INSERT INTO `cart_detail` (`id`, `username`, `hoten`, `diachi`, `sdt`, `payment`, `tensp`, `soluong`, `gia`, `tong`, `tongtien`, `xuly`, `time_shipping`, `time_order`) VALUES
-(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '1', '2000-10-30', '0000-00-00'),
-(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '1', '2000-10-30', '0000-00-00'),
+(14, '1', 'Truong nhat', 'thủ đức, đồng nai, Vietnam', '03452951211', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/BÀN KÍNH/BÀN VĂN PHÒNG', '1/1/1/1', '90/200/200/230', '90/200/200/230', '720', '3', '2000-10-30', '0000-00-00'),
+(15, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'SOFA LOẠI TỐT/GƯƠNG MẶT TRỜI/BÀN KÍNH', '1/9/5', '200/100/200', '200/900/1000', '2100', '3', '2000-10-30', '0000-00-00'),
 (16, '1', 'Truong nhat', 'tan phu, đồng nai, Vietnam', '0345295121', 'Ví điện tử', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY/GƯƠNG MẶT TRỜI', '1/1/1/1', '90/200/1000/100', '90/200/1000/100', '1390', '3', '2024-05-10', '0000-00-00'),
-(17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '3', '2024-05-10', '0000-00-00');
+(17, 'test2', 'nhat truong', 'tân phú, hồ chí minh, vietnam', '034623612', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/SOFA LOẠI TỐT/GƯỜNG LUXURY', '1/1/1', '90/200/1000', '90/200/1000', '1290', '3', '2024-05-10', '0000-00-00'),
+(18, '1', 'Truong do', 'tan phu, đồng nai, Vietnam', '0345295121', 'Thanh toán khi nhận hàng', 'BÀN GỖ SỒI/GƯỜNG LUXURY/SOFA TRẮNG TINH TẾ', '1/1/1', '90/1000/300', '90/1000/300', '1390', '1', '2024-05-18', '2024-05-15'),
+(19, '1', 'Truong do', 'tan phu, đồng nai, Vietnam', '0345295121', 'Thanh toán khi nhận hàng', 'GIƯỜNG THÔNG MINH', '1', '500', '500', '500', '1', '2024-05-19', '2024-05-16'),
+(20, '1', 'Truong nhat', 'phu xuan, đồng nai, Vietnam', '0312654823', 'Thanh toán khi nhận hàng', 'GƯƠNG TRANG ĐIỂM', '1', '130', '130', '130', '1', '2024-05-27', '2024-05-24');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmucsp`
+-- Table structure for table `danhmucsp`
 --
 
 CREATE TABLE `danhmucsp` (
@@ -111,7 +121,7 @@ CREATE TABLE `danhmucsp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmucsp`
+-- Dumping data for table `danhmucsp`
 --
 
 INSERT INTO `danhmucsp` (`id_danhmuc`, `tendanhmuc`) VALUES
@@ -123,7 +133,7 @@ INSERT INTO `danhmucsp` (`id_danhmuc`, `tendanhmuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -140,19 +150,17 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `image_sp`, `star`, `motangan`, `motachitiet`, `trang_thai`) VALUES
-(1, 3, 'BÀN NHỎ LOẠI 3', '40', 1, 'table3.jpg', 4, '', 'toi la chi tiet', 1),
-(2, 4, 'GƯƠNG LUXURY FAKE', '300', 1, 'mirror5.jpg', 3, '', '', 1),
-(3, 4, 'GƯƠNG LOẠI 3', '50', 1, 'mirror3.jpg', 5, '', '', 1),
-(4, 3, 'SOFA LOẠI 3', '100', 1, 'sofa3.jpg', 4, '', '', 1),
+(3, 4, 'GƯƠNG LOẠI 3', '50', 1, 'mirror3.jpg', 5, '', '', 0),
+(4, 3, 'SOFA LOẠI 3', '100', 1, 'sofa3.jpg', 4, '', '', 0),
 (5, 1, 'GIƯỜNG ĐÔI', '120', 1, 'bed3.jpg', 5, '', '', 1),
 (6, 4, 'GƯƠNG SIÊU BỰ', '90', 1, 'mirror4.jpg', 3, '', '', 1),
 (7, 2, 'SOFA LOẠI CỰC ÊM', '260', 1, 'sofa4.jpg', 4, '', '', 1),
 (8, 3, 'BÀN SIÊU CỨNG', '75', 1, 'table4.jpg', 5, '', '', 1),
-(9, 1, 'GIƯỜNG THÔNG MINH', '500', 1, 'bed4.jpg', 3, '', '', 1),
+(9, 1, 'GIƯỜNG THÔNG MINH', '500', 1, 'bed4.jpg', 3, '', '', 0),
 (10, 1, 'GIƯỜNG GỖ BẠCH DƯƠNG', '300', 1, 'bed1.jpg', 2, '', '', 1),
 (11, 1, 'GIƯỜNG TIỆN LỢI', '290', 1, 'bed2.jpg', 5, '', '', 1),
 (12, 2, 'SOFA LUXURY', '250', 1, 'sofa1.jpg', 3, '', '', 1),
@@ -168,7 +176,7 @@ INSERT INTO `sanpham` (`id_sp`, `id_danhmuc`, `tensp`, `gia`, `sp_active`, `imag
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `taikhoan`
+-- Table structure for table `taikhoan`
 --
 
 CREATE TABLE `taikhoan` (
@@ -185,7 +193,7 @@ CREATE TABLE `taikhoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `taikhoan`
+-- Dumping data for table `taikhoan`
 --
 
 INSERT INTO `taikhoan` (`username`, `password`, `ho`, `ten`, `phone`, `email`, `sex`, `date`, `isadmin`, `status`) VALUES
@@ -194,22 +202,24 @@ INSERT INTO `taikhoan` (`username`, `password`, `ho`, `ten`, `phone`, `email`, `
 ('admin', '1', '', '', '', '', '', '0000-00-00', 1, 1),
 ('nhattruong', '1', 'nhat', 'truong', '0974121320', 'nhattruong@gmail.com', '', '0000-00-00', 0, 1),
 ('test2', '1', 'phuc', 'dang', '0345295121', 'asd@gmail.com', 'Nữ', '0004-12-01', 0, 1),
+('truong1', '1', 'nhat', 'truong', '0315131659', 'huureongk4@gmail.com', '1', '2004-01-14', 0, 1),
+('truongdo1', '1', 'truong', 'do', '0312456123', 'truongdo1@gmail.com', '1', '2004-01-14', 0, 1),
 ('user1', '1', 'nhat', 'Truong', '03333333', 'fjjghf@gmail.com', '', '0000-00-00', 0, 1),
 ('user3', '1', 'nhat', 'Truong', '01111111', '1111@gmail.com', '', '0000-00-00', 0, 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `address`
+-- Indexes for table `address`
 --
 ALTER TABLE `address`
   ADD PRIMARY KEY (`id`),
   ADD KEY `username` (`username`);
 
 --
--- Chỉ mục cho bảng `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
@@ -218,70 +228,70 @@ ALTER TABLE `cart`
   ADD KEY `id_sp_3` (`id_sp`);
 
 --
--- Chỉ mục cho bảng `cart_detail`
+-- Indexes for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `danhmucsp`
+-- Indexes for table `danhmucsp`
 --
 ALTER TABLE `danhmucsp`
   ADD PRIMARY KEY (`id_danhmuc`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_sp`),
   ADD KEY `id_danhmuc` (`id_danhmuc`);
 
 --
--- Chỉ mục cho bảng `taikhoan`
+-- Indexes for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `address`
+-- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT cho bảng `cart`
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT cho bảng `cart_detail`
+-- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113147;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `address`
+-- Constraints for table `address`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`username`) REFERENCES `taikhoan` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `sanpham`
+-- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`id_danhmuc`) REFERENCES `danhmucsp` (`id_danhmuc`) ON DELETE CASCADE ON UPDATE CASCADE;
